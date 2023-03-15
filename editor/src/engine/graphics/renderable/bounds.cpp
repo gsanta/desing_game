@@ -23,5 +23,13 @@ namespace spright { namespace engine {
     float Bounds::getHeight() const {
         return maxY - minY;
     }
+
+    bool operator==(const Bounds& lhs, const Bounds& rhs) {
+        return lhs.minX == rhs.minX && lhs.maxX == rhs.maxX && lhs.minY == rhs.minY && lhs.maxY == rhs.maxY;
+    }
+
+    bool operator!=(const Bounds& lhs, const Bounds& rhs) {
+        return !(lhs == rhs);
+    }
 }}
 

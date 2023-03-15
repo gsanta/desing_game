@@ -23,25 +23,53 @@ TEST_CASE("FrameStore", "[frame_handler]") {
 	}
 
 	SECTION("can get/set the active frame") {
-		Container container(Dimensions(-3.0f, 3.0f, -3.0f, 3.0f));
-
 		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(2);
 
-		FrameImpl* frame1 = new FrameImpl(0);
-		frame1->addLayer(layers[0]);
+		FrameImpl frame1(0);
+		frame1.addLayer(layers[0]);
 		FrameImpl frame2(1);
 		frame2.addLayer(layers[1]);
 
 		FrameStore frameHandler;
 
-		frameHandler.addFrame(*frame1);
+		frameHandler.addFrame(frame1);
 		frameHandler.addFrame(frame2);
 
 
-		REQUIRE(frameHandler.getActiveFrame().getIndex() == frame1->getIndex());
+		REQUIRE(frameHandler.getActiveFrame().getIndex() == frame1.getIndex());
 
 		frameHandler.setActiveFrame(1);
 
 		REQUIRE(frameHandler.getActiveFrame().getIndex() == frame2.getIndex());
+	}
+
+	SECTION("throws when trying to remove the last frame") {
+		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(1);
+
+		FrameImpl frame(0);
+		frame.addLayer(layers[0]);
+
+		FrameStore frameHandler;
+		frameHandler.addFrame(frame);
+
+		REQUIRE_THROWS_WITH(frameHandler.removeFrame(0), "The last frame can not be removed");
+	}
+
+	SECTION("can remove a frame") {
+		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(3);
+
+		FrameImpl frame(0);
+		frame.addLayer(layers[0]);
+		FrameImpl frame2(1);
+		frame2.addLayer(layers[1]);
+		FrameImpl frame3(1);
+		frame3.addLayer(layers[2]);
+
+		FrameStore frameHandler;
+		frameHandler.addFrame(frame);
+		frameHandler.addFrame(frame2);
+		frameHandler.addFrame(frame3);
+
+		frameHandler.removeFrame(1);
 	}
 }

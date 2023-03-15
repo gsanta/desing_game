@@ -15,6 +15,9 @@ namespace spright { namespace engine {
 		Bounds(float bottomLeftX, float bottomLeftY, float width, float height);
 		Bounds();
 
+		friend bool operator==(const Bounds&, const Bounds&);
+		friend bool operator!=(const Bounds&, const Bounds&);
+
 		Vec2 getCenter() const;
 
 		float getWidth() const;

@@ -36,7 +36,8 @@ namespace spright { namespace engine {
 		~TileLayer();
 
 		TileLayer& operator=(const TileLayer&);
-		//friend bool operator==(const TileLayer&, const TileLayer&);
+		friend bool operator==(const TileLayer&, const TileLayer&);
+		friend bool operator!=(const TileLayer&, const TileLayer&);
 
 		std::string getId() const;
 

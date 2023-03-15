@@ -35,8 +35,13 @@ namespace spright { namespace engine {
 		return *this;
 	}
 
-	bool operator==(const TileLayer&, const TileLayer&) {
-		return false;
+	bool operator==(const TileLayer& lhs, const TileLayer& rhs) {
+		return lhs.m_Id == rhs.m_Id && lhs.m_Name == rhs.m_Name && lhs.m_Bounds == rhs.m_Bounds && lhs.m_Group == rhs.m_Group
+			&& lhs.m_TileSize == rhs.m_TileSize && lhs.m_IndexSize == rhs.m_IndexSize;
+	}
+
+	bool operator!=(const TileLayer& lhs, const TileLayer& rhs) {
+		return !(lhs == rhs);
 	}
 
 	std::string TileLayer::getId() const {

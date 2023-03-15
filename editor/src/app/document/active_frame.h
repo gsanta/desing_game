@@ -19,6 +19,8 @@ namespace spright { namespace editor {
 
 		ActiveFrame& operator=(const ActiveFrame& rhs);
 
+		bool isEqual(const Frame& rhs) const override;
+
 		bool isValid() const;
 
 		TileLayer& addLayer(const TileLayer& tileLayer) override;

@@ -22,6 +22,22 @@ namespace spright { namespace editor {
 
 	}
 
+	bool FrameImpl::isEqual(const Frame& rhs) const {
+		const FrameImpl& frame = dynamic_cast<const FrameImpl&>(rhs);
+
+		if (m_Layers.size() != frame.m_Layers.size()) {
+			return false;
+		}
+
+		for (int i = 0; i < m_Layers.size(); i++) {
+			if (frame.m_Layers[i] != m_Layers[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	TileLayer& FrameImpl::addLayer(const TileLayer& layer)
 	{
 		m_Layers.push_back(layer);

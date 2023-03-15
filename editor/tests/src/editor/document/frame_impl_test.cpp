@@ -8,7 +8,39 @@
 using namespace ::spright::engine;
 using namespace ::spright::editor;
 
-TEST_CASE("Frame", "[frame]") {
+TEST_CASE("FrameImpl", "[frame_impl]") {
+	SECTION("equals with an other Frame with the same data") {
+		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(2);
+
+		Rect2D rect1(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
+		Rect2D rect2(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
+
+		layers[0].add(rect1);
+		layers[1].add(rect2);
+
+		FrameImpl frame1;
+		FrameImpl frame2;
+
+		frame1.addLayer(layers[0]);
+		frame1.addLayer(layers[1]);
+		frame2.addLayer(layers[0]);
+		frame2.addLayer(layers[1]);
+
+		REQUIRE(frame1 == frame2);
+	}
+
+	SECTION("does not equal with another Frame with the different data") {
+		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(2);
+
+		FrameImpl frame1;
+		FrameImpl frame2;
+
+		frame1.addLayer(layers[0]);
+		frame2.addLayer(layers[1]);
+
+		REQUIRE(frame1 != frame2);
+	}
+
 	SECTION("can add a layer") {
 		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(3);
 	
@@ -29,11 +61,6 @@ TEST_CASE("Frame", "[frame]") {
 		frame.addLayer(layers[0]);
 		frame.addLayer(layers[1]);
 		frame.addLayer(layers[2]);
-
-		std::vector<TileLayer> l;
-
-		l.push_back(layers[0]);
-		l.erase(l.begin());
 
 		frame.removeLayer(layers[1].getId());
 		REQUIRE(frame.getLayers().size() == 2);

@@ -7,6 +7,10 @@ namespace spright { namespace editor {
 
 	class Frame {
 	public:
+
+		friend bool operator==(const Frame&, const Frame&);
+		friend bool operator!=(const Frame&, const Frame&);
+		virtual bool isEqual(const Frame&) const = 0;
 		virtual TileLayer& addLayer(const TileLayer& tileLayer) = 0;
 		virtual void insertLayer(const TileLayer& tileLayer, size_t index) = 0;
 		virtual void removeLayer(std::string layerId) = 0;
@@ -18,4 +22,12 @@ namespace spright { namespace editor {
 		virtual size_t getIndex() const = 0;
 		virtual void setIndex(size_t index) = 0;
 	};
+
+	inline bool operator==(const Frame& lhs, const Frame& rhs) {
+		return typeid(lhs) == typeid(rhs) && lhs.isEqual(rhs);
+	}
+
+	inline bool operator!=(const Frame& lhs, const Frame& rhs) {
+		return !(lhs.isEqual(rhs));
+	}
 }}

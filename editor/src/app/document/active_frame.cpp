@@ -27,6 +27,11 @@ namespace spright { namespace editor {
 		return *this;
 	}
 
+	bool ActiveFrame::isEqual(const Frame& rhs) const {
+		throw "isEqual not implemented in ActiveFrame";
+	}
+
+
 	bool ActiveFrame::isValid() const {
 		return m_ActiveFrameIndex != -1;
 	}

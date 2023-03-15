@@ -9,8 +9,6 @@ using namespace ::spright::engine;
 
 TEST_CASE("Group", "[group]") {
 	SECTION("add renderable to the layer") {
-		Container* container = new Container(Dimensions(-16.0f, 16.0f, -16.0f, 16.0f));
-
 		Group<Rect2D> group(new HeadlessRenderer2D());
 
 		//group.add()

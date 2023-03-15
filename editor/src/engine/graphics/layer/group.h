@@ -6,7 +6,6 @@
 #include "../renderable/renderable2d.h"
 #include "../renderer/renderer2d.h"
 #include "../camera/camera.h"
-#include "dimensions.h"
 
 namespace spright { namespace engine {
 

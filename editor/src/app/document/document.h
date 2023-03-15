@@ -7,7 +7,7 @@
 #include "../../engine/graphics/layer/tileLayer.h"
 #include "../../engine/graphics/camera/camera.h"
 #include "../../engine/graphics/camera/ortho_projection_info.h"
-#include "../../engine/graphics/layer/dimensions.h"
+#include "../../engine/graphics/renderable/bounds.h"
 #include "../../engine/layout/container.h"
 #include "layer_handler.h"
 #include "frame_store.h"
@@ -28,7 +28,7 @@ namespace spright { namespace editor {
 		Camera* m_Camera;
 
 	public:
-		Document(Dimensions dimensions, Camera* camera);
+		Document(Bounds bounds, Camera* camera);
 		~Document();
 
 		FrameStore& getFrameStore();

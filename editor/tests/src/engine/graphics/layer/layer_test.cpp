@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 #include "../src/engine/graphics/layer/group.h"
-#include "../src/engine/graphics/layer/dimensions.h"
+#include "../src/engine/graphics/renderable/bounds.h"
 #include "../src/engine/graphics/camera/camera.h"
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/engine/graphics/layer/tileLayer.h"
@@ -12,7 +12,7 @@ using namespace ::spright::engine;
 
 TEST_CASE("Layer add", "[layer]") {
 	SECTION("can add a renderable to the layer") {
-		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Dimensions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 
 		REQUIRE(layer.getRenderables().size() == 0);
 
@@ -30,7 +30,7 @@ TEST_CASE("Layer add", "[layer]") {
 
 TEST_CASE("Layer getTilePos", "[layer]") {
 	SECTION("converts world coordinates to tile coordinates starting at the document bottom left position") {
-		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Dimensions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 
 		float tileSize = layer.getTileSize();
 

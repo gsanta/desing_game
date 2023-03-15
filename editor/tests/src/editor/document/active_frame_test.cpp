@@ -10,8 +10,6 @@ using namespace ::spright::editor;
 
 TEST_CASE("ActiveFrame", "[active_frame]") {
 	SECTION("can get a layer by it's id") {
-		Container container(Dimensions(-3.0f, 3.0f, -3.0f, 3.0f));
-
 		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(3);
 
 		std::vector<FrameImpl> frames{ FrameImpl() };
@@ -28,8 +26,6 @@ TEST_CASE("ActiveFrame", "[active_frame]") {
 	}
 
 	SECTION("throws if layer with id is not found") {
-		Container container(Dimensions(-3.0f, 3.0f, -3.0f, 3.0f));
-
 		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(2);
 
 		std::vector<FrameImpl> frames{ FrameImpl() };
@@ -43,8 +39,6 @@ TEST_CASE("ActiveFrame", "[active_frame]") {
 	}
 
 	SECTION("can set the active layer") {
-		Container container(Dimensions(-3.0f, 3.0f, -3.0f, 3.0f));
-
 		std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(3);
 
 		std::vector<FrameImpl> frames{ FrameImpl() };

@@ -26,6 +26,6 @@ namespace spright { namespace editor {
 		DocumentFactory(Window* window);
 		~DocumentFactory();
 		Document* createDocument();
-		TileLayer& createUserLayer(Document* document, std::string name, std::string id);
+		TileLayer& createUserLayer(Document* document, std::string name);
 	};
 }}

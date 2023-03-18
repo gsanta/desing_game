@@ -79,26 +79,26 @@ std::vector<std::string> getLayers()
 	return target;
 }
 
-void createLayer(std::string name, std::string id)
+size_t createLayer(std::string name)
 {
-	editor->getDocumentFactory()->createUserLayer(editor->getDocumentStore()->getActiveDocument(), name, id);
+	return editor->getDocumentFactory()->createUserLayer(editor->getDocumentStore()->getActiveDocument(), name).getIndex();
 }
 
-void enableLayer(std::string id)
+void enableLayer(size_t index)
 {
-	TileLayer& layer = editor->getActiveFrame().getLayer(id);
+	TileLayer& layer = editor->getActiveFrame().getLayer(index);
 	layer.setEnabled(true);
 }
 
-void disableLayer(std::string id)
+void disableLayer(size_t index)
 {
-	TileLayer& layer = editor->getActiveFrame().getLayer(id);
+	TileLayer& layer = editor->getActiveFrame().getLayer(index);
 	layer.setEnabled(false);
 }
 
-void setActiveLayer(std::string id)
+void setActiveLayer(size_t index)
 {
-	editor->getActiveFrame().setActiveLayer(editor->getActiveFrame().getLayer(id));
+	editor->getActiveFrame().setActiveLayer(index);
 }
 
 void setBrushSize(int size)

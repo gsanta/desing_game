@@ -4,13 +4,13 @@ extern class Editor* editor;
 
 #ifdef SPARKY_EMSCRIPTEN
 
-void setLayerIndex(std::string layerId, int newIndex) {
-	TileLayer& tileLayer = editor->getActiveFrame().getLayer(layerId);
+void setLayerIndex(size_t oldIndex, size_t newIndex) {
+	TileLayer& tileLayer = editor->getActiveFrame().getLayer(oldIndex);
 	editor->getActiveFrame().insertLayer(std::move(tileLayer), newIndex);
 }
 
-void removeLayer(std::string layerId) {
-	editor->getActiveFrame().removeLayer(layerId);
+void removeLayer(size_t layerIndex) {
+	editor->getActiveFrame().removeLayer(layerIndex);
 }
 
 std::string exportDocument() {

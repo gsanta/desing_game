@@ -12,8 +12,8 @@ using namespace ::spright::engine;
 
 TEST_CASE("Layer", "[tile_layer]") {
 	SECTION("equals with an other TileLayer with the same data") {
-		TileLayer layer1("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
-		TileLayer layer2("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer1("layer", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer2("layer", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 
 		Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
 		Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
@@ -27,11 +27,11 @@ TEST_CASE("Layer", "[tile_layer]") {
 	}
 
 	SECTION("does not equal with an other TileLayer with the different data") {
-		TileLayer layer1("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
-		TileLayer layer2("layer2", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
-		TileLayer layer3("layer", "id2", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
-		TileLayer layer4("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-5.0f, 5.0f, -5.0f, 5.0f));
-		TileLayer layer5("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer1("layer", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer2("layer_2", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer3("layer_3", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer4("layer_4", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-5.0f, 5.0f, -5.0f, 5.0f));
+		TileLayer layer5("layer_5", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 		layer5.add(Rect2D(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF));
 
 		REQUIRE(layer1 != layer2);
@@ -41,7 +41,7 @@ TEST_CASE("Layer", "[tile_layer]") {
 	}	
 
 	SECTION("can add a renderable to the layer") {
-		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer("layer", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 
 		REQUIRE(layer.getRenderables().size() == 0);
 
@@ -57,7 +57,7 @@ TEST_CASE("Layer", "[tile_layer]") {
 	}
 
 	SECTION("can convert world coordinates to tile coordinates starting at the document bottom left position") {
-		TileLayer layer("layer", "id", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+		TileLayer layer("layer", Group<Rect2D>(new HeadlessRenderer2D()), Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
 
 		float tileSize = layer.getTileSize();
 

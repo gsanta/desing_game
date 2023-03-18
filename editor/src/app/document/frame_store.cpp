@@ -28,7 +28,7 @@ namespace spright { namespace editor {
 			m_Frames[i].setIndex(i);
 		}
 
-		setActiveFrame(m_Frames.size() < index ? index : index - 1);
+		setActiveFrame(m_Frames.size() < index ? index - 1 : index);
 	}
 	
 	void FrameStore::setActiveFrame(size_t index)

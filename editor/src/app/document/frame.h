@@ -13,12 +13,10 @@ namespace spright { namespace editor {
 		virtual bool isEqual(const Frame&) const = 0;
 		virtual TileLayer& addLayer(const TileLayer& tileLayer) = 0;
 		virtual void insertLayer(const TileLayer& tileLayer, size_t index) = 0;
-		virtual void removeLayer(std::string layerId) = 0;
-		virtual TileLayer& getLayer(std::string id) = 0;
-		virtual TileLayer& getLayerAtIndex(size_t index) = 0;
+		virtual void removeLayer(size_t layerIndex) = 0;
+		virtual TileLayer& getLayer(size_t index) = 0;
 		virtual std::vector<TileLayer>& getLayers() = 0;
 		virtual const std::vector<TileLayer>& getLayers() const = 0;
-		virtual size_t getLayerIndex(const TileLayer& tileLayer) const = 0;
 		virtual size_t getIndex() const = 0;
 		virtual void setIndex(size_t index) = 0;
 	};

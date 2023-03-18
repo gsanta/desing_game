@@ -18,7 +18,7 @@ namespace spright { namespace engine {
 	class TileLayer
 	{
 	private:
-		std::string m_Id;
+		size_t m_Index = 0;
 		std::string m_Name;
 		Bounds m_Bounds;
 		Group<Rect2D> m_Group;
@@ -31,7 +31,7 @@ namespace spright { namespace engine {
 	public:
 		const static float defaultTileSize;
 	public:
-		TileLayer(std::string name, std::string id, Group<Rect2D> group, Bounds bounds, float tileSize = TileLayer::defaultTileSize);
+		TileLayer(std::string name, Group<Rect2D> group, Bounds bounds, float tileSize = TileLayer::defaultTileSize);
 		TileLayer(const TileLayer& tileLayer);
 		~TileLayer();
 
@@ -39,8 +39,9 @@ namespace spright { namespace engine {
 		friend bool operator==(const TileLayer&, const TileLayer&);
 		friend bool operator!=(const TileLayer&, const TileLayer&);
 
-		std::string getId() const;
-
+		void setIndex(size_t index);
+		size_t getIndex() const;
+		std::string getName() const;
 		void setEnabled(bool isEnabled);
 		bool isEnabled();
 

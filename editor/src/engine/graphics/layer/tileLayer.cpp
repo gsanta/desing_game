@@ -4,14 +4,14 @@ namespace spright { namespace engine {
 
 	const float TileLayer::defaultTileSize = 0.5f;
 
-	TileLayer::TileLayer(std::string name, std::string id, Group<Rect2D> group, Bounds bounds, float tileSize)
-		: m_Group(group), m_TileSize(tileSize), m_Name(name), m_Id(id), m_Bounds(bounds) {
+	TileLayer::TileLayer(std::string name, Group<Rect2D> group, Bounds bounds, float tileSize)
+		: m_Group(group), m_TileSize(tileSize), m_Name(name), m_Bounds(bounds) {
 	
 		init();
 	}
 
 	TileLayer::TileLayer(const TileLayer& tileLayer)
-		: m_Id(tileLayer.m_Id), m_Name(tileLayer.m_Name), m_Group(tileLayer.m_Group), m_Bounds(tileLayer.m_Bounds), m_TileSize(tileLayer.m_TileSize) {
+		: m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name), m_Group(tileLayer.m_Group), m_Bounds(tileLayer.m_Bounds), m_TileSize(tileLayer.m_TileSize) {
 
 		init();
 	}
@@ -23,7 +23,7 @@ namespace spright { namespace engine {
 
 	TileLayer& TileLayer::operator=(const TileLayer& that) {
 		if (this != &that) {
-			m_Id = that.m_Id;
+			m_Index = that.m_Index;
 			m_Name = that.m_Name;
 			m_Group = that.m_Group;
 			m_Bounds = that.m_Bounds;
@@ -36,7 +36,7 @@ namespace spright { namespace engine {
 	}
 
 	bool operator==(const TileLayer& lhs, const TileLayer& rhs) {
-		return lhs.m_Id == rhs.m_Id && lhs.m_Name == rhs.m_Name && lhs.m_Bounds == rhs.m_Bounds && lhs.m_Group == rhs.m_Group
+		return lhs.m_Name == rhs.m_Name && lhs.m_Bounds == rhs.m_Bounds && lhs.m_Group == rhs.m_Group
 			&& lhs.m_TileSize == rhs.m_TileSize && lhs.m_IndexSize == rhs.m_IndexSize;
 	}
 
@@ -44,8 +44,16 @@ namespace spright { namespace engine {
 		return !(lhs == rhs);
 	}
 
-	std::string TileLayer::getId() const {
-		return m_Id;
+	void TileLayer::setIndex(size_t index) {
+		m_Index = index;
+	}
+
+	size_t TileLayer::getIndex() const {
+		return m_Index;
+	}
+
+	std::string TileLayer::getName() const {
+		return m_Name;
 	}
 
 	void TileLayer::setEnabled(bool isEnabled) {
@@ -201,7 +209,7 @@ namespace spright { namespace engine {
 
 	nlohmann::json TileLayer::getLayerDescription() const {
 		nlohmann::json json = {
-			{"id", m_Id},
+			{"index", m_Index},
 			{"name", m_Name},
 		};
 

@@ -2,6 +2,7 @@
 
 #include <string>
 #include "editor.h"
+#include "document/frame_impl.h"
 #include "../engine/graphics/layer/tileLayer.h"
 
 #ifdef SPARKY_EMSCRIPTEN
@@ -16,5 +17,6 @@ void setLayerIndex(size_t oldIndex, size_t newIndex);
 void removeLayer(size_t layerIndex);
 std::string exportDocument();
 std::string getToolData(std::string tool);
+std::vector<std::string> getFrames();
 
 #endif

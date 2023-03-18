@@ -22,6 +22,8 @@ namespace spright { namespace editor {
 		void setActiveFrame(size_t index);
 		ActiveFrame& getActiveFrame();
 		bool hasActiveFrame() const;
+		std::vector<FrameImpl>& getFrames();
+
 		Frame& getFrame(size_t index);
 	};
 }}

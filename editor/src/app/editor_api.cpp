@@ -25,7 +25,22 @@ std::string getToolData(std::string tool) {
 	return editor->getToolHandler()->getTool(tool)->getData();
 }
 
+std::vector<std::string> getFrames()
+{
+	const std::vector<FrameImpl>& frames = editor->getActiveDocument()->getFrameStore().getFrames();
+
+	std::vector<std::string> target;
+
+	for (const Frame& frame : frames)
+	{
+		target.push_back(frame.getLayerDescription().dump());
+	}
+
+	return target;
+}
+
 EMSCRIPTEN_BINDINGS(spright) {
+	emscripten::function("getFrames", &getFrames);
 	emscripten::function("setLayerIndex", &setLayerIndex);
 	emscripten::function("removeLayer", &removeLayer);
 	emscripten::function("exportDocument", &exportDocument);

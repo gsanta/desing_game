@@ -60,6 +60,10 @@ namespace spright { namespace editor {
 		return m_ActiveFrame;
 	}
 
+	std::vector<FrameImpl>& FrameStore::getFrames() {
+		return m_Frames;
+	}
+
 	bool FrameStore::hasActiveFrame() const {
 		return m_ActiveFrame.isValid();
 	}

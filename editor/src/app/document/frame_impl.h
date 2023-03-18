@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <nlohmann/json.hpp>
 #include "./frame.h"
 #include "../../engine/graphics/layer/tileLayer.h"
 
@@ -25,6 +26,7 @@ namespace spright { namespace editor {
 		const std::vector<TileLayer>& getLayers() const override;
 		size_t getIndex() const override;
 		void setIndex(size_t index) override;
+		nlohmann::json getLayerDescription() const override;
 	private:
 		void resetLayerIndexes();
 	};

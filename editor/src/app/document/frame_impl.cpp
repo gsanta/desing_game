@@ -82,4 +82,12 @@ namespace spright { namespace editor {
 			m_Layers[i].setIndex(i);
 		}
 	}
+
+	nlohmann::json FrameImpl::getLayerDescription() const {
+		nlohmann::json json = {
+			{"index", m_Index},
+		};
+
+		return json;
+	}
 }}

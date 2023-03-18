@@ -1,4 +1,5 @@
 #pragma once
+#include <nlohmann/json.hpp>
 #include "./frame.h"
 #include "./frame_impl.h"
 #include "../../engine/graphics/layer/tileLayer.h"
@@ -38,7 +39,7 @@ namespace spright { namespace editor {
 		std::vector<TileLayer>& getForegroundLayers();
 		TileLayer& getActiveLayer();
 		void setActiveLayer(size_t layerIndex);
-
+		nlohmann::json getLayerDescription() const override;
 	private:
 		FrameImpl& getActiveFrame() const;
 	};

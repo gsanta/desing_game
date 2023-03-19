@@ -13,8 +13,8 @@ namespace spright { namespace engine {
 	TileLayer::TileLayer(const TileLayer& tileLayer)
 		: m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name), m_Group(Group<Rect2D>(tileLayer.m_Group.getRenderer()->clone())), m_Bounds(tileLayer.m_Bounds), m_TileSize(tileLayer.m_TileSize) {
 
-		copyGroup(tileLayer.m_Group);
 		init();
+		copyGroup(tileLayer.m_Group);
 	}
 
 

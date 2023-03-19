@@ -21,20 +21,18 @@ namespace spright { namespace editor {
 			throw "The last frame can not be removed";
 		}
 
-		if (index == getActiveFrame().getIndex()) {
-			size_t newActiveIndex = index;
-			if (newActiveIndex < 0) {
-				newActiveIndex = 1;
-			}
-
-			setActiveFrame(newActiveIndex);
-		}
-
 		m_Frames.erase(m_Frames.begin() + index);
 	
 		for (int i = 0; i < m_Frames.size(); i++) {
 			m_Frames[i].setIndex(i);
 		}
+
+		size_t newActiveIndex = index;
+		if (newActiveIndex >= m_Frames.size()) {
+			newActiveIndex = 0;
+		}
+
+		setActiveFrame(newActiveIndex);
 	}
 	
 	void FrameStore::setActiveFrame(size_t index)
@@ -51,6 +49,7 @@ namespace spright { namespace editor {
 		}
 
 		for (TileLayer& layer : forgroundLayers) {
+			layer.clear();
 			m_ActiveFrame.addForegroundLayer(std::move(layer));
 		}
 	}

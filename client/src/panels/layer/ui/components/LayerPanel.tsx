@@ -10,6 +10,7 @@ import LayerDropTarget from './LayerDropTarget';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Icon from '@/ui/components/icon/Icon';
+import Frames from './Frames';
 
 const LayerPanel = observer(() => {
   const { value: isAddPanelOpen, setTrue: setOpenAddPanel, setFalse: setCloseAddPanel } = useBoolean(false);
@@ -18,7 +19,7 @@ const LayerPanel = observer(() => {
   return (
     <Panel
       header={
-        <Panel.Header title="layers">
+        <Panel.Header title="layers & frames">
           <Tooltip label="new layer">
             <Button className="iconOnly" onClick={setOpenAddPanel} size="sm">
               <Icon name="BiPlus" />
@@ -28,7 +29,7 @@ const LayerPanel = observer(() => {
       }
     >
       <DndProvider backend={HTML5Backend}>
-        <List display="flex" flexDir="column" justifyContent="space-between">
+        <List flex="1">
           <LayerDropTarget layerIndex={0} />
           {layerHandler.getLayers().map((layerAdapter, index) => (
             <React.Fragment key={layerAdapter.getName()}>
@@ -42,6 +43,7 @@ const LayerPanel = observer(() => {
           ))}
         </List>
       </DndProvider>
+      <Frames />
       <AddLayerDialog isOpen={isAddPanelOpen} onClose={setCloseAddPanel} />
     </Panel>
   );

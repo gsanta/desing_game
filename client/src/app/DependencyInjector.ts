@@ -34,7 +34,7 @@ class DependencyInjector {
     toolStore.addTool(new ColorPickerTool(ToolName.ColorPicker, 'BiHighlight', editorApi, editorStore));
     toolStore.setSelectedTool(ToolName.Brush);
 
-    store.dispatch(initFrames());
+    store.dispatch(initFrames(editorApi));
     store.dispatch(initLayers(editorApi));
 
     moduleManager.start();

@@ -1,15 +1,15 @@
+import Editor from '@/services/editor/Editor';
+import EditorApi from '@/services/editor/EditorApi';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../store';
 import Frame from './Frame';
 
 interface FrameState {
-  count: number;
   frames: Frame[];
   activeIndex: number;
+  editor?: EditorApi;
 }
 
 const initialState: FrameState = {
-  count: 1,
   frames: [],
   activeIndex: 0,
 };
@@ -18,24 +18,42 @@ export const frameSlice = createSlice({
   name: 'frame',
   initialState,
   reducers: {
-    setActiveIndex: (state, action: PayloadAction<number>) => {
-      state.activeIndex = action.payload;
+    addFrame: (state) => {
+      state.editor?.addFrame();
+      state.frames.push({ index: state.frames.length });
     },
 
-    addFrame: (state) => {
-      state.count += 1;
+    initFrames: (state, action: PayloadAction<Editor>) => {
+      state.editor = action.payload;
+
+      try {
+        console.log(state.editor?.getActiveFrame());
+      } catch (e) {
+        console.log(e);
+      }
+
+      const framesList = state.editor?.getFrames();
+      const framesJson = new Array<string>(framesList.size()).fill('').map((_, index) => framesList.get(index));
+      const frames = framesJson.map<Frame>((frameJson) => JSON.parse(frameJson));
+      state.frames = frames;
     },
-    removeFrame: (state) => {
-      state.count -= 1;
+
+    removeFrame: (state, action: PayloadAction<number>) => {
+      state.editor?.removeFrame(action.payload);
+      state.frames.splice(action.payload, 1);
+      state.frames.forEach((frame, index) => (frame.index = index));
+
+      const activeFrameJson = state.editor?.getActiveFrame() || '';
+      state.activeIndex = JSON.parse(activeFrameJson).index;
     },
-    initFrames: (state) => {
-      state.count = 10;
+
+    setActiveFrame: (state, action: PayloadAction<number>) => {
+      state.editor?.setActiveFrame(action.payload);
+      state.activeIndex = action.payload;
     },
   },
 });
 
-export const { addFrame, initFrames, removeFrame } = frameSlice.actions;
-
-export const selectCount = (state: RootState) => state.frame.count;
+export const { addFrame, initFrames, removeFrame, setActiveFrame } = frameSlice.actions;
 
 export default frameSlice.reducer;

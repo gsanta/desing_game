@@ -4,22 +4,27 @@ import Icon from '@/ui/components/icon/Icon';
 import React from 'react';
 import { Tooltip, Button } from '@chakra-ui/react';
 import { useAppSelector, useAppDispatch } from '@/hooks';
-import { addFrame, removeFrame } from '../state/frameSlice';
+import { addFrame, removeFrame, setActiveFrame } from '../state/frameSlice';
 
 const Frames = () => {
-  const count = useAppSelector((state) => state.frame.count);
+  const frames = useAppSelector((state) => state.frame.frames);
   const activeIndex = useAppSelector((state) => state.frame.activeIndex);
   const dispatch = useAppDispatch();
 
   const handleFrameSelect = (index: number) => {
-    console.log('frame selected: ' + index);
+    dispatch(setActiveFrame(index));
   };
 
   return (
     <Box>
       <Box display="flex" gap="2" justifyContent="end">
         <Tooltip label="delete frame">
-          <Button className="iconOnly" disabled={count === 1} onClick={() => dispatch(removeFrame())} size="sm">
+          <Button
+            className="iconOnly"
+            disabled={frames.length <= 1}
+            onClick={() => dispatch(removeFrame(activeIndex))}
+            size="sm"
+          >
             <Icon name="BiTrashAlt" />
           </Button>
         </Tooltip>
@@ -30,10 +35,11 @@ const Frames = () => {
         </Tooltip>
       </Box>
       <Divider marginBlock="2" />
-      {Array.from({ length: count }).map((_, index) => (
+      {frames.map((frame, index) => (
         <FrameButton
           index={index}
           isActive={index === activeIndex}
+          key={frame.index}
           onFrameSelect={handleFrameSelect}
           marginBlockEnd="0.5"
           marginInlineEnd="0.5"

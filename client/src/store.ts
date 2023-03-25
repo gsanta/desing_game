@@ -7,6 +7,13 @@ export const store = configureStore({
     frame: frameSlice,
     layer: layerSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['frame/initFrames', 'layer/initLayers'],
+        ignoredPaths: ['frame.editor', 'layer.editor'],
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

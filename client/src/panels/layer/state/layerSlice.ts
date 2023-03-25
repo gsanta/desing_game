@@ -34,8 +34,8 @@ export const layerSlice = createSlice({
     initLayers: (state, action: PayloadAction<Editor>) => {
       const editor = action.payload;
       const layersList = editor.getLayers();
-      const layersString = new Array<string>(layersList.size()).fill('').map((_, id) => layersList.get(id));
-      const layers = layersString.map<ToolDescription>((layerString) => JSON.parse(layerString));
+      const layersJson = new Array<string>(layersList.size()).fill('').map((_, index) => layersList.get(index));
+      const layers = layersJson.map<ToolDescription>((layerJson) => JSON.parse(layerJson));
       layers.forEach((layer) => state.layers.push({ name: layer.name, index: layer.index, visible: true }));
       state.activeLayer = state.layers[0];
       state.editor = editor;

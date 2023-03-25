@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <algorithm>
 #include "./timed.h"
 #include "timer.h"
 

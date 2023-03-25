@@ -24,6 +24,15 @@
 #include "../src/app/editor.h"
 #include "../src/app/editor_api.h"
 #include "../src/app/tool/brush_tool.h"
+#include "../src/app/core/run_loop/run_loop.h"
+#include "../src/app/core/run_loop/timer.h"
+#ifdef SPARKY_EMSCRIPTEN
+#include "../src/app/core/run_loop/ems_timer.h"
+#else
+#include "../src/app/core/run_loop/win_timer.h"
+#endif
+#include "../src/app/feature/frame/frame_player.h"
+
 // #define SPARKY_EMSCRIPTEN 0
 
 using namespace ::spright::engine;
@@ -32,6 +41,7 @@ using namespace ::spright::editor;
 
 Window *window = nullptr;
 Editor *editor = nullptr;
+FramePlayer* framePlayer = nullptr;
 
 //#define SPARKY_EMSCRIPTEN
 
@@ -191,6 +201,7 @@ int main()
 
 	editor = new spright::Editor();
 	window = editor->getWindow();
+	framePlayer = new FramePlayer();
 
 	// Group* group = new Group(Mat4::translation(maths::Vec3(-5.0f, 5.0f, 0.0f)));
 	// group->add(new Rect2D(0, 0, 6, 3, maths::Vec4(1, 1, 1, 1)));
@@ -203,10 +214,18 @@ int main()
 	// shader->enable();
 	// shader->setUniform1iv("textures", textIDs, 10);
 	// shader->setUniform1i("tex", 0);
+	Timer* timer = nullptr;
 
-	// Timer time;
-	float timer = 0;
-	unsigned int frames = 0;
+#ifdef SPARKY_EMSCRIPTEN
+	timer = new EmsTimer();
+#else
+	timer = new WinTimer();
+#endif
+
+	RunLoop* runLoop = new RunLoop(timer);
+
+	runLoop->add(framePlayer);
+	runLoop->start();
 
 #ifdef SPARKY_EMSCRIPTEN
 	std::function<void()> mainLoop = [&]()
@@ -223,7 +242,8 @@ int main()
 		// shader->disable();
 		// layer.render();
 		editor->getRendering()->render();
-		frames++;
+
+		runLoop->update();
 		// if (time.elapsed() - timer > 1.0f) {
 		//	timer += 1.0f;
 		//	printf("%d fps\n", frames);

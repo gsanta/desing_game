@@ -4,6 +4,8 @@ import ExternalTool from '../panels/toolbar/model/ExternalTool';
 import ToolName from '../panels/toolbar/model/ToolName';
 import ToolSelectionEvent from '../panels/toolbar/model/ToolSelectionEvents';
 import ColorPickerTool from '@/panels/toolbar/model/ColorPickerTool';
+import { store } from '@/store';
+import { initFrames } from '@/features/frame/state/frameSlice';
 
 class DependencyInjector {
   private app: App;
@@ -30,6 +32,8 @@ class DependencyInjector {
     toolStore.addTool(new ExternalTool(ToolName.PaintBucket, 'BiColorFill', editorApi));
     toolStore.addTool(new ColorPickerTool(ToolName.ColorPicker, 'BiHighlight', editorApi, editorStore));
     toolStore.setSelectedTool(ToolName.Brush);
+
+    store.dispatch(initFrames());
 
     moduleManager.start();
 

@@ -10,7 +10,7 @@ import LayerDropTarget from './LayerDropTarget';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Icon from '@/ui/components/icon/Icon';
-import Frames from './Frames';
+import Frames from '../../../../features/frame/components/Frames';
 
 const LayerPanel = observer(() => {
   const { value: isAddPanelOpen, setTrue: setOpenAddPanel, setFalse: setCloseAddPanel } = useBoolean(false);

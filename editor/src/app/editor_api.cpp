@@ -33,7 +33,7 @@ std::vector<std::string> getFrames()
 
 	for (const Frame& frame : frames)
 	{
-		target.push_back(frame.getLayerDescription().dump());
+		target.push_back(frame.getJson().dump());
 	}
 
 	return target;

@@ -22,6 +22,9 @@ interface EditorApi {
   disableLayer(index: number): void;
   setActiveLayer(index: number): void;
 
+  //frame
+  getFrames(): any;
+
   setBrushSize(size: number): void;
 
   //io

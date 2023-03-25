@@ -1,7 +1,6 @@
 import Editor from '@/services/editor/Editor';
 import { action, makeObservable, observable } from 'mobx';
 import LayerAdapter from './LayerAdapter';
-import { v4 as uuidv4 } from 'uuid';
 import ToolDescription from '@/services/editor/ToolDescription';
 
 class LayerHandler {

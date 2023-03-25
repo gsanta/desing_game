@@ -64,6 +64,6 @@ TEST_CASE("ActiveFrame", "[active_frame]") {
 
 		ActiveFrame activeFrame(frames, 0);
 
-		REQUIRE(activeFrame.getJson() == "");
+		REQUIRE(activeFrame.getJson().dump() == "{\"index\":0}");
 	}
 }

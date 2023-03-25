@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import frameSlice from './features/frame/state/frameSlice';
+import layerSlice from './panels/layer/state/layerSlice';
 
 export const store = configureStore({
   reducer: {
     frame: frameSlice,
+    layer: layerSlice,
   },
 });
 

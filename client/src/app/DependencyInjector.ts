@@ -6,6 +6,7 @@ import ToolSelectionEvent from '../panels/toolbar/model/ToolSelectionEvents';
 import ColorPickerTool from '@/panels/toolbar/model/ColorPickerTool';
 import { store } from '@/store';
 import { initFrames } from '@/features/frame/state/frameSlice';
+import { initLayers } from '@/panels/layer/state/layerSlice';
 
 class DependencyInjector {
   private app: App;
@@ -15,7 +16,7 @@ class DependencyInjector {
   }
 
   init() {
-    const { editorStore, toolStore, editorApi, moduleManager, layerHandler, keyboardHandler } = this.app;
+    const { editorStore, toolStore, editorApi, moduleManager, keyboardHandler } = this.app;
 
     toolStore.addTool(
       new ExternalTool(
@@ -34,10 +35,9 @@ class DependencyInjector {
     toolStore.setSelectedTool(ToolName.Brush);
 
     store.dispatch(initFrames());
+    store.dispatch(initLayers(editorApi));
 
     moduleManager.start();
-
-    layerHandler.init();
 
     toolStore.tools.forEach((tool) => {
       const shortCut = tool.getShortCut();

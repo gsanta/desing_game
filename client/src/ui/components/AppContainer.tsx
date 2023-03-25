@@ -71,7 +71,7 @@ const AppContainer = ({ app }: AppContainerProps) => {
               <Toolbar />
             </Box>
             <Split className="split" direction="horizontal" sizes={[75, 25]}>
-              <Canvas />
+              <Canvas ref={canvasRef} />
               <Split className="split-vertical" direction="vertical" sizes={[50, 50]}>
                 <Box overflowY="auto">
                   <LayerPanel />

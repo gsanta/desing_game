@@ -41,7 +41,6 @@ using namespace ::spright::editor;
 
 Window *window = nullptr;
 Editor *editor = nullptr;
-FramePlayer* framePlayer = nullptr;
 
 //#define SPARKY_EMSCRIPTEN
 
@@ -199,9 +198,16 @@ int main()
 
 	spright::maths::Vec3 res = linePlaneIntersection(la, lb, p1, p2, p3);
 
-	editor = new spright::Editor();
+	Timer* timer = nullptr;
+
+#ifdef SPARKY_EMSCRIPTEN
+	timer = new EmsTimer();
+#else
+	timer = new WinTimer();
+#endif
+
+	editor = new spright::Editor(RunLoop(timer));
 	window = editor->getWindow();
-	framePlayer = new FramePlayer();
 
 	// Group* group = new Group(Mat4::translation(maths::Vec3(-5.0f, 5.0f, 0.0f)));
 	// group->add(new Rect2D(0, 0, 6, 3, maths::Vec4(1, 1, 1, 1)));
@@ -214,18 +220,8 @@ int main()
 	// shader->enable();
 	// shader->setUniform1iv("textures", textIDs, 10);
 	// shader->setUniform1i("tex", 0);
-	Timer* timer = nullptr;
 
-#ifdef SPARKY_EMSCRIPTEN
-	timer = new EmsTimer();
-#else
-	timer = new WinTimer();
-#endif
-
-	RunLoop* runLoop = new RunLoop(timer);
-
-	runLoop->add(framePlayer);
-	runLoop->start();
+	editor->getRunLoop().start();
 
 #ifdef SPARKY_EMSCRIPTEN
 	std::function<void()> mainLoop = [&]()
@@ -243,7 +239,7 @@ int main()
 		// layer.render();
 		editor->getRendering()->render();
 
-		runLoop->update();
+		editor->getRunLoop().update();
 		// if (time.elapsed() - timer > 1.0f) {
 		//	timer += 1.0f;
 		//	printf("%d fps\n", frames);

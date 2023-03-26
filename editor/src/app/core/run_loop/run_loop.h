@@ -15,8 +15,9 @@ namespace spright { namespace editor {
 
 	public:
 		RunLoop(Timer* timer);
-		void add(Timed* timed);
-		void remove(Timed* timed);
+		void add(Timed& timed);
+		void remove(Timed& timed);
+		bool has(Timed& timed);
 	
 		void start();
 		void update();

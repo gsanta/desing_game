@@ -6,13 +6,12 @@ namespace spright { namespace editor {
 		
 	}
 
-
-	void RunLoop::add(Timed* timed) {
-		m_Listeners.push_back(timed);
+	void RunLoop::add(Timed& timed) {
+		m_Listeners.push_back(&timed);
 	}
 
-	void RunLoop::remove(Timed* timed) {
-		auto it = find(m_Listeners.begin(), m_Listeners.end(), timed);
+	void RunLoop::remove(Timed& timed) {
+		auto it = find(m_Listeners.begin(), m_Listeners.end(), &timed);
 
 		if (it != m_Listeners.end()) {
 			m_Listeners.erase(it);
@@ -20,6 +19,12 @@ namespace spright { namespace editor {
 		}
 
 		throw std::invalid_argument("Failed to remove timed, not found");
+	}
+
+	bool RunLoop::has(Timed& timed) {
+		auto it = find(m_Listeners.begin(), m_Listeners.end(), &timed);
+
+		return it != m_Listeners.end();
 	}
 
 	void RunLoop::update() {

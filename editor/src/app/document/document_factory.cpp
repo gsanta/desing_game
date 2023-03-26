@@ -49,21 +49,35 @@ namespace spright { namespace editor {
 #endif
 		float pixelCount = 32.0f;
 		Bounds documentBounds = Bounds::createWithPositions(-pixelCount / 2.0f, pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+		Document *document = new Document(documentBounds);
+
 		Camera *camera = new Camera(m_Window->getWidth(), m_Window->getHeight(), documentBounds, -1.0f, 1.0f);
-		Document *document = new Document(documentBounds, camera, m_EventEmitter);
+
+		Bounds drawingBounds = Bounds::createWithPositions(-10.0f, 1.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+		Drawing* drawing1 = new Drawing(drawingBounds, camera, m_EventEmitter);
+		document->addDrawing(drawing1);
 
 		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), document->getDimensions());
 		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), document->getDimensions(), 2.0f);
 
 		FrameImpl frame(0);
 
-		document->getFrameStore().addFrame(frame);
-		document->getActiveFrame().addBackgroundLayer(backgroundLayer);
-		document->getActiveFrame().addForegroundLayer(tempLayer);
+		drawing1->getFrameStore().addFrame(frame);
+		drawing1->getActiveFrame().addBackgroundLayer(backgroundLayer);
+		drawing1->getActiveFrame().addForegroundLayer(tempLayer);
+
+		Bounds drawingBounds2 = Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+		Drawing* drawing2 = new Drawing(drawingBounds2, camera, m_EventEmitter);
+		document->addDrawing(drawing2);
+
+		drawing2->getFrameStore().addFrame(frame);
+		drawing2->getActiveFrame().addBackgroundLayer(backgroundLayer);
+		drawing2->getActiveFrame().addForegroundLayer(tempLayer);
 
 		Checkerboard checkerboard;
 
-		checkerboard.create(document);
+		checkerboard.create(drawing1);
+		checkerboard.create(drawing2);
 
 		m_documents.push_back(document);
 

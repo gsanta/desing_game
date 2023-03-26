@@ -2,14 +2,14 @@
 #include "checkerboard.h"
 
 namespace spright { namespace editor {
-	void Checkerboard::create(Document* document)
+	void Checkerboard::create(Drawing* drawing)
 	{
-		TileLayer& layer = document->getActiveFrame().getBackgroundLayers()[0];
+		TileLayer& layer = drawing->getActiveFrame().getBackgroundLayers()[0];
 
-		float left = document->getDimensions().minX;
-		float right = document->getDimensions().maxX;
-		float bottom = document->getDimensions().minY;
-		float top = document->getDimensions().maxY;
+		float left = drawing->getDimensions().minX;
+		float right = drawing->getDimensions().maxX;
+		float bottom = drawing->getDimensions().minY;
+		float top = drawing->getDimensions().maxY;
 
 		float tileSize = layer.getTileSize();
 

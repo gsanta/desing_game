@@ -19,7 +19,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 
 add_subdirectory(src)
-if (NOT $ENV{UNIT_TEST})
+if (NOT DEFINED ENV{UNIT_TEST})
 add_subdirectory(app)
 endif()
 

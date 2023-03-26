@@ -2,7 +2,7 @@
 
 namespace spright { namespace editor {
 
-	FramePlayer::FramePlayer(FrameStore& frameStore): m_IsActive(false), m_Elapsed(0), m_FrameStore(frameStore) {
+	FramePlayer::FramePlayer(FrameStore& frameStore, EventEmitter* eventEmitter): m_IsActive(false), m_Elapsed(0), m_FrameStore(frameStore), m_EventEmitter(eventEmitter) {
 
 	}
 
@@ -13,6 +13,7 @@ namespace spright { namespace editor {
 
 			if (m_IsActive) {
 				m_FrameStore.activateNextFrame();
+				m_EventEmitter->emitChange("active_frame_changed", {});
 			}
 			std::cout << "1 sec" << std::endl;
 			m_Elapsed = 0;

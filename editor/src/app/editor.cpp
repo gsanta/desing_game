@@ -3,10 +3,10 @@
 namespace spright { namespace editor {
 	Editor::Editor(RunLoop runLoop): m_RunLoop(runLoop)
 	{
-		m_Window = new GLWindow("Editor", 800, 800);
-		m_DocumentFactory = new DocumentFactory(m_Window);
-
 		m_EventEmitter = std::make_unique<EmscriptenEventEmitter>();
+
+		m_Window = new GLWindow("Editor", 800, 800);
+		m_DocumentFactory = new DocumentFactory(m_Window, m_EventEmitter.get());
 
 		m_DocumentStore = std::make_unique<DocumentStore>();
 		

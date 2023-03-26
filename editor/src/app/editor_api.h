@@ -22,7 +22,6 @@ void addFrame();
 void removeFrame(size_t index);
 void setActiveFrame(size_t index);
 std::string getActiveFrame();
-std::string getActiveFrame();
 void activateFramePlayer();
 void deActivateFramePlayer();
 

@@ -2,9 +2,9 @@
 
 namespace spright { namespace editor {
 
-	Document::Document(Bounds bounds, Camera* camera) : Container(bounds), m_Camera(camera)
+	Document::Document(Bounds bounds, Camera* camera, EventEmitter* eventEmitter) : Container(bounds), m_Camera(camera), m_EventEmitter(eventEmitter)
 	{
-		m_FramePlayer = std::make_unique<FramePlayer>(m_FrameStore);
+		m_FramePlayer = std::make_unique<FramePlayer>(m_FrameStore, eventEmitter);
 	}
 
 	Document::~Document() {

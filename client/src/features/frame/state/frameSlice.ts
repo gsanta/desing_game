@@ -20,6 +20,11 @@ export const frameSlice = createSlice({
   name: 'frame',
   initialState,
   reducers: {
+    activeFrameChanged: (state) => {
+      const activeFrameJson = state.editor?.getActiveFrame() || '';
+      state.activeIndex = JSON.parse(activeFrameJson).index;
+    },
+
     activateFramePlayer: (state) => {
       state.editor?.activateFramePlayer();
       state.isPlaying = true;
@@ -60,7 +65,14 @@ export const frameSlice = createSlice({
   },
 });
 
-export const { activateFramePlayer, addFrame, deActivateFramePlayer, initFrames, removeFrame, setActiveFrame } =
-  frameSlice.actions;
+export const {
+  activeFrameChanged,
+  activateFramePlayer,
+  addFrame,
+  deActivateFramePlayer,
+  initFrames,
+  removeFrame,
+  setActiveFrame,
+} = frameSlice.actions;
 
 export default frameSlice.reducer;

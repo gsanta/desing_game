@@ -14,16 +14,16 @@ namespace spright { namespace editor {
 		}
 	}
 
-	void DocumentFactory::createUserLayer(Document* document, std::string name)
+	void DocumentFactory::createUserLayer(Drawing* drawing, std::string name)
 	{
 #ifdef SPARKY_EMSCRIPTEN
 		GLShader shaderUnlit("resources/shaders/basic.es3.vert", "resources/shaders/basic_unlit.es3.frag");
 #else
 		GLShader shaderUnlit("shaders/basic.vert", "shaders/unlit.frag");
 #endif
-		TileLayer layer(name, Group<Rect2D>(new GLRenderer2D(shaderUnlit)), document->getDimensions());
+		TileLayer layer(name, Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawing->getBounds());
 
-		for (Frame& frame : document->getFrameStore().getFrames()) {
+		for (Frame& frame : drawing->getFrameStore().getFrames()) {
 			frame.addLayer(std::move(layer));
 		}
 	}
@@ -53,12 +53,12 @@ namespace spright { namespace editor {
 
 		Camera *camera = new Camera(m_Window->getWidth(), m_Window->getHeight(), documentBounds, -1.0f, 1.0f);
 
-		Bounds drawingBounds = Bounds::createWithPositions(-10.0f, 1.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+		Bounds drawingBounds = Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
 		Drawing* drawing1 = new Drawing(drawingBounds, camera, m_EventEmitter);
 		document->addDrawing(drawing1);
 
-		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), document->getDimensions());
-		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), document->getDimensions(), 2.0f);
+		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds);
+		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds, 2.0f);
 
 		FrameImpl frame(0);
 
@@ -70,9 +70,12 @@ namespace spright { namespace editor {
 		Drawing* drawing2 = new Drawing(drawingBounds2, camera, m_EventEmitter);
 		document->addDrawing(drawing2);
 
+		TileLayer tempLayer2("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds2);
+		TileLayer backgroundLayer2("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds2, 2.0f);
+
 		drawing2->getFrameStore().addFrame(frame);
-		drawing2->getActiveFrame().addBackgroundLayer(backgroundLayer);
-		drawing2->getActiveFrame().addForegroundLayer(tempLayer);
+		drawing2->getActiveFrame().addBackgroundLayer(backgroundLayer2);
+		drawing2->getActiveFrame().addForegroundLayer(tempLayer2);
 
 		Checkerboard checkerboard;
 

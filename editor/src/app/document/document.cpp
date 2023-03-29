@@ -27,6 +27,10 @@ namespace spright { namespace editor {
 		return getFrameStore().getActiveFrame().getActiveLayer();
 	}
 
+	Drawing* Document::getActiveDrawing() {
+		return m_Drawings[m_ActiveDrawing];
+	}
+
 	void Document::addDrawing(Drawing* drawing) {
 		m_Drawings.push_back(drawing);
 	}

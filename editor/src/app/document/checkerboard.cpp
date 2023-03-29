@@ -6,10 +6,10 @@ namespace spright { namespace editor {
 	{
 		TileLayer& layer = drawing->getActiveFrame().getBackgroundLayers()[0];
 
-		float left = drawing->getDimensions().minX;
-		float right = drawing->getDimensions().maxX;
-		float bottom = drawing->getDimensions().minY;
-		float top = drawing->getDimensions().maxY;
+		float left = drawing->getBounds().minX;
+		float right = drawing->getBounds().maxX;
+		float bottom = drawing->getBounds().minY;
+		float top = drawing->getBounds().maxY;
 
 		float tileSize = layer.getTileSize();
 

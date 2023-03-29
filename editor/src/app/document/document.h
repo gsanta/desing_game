@@ -30,6 +30,7 @@ namespace spright { namespace editor {
 		FrameStore& getFrameStore();
 		ActiveFrame& getActiveFrame();
 		TileLayer& getActiveLayer();
+		Drawing* getActiveDrawing();
 
 		void addDrawing(Drawing* drawing);
 

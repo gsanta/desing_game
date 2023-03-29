@@ -28,6 +28,7 @@ namespace spright { namespace engine {
 		friend bool operator!=(const Renderer2D&, const Renderer2D&);
 
 		virtual bool isEqual(const Renderer2D& rhs) const;
+		virtual Renderer2D* clone() = 0;
 		virtual Renderer2D* clone() const = 0;
 
 		void push(const Mat4& matrix, bool override = false);

@@ -79,8 +79,8 @@ namespace spright { namespace editor {
 
 		Checkerboard checkerboard;
 
-		checkerboard.create(drawing1);
-		checkerboard.create(drawing2);
+		checkerboard.create(drawing1->getBackgroundLayer());
+		checkerboard.create(drawing2->getBackgroundLayer());
 
 		m_documents.push_back(document);
 

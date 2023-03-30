@@ -199,9 +199,9 @@ namespace spright { namespace engine {
 		return static_cast<Rect2D*>(m_TileIndexes[tilePos]);
 	}
 
-	Rect2D* TileLayer::getAtTilePos(const Vec2Int& tilePos) const
+	Rect2D* TileLayer::getAtTilePos(int x, int y) const
 	{
-		return getAtTileIndex(getTileIndex(tilePos.x, tilePos.y));
+		return getAtTileIndex(getTileIndex(x, y));
 	}
 
 	int TileLayer::getIndexSize() const {
@@ -251,8 +251,8 @@ namespace spright { namespace engine {
 	}
 
 	void TileLayer::init() {
-		int width = (m_Bounds.maxX - m_Bounds.minX) / m_TileSize;
-		int height = (m_Bounds.maxY - m_Bounds.minY) / m_TileSize;
+		int width = ceil((m_Bounds.maxX - m_Bounds.minX) / m_TileSize);
+		int height = ceil((m_Bounds.maxY - m_Bounds.minY) / m_TileSize);
 		int left = (m_Bounds.minX / m_TileSize) - 1;
 		int bottom = (m_Bounds.minY / m_TileSize) - 1;
 

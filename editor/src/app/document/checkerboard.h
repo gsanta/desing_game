@@ -1,13 +1,15 @@
 #pragma once
 
 #include "../../engine/graphics/renderable/rect2d.h"
-#include "./drawing.h"
+#include "../../engine/graphics/layer/tileLayer.h"
 
 namespace spright { namespace editor {
+
+	using namespace engine;
 
 	class Checkerboard {
 
 	public:
-		void create(Drawing* drawing);
+		void create(TileLayer& layer) const;
 	};
 }}

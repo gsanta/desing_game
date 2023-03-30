@@ -33,6 +33,7 @@ namespace spright { namespace editor {
 		Drawing* getActiveDrawing();
 
 		void addDrawing(Drawing* drawing);
+		std::vector<Drawing*>& getDrawings();
 
 		inline Camera* getCamera() {
 			return m_Drawings[m_ActiveDrawing]->getCamera();

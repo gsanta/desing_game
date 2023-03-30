@@ -35,6 +35,10 @@ namespace spright { namespace editor {
 		m_Drawings.push_back(drawing);
 	}
 
+	std::vector<Drawing*>& Document::getDrawings() {
+		return m_Drawings;
+	}
+
 	std::string Document::getJson()
 	{
 		nlohmann::json json = getActiveLayer().getJson();

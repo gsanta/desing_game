@@ -29,6 +29,11 @@ namespace spright { namespace editor {
 			return m_Camera;
 		}
 
+		TileLayer& addLayer(const TileLayer& tileLayer);
+
+		TileLayer& getForegroundLayer();
+		TileLayer& getBackgroundLayer();
+
 		std::string getJson();
 
 		void render();

@@ -8,9 +8,6 @@ namespace spright { namespace editor {
 	}
 
 	Drawing::~Drawing() {
-		std::vector<Group<Rect2D>*>::iterator it;
-
-		delete m_Camera;
 	}
 
 	FrameStore& Drawing::getFrameStore() {
@@ -21,11 +18,27 @@ namespace spright { namespace editor {
 		return m_FrameStore.getActiveFrame();
 	}
 
+	TileLayer& Drawing::addLayer(const TileLayer& tileLayer) {
+		if (getBounds() != tileLayer.getBounds()) {
+			throw std::invalid_argument("Can not add a TileLayer to a Drawing with different bounds");
+		}
+		// check bounds
+		m_FrameStore.getActiveFrame().addLayer(tileLayer);
+	}
 
 	TileLayer& Drawing::getActiveLayer() {
 		return getFrameStore().getActiveFrame().getActiveLayer();
 	}
 
+	TileLayer& Drawing::getForegroundLayer()
+	{
+		return m_FrameStore.getActiveFrame().getForegroundLayers()[0];
+	}
+
+	TileLayer& Drawing::getBackgroundLayer()
+	{
+		return m_FrameStore.getActiveFrame().getBackgroundLayers()[0];
+	}
 
 	std::string Drawing::getJson()
 	{

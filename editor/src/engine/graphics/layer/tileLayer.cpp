@@ -217,6 +217,10 @@ namespace spright { namespace engine {
 		return json;
 	}
 
+	const Bounds& TileLayer::getBounds() const {
+		return m_Bounds;
+	}
+
 	nlohmann::json TileLayer::getJson() const
 	{
 		nlohmann::json json;

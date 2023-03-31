@@ -4,7 +4,7 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../document/document_store.h"
 #include "../tool.h"
-#include "selection_box.h"
+#include "../common/selection_box.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::maths;
@@ -14,7 +14,7 @@ namespace spright { namespace editor {
 	class SelectTool : public Tool {
 	private:
 		DocumentStore* m_DocumentStore;
-		SelectionBox* m_SelectionBox;
+		SelectionBox m_SelectionBox;
 
 		//vector<engine::graphics::Rect2D*> m_SelectionSprites;
 		vector<Rect2D*> m_Data;

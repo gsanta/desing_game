@@ -1,12 +1,34 @@
 #include "selection_box.h"
 
-namespace spright {
-	SelectionBox::SelectionBox(DocumentStore* documentStore) : m_DocumentStore(documentStore)
+namespace spright { namespace editor {
+	SelectionBox::SelectionBox(TileLayer& layer) : m_Layer(&layer)
 	{
 	}
 
 	SelectionBox::~SelectionBox()
 	{
+	}
+
+	SelectionBox& SelectionBox::operator=(const SelectionBox& rhs) {
+		vector<Rect2D*> rects;
+
+		for (Rect2D* rect : rhs.m_SelectionSprites) {
+			rects.push_back(new Rect2D(rect->getPosition2d().x, rect->getPosition2d().y, rect->getSize().x, rect->getSize().y, rect->getColor()));
+		}
+
+		for (Rect2D* rect : m_SelectionSprites) {
+			delete rect;
+		}
+
+		m_Layer = rhs.m_Layer;
+		m_SelectionSprites = rects;
+		m_DashSize = rhs.m_DashSize;
+		m_AbsoluteDelta = rhs.m_AbsoluteDelta;
+		m_PrevTranslate = rhs.m_PrevTranslate;
+		m_Start = rhs.m_Start;
+		m_Rect = rhs.m_Rect;
+
+		return *this;
 	}
 
 	void SelectionBox::start(Vec2 pos)
@@ -24,12 +46,9 @@ namespace spright {
 		Vec2 bottomLeft = m_Rect.bottomLeft;
 		Vec2 topRight = m_Rect.topRight;
 
-		Document* document = this->m_DocumentStore->getActiveDocument();
-		TileLayer& tempLayer = document->getActiveFrame().getForegroundLayers()[0];
+		float tileSize = m_Layer->getTileSize();
 
-		float tileSize = tempLayer.getTileSize();
-
-		tempLayer.clear();
+		m_Layer->clear();
 		clearSprites();
 
 		unsigned int color = 0xff0099ff;
@@ -46,23 +65,15 @@ namespace spright {
 		Rect2D* left = new Rect2D(xStart, yStart, 0.1f, height, color);
 		Rect2D* right = new Rect2D(xEnd, yStart, 0.1f, height, color);
 
-		//m_SelectionSprites.push_back(bottom);
-		//m_SelectionSprites.push_back(top);
-		//m_SelectionSprites.push_back(left);
-		//m_SelectionSprites.push_back(right);
-
-		tempLayer.add(Rect2D(xStart, yStart, width, 0.1f, color));
-		tempLayer.add(Rect2D(xStart, yEnd, width, 0.1f, color));
-		tempLayer.add(Rect2D(xStart, yStart, 0.1f, height, color));
-		tempLayer.add(Rect2D(xEnd, yStart, 0.1f, height, color));
+		m_Layer->add(Rect2D(xStart, yStart, width, 0.1f, color));
+		m_Layer->add(Rect2D(xStart, yEnd, width, 0.1f, color));
+		m_Layer->add(Rect2D(xStart, yStart, 0.1f, height, color));
+		m_Layer->add(Rect2D(xEnd, yStart, 0.1f, height, color));
 	}
 
 	void SelectionBox::move(Vec2 delta)
 	{
-		Document* document = this->m_DocumentStore->getActiveDocument();
-		TileLayer& tempLayer = document->getActiveFrame().getForegroundLayers()[0];
-
-		float tileSize = tempLayer.getTileSize();
+		float tileSize = m_Layer->getTileSize();
 
 		m_AbsoluteDelta += delta;
 
@@ -104,11 +115,8 @@ namespace spright {
 
 	void SelectionBox::clearSprites()
 	{
-		Document* document = m_DocumentStore->getActiveDocument();
-		auto tempLayer = m_DocumentStore->getActiveDocument()->getActiveFrame().getForegroundLayers()[0];
-
-		tempLayer.clear();
+		m_Layer->clear();
 
 		m_SelectionSprites.clear();
 	}
-}
+}}

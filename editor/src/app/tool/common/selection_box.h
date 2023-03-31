@@ -22,10 +22,10 @@ namespace spright { namespace editor {
 		Rectangle m_Rect;
 	public:
 		SelectionBox(TileLayer& layer);
+		SelectionBox();
 		~SelectionBox();
 
-		SelectionBox& operator=(const SelectionBox&);
-
+		void setTileLayer(TileLayer& tileLayer);
 		void start(Vec2 pos);
 		void setPosition(Vec2 pos);
 		void move(Vec2 delta);

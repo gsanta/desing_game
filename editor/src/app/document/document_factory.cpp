@@ -77,6 +77,17 @@ namespace spright { namespace editor {
 		drawing2->getActiveFrame().addBackgroundLayer(backgroundLayer2);
 		drawing2->getActiveFrame().addForegroundLayer(tempLayer2);
 
+		Drawing* drawing3 = new Drawing(documentBounds, camera, m_EventEmitter);
+		document->addDrawing(drawing3);
+
+
+		TileLayer tempLayer3("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), documentBounds);
+		TileLayer backgroundLayer3("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), documentBounds, 2.0f);
+
+		drawing3->getFrameStore().addFrame(frame);
+		drawing3->getActiveFrame().addBackgroundLayer(backgroundLayer3);
+		drawing3->getActiveFrame().addForegroundLayer(tempLayer3);
+
 		Checkerboard checkerboard;
 
 		checkerboard.create(drawing1->getBackgroundLayer());

@@ -131,6 +131,9 @@ namespace spright { namespace editor {
 			ActiveFrame& frame = m_DocumentStore->getActiveDocument()->getActiveFrame();
 			frame.setActiveLayer(1);
 		}
+		else if (key == GLFW_KEY_N) {
+			setSelectedTool("new-drawing");
+		}
 		else if (key == GLFW_KEY_X) {
 			m_ImageExport->exportImage(m_DocumentStore->getActiveDocument());
 		}

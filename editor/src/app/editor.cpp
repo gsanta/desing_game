@@ -37,6 +37,7 @@ namespace spright { namespace editor {
 		m_toolHandler->addTool(new PaintBucketTool(getDocumentStore(), m_Services));
 		m_toolHandler->addTool(new SelectTool(getDocumentStore()));
 		m_toolHandler->addTool(new ColorPickerTool(new LayerProviderImpl(getDocumentStore()), m_toolHandler, m_EventEmitter.get()));
+		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore()));
 		m_toolHandler->addActiveTool("zoom");
 		m_toolHandler->addActiveTool("pan");
 		m_toolHandler->setSelectedTool("brush");

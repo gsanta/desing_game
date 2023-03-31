@@ -31,6 +31,10 @@ namespace spright { namespace editor {
 		return m_Drawings[m_ActiveDrawing];
 	}
 
+	Drawing* Document::getDrawing(size_t index) {
+		return m_Drawings[index];
+	}
+
 	void Document::addDrawing(Drawing* drawing) {
 		m_Drawings.push_back(drawing);
 	}

@@ -5,31 +5,16 @@ namespace spright { namespace editor {
 	{
 	}
 
+	SelectionBox::SelectionBox() {}
+
 	SelectionBox::~SelectionBox()
 	{
 	}
 
-	SelectionBox& SelectionBox::operator=(const SelectionBox& rhs) {
-		vector<Rect2D*> rects;
-
-		for (Rect2D* rect : rhs.m_SelectionSprites) {
-			rects.push_back(new Rect2D(rect->getPosition2d().x, rect->getPosition2d().y, rect->getSize().x, rect->getSize().y, rect->getColor()));
-		}
-
-		for (Rect2D* rect : m_SelectionSprites) {
-			delete rect;
-		}
-
-		m_Layer = rhs.m_Layer;
-		m_SelectionSprites = rects;
-		m_DashSize = rhs.m_DashSize;
-		m_AbsoluteDelta = rhs.m_AbsoluteDelta;
-		m_PrevTranslate = rhs.m_PrevTranslate;
-		m_Start = rhs.m_Start;
-		m_Rect = rhs.m_Rect;
-
-		return *this;
+	void SelectionBox::setTileLayer(TileLayer& tileLayer) {
+		m_Layer = &tileLayer;
 	}
+
 
 	void SelectionBox::start(Vec2 pos)
 	{

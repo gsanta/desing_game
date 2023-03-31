@@ -31,6 +31,7 @@ namespace spright { namespace editor {
 		ActiveFrame& getActiveFrame();
 		TileLayer& getActiveLayer();
 		Drawing* getActiveDrawing();
+		Drawing* getDrawing(size_t index);
 
 		void addDrawing(Drawing* drawing);
 		std::vector<Drawing*>& getDrawings();

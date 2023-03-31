@@ -10,6 +10,7 @@
 #include "tool/helper/layer_provider_impl.h"
 #include "tool/select_tool/select_tool.h"
 #include "tool/paint_bucket/paint_bucket_tool.h"
+#include "tool/new_drawing_tool/new_drawing_tool.h"
 #include "tool/color_picker_tool.h"
 #include "document/document_factory.h"
 #include "editor_config.h"

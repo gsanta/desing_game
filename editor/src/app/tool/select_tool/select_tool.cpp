@@ -1,6 +1,6 @@
 #include "select_tool.h"
 
-namespace spright {
+namespace spright { namespace editor {
 
 	SelectTool::SelectTool(DocumentStore* documentStore) : m_DocumentStore(documentStore), m_SelectionBox(documentStore->getActiveDocument()->getActiveDrawing()->getForegroundLayer()), Tool("select")
 	{
@@ -32,7 +32,7 @@ namespace spright {
 		if (!pointerInfo.isLeftButtonDown()) {
 			return;
 		}
-		
+
 		if (m_IsMove) {
 			moveSelection(pointerInfo);
 			m_SelectionBox.move(pointerInfo.curr - pointerInfo.prev);
@@ -84,7 +84,7 @@ namespace spright {
 
 		for (int i = 0; i < m_Data.size(); i++) {
 			Rect2D* sprite = m_Data[i];
-			
+
 			sprite->setPosition(m_OrigPositions[i]);
 			Vec3 position = sprite->getPosition();
 
@@ -109,9 +109,9 @@ namespace spright {
 			Rect2D* sprite = static_cast<Rect2D*>(renderable);
 			m_Data.push_back(sprite);
 			m_OrigPositions.push_back(Vec2(sprite->getPosition().x, sprite->getPosition().y));
-			
+
 			Vec2 spritePos = sprite->getPosition2d();
 			float tileSize = tileLayer.getTileSize();
 		}
 	}
-}
+}}

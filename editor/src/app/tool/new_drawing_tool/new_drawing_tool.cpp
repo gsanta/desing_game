@@ -1,7 +1,7 @@
 #include "new_drawing_tool.h"
 
 namespace spright { namespace editor {
-	NewDrawingTool::NewDrawingTool(DocumentStore* documentStore, DocumentFactory* documentFactory) : m_DocumentStore(documentStore), m_DocumentFactory(documentFactory), Tool("new-drawing") {
+	NewDrawingTool::NewDrawingTool(DocumentStore* documentStore, DocumentFactory* documentFactory) : m_DocumentStore(documentStore), m_DocumentFactory(documentFactory), Tool("new_drawing") {
 
 	}
 

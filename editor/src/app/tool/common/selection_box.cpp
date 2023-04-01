@@ -20,16 +20,18 @@ namespace spright { namespace editor {
 	{
 		clear();
 		m_Start = pos;
-		m_Rect.bottomLeft = pos;
-		m_Rect.topRight = pos;
+		m_Bounds.minX = pos.x;
+		m_Bounds.maxX = pos.x;
+		m_Bounds.minY = pos.y;
+		m_Bounds.maxY = pos.y;
 	}
 
 	void SelectionBox::setPosition(Vec2 pos) {
 
 		calcSelectionBounds(m_Start, pos);
 
-		Vec2 bottomLeft = m_Rect.bottomLeft;
-		Vec2 topRight = m_Rect.topRight;
+		Vec2 bottomLeft = m_Bounds.getBottomLeft();
+		Vec2 topRight = m_Bounds.getTopRight();
 
 		float tileSize = m_Layer->getTileSize();
 
@@ -78,13 +80,17 @@ namespace spright { namespace editor {
 	{
 		clearSprites();
 		m_Start = Vec2();
-		m_Rect.topRight = Vec2();
-		m_Rect.bottomLeft = Vec2();
+		
+		m_Bounds = Bounds(0, 0, 0, 0);
 	}
 
 	bool SelectionBox::isInsideSelection(Vec2 point)
 	{
-		return m_Rect.contains(point);
+		return m_Bounds.contains(point.x, point.y);
+	}
+
+	Bounds SelectionBox::getBounds() {
+		return m_Bounds;
 	}
 
 	void SelectionBox::calcSelectionBounds(Vec2 vec1, Vec2 vec2)
@@ -94,8 +100,10 @@ namespace spright { namespace editor {
 		float startY = vec1.y < vec2.y ? vec1.y : vec2.y;
 		float endY = vec1.y < vec2.y ? vec2.y : vec1.y;
 
-		m_Rect.bottomLeft = Vec2(startX, startY);
-		m_Rect.topRight = Vec2(endX, endY);
+		m_Bounds.minX = startX;
+		m_Bounds.maxX = endX;
+		m_Bounds.minY = startY;
+		m_Bounds.maxY = endY;
 	}
 
 	void SelectionBox::clearSprites()

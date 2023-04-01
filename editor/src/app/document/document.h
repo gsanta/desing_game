@@ -23,8 +23,9 @@ namespace spright { namespace editor {
 	private:
 		std::vector<Drawing*> m_Drawings;
 		size_t m_ActiveDrawing;
+		Camera* m_Camera;
 	public:
-		Document(Bounds bounds);
+		Document(Bounds bounds, Camera* m_Camera);
 		~Document();
 
 		FrameStore& getFrameStore();
@@ -37,7 +38,7 @@ namespace spright { namespace editor {
 		std::vector<Drawing*>& getDrawings();
 
 		inline Camera* getCamera() {
-			return m_Drawings[m_ActiveDrawing]->getCamera();
+			return m_Camera;
 		}
 
 		std::string getJson();

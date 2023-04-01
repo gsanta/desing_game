@@ -1,7 +1,7 @@
 #include "new_drawing_tool.h"
 
 namespace spright { namespace editor {
-	NewDrawingTool::NewDrawingTool(DocumentStore* documentStore) : m_DocumentStore(documentStore), Tool("new-drawing") {
+	NewDrawingTool::NewDrawingTool(DocumentStore* documentStore, DocumentFactory* documentFactory) : m_DocumentStore(documentStore), m_DocumentFactory(documentFactory), Tool("new-drawing") {
 
 	}
 
@@ -11,7 +11,8 @@ namespace spright { namespace editor {
 	}
 
 	void NewDrawingTool::pointerUp(PointerInfo& pointerInfo) {
-
+		m_DocumentFactory->createDrawing(m_DocumentStore->getActiveDocument(), m_SelectionBox.getBounds());
+		m_SelectionBox.clear();
 	}
 
 	void NewDrawingTool::pointerMove(PointerInfo& pointerInfo) {

@@ -3,7 +3,7 @@
 #include <vector>
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../../engine/graphics/layer/tileLayer.h"
-#include "../../model/rectangle.h"
+#include "../../../engine/graphics/renderable/bounds.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;
@@ -19,7 +19,7 @@ namespace spright { namespace editor {
 
 		Vec2 m_Start;
 
-		Rectangle m_Rect;
+		Bounds m_Bounds;
 	public:
 		SelectionBox(TileLayer& layer);
 		SelectionBox();
@@ -31,6 +31,7 @@ namespace spright { namespace editor {
 		void move(Vec2 delta);
 		void clear();
 		bool isInsideSelection(Vec2 point);
+		Bounds getBounds();
 	private:
 		void calcSelectionBounds(Vec2 vec1, Vec2 vec2);
 		void clearSprites();

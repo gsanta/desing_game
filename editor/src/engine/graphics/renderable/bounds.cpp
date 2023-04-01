@@ -49,5 +49,13 @@ namespace spright { namespace engine {
     bool operator!=(const Bounds& lhs, const Bounds& rhs) {
         return !(lhs == rhs);
     }
+
+    Vec2 Bounds::getBottomLeft() {
+        return Vec2(minX, minY);
+    }
+
+    Vec2 Bounds::getTopRight() {
+        return Vec2(maxX, maxY);
+    }
 }}
 

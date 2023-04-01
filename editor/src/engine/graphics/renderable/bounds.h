@@ -24,5 +24,7 @@ namespace spright { namespace engine {
 		float getHeight() const;
 		void setSize(float newWidth, float newHeight);
 		bool contains(float x, float y);
+		Vec2 getBottomLeft();
+		Vec2 getTopRight();
 	};
 }}

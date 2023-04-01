@@ -2,7 +2,7 @@
 
 namespace spright { namespace editor {
 
-	Document::Document(Bounds bounds) : Container(bounds), m_ActiveDrawing(0)
+	Document::Document(Bounds bounds, Camera* camera) : Container(bounds), m_Camera(camera), m_ActiveDrawing(0)
 	{
 	}
 
@@ -12,6 +12,8 @@ namespace spright { namespace editor {
 		for (Drawing* drawing : m_Drawings) {
 			delete drawing;
 		}
+
+		delete m_Camera;
 	}
 
 	FrameStore& Document::getFrameStore() {

@@ -40,58 +40,45 @@ namespace spright { namespace editor {
 		document->getFrameStore().addFrame(std::move(frame));
 	}
 
-	Document* DocumentFactory::createDocument()
-	{
+	void DocumentFactory::createDrawing(Document* document, Bounds bounds, bool checkerboard) {
 #ifdef SPARKY_EMSCRIPTEN
 		GLShader shaderUnlit("resources/shaders/basic.es3.vert", "resources/shaders/basic_unlit.es3.frag");
 #else
 		GLShader shaderUnlit("shaders/basic.vert", "shaders/unlit.frag");
 #endif
-		float pixelCount = 32.0f;
-		Bounds documentBounds = Bounds::createWithPositions(-pixelCount / 2.0f, pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
-		Document *document = new Document(documentBounds);
+		Drawing* drawing = new Drawing(bounds, document->getCamera(), m_EventEmitter);
 
-		Camera *camera = new Camera(m_Window->getWidth(), m_Window->getHeight(), documentBounds, -1.0f, 1.0f);
-
-		Bounds drawingBounds = Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
-		Drawing* drawing1 = new Drawing(drawingBounds, camera, m_EventEmitter);
-		document->addDrawing(drawing1);
-
-		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds);
-		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds, 2.0f);
+		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), bounds);
+		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), bounds, 2.0f);
 
 		FrameImpl frame(0);
 
-		drawing1->getFrameStore().addFrame(frame);
-		drawing1->getActiveFrame().addBackgroundLayer(backgroundLayer);
-		drawing1->getActiveFrame().addForegroundLayer(tempLayer);
+		drawing->getFrameStore().addFrame(frame);
+		drawing->getActiveFrame().addBackgroundLayer(backgroundLayer);
+		drawing->getActiveFrame().addForegroundLayer(tempLayer);
 
-		Bounds drawingBounds2 = Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
-		Drawing* drawing2 = new Drawing(drawingBounds2, camera, m_EventEmitter);
-		document->addDrawing(drawing2);
+		createUserLayer(drawing, "layer1");
+		createUserLayer(drawing, "layer2");
 
-		TileLayer tempLayer2("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds2);
-		TileLayer backgroundLayer2("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawingBounds2, 2.0f);
+		document->addDrawing(drawing);
 
-		drawing2->getFrameStore().addFrame(frame);
-		drawing2->getActiveFrame().addBackgroundLayer(backgroundLayer2);
-		drawing2->getActiveFrame().addForegroundLayer(tempLayer2);
+		if (checkerboard) {
+			m_Checkerboard.create(drawing->getBackgroundLayer());
+		}
+	}
 
-		Drawing* drawing3 = new Drawing(documentBounds, camera, m_EventEmitter);
-		document->addDrawing(drawing3);
+	Document* DocumentFactory::createDocument()
+	{
 
+		float pixelCount = 32.0f;
+		Bounds documentBounds = Bounds::createWithPositions(-pixelCount / 2.0f, pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+		Camera *camera = new Camera(m_Window->getWidth(), m_Window->getHeight(), documentBounds, -1.0f, 1.0f);
 
-		TileLayer tempLayer3("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), documentBounds);
-		TileLayer backgroundLayer3("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), documentBounds, 2.0f);
+		Document *document = new Document(documentBounds, camera);
 
-		drawing3->getFrameStore().addFrame(frame);
-		drawing3->getActiveFrame().addBackgroundLayer(backgroundLayer3);
-		drawing3->getActiveFrame().addForegroundLayer(tempLayer3);
-
-		Checkerboard checkerboard;
-
-		checkerboard.create(drawing1->getBackgroundLayer());
-		checkerboard.create(drawing2->getBackgroundLayer());
+		createDrawing(document, Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f));
+		createDrawing(document, Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f));
+		createDrawing(document, documentBounds, false);
 
 		m_documents.push_back(document);
 

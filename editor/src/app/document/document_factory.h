@@ -25,10 +25,12 @@ namespace spright { namespace editor {
 		Window* m_Window;
 		vector<Document*> m_documents;
 		EventEmitter* m_EventEmitter;
+		Checkerboard m_Checkerboard;
 	public:
 		DocumentFactory(Window* window, EventEmitter* eventEmitter);
 		~DocumentFactory();
 		Document* createDocument();
+		void createDrawing(Document* document, Bounds bounds, bool checkerboard = true);
 		void createFrame(Document* document);
 		void createUserLayer(Drawing* drawing, std::string name);
 	};

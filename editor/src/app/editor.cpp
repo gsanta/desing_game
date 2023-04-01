@@ -14,12 +14,6 @@ namespace spright { namespace editor {
 
 		std::vector<Drawing*>& drawings = m_DocumentStore->getActiveDocument()->getDrawings();
 
-		for (Drawing* drawing : drawings) {
-			m_DocumentFactory->createUserLayer(drawing, "layer1");
-			m_DocumentFactory->createUserLayer(drawing, "layer2");
-		}
-
-
 		m_Rendering = new Rendering(m_Window, getDocumentStore());
 
 		m_Services = new spright::Services();
@@ -37,7 +31,7 @@ namespace spright { namespace editor {
 		m_toolHandler->addTool(new PaintBucketTool(getDocumentStore(), m_Services));
 		m_toolHandler->addTool(new SelectTool(getDocumentStore()));
 		m_toolHandler->addTool(new ColorPickerTool(new LayerProviderImpl(getDocumentStore()), m_toolHandler, m_EventEmitter.get()));
-		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore()));
+		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore(), m_DocumentFactory));
 		m_toolHandler->addActiveTool("zoom");
 		m_toolHandler->addActiveTool("pan");
 		m_toolHandler->setSelectedTool("brush");

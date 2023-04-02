@@ -9,6 +9,7 @@
 #include "../../engine/graphics/renderable/line_shape.h"
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../engine/graphics/renderable/bounds.h"
+#include "../../engine/layout/container.h"
 #include "../../engine/system/window/window.h"
 #include "./document.h"
 #include "./drawing.h"
@@ -22,16 +23,14 @@ namespace spright { namespace editor {
 
 	class DocumentFactory {
 	private:
-		Window* m_Window;
-		vector<Document*> m_documents;
+		Container* m_WindowContainer;
 		EventEmitter* m_EventEmitter;
 		Checkerboard m_Checkerboard;
 	public:
-		DocumentFactory(Window* window, EventEmitter* eventEmitter);
-		~DocumentFactory();
+		DocumentFactory(Container* windowContainer, EventEmitter* eventEmitter);
 		Document* createDocument();
-		void createDrawing(Document* document, Bounds bounds, bool checkerboard = true);
+		Drawing createDrawing(Bounds bounds, bool checkerboard = true);
 		void createFrame(Document* document);
-		void createUserLayer(Drawing* drawing, std::string name);
+		void createUserLayer(Drawing& drawing, std::string name);
 	};
 }}

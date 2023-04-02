@@ -3,7 +3,7 @@
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/app/tool/brush_tool.h"
 #include "./layer_provider_test_impl.h"
-#include "../test_event_emitter.h"
+#include "../test_helpers/test_event_emitter.h"
 #include "../test_helpers/test_document_factory.h"
 
 using namespace ::spright::editor;

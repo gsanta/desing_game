@@ -9,7 +9,6 @@ namespace spright { namespace editor {
 
 	void PaintBucketTool::pointerUp(PointerInfo& pointerInfo)
 	{
-		Camera* camera = m_DocumentStore->getActiveDocument()->getCamera();
 		TileLayer& tileLayer = m_DocumentStore->getActiveDocument()->getActiveLayer();
 		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
 

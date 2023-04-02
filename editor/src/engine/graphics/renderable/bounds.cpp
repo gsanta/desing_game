@@ -38,7 +38,7 @@ namespace spright { namespace engine {
         minY -= deltaHeight;
     }
 
-    bool Bounds::contains(float x, float y) {
+    bool Bounds::contains(float x, float y) const {
         return minX <= x && maxX >= x && minY <= y && maxY >= y;
     }
 

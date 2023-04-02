@@ -49,7 +49,7 @@ namespace spright { namespace engine {
 		Rect2D& add(const Rect2D& rect);
 		void remove(const Rect2D& rect);
 		void clear();
-		void render(Camera* camera);
+		void render(const Camera& camera);
 		std::vector<Rect2D*>& getRenderables();
 
 		// TODO: find a better name

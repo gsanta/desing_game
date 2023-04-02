@@ -2,12 +2,17 @@
 
 namespace spright { namespace editor {
 
-	Drawing::Drawing(Bounds bounds, Camera* camera, EventEmitter* eventEmitter) : Container(bounds), m_Camera(camera), m_EventEmitter(eventEmitter)
+	Drawing::Drawing(Bounds bounds, EventEmitter* eventEmitter) : Container(bounds), m_EventEmitter(eventEmitter)
 	{
-		m_FramePlayer = std::make_unique<FramePlayer>(m_FrameStore, eventEmitter);
+		m_FramePlayer = new FramePlayer(m_FrameStore, eventEmitter);
+	}
+
+	Drawing::Drawing(const Drawing& other) : Container(other.getBounds()), m_EventEmitter(other.m_EventEmitter) {
+		m_FramePlayer = new FramePlayer(m_FrameStore, m_EventEmitter);
 	}
 
 	Drawing::~Drawing() {
+		delete m_FramePlayer;
 	}
 
 	FrameStore& Drawing::getFrameStore() {
@@ -47,18 +52,18 @@ namespace spright { namespace editor {
 		return json.dump();
 	}
 
-	void Drawing::render()
+	void Drawing::render(const Camera& camera)
 	{
 		for (TileLayer& layer : getActiveFrame().getBackgroundLayers()) {
-			layer.render(m_Camera);
+			layer.render(camera);
 		}
 
 		for (TileLayer& layer : getActiveFrame().getLayers()) {
-			layer.render(m_Camera);
+			layer.render(camera);
 		}
 
 		for (TileLayer& layer : getActiveFrame().getForegroundLayers()) {
-			layer.render(m_Camera);
+			layer.render(camera);
 		}
 	}
 

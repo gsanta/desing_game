@@ -30,12 +30,11 @@ namespace spright { namespace editor {
 		PointerInfo m_pointerInfo;
 		Services* m_Services;
 		DocumentStore* m_DocumentStore;
-		Camera* m_Camera;
 		ImageExport* m_ImageExport;
 		DocumentFactory* m_DocumentFactory;
 	public:
 		ToolHandler();
-		ToolHandler(Window* window, DocumentStore* documentStore, Services* services, Camera* camera, ImageExport* imageExport, DocumentFactory* documentFractory);
+		ToolHandler(Window* window, DocumentStore* documentStore, Services* services, ImageExport* imageExport, DocumentFactory* documentFractory);
 		~ToolHandler();
 
 		ToolHandler& operator=(const ToolHandler& toolHandler);

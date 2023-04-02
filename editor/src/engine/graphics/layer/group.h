@@ -25,7 +25,7 @@ namespace spright { namespace engine {
 		//friend bool operator!=(const Group<T>&, const Group<T>&);
 		Group& operator=(const Group&);
 		T& add(const T& renderable);
-		void render(Camera* camera);
+		void render(const Camera& camera);
 		void clear();
 		void remove(const T& renderable);
 		const Renderer2D* getRenderer() const;
@@ -127,14 +127,13 @@ namespace spright { namespace engine {
 	}
 
 	template <typename T>
-	void Group<T>::render(Camera* camera) {
-
+	void Group<T>::render(const Camera& camera) {
 		m_Renderer->begin();
 
-		m_Renderer->getShader().setUniformMat4("pr_matrix", camera->getProjectionMatrix());
+		m_Renderer->getShader().setUniformMat4("pr_matrix", camera.getProjectionMatrix());
 
 
-		m_Renderer->push(camera->getViewMatrix());
+		m_Renderer->push(camera.getViewMatrix());
 		for (const Renderable2D* renderable : m_Renderables) {
 			renderable->submit(m_Renderer);
 		}

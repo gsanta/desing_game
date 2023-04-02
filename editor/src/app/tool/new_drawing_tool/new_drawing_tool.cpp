@@ -6,12 +6,13 @@ namespace spright { namespace editor {
 	}
 
 	void NewDrawingTool::pointerDown(PointerInfo& pointerInfo) {
-		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument()->getDrawing(2)->getForegroundLayer());
+		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument()->getCanvas().getForegroundLayer());
 		m_SelectionBox.start(pointerInfo.curr);
 	}
 
 	void NewDrawingTool::pointerUp(PointerInfo& pointerInfo) {
-		m_DocumentFactory->createDrawing(m_DocumentStore->getActiveDocument(), m_SelectionBox.getBounds());
+		Drawing drawing = m_DocumentFactory->createDrawing(m_SelectionBox.getBounds());
+		m_DocumentStore->getActiveDocument()->addDrawing(drawing);
 		m_SelectionBox.clear();
 	}
 

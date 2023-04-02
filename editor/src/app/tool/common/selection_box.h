@@ -21,7 +21,6 @@ namespace spright { namespace editor {
 
 		Bounds m_Bounds;
 	public:
-		SelectionBox(TileLayer& layer);
 		SelectionBox();
 		~SelectionBox();
 

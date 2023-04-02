@@ -8,8 +8,8 @@ namespace spright { namespace editor {
 	{
 	}
 
-	ToolHandler::ToolHandler(Window* window, DocumentStore* documentStore, Services* services, Camera* camera, ImageExport* imageExport, DocumentFactory* documentFactory)
-		: m_Window(window), m_DocumentStore(documentStore), m_Services(services), m_Camera(camera), m_ImageExport(imageExport), m_DocumentFactory(documentFactory)
+	ToolHandler::ToolHandler(Window* window, DocumentStore* documentStore, Services* services, ImageExport* imageExport, DocumentFactory* documentFactory)
+		: m_Window(window), m_DocumentStore(documentStore), m_Services(services), m_ImageExport(imageExport), m_DocumentFactory(documentFactory)
 	{
 		window->getInputHandler()->registerListener(this);
 		m_ActiveTools = new vector<Tool*>();
@@ -43,7 +43,7 @@ namespace spright { namespace editor {
 
 	void ToolHandler::onMouseDown(bool buttons[3])
 	{
-		Vec2 pos = m_DocumentStore->getActiveDocument()->getCamera()->screenToCameraPos(x_tmp, y_tmp);
+		Vec2 pos = m_DocumentStore->getActiveDocument()->getCamera().screenToCameraPos(x_tmp, y_tmp);
 
 		this->m_pointerInfo.isDown = true;
 		this->m_pointerInfo.down.x = this->m_pointerInfo.curr.x;
@@ -61,7 +61,7 @@ namespace spright { namespace editor {
 	void ToolHandler::onMouseMove(double x, double y)
 	{
 		x_tmp = x; y_tmp = y;
-		Vec2 pos = m_DocumentStore->getActiveDocument()->getCamera()->screenToCameraPos(x, y);
+		Vec2 pos = m_DocumentStore->getActiveDocument()->getCamera().screenToCameraPos(x, y);
 		this->m_pointerInfo.prev.x = m_pointerInfo.curr.x;
 		this->m_pointerInfo.prev.y = m_pointerInfo.curr.y;
 		this->m_pointerInfo.curr.x = pos.x;
@@ -121,7 +121,7 @@ namespace spright { namespace editor {
 			else {
 				m_Window->setSize(800, 1100);
 			}
-			m_Camera->updateWindowSize(m_Window->getWidth(), m_Window->getHeight());
+			m_DocumentStore->getActiveDocument()->getCamera().updateWindowSize(m_Window->getWidth(), m_Window->getHeight());
 			//std::string str = m_JsonExport->exportDocument(m_DocumentHandler->getActiveDocument());
 			//m_JsonExport->importDocument(m_DocumentHandler, str);
 			//m_JsonExport->importDocument("{ \"tiles\": [ {\"i\": 1, \"c\": \"black\"} ] }");

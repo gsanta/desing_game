@@ -27,17 +27,17 @@ namespace spright { namespace editor {
 			return;
 		}
 
-		Camera* camera = m_documentStore->getActiveDocument()->getCamera();
+		Camera& camera = m_documentStore->getActiveDocument()->getCamera();
 
-		Vec2 center2D = camera->getCenter2D();
+		Vec2 center2D = camera.getCenter2D();
 
-		float zoom = camera->getZoom();
+		float zoom = camera.getZoom();
 
-		std::vector<Drawing*>& drawings = m_documentStore->getActiveDocument()->getDrawings();
+		std::vector<Drawing>& drawings = m_documentStore->getActiveDocument()->getDrawings();
 
-		for (Drawing* drawing : drawings) {
-			if (drawing->getBounds().contains(pointerInfo.curr.x, pointerInfo.curr.y)) {
-				TileLayer& tileLayer = drawing->getActiveLayer();
+		for (Drawing& drawing : drawings) {
+			if (drawing.getBounds().contains(pointerInfo.curr.x, pointerInfo.curr.y)) {
+				TileLayer& tileLayer = drawing.getActiveLayer();
 
 				for (int i = 0; i < m_Size; i++) {
 					for (int j = 0; j < m_Size; j++) {

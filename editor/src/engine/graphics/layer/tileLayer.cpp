@@ -97,7 +97,7 @@ namespace spright { namespace engine {
 		m_Group.clear();
 	}
 	
-	void TileLayer::render(Camera* camera) {
+	void TileLayer::render(const Camera& camera) {
 		if (m_IsEnabled) {
 			m_Group.render(camera);
 		}

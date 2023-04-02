@@ -12,7 +12,7 @@ namespace spright { namespace editor {
 		
 		m_DocumentStore->setActiveDocument(m_DocumentFactory->createDocument());
 
-		std::vector<Drawing*>& drawings = m_DocumentStore->getActiveDocument()->getDrawings();
+		std::vector<Drawing>& drawings = m_DocumentStore->getActiveDocument()->getDrawings();
 
 		m_Rendering = new Rendering(m_Window, getDocumentStore());
 
@@ -22,15 +22,15 @@ namespace spright { namespace editor {
 
 		m_JsonExport = std::make_unique<JsonIO>(getDocumentStore(), m_DocumentFactory);
 
-		m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_DocumentStore->getActiveDocument()->getCamera(), m_ImageExport, m_DocumentFactory);
+		m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
 		m_toolHandler->addTool(new BrushTool(getDocumentStore()));
 		m_toolHandler->addTool(new RectangleTool(getDocumentStore(), m_Services));
-		m_toolHandler->addTool(new EraserTool(new LayerProviderImpl(getDocumentStore()), 3));
-		m_toolHandler->addTool(new PanTool(getDocumentStore()->getActiveDocument()->getCamera()));
-		m_toolHandler->addTool(new ZoomTool(getDocumentStore()->getActiveDocument()->getCamera()));
+		m_toolHandler->addTool(new EraserTool(getDocumentStore(), 3));
+		m_toolHandler->addTool(new PanTool(getDocumentStore()));
+		m_toolHandler->addTool(new ZoomTool(getDocumentStore()));
 		m_toolHandler->addTool(new PaintBucketTool(getDocumentStore(), m_Services));
 		m_toolHandler->addTool(new SelectTool(getDocumentStore()));
-		m_toolHandler->addTool(new ColorPickerTool(new LayerProviderImpl(getDocumentStore()), m_toolHandler, m_EventEmitter.get()));
+		m_toolHandler->addTool(new ColorPickerTool(getDocumentStore(), m_toolHandler, m_EventEmitter.get()));
 		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore(), m_DocumentFactory));
 		m_toolHandler->addActiveTool("zoom");
 		m_toolHandler->addActiveTool("pan");

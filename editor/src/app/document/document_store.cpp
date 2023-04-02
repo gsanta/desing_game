@@ -6,6 +6,10 @@ namespace spright { namespace editor {
 	}
 
 	DocumentStore::~DocumentStore() {
+	
+		if (m_ActiveDocument) {
+			delete m_ActiveDocument;
+		}
 	}
 
 	Document* DocumentStore::getActiveDocument() const {

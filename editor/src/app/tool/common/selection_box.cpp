@@ -1,10 +1,6 @@
 #include "selection_box.h"
 
 namespace spright { namespace editor {
-	SelectionBox::SelectionBox(TileLayer& layer) : m_Layer(&layer)
-	{
-	}
-
 	SelectionBox::SelectionBox() {}
 
 	SelectionBox::~SelectionBox()

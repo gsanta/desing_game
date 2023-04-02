@@ -21,25 +21,25 @@ namespace spright { namespace editor {
 	class Document : public Container
 	{
 	private:
-		std::vector<Drawing*> m_Drawings;
+		std::vector<Drawing> m_Drawings;
+		Drawing m_Canvas;
 		size_t m_ActiveDrawing;
-		Camera* m_Camera;
+		Camera m_Camera;
 	public:
-		Document(Bounds bounds, Camera* m_Camera);
-		~Document();
+		Document(Bounds bounds, Camera m_Camera, Drawing canvas);
 
 		FrameStore& getFrameStore();
 		ActiveFrame& getActiveFrame();
 		TileLayer& getActiveLayer();
-		Drawing* getActiveDrawing();
-		Drawing* getDrawing(size_t index);
+		Drawing& getActiveDrawing();
+		Drawing& getDrawing(size_t index);
 
-		void addDrawing(Drawing* drawing);
-		std::vector<Drawing*>& getDrawings();
+		void addDrawing(const Drawing& drawing);
+		std::vector<Drawing>& getDrawings();
 
-		inline Camera* getCamera() {
-			return m_Camera;
-		}
+		Drawing& getCanvas();
+
+		Camera& getCamera();
 
 		std::string getJson();
 

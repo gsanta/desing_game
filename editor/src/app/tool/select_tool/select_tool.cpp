@@ -2,12 +2,13 @@
 
 namespace spright { namespace editor {
 
-	SelectTool::SelectTool(DocumentStore* documentStore) : m_DocumentStore(documentStore), m_SelectionBox(documentStore->getActiveDocument()->getActiveDrawing()->getForegroundLayer()), Tool("select")
+	SelectTool::SelectTool(DocumentStore* documentStore) : m_DocumentStore(documentStore), Tool("select")
 	{
 	}
 
 	void SelectTool::pointerDown(PointerInfo& pointerInfo)
 	{
+		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument()->getActiveDrawing().getActiveLayer());
 		m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
 
 		if (!m_IsMove) {
@@ -98,8 +99,8 @@ namespace spright { namespace editor {
 
 	void SelectTool::makePointSelection(PointerInfo& pointerInfo) {
 		TileLayer& tileLayer = m_DocumentStore->getActiveDocument()->getActiveLayer();
-		Camera* camera = m_DocumentStore->getActiveDocument()->getCamera();
-		Vec2 model = camera->screenToModel(pointerInfo.curr);
+		Camera& camera = m_DocumentStore->getActiveDocument()->getCamera();
+		Vec2 model = camera.screenToModel(pointerInfo.curr);
 
 		Vec2Int tilePos = tileLayer.getTilePos(model);
 		int tileIndex = tileLayer.getTileIndex(tilePos.x, tilePos.y);

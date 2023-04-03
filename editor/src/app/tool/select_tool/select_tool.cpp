@@ -8,7 +8,7 @@ namespace spright { namespace editor {
 
 	void SelectTool::pointerDown(PointerInfo& pointerInfo)
 	{
-		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument()->getActiveDrawing().getActiveLayer());
+		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getActiveDrawing().getActiveLayer());
 		m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
 
 		if (!m_IsMove) {
@@ -47,7 +47,7 @@ namespace spright { namespace editor {
 		m_Data.clear();
 		m_OrigPositions.clear();
 
-		Document* document = m_DocumentStore->getActiveDocument();
+		Document& document = m_DocumentStore->getActiveDocument();
 
 		Vec2 down = pointerInfo.down;
 		Vec2 curr = pointerInfo.curr;
@@ -57,7 +57,7 @@ namespace spright { namespace editor {
 		float startY = down.y < curr.y ? down.y : curr.y;
 		float endY = down.y < curr.y ? curr.y : down.y;
 
-		TileLayer& layer = document->getActiveFrame().getActiveLayer();
+		TileLayer& layer = document.getActiveFrame().getActiveLayer();
 
 		auto it = layer.getRenderables().begin();
 		while (it != layer.getRenderables().end()) {
@@ -73,8 +73,8 @@ namespace spright { namespace editor {
 	}
 
 	void SelectTool::moveSelection(PointerInfo& pointerInfo) {
-		Document* document = m_DocumentStore->getActiveDocument();
-		TileLayer& tileLayer = document->getActiveLayer();
+		Document& document = m_DocumentStore->getActiveDocument();
+		TileLayer& tileLayer = document.getActiveLayer();
 
 		Vec2 down = pointerInfo.down;
 		Vec2 curr = pointerInfo.curr;
@@ -98,8 +98,8 @@ namespace spright { namespace editor {
 	}
 
 	void SelectTool::makePointSelection(PointerInfo& pointerInfo) {
-		TileLayer& tileLayer = m_DocumentStore->getActiveDocument()->getActiveLayer();
-		Camera& camera = m_DocumentStore->getActiveDocument()->getCamera();
+		TileLayer& tileLayer = m_DocumentStore->getActiveDocument().getActiveLayer();
+		Camera& camera = m_DocumentStore->getActiveDocument().getCamera();
 		Vec2 model = camera.screenToModel(pointerInfo.curr);
 
 		Vec2Int tilePos = tileLayer.getTilePos(model);

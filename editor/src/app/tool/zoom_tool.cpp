@@ -7,6 +7,6 @@ namespace spright { namespace editor {
 
 	void ZoomTool::scroll(PointerInfo& pointerInfo)
 	{
-		m_DocumentStore->getActiveDocument()->getCamera().zoom(pointerInfo.scroll.y > 0 ? -m_ZoomFactor : m_ZoomFactor);
+		m_DocumentStore->getActiveDocument().getCamera().zoom(pointerInfo.scroll.y > 0 ? -m_ZoomFactor : m_ZoomFactor);
 	}
 }}

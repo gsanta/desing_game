@@ -7,7 +7,8 @@ using namespace ::spright::editor;
 TEST_CASE("NewDrawingTool", "[new-drawing-tool]") {
 	SECTION("can create a new drawing with selection") {
 		Container windowContainer(Bounds(0, 0, 500, 500));
-		DocumentStore documentStore = TestDocumentFactory::createDocumentStore();
+
+		DocumentStore documentStore = DocumentStoreBuilder().build();
 		DocumentFactory documentFactory = TestDocumentFactory::createDocumentFactory(windowContainer);
 
 		NewDrawingTool newDrawingTool(&documentStore, &documentFactory);

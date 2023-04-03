@@ -10,9 +10,9 @@ namespace spright { namespace editor {
 
 		m_DocumentStore = std::make_unique<DocumentStore>();
 		
-		m_DocumentStore->setActiveDocument(m_DocumentFactory->createDocument());
+		m_DocumentStore->addDocument(m_DocumentFactory->createDocument());
 
-		std::vector<Drawing>& drawings = m_DocumentStore->getActiveDocument()->getDrawings();
+		std::vector<Drawing>& drawings = m_DocumentStore->getActiveDocument().getDrawings();
 
 		m_Rendering = new Rendering(m_Window, getDocumentStore());
 
@@ -36,7 +36,7 @@ namespace spright { namespace editor {
 		m_toolHandler->addActiveTool("pan");
 		m_toolHandler->setSelectedTool("brush");
 
-		m_RunLoop.add(getActiveDocument()->getFramePlayer());
+		m_RunLoop.add(getActiveDocument().getFramePlayer());
 	}
 
 	Editor::~Editor()
@@ -49,12 +49,12 @@ namespace spright { namespace editor {
 		delete m_Services;
 	}
 
-	Document* Editor::getActiveDocument() {
+	Document& Editor::getActiveDocument() {
 		return m_DocumentStore->getActiveDocument();
 	}
 
 	ActiveFrame& Editor::getActiveFrame() {
-		return m_DocumentStore->getActiveDocument()->getActiveFrame();
+		return m_DocumentStore->getActiveDocument().getActiveFrame();
 	}
 
 	TileLayer& Editor::getActiveLayer() {

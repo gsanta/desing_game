@@ -9,7 +9,7 @@ namespace spright { namespace editor {
 
 	void PaintBucketTool::pointerUp(PointerInfo& pointerInfo)
 	{
-		TileLayer& tileLayer = m_DocumentStore->getActiveDocument()->getActiveLayer();
+		TileLayer& tileLayer = m_DocumentStore->getActiveDocument().getActiveLayer();
 		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
 
 		m_FloodFill.floodFill(tileLayer, tilePos.x, tilePos.y, m_Services->getColorPalette()->color);

@@ -28,9 +28,9 @@ namespace spright { namespace editor {
 		Checkerboard m_Checkerboard;
 	public:
 		DocumentFactory(Container* windowContainer, EventEmitter* eventEmitter);
-		Document* createDocument();
+		Document createDocument();
 		Drawing createDrawing(Bounds bounds, bool checkerboard = true);
-		void createFrame(Document* document);
+		void createFrame(Document& document);
 		void createUserLayer(Drawing& drawing, std::string name);
 	};
 }}

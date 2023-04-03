@@ -1,7 +1,7 @@
 #include "frame_store.h"
 
 namespace spright { namespace editor {
-	FrameStore::FrameStore(): m_ActiveFrame(ActiveFrame(m_Frames, 0)) {
+	FrameStore::FrameStore(): m_ActiveFrame(ActiveFrame(m_Frames)) {
 
 	}
 

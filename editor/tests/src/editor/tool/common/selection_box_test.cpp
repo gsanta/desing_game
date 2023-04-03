@@ -12,7 +12,8 @@ TEST_CASE("SelectionBox", "[selection-box]") {
 	SECTION("can determine if a coordinate is inside of the selection") {
 		TileLayer tileLayer = TestDocumentFactory::createTileLayers(1)[0];
 
-		SelectionBox selectionBox(tileLayer);
+		SelectionBox selectionBox;
+		selectionBox.setTileLayer(tileLayer);
 
 		selectionBox.start(Vec2(0, 0));
 		selectionBox.setPosition(Vec2(1, 1));

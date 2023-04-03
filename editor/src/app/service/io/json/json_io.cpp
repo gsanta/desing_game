@@ -26,8 +26,8 @@ namespace spright { namespace editor {
 		nlohmann::json json = nlohmann::json::parse(string);
 		int layerCount = json["layers"].size();
 
-		Document* document = m_DocumentFactory->createDocument();
-		m_DocumentStore->setActiveDocument(document);
+		Document document = m_DocumentFactory->createDocument();
+		m_DocumentStore->addDocument(document);
 		for (int i = 0; i < layerCount; i++) {
 			nlohmann::json layer = json["layers"][i];
 

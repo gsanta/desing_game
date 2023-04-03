@@ -9,7 +9,7 @@ namespace spright { namespace editor {
 
 	void EraserTool::pointerDown(PointerInfo& pointerInfo)
 	{
-		Drawing& drawing = m_documentStore->getActiveDocument()->getActiveDrawing();
+		Drawing& drawing = m_documentStore->getActiveDocument().getActiveDrawing();
 
 		TileLayer& activeLayer = drawing.getActiveLayer();
 		m_Eraser.erase(activeLayer, activeLayer.getTilePos(pointerInfo.curr), m_Size);
@@ -17,7 +17,7 @@ namespace spright { namespace editor {
 
 	void EraserTool::pointerMove(PointerInfo& pointerInfo)
 	{
-		Drawing& drawing = m_documentStore->getActiveDocument()->getActiveDrawing();
+		Drawing& drawing = m_documentStore->getActiveDocument().getActiveDrawing();
 
 		TileLayer& activeLayer = drawing.getActiveLayer();
 		TileLayer& drawLayer = drawing.getForegroundLayer();

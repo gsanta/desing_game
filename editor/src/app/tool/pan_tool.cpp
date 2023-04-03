@@ -12,7 +12,7 @@ namespace spright { namespace editor {
 		}
 
 		if (pointerInfo.isDown) {
-			m_DocumentStore->getActiveDocument()->getCamera().translate2D(pointerInfo.prev - pointerInfo.curr);
+			m_DocumentStore->getActiveDocument().getCamera().translate2D(pointerInfo.prev - pointerInfo.curr);
 		}
 	}
 }}

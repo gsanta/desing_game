@@ -20,16 +20,16 @@ namespace spright { namespace editor {
 		}
 	}
 
-	void DocumentFactory::createFrame(Document* document) {
+	void DocumentFactory::createFrame(Document& document) {
 		FrameImpl frame(0);
 
-		Frame& activeFrame = document->getFrameStore().getActiveFrame();
+		Frame& activeFrame = document.getFrameStore().getActiveFrame();
 
 		for (TileLayer& layer : activeFrame.getLayers()) {
 			frame.addLayer(layer);
 		}
 
-		document->getFrameStore().addFrame(std::move(frame));
+		document.getFrameStore().addFrame(std::move(frame));
 	}
 
 	Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard) {
@@ -59,7 +59,7 @@ namespace spright { namespace editor {
 		return drawing;
 	}
 
-	Document* DocumentFactory::createDocument()
+	Document DocumentFactory::createDocument()
 	{
 		float pixelCount = 32.0f;
 		Bounds documentBounds = Bounds::createWithPositions(-pixelCount / 2.0f, pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
@@ -69,10 +69,10 @@ namespace spright { namespace editor {
 		
 		createDrawing(Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f));
 
-		Document *document = new Document(documentBounds, camera, createDrawing(documentBounds, false));
+		Document document(documentBounds, camera, createDrawing(documentBounds, false));
 
-		document->addDrawing(createDrawing(Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
-		document->addDrawing(createDrawing(Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
+		document.addDrawing(createDrawing(Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
+		document.addDrawing(createDrawing(Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
 
 		return document;
 	}

@@ -52,7 +52,7 @@ namespace spright { namespace editor {
 		Window* getWindow() const;
 		DocumentStore* getDocumentStore();
 		DocumentFactory* getDocumentFactory();
-		Document* getActiveDocument();
+		Document& getActiveDocument();
 		ActiveFrame& getActiveFrame();
 		TileLayer& getActiveLayer();
 		ToolHandler* getToolHandler();

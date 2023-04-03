@@ -8,7 +8,7 @@ namespace spright { namespace editor {
 
 	void ColorPickerTool::pointerDown(PointerInfo& pointerInfo) {
 
-		TileLayer& tileLayer = m_DocumentStore->getActiveDocument()->getActiveDrawing().getActiveLayer();
+		TileLayer& tileLayer = m_DocumentStore->getActiveDocument().getActiveDrawing().getActiveLayer();
 		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
 		int tileIndex = tileLayer.getTileIndex(tilePos.x, tilePos.y);
 		Rect2D* tile = tileLayer.getAtTileIndex(tileIndex);

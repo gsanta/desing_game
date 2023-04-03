@@ -16,8 +16,9 @@ using namespace ::spright::editor;
 
 TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 	SECTION("removes the tiles at the given pointer position") {
-		TileLayer eraseLayer = TestDocumentFactory::createTileLayer(0);
-		TileLayer drawLayer = TestDocumentFactory::createTileLayer(0);
+		DocumentStore documentStore = DocumentStoreBuilder().withDrawing().build();
+		TileLayer& eraseLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+		TileLayer& drawLayer = documentStore.getActiveDocument().getActiveDrawing().getForegroundLayer();
 
 		Brush brush;
 		brush.paint(eraseLayer, Vec2Int(0, 0), 0xFFFFFFFF);
@@ -32,7 +33,7 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 
 		Rect2D* renderable = eraseLayer.getAtTileIndex(0);
 
-		EraserTool eraseTool(new LayerProviderTestImpl(eraseLayer, drawLayer), 1);
+		EraserTool eraseTool(&documentStore, 1);
 
 		PointerInfo pointerInfo;
 		pointerInfo.curr = eraseLayer.getWorldPos(Vec2Int(1, 1));

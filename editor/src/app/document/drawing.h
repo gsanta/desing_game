@@ -21,7 +21,6 @@ namespace spright { namespace editor {
 		Drawing(const Drawing&);
 		~Drawing();
 
-
 		FrameStore& getFrameStore();
 		ActiveFrame& getActiveFrame();
 		TileLayer& getActiveLayer();

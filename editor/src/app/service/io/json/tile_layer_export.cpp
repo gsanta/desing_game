@@ -5,8 +5,8 @@ namespace spright { namespace editor {
 	{
 	}
 
-	nlohmann::json TileLayerExport::exportLayer(Document* document, size_t layerIndex) {
-		TileLayer& layer = document->getActiveFrame().getLayer(layerIndex);
+	nlohmann::json TileLayerExport::exportLayer(Document& document, size_t layerIndex) {
+		TileLayer& layer = document.getActiveFrame().getLayer(layerIndex);
 
 		nlohmann::json json;
 

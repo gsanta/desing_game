@@ -5,6 +5,7 @@
 #include "./layer_provider_test_impl.h"
 #include "../test_helpers/test_event_emitter.h"
 #include "../test_helpers/test_document_factory.h"
+#include "../test_helpers/document_store_builder.h"
 
 using namespace ::spright::editor;
 

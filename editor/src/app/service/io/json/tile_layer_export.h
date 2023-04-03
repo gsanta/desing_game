@@ -13,7 +13,7 @@ namespace spright { namespace editor {
 		DocumentFactory* m_DocumentFactory;
 	public:
 		TileLayerExport(DocumentStore* documentStore, DocumentFactory* documentHandler);
-		nlohmann::json exportLayer(Document* document, size_t layerIndex);
+		nlohmann::json exportLayer(Document& document, size_t layerIndex);
 		void importLayer(nlohmann::json json);
 	};
 }}

@@ -2,7 +2,7 @@
 
 namespace spright { namespace editor {
 
-	DocumentStore::DocumentStore() {
+	DocumentStore::DocumentStore() : m_ActiveDocument(0) {
 	}
 
 	Document& DocumentStore::getActiveDocument() {

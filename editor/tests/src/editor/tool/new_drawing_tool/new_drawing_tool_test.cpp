@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include "../../test_helpers/test_document_factory.h"
+#include "../../test_helpers/document_store_builder.h"
 #include "../src/app/tool/new_drawing_tool/new_drawing_tool.h"
 
 using namespace ::spright::editor;

@@ -17,7 +17,7 @@ namespace spright { namespace editor {
 
 	public:
 		JsonIO(DocumentStore* documentStore, DocumentFactory* documentHandler);
-		std::string exportDocument(Document* document);
+		std::string exportDocument(Document& document);
 		void importDocument(std::string string);
 	};
 }}

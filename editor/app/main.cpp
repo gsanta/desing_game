@@ -56,7 +56,7 @@ void setWindowSize(int width, int height)
 	if (window != nullptr)
 	{
 		window->setSize(width, height);
-		editor->getDocumentStore()->getActiveDocument().getCamera()->updateWindowSize(width, height);
+		editor->getDocumentStore()->getActiveDocument().getCamera().updateWindowSize(width, height);
 	}
 }
 

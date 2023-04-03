@@ -10,6 +10,7 @@
 #include "../src/app/tool/brush_tool.h"
 #include "../layer_provider_test_impl.h"
 #include "../../test_helpers/test_document_factory.h"
+#include "../../test_helpers/document_store_builder.h"
 
 using namespace ::spright::engine;
 using namespace ::spright::editor;

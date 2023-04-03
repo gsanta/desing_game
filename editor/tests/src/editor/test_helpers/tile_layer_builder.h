@@ -17,5 +17,5 @@ public:
 	TileLayerBuilder& withTileSize(float tileSize);
 	TileLayer build();
 
-	static TileLayerBuilder TileLayerBuilder::create();
+	static TileLayerBuilder create();
 };

@@ -8,8 +8,8 @@ namespace spright { namespace editor {
 	}
 
 	Drawing::Drawing(const Drawing& other) : Container(other.getBounds()), m_EventEmitter(other.m_EventEmitter) {
-		m_FramePlayer = new FramePlayer(m_FrameStore, m_EventEmitter);
 		m_FrameStore = other.m_FrameStore;
+		m_FramePlayer = new FramePlayer(m_FrameStore, m_EventEmitter);
 	}
 
 	Drawing::~Drawing() {

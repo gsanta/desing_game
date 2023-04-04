@@ -63,7 +63,7 @@ namespace spright { namespace editor {
 		float xDelta = static_cast<int>(m_AbsoluteDelta.x / tileSize) * tileSize;
 		float yDelta = static_cast<int>(m_AbsoluteDelta.y / tileSize) * tileSize;
 
-		for (Rect2D* sprite : m_SelectionSprites) {
+		for (Rect2D* sprite : m_Layer->getRenderables()) {
 			sprite->translate(Vec2(-m_PrevTranslate.x, -m_PrevTranslate.y));
 			sprite->translate(Vec2(xDelta, yDelta));
 		}
@@ -105,7 +105,5 @@ namespace spright { namespace editor {
 	void SelectionBox::clearSprites()
 	{
 		m_Layer->clear();
-
-		m_SelectionSprites.clear();
 	}
 }}

@@ -132,7 +132,7 @@ namespace spright { namespace editor {
 			frame.setActiveLayer(1);
 		}
 		else if (key == GLFW_KEY_N) {
-			setSelectedTool("new-drawing");
+			setSelectedTool("new_drawing");
 		}
 		else if (key == GLFW_KEY_X) {
 			m_ImageExport->exportImage(m_DocumentStore->getActiveDocument());

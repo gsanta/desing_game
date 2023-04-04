@@ -22,6 +22,8 @@ namespace spright { namespace editor {
 
 		m_JsonExport = std::make_unique<JsonIO>(getDocumentStore(), m_DocumentFactory);
 
+		m_FramePlayerHandler.setDocumentStore(getDocumentStore());
+
 		m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
 		m_toolHandler->addTool(new BrushTool(getDocumentStore()));
 		m_toolHandler->addTool(new RectangleTool(getDocumentStore(), m_Services));
@@ -36,7 +38,7 @@ namespace spright { namespace editor {
 		m_toolHandler->addActiveTool("pan");
 		m_toolHandler->setSelectedTool("brush");
 
-		m_RunLoop.add(getActiveDocument().getFramePlayer());
+		m_RunLoop.add(m_FramePlayerHandler);
 	}
 
 	Editor::~Editor()

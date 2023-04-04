@@ -26,6 +26,7 @@
 #include "document/frame_store.h"
 #include "core/run_loop/run_loop.h"
 #include "feature/frame/frame_player.h"
+#include "feature/frame/frame_player_handler.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;
@@ -43,6 +44,7 @@ namespace spright { namespace editor {
 		ImageExport* m_ImageExport;
 		std::unique_ptr<JsonIO> m_JsonExport;
 		std::unique_ptr<EventEmitter> m_EventEmitter;
+		FramePlayerHandler m_FramePlayerHandler;
 		RunLoop m_RunLoop;
 		
 	public:

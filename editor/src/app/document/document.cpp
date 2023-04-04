@@ -55,6 +55,8 @@ namespace spright { namespace editor {
 		for (Drawing& drawing : m_Drawings) {
 			drawing.render(m_Camera);
 		}
+
+		m_Canvas.render(m_Camera);
 	}
 
 	FramePlayer& Document::getFramePlayer() {

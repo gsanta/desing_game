@@ -11,7 +11,6 @@ namespace spright { namespace editor {
 	class SelectionBox {
 	private:
 		TileLayer* m_Layer;
-		vector<Rect2D*> m_SelectionSprites;
 
 		float m_DashSize = 0.2f;
 		Vec2 m_AbsoluteDelta;

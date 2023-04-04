@@ -8,7 +8,7 @@ namespace spright { namespace editor {
 
 	void SelectTool::pointerDown(PointerInfo& pointerInfo)
 	{
-		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getActiveDrawing().getActiveLayer());
+		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer());
 		m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
 
 		if (!m_IsMove) {

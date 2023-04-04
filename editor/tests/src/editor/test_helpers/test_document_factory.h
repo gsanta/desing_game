@@ -5,7 +5,8 @@
 #include "../src/app/document/document.h"
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/app/document/document_store.h"
-#include "../src/app/document/document_factory.h"
+#include "../src/app/document/factory/document_factory.h"
+#include "../src/app/document/factory/headless_renderer_provider.h"
 #include "test_event_emitter.h"
 
 using namespace ::spright::engine;

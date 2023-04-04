@@ -14,7 +14,7 @@
 #include "../editor_config.h"
 #include "../service/services.h"
 #include "../service/io/image_export.h"
-#include "../document/document_factory.h"
+#include "../document/factory/document_factory.h"
 
 namespace spright { namespace editor {
 

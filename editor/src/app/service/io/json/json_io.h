@@ -3,7 +3,7 @@
 #include "../../../document/document.h"
 #include "../../../../engine/graphics/layer/tileLayer.h"
 #include "tile_layer_export.h"
-#include "../../../document/document_factory.h"
+#include "../../../document/factory/document_factory.h"
 #include "../../../document/document_store.h"
 
 namespace spright { namespace editor {

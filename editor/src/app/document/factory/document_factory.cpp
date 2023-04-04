@@ -2,18 +2,22 @@
 
 namespace spright { namespace editor {
 
-	DocumentFactory::DocumentFactory(Container* windowContainer, EventEmitter* eventEmitter) : m_WindowContainer(windowContainer), m_EventEmitter(eventEmitter)
+	DocumentFactory::DocumentFactory(Container* windowContainer, RendererProvider* rendererProvider, EventEmitter* eventEmitter)
+		: m_WindowContainer(windowContainer), m_RendererProvider(rendererProvider), m_EventEmitter(eventEmitter)
 	{
+	}
+
+	DocumentFactory::DocumentFactory(const DocumentFactory& other) {
+		m_RendererProvider = other.m_RendererProvider->clone();
+	}
+
+	DocumentFactory::~DocumentFactory() {
+		delete m_RendererProvider;
 	}
 
 	void DocumentFactory::createUserLayer(Drawing& drawing, std::string name)
 	{
-#ifdef SPARKY_EMSCRIPTEN
-		GLShader shaderUnlit("resources/shaders/basic.es3.vert", "resources/shaders/basic_unlit.es3.frag");
-#else
-		GLShader shaderUnlit("shaders/basic.vert", "shaders/unlit.frag");
-#endif
-		TileLayer layer(name, Group<Rect2D>(new GLRenderer2D(shaderUnlit)), drawing.getBounds());
+		TileLayer layer(name, Group<Rect2D>(m_RendererProvider->createRenderer2D()), drawing.getBounds());
 
 		for (Frame& frame : drawing.getFrameStore().getFrames()) {
 			frame.addLayer(std::move(layer));
@@ -33,15 +37,10 @@ namespace spright { namespace editor {
 	}
 
 	Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard) {
-#ifdef SPARKY_EMSCRIPTEN
-		GLShader shaderUnlit("resources/shaders/basic.es3.vert", "resources/shaders/basic_unlit.es3.frag");
-#else
-		GLShader shaderUnlit("shaders/basic.vert", "shaders/unlit.frag");
-#endif
 		Drawing drawing(bounds, m_EventEmitter);
 
-		TileLayer tempLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), bounds);
-		TileLayer backgroundLayer("", Group<Rect2D>(new GLRenderer2D(shaderUnlit)), bounds, 2.0f);
+		TileLayer tempLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds);
+		TileLayer backgroundLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 2.0f);
 
 		FrameImpl frame(0);
 

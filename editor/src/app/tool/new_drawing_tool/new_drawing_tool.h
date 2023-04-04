@@ -3,7 +3,7 @@
 #include "../tool.h"
 #include "../common/selection_box.h"
 #include "../../document/document_store.h"
-#include "../../document/document_factory.h"
+#include "../../document/factory/document_factory.h"
 
 namespace spright { namespace editor {
 

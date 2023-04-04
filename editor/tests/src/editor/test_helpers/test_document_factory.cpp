@@ -21,6 +21,6 @@ TileLayer TestDocumentFactory::createTileLayer(size_t index, float tileSize, Bou
 }
 
 DocumentFactory TestDocumentFactory::createDocumentFactory(Container& windowContainer) {
-	return DocumentFactory(&windowContainer, &eventEmitter);
+	return DocumentFactory(&windowContainer, new HeadlessRendererProvider(), & eventEmitter);
 }
 

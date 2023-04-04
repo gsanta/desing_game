@@ -14,9 +14,18 @@ TEST_CASE("NewDrawingTool", "[new-drawing-tool]") {
 
 		NewDrawingTool newDrawingTool(&documentStore, &documentFactory);
 
-		PointerInfo pointerInfo;
-		//pointerInfo.curr = eraseLayer.getWorldPos(Vec2Int(1, 1));
+		Drawing& canvas = documentStore.getActiveDocument().getCanvas();
 
-		//eraseTool.pointerDown(pointerInfo);
+		PointerInfo pointerInfo;
+		pointerInfo.curr = canvas.getForegroundLayer().getWorldPos(Vec2Int(1, 1));
+
+		newDrawingTool.pointerDown(pointerInfo);
+
+		pointerInfo.prev = pointerInfo.curr;
+		pointerInfo.curr = canvas.getForegroundLayer().getWorldPos(Vec2Int(3, 3));
+		newDrawingTool.pointerMove(pointerInfo);
+		newDrawingTool.pointerUp(pointerInfo);
+
+		REQUIRE(documentStore.getActiveDocument().getDrawings().size() == 1);
 	}
 }

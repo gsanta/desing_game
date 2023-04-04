@@ -2,7 +2,7 @@
 #include <nlohmann/json.hpp>
 #include "../../../../engine/graphics/layer/tileLayer.h"
 #include "../../../document/document.h"
-#include "../../../document/document_factory.h"
+#include "../../../document/factory/document_factory.h"
 #include "../../../document/document_store.h"
 
 namespace spright { namespace editor {

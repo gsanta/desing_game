@@ -1,6 +1,6 @@
 #pragma once
 
-// #include <ctime>
+#include <ctime>
 #include "timer.h"
 
 namespace spright { namespace editor {
@@ -13,7 +13,7 @@ namespace spright { namespace editor {
 		void start() override;
 		float elapsed() override;
 
-  // private:
-  //   double getTime();
+	private:
+		double getTime();
 	};
 }}

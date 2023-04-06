@@ -41,7 +41,7 @@ endif()
 
 file(GLOB_RECURSE SOURCES "*.cpp" "*.h")
 
-IF (${MACOSX})
+IF (NOT WIN32)
 list(FILTER SOURCES EXCLUDE REGEX ".*win_timer\\.cpp$")
 ENDIF()
 

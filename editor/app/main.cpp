@@ -28,10 +28,10 @@
 #include "../src/app/core/run_loop/timer.h"
 #ifdef SPARKY_EMSCRIPTEN
 #include "../src/app/core/run_loop/ems_timer.h"
-#elif __APPLE__
-#include "../src/app/core/run_loop/unix_timer.h"
-#else
+#elif _WIN32
 #include "../src/app/core/run_loop/win_timer.h"
+#else
+#include "../src/app/core/run_loop/unix_timer.h"
 #endif
 #include "../src/app/feature/frame/frame_player.h"
 
@@ -204,10 +204,10 @@ int main()
 
 #ifdef SPARKY_EMSCRIPTEN
 	timer = new EmsTimer();
-#elif __APPLE__
-	timer = new UnixTimer();
-#else
+#elif _WIN32
 	timer = new WinTimer();
+#else
+	timer = new UnixTimer();
 #endif
 
 	editor = new spright::Editor(RunLoop(timer));

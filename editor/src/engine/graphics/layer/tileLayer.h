@@ -28,11 +28,13 @@ namespace spright { namespace engine {
 		bool m_IsEnabled = true;
 		Renderable2D** m_TileIndexes;
 		BoundsInt m_TileBounds;
+		float m_ZPos;
+		Mat4 m_Transformation;
 
 	public:
 		const static float defaultTileSize;
 	public:
-		TileLayer(std::string name, Group<Rect2D> group, Bounds bounds, float tileSize = TileLayer::defaultTileSize);
+		TileLayer(std::string name, Group<Rect2D> group, Bounds bounds, float tileSize = TileLayer::defaultTileSize, float zPos = 0);
 		TileLayer(const TileLayer& tileLayer);
 		~TileLayer();
 
@@ -55,7 +57,7 @@ namespace spright { namespace engine {
 		// TODO: find a better name
 		Vec2 getBottomLeftPos(Vec2 pointer) const;
 		Vec2 getBottomLeftPos(int tileIndex) const;
-		
+
 		Vec2 getWorldPos(int tileIndex) const;
 		Vec2 getWorldPos(const Vec2Int tilePos) const;
 

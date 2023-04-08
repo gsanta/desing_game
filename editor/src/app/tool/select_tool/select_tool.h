@@ -16,14 +16,13 @@ namespace spright { namespace editor {
 		DocumentStore* m_DocumentStore;
 		SelectionBox m_SelectionBox;
 
-		//vector<engine::graphics::Rect2D*> m_SelectionSprites;
 		vector<Rect2D*> m_Data;
 		vector<Vec2> m_OrigPositions;
 
-		//float m_DashSize = 0.2f;
 		float m_NoMovementTolerance = 0.1f;
-
 		bool m_IsMove = false;
+
+		Drawing* m_ActiveDrawing = nullptr;
 
 	public:
 		SelectTool(DocumentStore* documentHandler);

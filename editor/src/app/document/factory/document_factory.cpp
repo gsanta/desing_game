@@ -36,11 +36,13 @@ namespace spright { namespace editor {
 		document.getFrameStore().addFrame(std::move(frame));
 	}
 
-	Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard) {
+	Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard, float zPos) {
 		Drawing drawing(bounds, m_EventEmitter);
 
-		TileLayer tempLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds);
-		TileLayer backgroundLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 2.0f);
+		float tileSize = TileLayer::defaultTileSize;
+
+		TileLayer tempLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, tileSize, zPos);
+		TileLayer backgroundLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 2.0f, zPos);
 
 		FrameImpl frame(0);
 
@@ -65,10 +67,7 @@ namespace spright { namespace editor {
 
 		Camera camera(m_WindowContainer->getBounds().getWidth(), m_WindowContainer->getBounds().getHeight(), documentBounds, -1.0f, 1.0f);
 
-		
-		createDrawing(Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f));
-
-		Document document(documentBounds, camera, createDrawing(documentBounds, false));
+		Document document(documentBounds, camera, createDrawing(documentBounds, false, 0.01f));
 
 		document.addDrawing(createDrawing(Bounds::createWithPositions(-16.0f, -10.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
 		document.addDrawing(createDrawing(Bounds::createWithPositions(2.0f, pixelCount / 5.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));

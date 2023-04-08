@@ -33,6 +33,7 @@ namespace spright { namespace editor {
 		TileLayer& getActiveLayer();
 		Drawing& getActiveDrawing();
 		Drawing& getDrawing(size_t index);
+		Drawing* getDrawingAt(const Vec2& pos);
 
 		void addDrawing(const Drawing& drawing);
 		std::vector<Drawing>& getDrawings();
@@ -47,5 +48,3 @@ namespace spright { namespace editor {
 		FramePlayer& getFramePlayer();
 	};
 }}
-
-

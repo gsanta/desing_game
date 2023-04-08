@@ -8,11 +8,15 @@ namespace spright { namespace editor {
 
 	void SelectTool::pointerDown(PointerInfo& pointerInfo)
 	{
-		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer());
-		m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
+		m_ActiveDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(pointerInfo.curr);
 
-		if (!m_IsMove) {
-			m_SelectionBox.start(pointerInfo.curr);
+		if (m_ActiveDrawing != nullptr) {
+			m_SelectionBox.setTileLayer(m_ActiveDrawing->getForegroundLayer());
+			m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
+
+			if (!m_IsMove) {
+				m_SelectionBox.start(pointerInfo.curr);
+			}
 		}
 	}
 
@@ -47,7 +51,9 @@ namespace spright { namespace editor {
 		m_Data.clear();
 		m_OrigPositions.clear();
 
-		Document& document = m_DocumentStore->getActiveDocument();
+		if (m_ActiveDrawing == nullptr) {
+			return;
+		}
 
 		Vec2 down = pointerInfo.down;
 		Vec2 curr = pointerInfo.curr;
@@ -57,7 +63,7 @@ namespace spright { namespace editor {
 		float startY = down.y < curr.y ? down.y : curr.y;
 		float endY = down.y < curr.y ? curr.y : down.y;
 
-		TileLayer& layer = document.getActiveFrame().getActiveLayer();
+		TileLayer& layer = m_ActiveDrawing->getActiveLayer();
 
 		auto it = layer.getRenderables().begin();
 		while (it != layer.getRenderables().end()) {
@@ -73,8 +79,11 @@ namespace spright { namespace editor {
 	}
 
 	void SelectTool::moveSelection(PointerInfo& pointerInfo) {
-		Document& document = m_DocumentStore->getActiveDocument();
-		TileLayer& tileLayer = document.getActiveLayer();
+		if (m_ActiveDrawing == nullptr) {
+			return;
+		}
+
+		TileLayer& tileLayer = m_ActiveDrawing->getActiveLayer();
 
 		Vec2 down = pointerInfo.down;
 		Vec2 curr = pointerInfo.curr;
@@ -98,7 +107,10 @@ namespace spright { namespace editor {
 	}
 
 	void SelectTool::makePointSelection(PointerInfo& pointerInfo) {
-		TileLayer& tileLayer = m_DocumentStore->getActiveDocument().getActiveLayer();
+				if (m_ActiveDrawing == nullptr) {
+			return;
+		}
+		TileLayer& tileLayer = m_ActiveDrawing->getActiveLayer();
 		Camera& camera = m_DocumentStore->getActiveDocument().getCamera();
 		Vec2 model = camera.screenToModel(pointerInfo.curr);
 

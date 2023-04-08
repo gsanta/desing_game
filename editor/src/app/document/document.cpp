@@ -27,6 +27,16 @@ namespace spright { namespace editor {
 		return m_Drawings[index];
 	}
 
+	Drawing* Document::getDrawingAt(const Vec2& pos) {
+		for (Drawing& drawing : m_Drawings) {
+			if (drawing.getBounds().contains(pos.x, pos.y)) {
+				return &drawing;
+			}
+		}
+
+		return nullptr;
+	}
+
 	void Document::addDrawing(const Drawing& drawing) {
 		m_Drawings.push_back(drawing);
 	}

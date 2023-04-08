@@ -29,6 +29,7 @@ namespace spright { namespace engine {
 		void clear();
 		void remove(const T& renderable);
 		const Renderer2D* getRenderer() const;
+		Renderer2D* getRenderer();
 
 		inline std::vector<T*>& getRenderables() {
 			return m_Renderables;
@@ -46,7 +47,7 @@ namespace spright { namespace engine {
 		if (lhs.m_Renderables.size() != rhs.m_Renderables.size()) {
 			return false;
 		}
-		
+
 		for (int i = 0; i < lhs.m_Renderables.size(); i++) {
 			if (*lhs.m_Renderables[i] != *rhs.m_Renderables[i]) {
 				return false;
@@ -67,6 +68,11 @@ namespace spright { namespace engine {
 
 	template <typename T>
 	const Renderer2D* Group<T>::getRenderer() const {
+		return m_Renderer;
+	}
+
+	template <typename T>
+	Renderer2D* Group<T>::getRenderer() {
 		return m_Renderer;
 	}
 

@@ -33,7 +33,7 @@ namespace spright { namespace editor {
 		DocumentFactory(const DocumentFactory&);
 		~DocumentFactory();
 		Document createDocument();
-		Drawing createDrawing(Bounds bounds, bool checkerboard = true);
+		Drawing createDrawing(Bounds bounds, bool checkerboard = true, float zPos = 0);
 		void createFrame(Document& document);
 		void createUserLayer(Drawing& drawing, std::string name);
 	};

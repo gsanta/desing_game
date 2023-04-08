@@ -33,18 +33,16 @@ namespace spright { namespace editor {
 
 		float zoom = camera.getZoom();
 
-		std::vector<Drawing>& drawings = m_documentStore->getActiveDocument().getDrawings();
+		Drawing* drawing = m_documentStore->getActiveDocument().getDrawingAt(pointerInfo.curr);
 
-		for (Drawing& drawing : drawings) {
-			if (drawing.getBounds().contains(pointerInfo.curr.x, pointerInfo.curr.y)) {
-				TileLayer& tileLayer = drawing.getActiveLayer();
+		if (drawing != nullptr) {
+			TileLayer& layer = drawing->getActiveLayer();
 
-				for (int i = 0; i < m_Size; i++) {
-					for (int j = 0; j < m_Size; j++) {
-						Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
+			for (int i = 0; i < m_Size; i++) {
+				for (int j = 0; j < m_Size; j++) {
+					Vec2Int tilePos = layer.getTilePos(pointerInfo.curr);
 
-						brush.paint(tileLayer, tilePos, getColor());
-					}
+					brush.paint(layer, tilePos, getColor());
 				}
 			}
 		}

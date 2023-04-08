@@ -28,8 +28,10 @@ namespace spright { namespace editor {
 		if (getBounds() != tileLayer.getBounds()) {
 			throw std::invalid_argument("Can not add a TileLayer to a Drawing with different bounds");
 		}
+
+		ActiveFrame& frame = m_FrameStore.getActiveFrame();
 		// check bounds
-		m_FrameStore.getActiveFrame().addLayer(tileLayer);
+		return frame.addLayer(tileLayer);
 	}
 
 	TileLayer& Drawing::getActiveLayer() {

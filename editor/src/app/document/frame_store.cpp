@@ -31,7 +31,7 @@ namespace spright { namespace editor {
 		}
 
 		m_Frames.erase(m_Frames.begin() + index);
-	
+
 		for (int i = 0; i < m_Frames.size(); i++) {
 			m_Frames[i].setIndex(i);
 		}
@@ -43,7 +43,7 @@ namespace spright { namespace editor {
 
 		setActiveFrame(newActiveIndex);
 	}
-	
+
 	void FrameStore::setActiveFrame(size_t index)
 	{
 		if (index >= m_Frames.size()) {

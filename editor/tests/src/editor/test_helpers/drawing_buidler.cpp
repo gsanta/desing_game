@@ -36,5 +36,9 @@ Drawing DrawingBuilder::build() {
 		drawing.addLayer(layer);
 	}
 
+	if (m_TileLayers.size() == 0) {
+		drawing.addLayer(TileLayerBuilder().withBounds(m_Bounds).build());
+	}
+
 	return drawing;
 }

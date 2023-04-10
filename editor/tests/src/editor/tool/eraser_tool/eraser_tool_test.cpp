@@ -55,4 +55,42 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 		REQUIRE(eraseLayer.getAtTilePos(1, 2) != nullptr);
 		REQUIRE(eraseLayer.getAtTilePos(2, 2) != nullptr);
 	}
+
+	SECTION("removes the tiles at the given pointer position") {
+		DocumentStore documentStore = DocumentStoreBuilder()
+			.withDrawing(
+				DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2))
+			)
+			.withDrawing(
+				DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5))
+			)
+			.build();
+
+		TileLayer& foregroundLayer1 = documentStore.getActiveDocument().getDrawings()[0].getForegroundLayer();
+		TileLayer& foregroundLayer2 = documentStore.getActiveDocument().getDrawings()[1].getForegroundLayer();
+
+		EraserTool eraseTool(&documentStore, 1);
+
+		PointerInfo pointerInfo;
+		DocumentInfo documentInfo;
+		documentInfo.activeDrawing = &documentStore.getActiveDocument().getDrawings()[0];
+
+		eraseTool.pointerMove(pointerInfo, documentInfo);
+
+		REQUIRE(foregroundLayer1.getRenderables().size() > 0);
+
+		documentInfo.prevDrawing = documentInfo.activeDrawing;
+		documentInfo.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
+		documentInfo.isLeavingDrawing = true;
+		eraseTool.pointerMove(pointerInfo, documentInfo);
+
+		REQUIRE(foregroundLayer1.getRenderables().size() == 0);
+
+		// PointerInfo pointerInfo;
+		// pointerInfo.curr = activeLayer1.getWorldPos(Vec2Int(1, 1));
+		// DocumentInfo documentInfo;
+		// documentInfo.activeDrawing = &documentStore.getActiveDocument().getActiveDrawing();
+
+
+	}
 }

@@ -7,7 +7,7 @@ namespace spright { namespace editor {
     struct DocumentInfo {
         Drawing *prevDrawing = nullptr;
         Drawing *activeDrawing = nullptr;
-        bool isLeavingDrawing;
+        bool isLeavingDrawing = false;
 
         bool hasActiveDrawing();
         bool hasPrevDrawing();

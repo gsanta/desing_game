@@ -54,7 +54,7 @@ namespace spright { namespace editor {
 		m_Layer->add(Rect2D(xEnd, yStart, 0.1f, height, color));
 	}
 
-	void SelectionBox::move(Vec2 delta)
+	Vec2 SelectionBox::move(Vec2 delta)
 	{
 		float tileSize = m_Layer->getTileSize();
 
@@ -63,20 +63,23 @@ namespace spright { namespace editor {
 		float xDelta = static_cast<int>(m_AbsoluteDelta.x / tileSize) * tileSize;
 		float yDelta = static_cast<int>(m_AbsoluteDelta.y / tileSize) * tileSize;
 
+		Vec2 tileDelta(xDelta - m_PrevTranslate.x, yDelta - m_PrevTranslate.y);
+
 		for (Rect2D* sprite : m_Layer->getRenderables()) {
-			sprite->translate(Vec2(-m_PrevTranslate.x, -m_PrevTranslate.y));
-			sprite->translate(Vec2(xDelta, yDelta));
+			sprite->translate(tileDelta);
 		}
 
 		m_PrevTranslate.x = xDelta;
 		m_PrevTranslate.y = yDelta;
+
+		return tileDelta;
 	}
 
 	void SelectionBox::clear()
 	{
 		clearSprites();
 		m_Start = Vec2();
-		
+
 		m_Bounds = Bounds(0, 0, 0, 0);
 	}
 

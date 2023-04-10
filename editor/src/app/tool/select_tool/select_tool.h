@@ -5,6 +5,7 @@
 #include "../../document/document_store.h"
 #include "../tool.h"
 #include "../common/selection_box.h"
+#include "../../document/drawing.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::maths;
@@ -22,17 +23,14 @@ namespace spright { namespace editor {
 		float m_NoMovementTolerance = 0.1f;
 		bool m_IsMove = false;
 
-		Drawing* m_ActiveDrawing = nullptr;
-
 	public:
 		SelectTool(DocumentStore* documentHandler);
-		void pointerDown(PointerInfo& pointerInfo) override;
-		void pointerUp(PointerInfo& pointerInfo) override;
-		void pointerMove(PointerInfo& pointerInfo) override;
+		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
 	private:
-		//void updateSelectionBox(Vec2 bottomLeft, Vec2 topRight);
-		void makeSelection(PointerInfo& pointerInfo);
-		void makePointSelection(PointerInfo& pointerInfo);
-		void moveSelection(PointerInfo& pointerInfo);
+		void makeSelection(PointerInfo& pointerInfo, Drawing* activeDrawing);
+		void makePointSelection(PointerInfo& pointerInfo, Drawing* activeDrawing);
+		void moveSelection(Vec2 tileDelta, Drawing* activeDrawing);
 	};
 }}

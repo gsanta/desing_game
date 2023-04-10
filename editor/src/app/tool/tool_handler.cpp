@@ -31,12 +31,14 @@ namespace spright { namespace editor {
 	}
 
 	void ToolHandler::onMouseUp(bool buttons[3]) {
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
 
 		for (Tool* tool : *m_ActiveTools) {
 			this->m_pointerInfo.buttons[0] = buttons[0];
 			this->m_pointerInfo.buttons[1] = buttons[1];
 			this->m_pointerInfo.buttons[2] = buttons[2];
-			tool->pointerUp(this->m_pointerInfo);
+
+			tool->pointerUp(this->m_pointerInfo, activeDrawing);
 			this->m_pointerInfo.isDown = false;
 		}
 	}
@@ -51,24 +53,28 @@ namespace spright { namespace editor {
 		this->m_pointerInfo.buttons[0] = buttons[0];
 		this->m_pointerInfo.buttons[1] = buttons[1];
 		this->m_pointerInfo.buttons[2] = buttons[2];
-		
+
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerDown(this->m_pointerInfo);
+			tool->pointerDown(this->m_pointerInfo, activeDrawing);
 		}
 	}
 
 
 	void ToolHandler::onMouseMove(double x, double y)
 	{
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+
 		x_tmp = x; y_tmp = y;
 		Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToCameraPos(x, y);
 		this->m_pointerInfo.prev.x = m_pointerInfo.curr.x;
 		this->m_pointerInfo.prev.y = m_pointerInfo.curr.y;
 		this->m_pointerInfo.curr.x = pos.x;
 		this->m_pointerInfo.curr.y = pos.y;
-		
+
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerMove(this->m_pointerInfo);
+			tool->pointerMove(this->m_pointerInfo, activeDrawing);
 		}
 	}
 
@@ -162,7 +168,7 @@ namespace spright { namespace editor {
 	Tool* ToolHandler::getTool(string name) const
 	{
 		auto it = find_if(this->m_Tools.begin(), this->m_Tools.end(), [&name](const Tool* tool) { return tool->getName() == name; });
-	
+
 		return *it;
 	}
 
@@ -209,4 +215,3 @@ namespace spright { namespace editor {
 		return it != (*m_ActiveTools).end();
 	}
 } }
-

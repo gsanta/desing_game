@@ -6,6 +6,7 @@
 #include "../../maths/vec3.h"
 #include "../service/services.h"
 #include "../document/document_store.h"
+#include "../document/drawing.h"
 
 namespace spright { namespace editor {
 
@@ -20,8 +21,8 @@ namespace spright { namespace editor {
 
 	public:
 		RectangleTool(DocumentStore* documentStore, Services* services);
-		void pointerDown(PointerInfo& pointerInfo) override;
-		void pointerUp(PointerInfo& pointerInfo) override;
-		void pointerMove(PointerInfo& pointerInfo) override;
+		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
 	};
 }}

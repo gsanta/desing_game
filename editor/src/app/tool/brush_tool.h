@@ -27,8 +27,8 @@ namespace spright { namespace editor {
 
 		void setSize(int size);
 	private:
-		void pointerMove(PointerInfo& pointerInfo) override;
-		void pointerDown(PointerInfo &pointerInfo) override;
+		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerDown(PointerInfo &pointerInfo, Drawing* activeDrawing) override;
 		void paint(PointerInfo& pointerInfo);
 	};
 }}

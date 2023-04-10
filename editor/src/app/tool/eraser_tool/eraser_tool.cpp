@@ -4,27 +4,32 @@ namespace spright
 {
 namespace editor
 {
-
     EraserTool::EraserTool(DocumentStore *documentStore, int eraserSize)
         : m_documentStore(documentStore), m_Size(eraserSize), Tool("erase")
     {
         m_EraserStroke = EraserStroke(m_Size);
     }
 
-    void EraserTool::pointerDown(PointerInfo &pointerInfo)
+    void EraserTool::pointerDown(PointerInfo &pointerInfo, Drawing *activeDrawing)
     {
-        Drawing &drawing = m_documentStore->getActiveDocument().getActiveDrawing();
+        if (activeDrawing == nullptr)
+        {
+            return;
+        }
 
-        TileLayer &activeLayer = drawing.getActiveLayer();
+        TileLayer &activeLayer = activeDrawing->getActiveLayer();
         m_Eraser.erase(activeLayer, activeLayer.getTilePos(pointerInfo.curr), m_Size);
     }
 
-    void EraserTool::pointerMove(PointerInfo &pointerInfo)
+    void EraserTool::pointerMove(PointerInfo &pointerInfo, Drawing *activeDrawing)
     {
-        Drawing &drawing = m_documentStore->getActiveDocument().getActiveDrawing();
+        if (activeDrawing == nullptr)
+        {
+            return;
+        }
 
-        TileLayer &activeLayer = drawing.getActiveLayer();
-        TileLayer &drawLayer = drawing.getForegroundLayer();
+        TileLayer &activeLayer = activeDrawing->getActiveLayer();
+        TileLayer &drawLayer = activeDrawing->getForegroundLayer();
 
         m_EraserStroke.draw(activeLayer, drawLayer, pointerInfo.curr);
 

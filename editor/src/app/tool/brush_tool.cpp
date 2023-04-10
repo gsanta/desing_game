@@ -12,12 +12,12 @@ namespace spright { namespace editor {
 		m_Size = size;
 	}
 
-	void BrushTool::pointerMove(PointerInfo &pointerInfo)
+	void BrushTool::pointerMove(PointerInfo &pointerInfo, Drawing* activeDrawing)
 	{
 		paint(pointerInfo);
 	}
 
-	void BrushTool::pointerDown(PointerInfo& pointerInfo)
+	void BrushTool::pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing)
 	{
 		paint(pointerInfo);
 	}

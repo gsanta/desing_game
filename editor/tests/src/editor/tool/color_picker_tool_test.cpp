@@ -16,10 +16,11 @@ TEST_CASE("ColorPickerTool pointerDown", "[color-picker-tool]") {
 		ToolHandler toolHandler;
 
 		DocumentStore documentStore = DocumentStoreBuilder().withDrawing().build();
-		TileLayer& tileLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+		Drawing& activeDrawing = documentStore.getActiveDocument().getActiveDrawing();
+		TileLayer& tileLayer = activeDrawing.getActiveLayer();
 
 		// TODO: destroy layerprovider
-		ColorPickerTool colorPickerTool(&documentStore, &toolHandler, &eventEmitter);
+		ColorPickerTool colorPickerTool(&toolHandler, &eventEmitter);
 
 		Brush brush;
 		brush.paint(tileLayer, Vec2Int(0, 0), 0xFFFF0000);
@@ -27,12 +28,12 @@ TEST_CASE("ColorPickerTool pointerDown", "[color-picker-tool]") {
 
 		PointerInfo pointerInfo;
 		pointerInfo.curr = tileLayer.getWorldPos(Vec2Int(0, 0));
-		colorPickerTool.pointerDown(pointerInfo);
+		colorPickerTool.pointerDown(pointerInfo, &activeDrawing);
 
 		REQUIRE(colorPickerTool.getPickedColor() == 0xFFFF0000);
 
 		pointerInfo.curr = tileLayer.getWorldPos(Vec2Int(1, 1));
-		colorPickerTool.pointerDown(pointerInfo);
+		colorPickerTool.pointerDown(pointerInfo, &activeDrawing);
 
 		REQUIRE(colorPickerTool.getPickedColor() == 0xFF00FF00);
 	}
@@ -45,29 +46,30 @@ TEST_CASE("ColorPickerTool pointerDown", "[color-picker-tool]") {
 		ToolHandler toolHandler;
 
 
-		ColorPickerTool colorPickerTool(&documentStore, &toolHandler, &eventEmitter);
+		ColorPickerTool colorPickerTool(&toolHandler, &eventEmitter);
 
 		Brush brush;
 
-		TileLayer& tileLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+		Drawing& activeDrawing = documentStore.getActiveDocument().getActiveDrawing();
+		TileLayer& tileLayer = activeDrawing.getActiveLayer();
 
 		brush.paint(tileLayer, Vec2Int(0, 0), 0xFFFF0000);
 
 		PointerInfo pointerInfo;
 
 		pointerInfo.curr = tileLayer.getWorldPos(Vec2Int(1, 1));
-		colorPickerTool.pointerDown(pointerInfo);
+		colorPickerTool.pointerDown(pointerInfo, &activeDrawing);
 		// no tile at that position
 		REQUIRE(eventEmitter.getEmitCount() == 0);
 
 		pointerInfo.curr = tileLayer.getWorldPos(Vec2Int(0, 0));
-		colorPickerTool.pointerDown(pointerInfo);
+		colorPickerTool.pointerDown(pointerInfo, &activeDrawing);
 
 		REQUIRE(eventEmitter.getLastEventType() == "tool_data_changed");
 		REQUIRE(eventEmitter.getLastData()["tool"] == "color_picker");
 		REQUIRE(eventEmitter.getEmitCount() == 1);
 
-		colorPickerTool.pointerDown(pointerInfo);
+		colorPickerTool.pointerDown(pointerInfo, &activeDrawing);
 		// picking the already picked color
 		REQUIRE(eventEmitter.getEmitCount() == 1);
 	}

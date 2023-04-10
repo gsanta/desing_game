@@ -5,6 +5,7 @@
 #include "queue_linear_flood_fill.h"
 #include "../../service/services.h"
 #include "../../document/document_store.h"
+#include "../../document/drawing.h"
 
 namespace spright { namespace editor {
     using namespace ::spright::engine;
@@ -19,6 +20,6 @@ namespace spright { namespace editor {
 
     public:
         PaintBucketTool(DocumentStore* documentStore, Services* services);
-        void pointerUp(PointerInfo& pointerInfo) override;
+        void pointerUp(PointerInfo& pointerInfo, Drawing* drawing) override;
     };
 }}

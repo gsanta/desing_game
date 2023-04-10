@@ -9,6 +9,7 @@
 #include "../event/event_emitter.h"
 #include "brush_tool.h"
 #include "tool_handler.h"
+#include "../document/drawing.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;
@@ -23,8 +24,8 @@ namespace spright { namespace editor {
 		unsigned int m_PickedColor;
 
 	public:
-		ColorPickerTool(DocumentStore* documentStore, ToolHandler* toolHandler, EventEmitter* eventEmitter);
-		void pointerDown(PointerInfo& pointerInfo) override;
+		ColorPickerTool(ToolHandler* toolHandler, EventEmitter* eventEmitter);
+		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
 		unsigned int getPickedColor() const;
 		std::string getData() override;
 

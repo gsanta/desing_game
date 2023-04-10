@@ -9,7 +9,7 @@ namespace spright { namespace editor {
 		m_DocumentFactory = new DocumentFactory(m_Window, new GLRendererProvider(),  m_EventEmitter.get());
 
 		m_DocumentStore = std::make_unique<DocumentStore>();
-		
+
 		m_DocumentStore->addDocument(m_DocumentFactory->createDocument());
 
 		std::vector<Drawing>& drawings = m_DocumentStore->getActiveDocument().getDrawings();
@@ -32,7 +32,7 @@ namespace spright { namespace editor {
 		m_toolHandler->addTool(new ZoomTool(getDocumentStore()));
 		m_toolHandler->addTool(new PaintBucketTool(getDocumentStore(), m_Services));
 		m_toolHandler->addTool(new SelectTool(getDocumentStore()));
-		m_toolHandler->addTool(new ColorPickerTool(getDocumentStore(), m_toolHandler, m_EventEmitter.get()));
+		m_toolHandler->addTool(new ColorPickerTool(m_toolHandler, m_EventEmitter.get()));
 		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore(), m_DocumentFactory));
 		m_toolHandler->addActiveTool("zoom");
 		m_toolHandler->addActiveTool("pan");

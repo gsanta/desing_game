@@ -7,7 +7,7 @@
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;
-	
+
 	class SelectionBox {
 	private:
 		TileLayer* m_Layer;
@@ -26,7 +26,7 @@ namespace spright { namespace editor {
 		void setTileLayer(TileLayer& tileLayer);
 		void start(Vec2 pos);
 		void setPosition(Vec2 pos);
-		void move(Vec2 delta);
+		Vec2 move(Vec2 delta);
 		void clear();
 		bool isInsideSelection(Vec2 point);
 		Bounds getBounds();

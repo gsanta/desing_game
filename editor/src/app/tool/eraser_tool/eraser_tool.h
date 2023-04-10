@@ -9,6 +9,7 @@
 #include "../helper/layer_provider.h"
 #include "eraser.h"
 #include "eraser_stroke.h"
+#include "../../document/drawing.h"
 
 namespace spright { namespace editor {
 	using namespace spright::maths;
@@ -30,8 +31,8 @@ namespace spright { namespace editor {
 
 	public:
 		EraserTool(DocumentStore* documentStore, int eraserSize);
-		void pointerDown(PointerInfo& pointerInfo) override;
-		void pointerMove(PointerInfo& pointerInfo) override;
+		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
 		void deactivate() override;
 		void setOptions(std::string json) override;
 		std::string getOptions() override;

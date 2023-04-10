@@ -6,22 +6,22 @@ namespace spright { namespace editor {
 
 	}
 
-	void RectangleTool::pointerDown(PointerInfo& pointerInfo)
+	void RectangleTool::pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing)
 	{
 		int color = m_Services->getColorPalette()->color;
 		m_Rect = &m_DocumentStore->getActiveDocument().getActiveLayer().add(Rect2D(pointerInfo.curr.x, pointerInfo.curr.y, 0.1f, 0.1f, color));
 	}
 
-	void RectangleTool::pointerUp(PointerInfo& pointerInfo)
+	void RectangleTool::pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing)
 	{
 		if (!pointerInfo.isDown) {
 			int color = m_Services->getColorPalette()->color;
 			m_Rect = &m_DocumentStore->getActiveDocument().getActiveLayer().add(Rect2D(pointerInfo.curr.x, pointerInfo.curr.y - m_Size, m_Size, m_Size, color));
-		
+
 		}
 	}
 
-	void RectangleTool::pointerMove(PointerInfo& pointerInfo)
+	void RectangleTool::pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing)
 	{
 		if (pointerInfo.isDown) {
 

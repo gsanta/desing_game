@@ -68,7 +68,7 @@ namespace spright { namespace engine {
 
 		Vec2 getWorldPos(int x, int y);
 
-		void updateTileIndex(int oldIndex, int newIndex);
+		void updateTileIndex(Rect2D* rect, int newIndex);
 		Rect2D* getAtTileIndex(int tileIndex) const;
 		Rect2D* getAtTilePos(int x, int y) const;
 		int getTileIndex(int tileX, int tileY) const;

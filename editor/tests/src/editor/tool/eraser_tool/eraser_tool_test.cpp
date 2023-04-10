@@ -39,7 +39,7 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 		PointerInfo pointerInfo;
 		pointerInfo.curr = eraseLayer.getWorldPos(Vec2Int(1, 1));
 
-		eraseTool.pointerDown(pointerInfo);
+		eraseTool.pointerDown(pointerInfo, &documentStore.getActiveDocument().getActiveDrawing());
 
 		REQUIRE(eraseLayer.getAtTilePos(0, 0) != nullptr);
 		REQUIRE(eraseLayer.getAtTilePos(1, 0) != nullptr);

@@ -172,11 +172,12 @@ namespace spright { namespace engine {
 		return Vec2(worldX, worldY);
 	}
 
-	void TileLayer::updateTileIndex(int oldIndex, int newIndex) {
-		Rect2D* sprite = dynamic_cast<Rect2D*>(getAtTileIndex(oldIndex));
-		sprite->setTileIndex(newIndex);
-		m_TileIndexes[oldIndex] = nullptr;
-		m_TileIndexes[newIndex] = sprite;
+	void TileLayer::updateTileIndex(Rect2D* rect, int newIndex) {
+		if (m_TileIndexes[rect->getTileIndex()] == rect) {
+			m_TileIndexes[rect->getTileIndex()] = nullptr;
+		}
+		rect->setTileIndex(newIndex);
+		m_TileIndexes[newIndex] = rect;
 	}
 
 	int TileLayer::getTileIndex(int tileX, int tileY) const

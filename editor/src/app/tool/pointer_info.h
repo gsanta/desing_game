@@ -14,15 +14,15 @@ namespace spright { namespace editor {
 	public:
 		PointerInfo();
 
-		bool isLeftButtonDown() {
+		inline bool isLeftButtonDown() {
 			return buttons[0];
 		}
 
-		bool isRightButtonDown() {
+		inline bool isRightButtonDown() {
 			return buttons[1];
 		}
 
-		bool isMiddleButtonDown() {
+		inline bool isMiddleButtonDown() {
 			return buttons[2];
 		}
 	};

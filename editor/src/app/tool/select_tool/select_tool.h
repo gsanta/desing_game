@@ -4,6 +4,7 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../document/document_store.h"
 #include "../tool.h"
+#include "../common/document_info.h"
 #include "../common/selection_box.h"
 #include "../../document/drawing.h"
 
@@ -25,9 +26,9 @@ namespace spright { namespace editor {
 
 	public:
 		SelectTool(DocumentStore* documentHandler);
-		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
 	private:
 		void makeSelection(PointerInfo& pointerInfo, Drawing* activeDrawing);
 		void makePointSelection(PointerInfo& pointerInfo, Drawing* activeDrawing);

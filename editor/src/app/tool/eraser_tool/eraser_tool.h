@@ -6,6 +6,7 @@
 #include "../../../engine/graphics/renderable/renderable2d.h"
 #include "../../document/document_store.h"
 #include "../tool.h"
+#include "../common/document_info.h"
 #include "../helper/layer_provider.h"
 #include "eraser.h"
 #include "eraser_stroke.h"
@@ -31,9 +32,9 @@ namespace spright { namespace editor {
 
 	public:
 		EraserTool(DocumentStore* documentStore, int eraserSize);
-		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void deactivate() override;
+		void pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void deactivate(DocumentInfo& documentInfo) override;
 		void setOptions(std::string json) override;
 		std::string getOptions() override;
 	};

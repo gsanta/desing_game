@@ -4,32 +4,38 @@ namespace spright
 {
 namespace editor
 {
+
     EraserTool::EraserTool(DocumentStore *documentStore, int eraserSize)
         : m_documentStore(documentStore), m_Size(eraserSize), Tool("erase")
     {
         m_EraserStroke = EraserStroke(m_Size);
     }
 
-    void EraserTool::pointerDown(PointerInfo &pointerInfo, Drawing *activeDrawing)
+    void EraserTool::pointerDown(PointerInfo &pointerInfo, DocumentInfo &documentInfo)
     {
-        if (activeDrawing == nullptr)
+        if (!documentInfo.hasActiveDrawing())
         {
             return;
         }
 
-        TileLayer &activeLayer = activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = documentInfo.activeDrawing->getActiveLayer();
         m_Eraser.erase(activeLayer, activeLayer.getTilePos(pointerInfo.curr), m_Size);
     }
 
-    void EraserTool::pointerMove(PointerInfo &pointerInfo, Drawing *activeDrawing)
+    void EraserTool::pointerMove(PointerInfo &pointerInfo, DocumentInfo &documentInfo)
     {
-        if (activeDrawing == nullptr)
+        if (documentInfo.isLeavingDrawing && documentInfo.hasPrevDrawing())
+        {
+            m_EraserStroke.clear(documentInfo.prevDrawing->getForegroundLayer());
+        }
+
+        if (!documentInfo.hasActiveDrawing())
         {
             return;
         }
 
-        TileLayer &activeLayer = activeDrawing->getActiveLayer();
-        TileLayer &drawLayer = activeDrawing->getForegroundLayer();
+        TileLayer &activeLayer = documentInfo.activeDrawing->getActiveLayer();
+        TileLayer &drawLayer = documentInfo.activeDrawing->getForegroundLayer();
 
         m_EraserStroke.draw(activeLayer, drawLayer, pointerInfo.curr);
 
@@ -39,9 +45,12 @@ namespace editor
         }
     }
 
-    void EraserTool::deactivate()
+    void EraserTool::deactivate(DocumentInfo &documentInfo)
     {
-        m_EraserStroke.clear();
+        if (documentInfo.hasActiveDrawing())
+        {
+            m_EraserStroke.clear(documentInfo.activeDrawing->getForegroundLayer());
+        }
     }
     void EraserTool::setOptions(std::string json)
     {

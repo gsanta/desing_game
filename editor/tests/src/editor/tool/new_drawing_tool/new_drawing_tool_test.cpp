@@ -19,13 +19,15 @@ TEST_CASE("NewDrawingTool", "[new-drawing-tool]") {
 
 		PointerInfo pointerInfo;
 		pointerInfo.curr = canvas.getForegroundLayer().getWorldPos(Vec2Int(1, 1));
+		DocumentInfo documentInfo;
+		documentInfo.activeDrawing = &activeDrawing;
 
-		newDrawingTool.pointerDown(pointerInfo, &activeDrawing);
+		newDrawingTool.pointerDown(pointerInfo, documentInfo);
 
 		pointerInfo.prev = pointerInfo.curr;
 		pointerInfo.curr = canvas.getForegroundLayer().getWorldPos(Vec2Int(3, 3));
-		newDrawingTool.pointerMove(pointerInfo, &activeDrawing);
-		newDrawingTool.pointerUp(pointerInfo, &activeDrawing);
+		newDrawingTool.pointerMove(pointerInfo, documentInfo);
+		newDrawingTool.pointerUp(pointerInfo, documentInfo);
 
 		REQUIRE(documentStore.getActiveDocument().getDrawings().size() == 1);
 	}

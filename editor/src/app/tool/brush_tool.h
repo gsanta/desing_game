@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "tool.h"
+#include "common/document_info.h"
 #include "colorable.h"
 #include "pointer_info.h"
 #include "../../engine/graphics/renderable/rect2d.h"
@@ -27,8 +28,8 @@ namespace spright { namespace editor {
 
 		void setSize(int size);
 	private:
-		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerDown(PointerInfo &pointerInfo, Drawing* activeDrawing) override;
+		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerDown(PointerInfo &pointerInfo, DocumentInfo& documentInfo) override;
 		void paint(PointerInfo& pointerInfo);
 	};
 }}

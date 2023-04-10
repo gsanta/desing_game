@@ -38,7 +38,7 @@ namespace spright { namespace editor {
 			this->m_pointerInfo.buttons[1] = buttons[1];
 			this->m_pointerInfo.buttons[2] = buttons[2];
 
-			tool->pointerUp(this->m_pointerInfo, activeDrawing);
+			tool->pointerUp(this->m_pointerInfo, m_DocumentInfo);
 			this->m_pointerInfo.isDown = false;
 		}
 	}
@@ -57,7 +57,7 @@ namespace spright { namespace editor {
 		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
 
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerDown(this->m_pointerInfo, activeDrawing);
+			tool->pointerDown(this->m_pointerInfo, m_DocumentInfo);
 		}
 	}
 
@@ -65,6 +65,13 @@ namespace spright { namespace editor {
 	void ToolHandler::onMouseMove(double x, double y)
 	{
 		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+		if (m_DocumentInfo.activeDrawing != activeDrawing) {
+			m_DocumentInfo.prevDrawing = m_DocumentInfo.activeDrawing;
+			m_DocumentInfo.activeDrawing = activeDrawing;
+			m_DocumentInfo.isLeavingDrawing = true;
+		} else {
+			m_DocumentInfo.isLeavingDrawing = false;
+		}
 
 		x_tmp = x; y_tmp = y;
 		Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToCameraPos(x, y);
@@ -74,7 +81,7 @@ namespace spright { namespace editor {
 		this->m_pointerInfo.curr.y = pos.y;
 
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerMove(this->m_pointerInfo, activeDrawing);
+			tool->pointerMove(this->m_pointerInfo, m_DocumentInfo);
 		}
 	}
 
@@ -195,7 +202,9 @@ namespace spright { namespace editor {
 	{
 		if (m_SelectedTool != nullptr) {
 			removeActiveTool(m_SelectedTool->getName());
-			m_SelectedTool->deactivate();
+
+			Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+			m_SelectedTool->deactivate(m_DocumentInfo);
 		}
 
 		if (!isActiveTool(name)) {

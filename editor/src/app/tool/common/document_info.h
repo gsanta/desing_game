@@ -1,14 +1,15 @@
-
+#pragma once
 #include "../../document/drawing.h"
 #include "../../document/document_store.h"
 
 namespace spright { namespace editor {
 
     struct DocumentInfo {
-        DocumentStore *m_DocumentStore;
-        Drawing *m_ActiveDrawing = nullptr;
-    public:
-        DocumentInfo(DocumentStore* documentStore);
-        Drawing *getActiveDrawing();
+        Drawing *prevDrawing = nullptr;
+        Drawing *activeDrawing = nullptr;
+        bool isLeavingDrawing;
+
+        bool hasActiveDrawing();
+        bool hasPrevDrawing();
     };
 }}

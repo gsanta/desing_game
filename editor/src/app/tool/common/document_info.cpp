@@ -1,12 +1,11 @@
 #include "./document_info.h"
 
 namespace spright { namespace editor {
-    DocumentInfo(DocumentStore* documentStore): m_DocumentStore(documentStore) {
-
+    bool DocumentInfo::hasActiveDrawing() {
+        return activeDrawing != nullptr;
     }
 
-
-    Drawing* DocumentInfo::getActiveDrawing() {
-
+    bool DocumentInfo::hasPrevDrawing() {
+        return prevDrawing != nullptr;
     }
 }}

@@ -5,18 +5,18 @@ namespace spright { namespace editor {
 
 	}
 
-	void NewDrawingTool::pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) {
+	void NewDrawingTool::pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) {
 		m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getCanvas().getForegroundLayer());
 		m_SelectionBox.start(pointerInfo.curr);
 	}
 
-	void NewDrawingTool::pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing) {
+	void NewDrawingTool::pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo) {
 		Drawing drawing = m_DocumentFactory->createDrawing(m_SelectionBox.getBounds());
 		m_DocumentStore->getActiveDocument().addDrawing(drawing);
 		m_SelectionBox.clear();
 	}
 
-	void NewDrawingTool::pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) {
+	void NewDrawingTool::pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) {
 		if (pointerInfo.isDown) {
 			m_SelectionBox.setPosition(pointerInfo.curr);
 		}

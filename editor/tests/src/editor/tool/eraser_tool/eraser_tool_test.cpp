@@ -8,6 +8,8 @@
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"
 #include "../src/app/tool/brush_tool.h"
+#include "../src/app/tool/pointer_info.h"
+#include "../src/app/tool/common/document_info.h"
 #include "../layer_provider_test_impl.h"
 #include "../../test_helpers/test_document_factory.h"
 #include "../../test_helpers/document_store_builder.h"
@@ -38,8 +40,10 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 
 		PointerInfo pointerInfo;
 		pointerInfo.curr = eraseLayer.getWorldPos(Vec2Int(1, 1));
+		DocumentInfo documentInfo;
+		documentInfo.activeDrawing = &documentStore.getActiveDocument().getActiveDrawing();
 
-		eraseTool.pointerDown(pointerInfo, &documentStore.getActiveDocument().getActiveDrawing());
+		eraseTool.pointerDown(pointerInfo, documentInfo);
 
 		REQUIRE(eraseLayer.getAtTilePos(0, 0) != nullptr);
 		REQUIRE(eraseLayer.getAtTilePos(1, 0) != nullptr);

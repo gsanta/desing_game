@@ -2,11 +2,11 @@
 
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "tool.h"
+#include "common/document_info.h"
 #include "../../maths/vec2.h"
 #include "../../maths/vec3.h"
 #include "../service/services.h"
 #include "../document/document_store.h"
-#include "../document/drawing.h"
 
 namespace spright { namespace editor {
 
@@ -21,8 +21,8 @@ namespace spright { namespace editor {
 
 	public:
 		RectangleTool(DocumentStore* documentStore, Services* services);
-		void pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
-		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
 	};
 }}

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "tool.h"
+#include "common/document_info.h"
 #include "../../engine/graphics/camera/ortho_projection_info.h"
 #include "pointer_info.h"
 #include "../document/document_store.h"
-#include "../document/drawing.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;
@@ -18,6 +18,6 @@ namespace spright { namespace editor {
 	public:
 		PanTool(DocumentStore* documentStore);
 	private:
-		void pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing) override;
+		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
 	};
 }}

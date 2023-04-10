@@ -5,7 +5,7 @@ namespace spright { namespace editor {
 	{
 	}
 
-	void PanTool::pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing)
+	void PanTool::pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
 	{
 		if (pointerInfo.isMiddleButtonDown() == false) {
 			return;

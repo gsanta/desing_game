@@ -18,12 +18,13 @@ namespace spright { namespace editor {
 		setPosition(eraseLayer, pos);
 	}
 
-	void EraserStroke::clear()
+	void EraserStroke::clear(TileLayer& eraseLayer)
 	{
 		m_TopLine = nullptr;
 		m_RightLine = nullptr;
 		m_BottomLine = nullptr;
 		m_LeftLine = nullptr;
+		eraseLayer.clear();
 	}
 
 	float EraserStroke::getStrokeWidth()

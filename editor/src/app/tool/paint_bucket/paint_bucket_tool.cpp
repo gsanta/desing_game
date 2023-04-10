@@ -7,9 +7,13 @@ namespace spright { namespace editor {
 	{
 	}
 
-	void PaintBucketTool::pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing)
+	void PaintBucketTool::pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
 	{
-		TileLayer& tileLayer = m_DocumentStore->getActiveDocument().getActiveLayer();
+		if (!documentInfo.hasActiveDrawing()) {
+			return;
+		}
+
+		TileLayer& tileLayer = documentInfo.activeDrawing->getActiveLayer();
 		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
 
 		m_FloodFill.floodFill(tileLayer, tilePos.x, tilePos.y, m_Services->getColorPalette()->color);

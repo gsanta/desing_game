@@ -18,7 +18,7 @@ namespace spright { namespace editor {
 		EraserStroke();
 		EraserStroke(int eraserSize);
 		void draw(const TileLayer& eraseLayer, TileLayer& drawLayer, const Vec2& pos);
-		void clear();
+		void clear(TileLayer& eraseLayer);
 		float getStrokeWidth();
 
 	private:

@@ -6,10 +6,10 @@ namespace spright { namespace editor {
 	{
 	}
 
-	void SelectTool::pointerDown(PointerInfo& pointerInfo, Drawing* activeDrawing)
+	void SelectTool::pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
 	{
-		if (activeDrawing != nullptr) {
-			m_SelectionBox.setTileLayer(activeDrawing->getForegroundLayer());
+		if (documentInfo.hasActiveDrawing()) {
+			m_SelectionBox.setTileLayer(documentInfo.activeDrawing->getForegroundLayer());
 			m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
 
 			if (!m_IsMove) {
@@ -18,19 +18,23 @@ namespace spright { namespace editor {
 		}
 	}
 
-	void SelectTool::pointerUp(PointerInfo& pointerInfo, Drawing* activeDrawing)
+	void SelectTool::pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
 	{
+		if (!documentInfo.hasActiveDrawing()) {
+			return;
+		}
+
 		if (Vec2::distance(pointerInfo.down, pointerInfo.curr) < m_NoMovementTolerance) {
-			makePointSelection(pointerInfo, activeDrawing);
+			makePointSelection(pointerInfo, documentInfo.activeDrawing);
 		}
 		else {
-			makeSelection(pointerInfo, activeDrawing);
+			makeSelection(pointerInfo, documentInfo.activeDrawing);
 		}
 
 		m_IsMove = false;
 	}
 
-	void SelectTool::pointerMove(PointerInfo& pointerInfo, Drawing* activeDrawing)
+	void SelectTool::pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
 	{
 		if (!pointerInfo.isLeftButtonDown()) {
 			return;
@@ -38,7 +42,7 @@ namespace spright { namespace editor {
 
 		if (m_IsMove) {
 			Vec2 delta = m_SelectionBox.move(pointerInfo.curr - pointerInfo.prev);
-			moveSelection(delta, activeDrawing);
+			moveSelection(delta, documentInfo.activeDrawing);
 		}
 		else {
 			m_SelectionBox.setPosition(pointerInfo.curr);

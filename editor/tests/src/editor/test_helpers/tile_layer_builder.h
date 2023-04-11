@@ -16,6 +16,4 @@ public:
 	TileLayerBuilder& withIndex(size_t index);
 	TileLayerBuilder& withTileSize(float tileSize);
 	TileLayer build();
-
-	static TileLayerBuilder create();
 };

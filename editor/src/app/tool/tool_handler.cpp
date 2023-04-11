@@ -31,15 +31,15 @@ namespace spright { namespace editor {
 	}
 
 	void ToolHandler::onMouseUp(bool buttons[3]) {
-		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
 
 		for (Tool* tool : *m_ActiveTools) {
-			this->m_pointerInfo.buttons[0] = buttons[0];
-			this->m_pointerInfo.buttons[1] = buttons[1];
-			this->m_pointerInfo.buttons[2] = buttons[2];
+			m_ToolContext.pointer.buttons[0] = buttons[0];
+			m_ToolContext.pointer.buttons[1] = buttons[1];
+			m_ToolContext.pointer.buttons[2] = buttons[2];
 
-			tool->pointerUp(this->m_pointerInfo, m_DocumentInfo);
-			this->m_pointerInfo.isDown = false;
+			tool->pointerUp(m_ToolContext);
+			m_ToolContext.pointer.isDown = false;
 		}
 	}
 
@@ -47,51 +47,51 @@ namespace spright { namespace editor {
 	{
 		Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToCameraPos(x_tmp, y_tmp);
 
-		this->m_pointerInfo.isDown = true;
-		this->m_pointerInfo.down.x = this->m_pointerInfo.curr.x;
-		this->m_pointerInfo.down.y = this->m_pointerInfo.curr.y;
-		this->m_pointerInfo.buttons[0] = buttons[0];
-		this->m_pointerInfo.buttons[1] = buttons[1];
-		this->m_pointerInfo.buttons[2] = buttons[2];
+		m_ToolContext.pointer.isDown = true;
+		m_ToolContext.pointer.down.x = m_ToolContext.pointer.curr.x;
+		m_ToolContext.pointer.down.y = m_ToolContext.pointer.curr.y;
+		m_ToolContext.pointer.buttons[0] = buttons[0];
+		m_ToolContext.pointer.buttons[1] = buttons[1];
+		m_ToolContext.pointer.buttons[2] = buttons[2];
 
-		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
 
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerDown(this->m_pointerInfo, m_DocumentInfo);
+			tool->pointerDown(m_ToolContext);
 		}
 	}
 
 
 	void ToolHandler::onMouseMove(double x, double y)
 	{
-		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
-		if (m_DocumentInfo.activeDrawing != activeDrawing) {
-			m_DocumentInfo.prevDrawing = m_DocumentInfo.activeDrawing;
-			m_DocumentInfo.activeDrawing = activeDrawing;
-			m_DocumentInfo.isLeavingDrawing = true;
+		Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
+		if (m_ToolContext.doc.activeDrawing != activeDrawing) {
+			m_ToolContext.doc.prevDrawing = m_ToolContext.doc.activeDrawing;
+			m_ToolContext.doc.activeDrawing = activeDrawing;
+			m_ToolContext.doc.isLeavingDrawing = true;
 		} else {
-			m_DocumentInfo.isLeavingDrawing = false;
+			m_ToolContext.doc.isLeavingDrawing = false;
 		}
 
 		x_tmp = x; y_tmp = y;
 		Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToCameraPos(x, y);
-		this->m_pointerInfo.prev.x = m_pointerInfo.curr.x;
-		this->m_pointerInfo.prev.y = m_pointerInfo.curr.y;
-		this->m_pointerInfo.curr.x = pos.x;
-		this->m_pointerInfo.curr.y = pos.y;
+		this->m_ToolContext.pointer.prev.x = m_ToolContext.pointer.curr.x;
+		this->m_ToolContext.pointer.prev.y = m_ToolContext.pointer.curr.y;
+		this->m_ToolContext.pointer.curr.x = pos.x;
+		this->m_ToolContext.pointer.curr.y = pos.y;
 
 		for (Tool* tool : *m_ActiveTools) {
-			tool->pointerMove(this->m_pointerInfo, m_DocumentInfo);
+			tool->pointerMove(m_ToolContext);
 		}
 	}
 
 	void ToolHandler::onScroll(double x, double y)
 	{
-		m_pointerInfo.scroll.x = x;
-		m_pointerInfo.scroll.y = y;
+		m_ToolContext.pointer.scroll.x = x;
+		m_ToolContext.pointer.scroll.y = y;
 
 		for (Tool* tool : *m_ActiveTools) {
-			tool->scroll(this->m_pointerInfo);
+			tool->scroll(m_ToolContext);
 		}
 	}
 
@@ -203,8 +203,8 @@ namespace spright { namespace editor {
 		if (m_SelectedTool != nullptr) {
 			removeActiveTool(m_SelectedTool->getName());
 
-			Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_pointerInfo.curr);
-			m_SelectedTool->deactivate(m_DocumentInfo);
+			Drawing* activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
+			m_SelectedTool->deactivate(m_ToolContext);
 		}
 
 		if (!isActiveTool(name)) {

@@ -1,9 +1,8 @@
 #pragma once
 #include <vector>
-#include "tool.h"
-#include "common/document_info.h"
+#include "tool/tool.h"
+#include "tool/tool_context.h"
 #include "colorable.h"
-#include "pointer_info.h"
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../engine/graphics/renderable/renderable2d.h"
 #include "../editor_config.h"
@@ -27,9 +26,9 @@ namespace spright { namespace editor {
 		BrushTool(DocumentStore* documentStore);
 
 		void setSize(int size);
+		void pointerMove(ToolContext &) override;
+		void pointerDown(ToolContext &) override;
 	private:
-		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
-		void pointerDown(PointerInfo &pointerInfo, DocumentInfo& documentInfo) override;
 		void paint(PointerInfo& pointerInfo);
 	};
 }}

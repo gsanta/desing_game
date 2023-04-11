@@ -8,11 +8,13 @@
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"
 #include "../src/app/tool/brush_tool.h"
-#include "../src/app/tool/pointer_info.h"
-#include "../src/app/tool/common/document_info.h"
+#include "../src/app/tool/tool/tool_context.h"
 #include "../layer_provider_test_impl.h"
 #include "../../test_helpers/test_document_factory.h"
 #include "../../test_helpers/document_store_builder.h"
+#include "../../test_helpers/tool_context_builder.h"
+#include "../../test_helpers/pointer_info_builder.h"
+#include "../../test_helpers/document_info_builder.h"
 
 using namespace ::spright::engine;
 using namespace ::spright::editor;
@@ -22,6 +24,11 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 		DocumentStore documentStore = DocumentStoreBuilder().withDrawing().build();
 		TileLayer& eraseLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
 		TileLayer& drawLayer = documentStore.getActiveDocument().getActiveDrawing().getForegroundLayer();
+
+		ToolContext toolContext = ToolContextBuilder()
+			.withPointerInfo(PointerInfoBuilder().withCurr(eraseLayer.getWorldPos(Vec2Int(1, 1))))
+			.withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(&documentStore.getActiveDocument().getActiveDrawing()))
+			.build();
 
 		Brush brush;
 		brush.paint(eraseLayer, Vec2Int(0, 0), 0xFFFFFFFF);
@@ -36,14 +43,9 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 
 		Rect2D* renderable = eraseLayer.getAtTileIndex(0);
 
-		EraserTool eraseTool(&documentStore, 1);
+		EraserTool eraseTool(1);
 
-		PointerInfo pointerInfo;
-		pointerInfo.curr = eraseLayer.getWorldPos(Vec2Int(1, 1));
-		DocumentInfo documentInfo;
-		documentInfo.activeDrawing = &documentStore.getActiveDocument().getActiveDrawing();
-
-		eraseTool.pointerDown(pointerInfo, documentInfo);
+		eraseTool.pointerDown(toolContext);
 
 		REQUIRE(eraseLayer.getAtTilePos(0, 0) != nullptr);
 		REQUIRE(eraseLayer.getAtTilePos(1, 0) != nullptr);
@@ -58,39 +60,28 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]") {
 
 	SECTION("removes the tiles at the given pointer position") {
 		DocumentStore documentStore = DocumentStoreBuilder()
-			.withDrawing(
-				DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2))
-			)
-			.withDrawing(
-				DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5))
-			)
+			.withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2)))
+			.withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5)))
 			.build();
 
 		TileLayer& foregroundLayer1 = documentStore.getActiveDocument().getDrawings()[0].getForegroundLayer();
 		TileLayer& foregroundLayer2 = documentStore.getActiveDocument().getDrawings()[1].getForegroundLayer();
 
-		EraserTool eraseTool(&documentStore, 1);
+		ToolContext toolContext = ToolContextBuilder()
+			.withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(&documentStore.getActiveDocument().getDrawings()[0]))
+			.build();
 
-		PointerInfo pointerInfo;
-		DocumentInfo documentInfo;
-		documentInfo.activeDrawing = &documentStore.getActiveDocument().getDrawings()[0];
+		EraserTool eraseTool(1);
 
-		eraseTool.pointerMove(pointerInfo, documentInfo);
+		eraseTool.pointerMove(toolContext);
 
 		REQUIRE(foregroundLayer1.getRenderables().size() > 0);
 
-		documentInfo.prevDrawing = documentInfo.activeDrawing;
-		documentInfo.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
-		documentInfo.isLeavingDrawing = true;
-		eraseTool.pointerMove(pointerInfo, documentInfo);
+		toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
+		toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
+		toolContext.doc.isLeavingDrawing = true;
+		eraseTool.pointerMove(toolContext);
 
 		REQUIRE(foregroundLayer1.getRenderables().size() == 0);
-
-		// PointerInfo pointerInfo;
-		// pointerInfo.curr = activeLayer1.getWorldPos(Vec2Int(1, 1));
-		// DocumentInfo documentInfo;
-		// documentInfo.activeDrawing = &documentStore.getActiveDocument().getActiveDrawing();
-
-
 	}
 }

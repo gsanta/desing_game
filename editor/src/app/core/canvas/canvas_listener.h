@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../tool/pointer_info.h"
+#include "../../tool/tool/pointer_info.h"
 
 namespace spright { namespace editor {
 	class CanvasListener

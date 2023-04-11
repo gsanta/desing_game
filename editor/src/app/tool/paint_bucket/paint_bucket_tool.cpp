@@ -3,18 +3,18 @@
 
 namespace spright { namespace editor {
 
-	PaintBucketTool::PaintBucketTool(DocumentStore* documentStore, Services* services) : m_DocumentStore(documentStore), m_Services(services), Tool("paint_bucket")
+	PaintBucketTool::PaintBucketTool(Services *services) : m_Services(services), Tool("paint_bucket")
 	{
 	}
 
-	void PaintBucketTool::pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void PaintBucketTool::pointerUp(ToolContext &context)
 	{
-		if (!documentInfo.hasActiveDrawing()) {
+		if (!context.doc.hasActiveDrawing()) {
 			return;
 		}
 
-		TileLayer& tileLayer = documentInfo.activeDrawing->getActiveLayer();
-		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
+		TileLayer& tileLayer = context.doc.activeDrawing->getActiveLayer();
+		Vec2Int tilePos = tileLayer.getTilePos(context.pointer.curr);
 
 		m_FloodFill.floodFill(tileLayer, tilePos.x, tilePos.y, m_Services->getColorPalette()->color);
 	}

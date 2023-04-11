@@ -6,14 +6,14 @@ namespace spright { namespace editor {
 
 	}
 
-	void ColorPickerTool::pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) {
+	void ColorPickerTool::pointerDown(ToolContext& context) {
 
-		if (!documentInfo.hasActiveDrawing()) {
+		if (!context.doc.hasActiveDrawing()) {
 			return;
 		}
 
-		TileLayer& tileLayer = documentInfo.activeDrawing->getActiveLayer();
-		Vec2Int tilePos = tileLayer.getTilePos(pointerInfo.curr);
+		TileLayer& tileLayer = context.doc.activeDrawing->getActiveLayer();
+		Vec2Int tilePos = tileLayer.getTilePos(context.pointer.curr);
 		int tileIndex = tileLayer.getTileIndex(tilePos.x, tilePos.y);
 		Rect2D* tile = tileLayer.getAtTileIndex(tileIndex);
 

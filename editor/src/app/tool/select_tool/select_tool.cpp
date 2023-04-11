@@ -6,59 +6,59 @@ namespace spright { namespace editor {
 	{
 	}
 
-	void SelectTool::pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void SelectTool::pointerDown(ToolContext &context)
 	{
-		if (documentInfo.hasActiveDrawing()) {
-			m_SelectionBox.setTileLayer(documentInfo.activeDrawing->getForegroundLayer());
-			m_IsMove = m_SelectionBox.isInsideSelection(pointerInfo.curr);
+		if (context.doc.hasActiveDrawing()) {
+			m_SelectionBox.setTileLayer(context.doc.activeDrawing->getForegroundLayer());
+			m_IsMove = m_SelectionBox.isInsideSelection(context.pointer.curr);
 
 			if (!m_IsMove) {
-				m_SelectionBox.start(pointerInfo.curr);
+				m_SelectionBox.start(context.pointer.curr);
 			}
 		}
 	}
 
-	void SelectTool::pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void SelectTool::pointerUp(ToolContext &context)
 	{
-		if (!documentInfo.hasActiveDrawing()) {
+		if (!context.doc.hasActiveDrawing()) {
 			return;
 		}
 
-		if (Vec2::distance(pointerInfo.down, pointerInfo.curr) < m_NoMovementTolerance) {
-			makePointSelection(pointerInfo, documentInfo.activeDrawing);
+		if (Vec2::distance(context.pointer.down, context.pointer.curr) < m_NoMovementTolerance) {
+			makePointSelection(context);
 		}
 		else {
-			makeSelection(pointerInfo, documentInfo.activeDrawing);
+			makeSelection(context);
 		}
 
 		m_IsMove = false;
 	}
 
-	void SelectTool::pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void SelectTool::pointerMove(ToolContext &context)
 	{
-		if (!pointerInfo.isLeftButtonDown()) {
+		if (!context.pointer.isLeftButtonDown()) {
 			return;
 		}
 
 		if (m_IsMove) {
-			Vec2 delta = m_SelectionBox.move(pointerInfo.curr - pointerInfo.prev);
-			moveSelection(delta, documentInfo.activeDrawing);
+			Vec2 delta = m_SelectionBox.move(context.pointer.curr - context.pointer.prev);
+			moveSelection(delta, context.doc.activeDrawing);
 		}
 		else {
-			m_SelectionBox.setPosition(pointerInfo.curr);
+			m_SelectionBox.setPosition(context.pointer.curr);
 		}
 	}
 
-	void SelectTool::makeSelection(PointerInfo& pointerInfo, Drawing* activeDrawing) {
+	void SelectTool::makeSelection(ToolContext &context) {
 		m_Data.clear();
 		m_OrigPositions.clear();
 
-		if (activeDrawing == nullptr) {
+		if (!context.doc.activeDrawing) {
 			return;
 		}
 
-		Vec2 down = pointerInfo.down;
-		Vec2 curr = pointerInfo.curr;
+		Vec2 down = context.pointer.down;
+		Vec2 curr = context.pointer.curr;
 
 		float startX = down.x < curr.x ? down.x : curr.x;
 		float endX = down.x < curr.x ? curr.x : down.x;
@@ -66,7 +66,7 @@ namespace spright { namespace editor {
 		float endY = down.y < curr.y ? curr.y : down.y;
 		Bounds selectionBounds = Bounds::createWithPositions(startX, endX, startY, endY);
 
-		TileLayer& layer = activeDrawing->getActiveLayer();
+		TileLayer& layer = context.doc.activeDrawing->getActiveLayer();
 
 		auto it = layer.getRenderables().begin();
 		while (it != layer.getRenderables().end()) {
@@ -101,13 +101,13 @@ namespace spright { namespace editor {
 		}
 	}
 
-	void SelectTool::makePointSelection(PointerInfo& pointerInfo, Drawing* activeDrawing) {
-		if (activeDrawing == nullptr) {
+	void SelectTool::makePointSelection(ToolContext &context) {
+		if (!context.doc.activeDrawing) {
 			return;
 		}
-		TileLayer& tileLayer = activeDrawing->getActiveLayer();
+		TileLayer& tileLayer = context.doc.activeDrawing->getActiveLayer();
 		Camera& camera = m_DocumentStore->getActiveDocument().getCamera();
-		Vec2 model = camera.screenToModel(pointerInfo.curr);
+		Vec2 model = camera.screenToModel(context.pointer.curr);
 
 		Vec2Int tilePos = tileLayer.getTilePos(model);
 		int tileIndex = tileLayer.getTileIndex(tilePos.x, tilePos.y);

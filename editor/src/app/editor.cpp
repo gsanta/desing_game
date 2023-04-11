@@ -26,11 +26,11 @@ namespace spright { namespace editor {
 
 		m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
 		m_toolHandler->addTool(new BrushTool(getDocumentStore()));
-		m_toolHandler->addTool(new RectangleTool(getDocumentStore(), m_Services));
-		m_toolHandler->addTool(new EraserTool(getDocumentStore(), 3));
+		m_toolHandler->addTool(new RectangleTool(m_Services));
+		m_toolHandler->addTool(new EraserTool(3));
 		m_toolHandler->addTool(new PanTool(getDocumentStore()));
 		m_toolHandler->addTool(new ZoomTool(getDocumentStore()));
-		m_toolHandler->addTool(new PaintBucketTool(getDocumentStore(), m_Services));
+		m_toolHandler->addTool(new PaintBucketTool(m_Services));
 		m_toolHandler->addTool(new SelectTool(getDocumentStore()));
 		m_toolHandler->addTool(new ColorPickerTool(m_toolHandler, m_EventEmitter.get()));
 		m_toolHandler->addTool(new NewDrawingTool(getDocumentStore(), m_DocumentFactory));

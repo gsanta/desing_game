@@ -1,5 +1,5 @@
 #pragma once
-#include "../../maths/vec2.h"
+#include "../../../maths/vec2.h"
 
 namespace spright { namespace editor {
 

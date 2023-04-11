@@ -3,9 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include "canvas_listener.h"
-#include "../../tool/pointer_info.h"
+#include "../../tool/tool/pointer_info.h"
 #include "../../../engine/system/window/input_listener.h"
-#include "../../tool/pointer_info.h"
 
 namespace spright { namespace editor {
 	using namespace ::spright::engine;

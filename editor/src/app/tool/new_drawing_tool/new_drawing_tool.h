@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../tool.h"
-#include "../common/document_info.h"
+#include "../tool/tool.h"
+#include "../tool/tool_context.h"
 #include "../common/selection_box.h"
 #include "../../document/document_store.h"
 #include "../../document/drawing.h"
@@ -16,8 +16,8 @@ namespace spright { namespace editor {
 		DocumentFactory* m_DocumentFactory;
 	public:
 		NewDrawingTool(DocumentStore* documentStore, DocumentFactory* documentFactory);
-		void pointerDown(PointerInfo& pointerInfo,  DocumentInfo& documentInfo) override;
-		void pointerUp(PointerInfo& pointerInfo,  DocumentInfo& documentInfo) override;
-		void pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerDown(ToolContext &) override;
+		void pointerUp(ToolContext &) override;
+		void pointerMove(ToolContext &) override;
 	};
 }}

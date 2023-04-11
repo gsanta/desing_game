@@ -1,9 +1,9 @@
 #pragma once
 
-#include "tool.h"
+#include "tool/tool.h"
+#include "tool/tool_context.h"
 #include "../../engine/graphics/camera/camera.h"
 #include "../../engine/graphics/camera/ortho_projection_info.h"
-#include "pointer_info.h"
 #include "../document/document_store.h"
 
 namespace spright { namespace editor {
@@ -18,6 +18,6 @@ namespace spright { namespace editor {
 	public:
 		ZoomTool(DocumentStore* documentStore);
 	private:
-		void scroll(PointerInfo& pointerInfo) override;
+		void scroll(ToolContext& toolContext) override;
 	};
 }}

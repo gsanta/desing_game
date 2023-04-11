@@ -3,9 +3,8 @@
 #include <sstream>
 #include "../service/services.h"
 #include "../document/document_store.h"
-#include "pointer_info.h"
-#include "tool.h"
-#include "common/document_info.h"
+#include "tool/tool.h"
+#include "tool/tool_context.h"
 #include "helper/layer_provider.h"
 #include "../event/event_emitter.h"
 #include "brush_tool.h"
@@ -26,7 +25,7 @@ namespace spright { namespace editor {
 
 	public:
 		ColorPickerTool(ToolHandler* toolHandler, EventEmitter* eventEmitter);
-		void pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+		void pointerDown(ToolContext&) override;
 		unsigned int getPickedColor() const;
 		std::string getData() override;
 

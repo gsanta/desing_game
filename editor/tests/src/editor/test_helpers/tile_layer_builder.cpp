@@ -24,7 +24,3 @@ TileLayer TileLayerBuilder::build() {
 
 	return layer;
 }
-
-TileLayerBuilder TileLayerBuilder::TileLayerBuilder::create() {
-	return TileLayerBuilder();
-}

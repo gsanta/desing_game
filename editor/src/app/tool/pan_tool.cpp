@@ -5,14 +5,14 @@ namespace spright { namespace editor {
 	{
 	}
 
-	void PanTool::pointerMove(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void PanTool::pointerMove(ToolContext& context)
 	{
-		if (pointerInfo.isMiddleButtonDown() == false) {
+		if (context.pointer.isMiddleButtonDown() == false) {
 			return;
 		}
 
-		if (pointerInfo.isDown) {
-			m_DocumentStore->getActiveDocument().getCamera().translate2D(pointerInfo.prev - pointerInfo.curr);
+		if (context.pointer.isDown) {
+			m_DocumentStore->getActiveDocument().getCamera().translate2D(context.pointer.prev - context.pointer.curr);
 		}
 	}
 }}

@@ -5,51 +5,50 @@ namespace spright
 namespace editor
 {
 
-    EraserTool::EraserTool(DocumentStore *documentStore, int eraserSize)
-        : m_documentStore(documentStore), m_Size(eraserSize), Tool("erase")
+    EraserTool::EraserTool(int eraserSize) : m_Size(eraserSize), Tool("erase")
     {
         m_EraserStroke = EraserStroke(m_Size);
     }
 
-    void EraserTool::pointerDown(PointerInfo &pointerInfo, DocumentInfo &documentInfo)
+    void EraserTool::pointerDown(ToolContext &context)
     {
-        if (!documentInfo.hasActiveDrawing())
+        if (!context.doc.hasActiveDrawing())
         {
             return;
         }
 
-        TileLayer &activeLayer = documentInfo.activeDrawing->getActiveLayer();
-        m_Eraser.erase(activeLayer, activeLayer.getTilePos(pointerInfo.curr), m_Size);
+        TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+        m_Eraser.erase(activeLayer, activeLayer.getTilePos(context.pointer.curr), m_Size);
     }
 
-    void EraserTool::pointerMove(PointerInfo &pointerInfo, DocumentInfo &documentInfo)
+    void EraserTool::pointerMove(ToolContext &context)
     {
-        if (documentInfo.isLeavingDrawing && documentInfo.hasPrevDrawing())
+        if (context.doc.isLeavingDrawing && context.doc.hasPrevDrawing())
         {
-            m_EraserStroke.clear(documentInfo.prevDrawing->getForegroundLayer());
+            m_EraserStroke.clear(context.doc.prevDrawing->getForegroundLayer());
         }
 
-        if (!documentInfo.hasActiveDrawing())
+        if (!context.doc.hasActiveDrawing())
         {
             return;
         }
 
-        TileLayer &activeLayer = documentInfo.activeDrawing->getActiveLayer();
-        TileLayer &drawLayer = documentInfo.activeDrawing->getForegroundLayer();
+        TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+        TileLayer &drawLayer = context.doc.activeDrawing->getForegroundLayer();
 
-        m_EraserStroke.draw(activeLayer, drawLayer, pointerInfo.curr);
+        m_EraserStroke.draw(activeLayer, drawLayer, context.pointer.curr);
 
-        if (pointerInfo.isDown)
+        if (context.pointer.isDown)
         {
-            m_Eraser.erase(activeLayer, activeLayer.getTilePos(pointerInfo.curr), m_Size);
+            m_Eraser.erase(activeLayer, activeLayer.getTilePos(context.pointer.curr), m_Size);
         }
     }
 
-    void EraserTool::deactivate(DocumentInfo &documentInfo)
+    void EraserTool::deactivate(ToolContext &context)
     {
-        if (documentInfo.hasActiveDrawing())
+        if (context.doc.hasActiveDrawing())
         {
-            m_EraserStroke.clear(documentInfo.activeDrawing->getForegroundLayer());
+            m_EraserStroke.clear(context.doc.activeDrawing->getForegroundLayer());
         }
     }
     void EraserTool::setOptions(std::string json)

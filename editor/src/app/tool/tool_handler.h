@@ -2,9 +2,10 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include "pointer_info.h"
-#include "common/document_info.h"
-#include "tool.h"
+#include "tool/pointer_info.h"
+#include "tool/document_info.h"
+#include "tool/tool_context.h"
+#include "tool/tool.h"
 #include "brush_tool.h"
 #include "rectangle_tool.h"
 #include "eraser_tool/eraser_tool.h"
@@ -34,8 +35,7 @@ namespace spright { namespace editor {
 		ImageExport* m_ImageExport;
 		DocumentFactory* m_DocumentFactory;
 
-		PointerInfo m_pointerInfo;
-		DocumentInfo m_DocumentInfo;
+		ToolContext m_ToolContext;
 	public:
 		ToolHandler();
 		ToolHandler(Window* window, DocumentStore* documentStore, Services* services, ImageExport* imageExport, DocumentFactory* documentFractory);

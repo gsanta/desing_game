@@ -12,17 +12,17 @@ namespace spright { namespace editor {
 		m_Size = size;
 	}
 
-	void BrushTool::pointerMove(PointerInfo &pointerInfo, DocumentInfo& documentInfo)
+	void BrushTool::pointerMove(ToolContext &context)
 	{
-		paint(pointerInfo);
+		paint(context.pointer);
 	}
 
-	void BrushTool::pointerDown(PointerInfo& pointerInfo, DocumentInfo& documentInfo)
+	void BrushTool::pointerDown(ToolContext &context)
 	{
-		paint(pointerInfo);
+		paint(context.pointer);
 	}
 
-	void BrushTool::paint(PointerInfo& pointerInfo) {
+	void BrushTool::paint(PointerInfo &pointerInfo) {
 		if (pointerInfo.isLeftButtonDown() == false) {
 			return;
 		}

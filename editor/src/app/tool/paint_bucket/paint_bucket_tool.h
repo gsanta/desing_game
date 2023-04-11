@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../tool.h"
-#include "../common/document_info.h"
+#include "../tool/tool.h"
+#include "../tool/tool_context.h"
 #include "../../../engine/graphics/camera/camera.h"
 #include "queue_linear_flood_fill.h"
 #include "../../service/services.h"
@@ -14,12 +14,11 @@ namespace spright { namespace editor {
     class PaintBucketTool : public Tool
     {
     private:
-        DocumentStore* m_DocumentStore;
         QueueLinearFloodFill m_FloodFill;
         Services* m_Services;
 
     public:
-        PaintBucketTool(DocumentStore* documentStore, Services* services);
-        void pointerUp(PointerInfo& pointerInfo, DocumentInfo& documentInfo) override;
+        PaintBucketTool(Services *services);
+        void pointerUp(ToolContext &) override;
     };
 }}

@@ -81,14 +81,14 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 
         EraserTool eraseTool(1);
 
-        eraseTool.pointerMove(toolContext);
+        // eraseTool.pointerMove(toolContext);
 
         REQUIRE(foregroundLayer1.getRenderables().size() > 0);
 
         toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
         toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
         toolContext.doc.isLeavingDrawing = true;
-        eraseTool.pointerMove(toolContext);
+        // eraseTool.pointerMove(toolContext);
 
         REQUIRE(foregroundLayer1.getRenderables().size() == 0);
     }

@@ -19,7 +19,7 @@ namespace editor
             init(drawLayer, eraseLayer.getTileSize());
         }
 
-        // setPosition(eraseLayer, pos);
+        setPosition(eraseLayer, pos);
     }
 
     void EraserStroke::clear(TileLayer &eraseLayer)
@@ -66,10 +66,10 @@ namespace editor
             tileCenterPos += Vec2(-halfTileSize, -halfTileSize);
         }
 
-        m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfEraserSize));
-        m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfEraserSize, 0));
-        m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfEraserSize));
-        m_LeftLine->setCenterPosition(tileCenterPos + Vec2(-halfEraserSize, 0));
+        // m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfEraserSize));
+        // m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfEraserSize, 0));
+        // m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfEraserSize));
+        // m_LeftLine->setCenterPosition(tileCenterPos + Vec2(-halfEraserSize, 0));
     }
 } // namespace editor
 } // namespace spright

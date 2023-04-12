@@ -36,7 +36,7 @@ jobs:
             UNIT_TEST: 'true'
       - store_test_results:
           path: editor/tests/unit_test_result.xml
-  cpp_format:
+  cpp_lint:
     machine:
       image: ubuntu-2004:current
     resource_class: large
@@ -102,20 +102,21 @@ jobs:
 workflows:
   build-test-and-deploy:
     jobs:
-      # - cpp_build_for_web
-      # - cpp_format
-      # - cpp_unit_test
-      # - client_build
+      - cpp_build_for_web
+      - cpp_lint
+      - cpp_unit_test
+      - client_build
       - client_lint
-      # - assemble_frontend:
-      #     requires:
-      #       - cpp_build_for_web
-      #       - client_build
-      #       - cpp_unit_test
-      #       - cpp_format
-      # - deploy:
-      #     requires:
-      #       - "assemble_frontend"
-      #     filters:
-      #       branches:
-      #         only: /^master/
+      - assemble_frontend:
+          requires:
+            - cpp_build_for_web
+            - client_build
+            - cpp_unit_test
+            - cpp_lint
+            - client_lint
+      - deploy:
+          requires:
+            - "assemble_frontend"
+          filters:
+            branches:
+              only: /^master/

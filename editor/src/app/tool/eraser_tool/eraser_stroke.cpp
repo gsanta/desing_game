@@ -59,7 +59,7 @@ namespace editor
 
         int tileIndex = eraseLayer.getTileIndex(pos);
         float halfTileSize = eraseLayer.getTileSize() / 2.0f;
-        // Vec2 tileCenterPos = eraseLayer.getWorldPos(tileIndex);
+        Vec2 tileCenterPos(0.25f, 0.25f); // = eraseLayer.getWorldPos(tileIndex);
 
         // if (m_Size % 2 == 0)
         // {

@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build_cpp:
+  cpp_build_for_web:
     working_directory: ~/editor
     machine:
       image: ubuntu-2004:current
@@ -47,7 +47,7 @@ jobs:
           command: |
             set -x
             docker-compose run --rm clang-tidy; echo $?
-  build_client:
+  client_build:
     working_directory: ~/client
     docker:
       - image: cimg/node:16.15.0
@@ -91,19 +91,19 @@ jobs:
 workflows:
   build-test-and-deploy:
     jobs:
-      # - cpp_unit_test
+      - cpp_build_for_web
       - cpp_format
-      # - build_cpp
-      # - build_client
-      # - assemble_frontend:
-      #     requires:
-      #       - build_cpp
-      #       - build_client
-      #       - cpp_unit_test
-      #       - cpp_format
-      # - deploy:
-      #     requires:
-      #       - "assemble_frontend"
-      #     filters:
-      #       branches:
-      #         only: /^master/
+      - cpp_unit_test
+      - client_build
+      - assemble_frontend:
+          requires:
+            - cpp_build_for_web
+            - client_build
+            - cpp_unit_test
+            - cpp_format
+      - deploy:
+          requires:
+            - "assemble_frontend"
+          filters:
+            branches:
+              only: /^master/

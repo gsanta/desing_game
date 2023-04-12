@@ -1,7 +1,6 @@
 #include "eraser_tool.h"
 
-namespace spright
-{
+namespace spright {
 namespace editor {
 
     EraserTool::EraserTool(DocumentStore *documentStore, int eraserSize)

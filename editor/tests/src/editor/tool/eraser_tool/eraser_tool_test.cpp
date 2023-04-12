@@ -81,7 +81,7 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 
         EraserTool eraseTool(1);
 
-        // eraseTool.pointerMove(toolContext);
+        eraseTool.pointerMove(toolContext);
 
         REQUIRE(foregroundLayer1.getRenderables().size() == 0);
 

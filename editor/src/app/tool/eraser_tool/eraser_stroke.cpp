@@ -19,7 +19,7 @@ namespace editor
             init(drawLayer, eraseLayer.getTileSize());
         }
 
-        setPosition(eraseLayer, pos);
+        // setPosition(eraseLayer, pos);
     }
 
     void EraserStroke::clear(TileLayer &eraseLayer)

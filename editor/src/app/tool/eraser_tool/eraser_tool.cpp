@@ -36,7 +36,7 @@ namespace editor
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
         TileLayer &drawLayer = context.doc.activeDrawing->getForegroundLayer();
 
-        // m_EraserStroke.draw(activeLayer, drawLayer, context.pointer.curr);
+        m_EraserStroke.draw(activeLayer, drawLayer, context.pointer.curr);
 
         if (context.pointer.isDown)
         {

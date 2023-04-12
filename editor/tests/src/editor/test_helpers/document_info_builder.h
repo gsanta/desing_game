@@ -5,10 +5,12 @@
 
 using namespace ::spright::editor;
 
-class DocumentInfoBuilder {
+class DocumentInfoBuilder
+{
 private:
     Drawing *m_ActiveDrawing = nullptr;
+
 public:
-    DocumentInfoBuilder& withActiveDrawing(Drawing *);
+    DocumentInfoBuilder &withActiveDrawing(Drawing *);
     DocumentInfo build();
 };

@@ -1,8 +1,13 @@
 #include "pointer_info.h"
 
-namespace spright { namespace editor {
+namespace spright
+{
+namespace editor
+{
 
-	PointerInfo::PointerInfo(): buttons { false, false, false} {
-	}
+    PointerInfo::PointerInfo() : buttons{false, false, false}
+    {
+    }
 
-}}
+} // namespace editor
+} // namespace spright

@@ -1,10 +1,14 @@
 #include "tool.h"
 
-namespace spright { namespace editor {
+namespace spright
+{
+namespace editor
+{
 
-	Tool::Tool(const string name)
-	{
-		this->name = name;
-	}
+    Tool::Tool(const string name)
+    {
+        this->name = name;
+    }
 
-}}
+} // namespace editor
+} // namespace spright

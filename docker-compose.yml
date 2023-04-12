@@ -29,7 +29,7 @@ services:
       - .:/src
     working_dir: /src
     command: >
-      sh -c "pwd
+      sh -c "ls -la
       ./run-clang-format.py editor/app/main.cpp $(git diff --diff-filter=ACMR --name-only origin/master | grep -E '\.(h|cpp)$' | xargs)"
 volumes:
   myapp:

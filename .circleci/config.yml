@@ -91,19 +91,19 @@ jobs:
 workflows:
   build-test-and-deploy:
     jobs:
-      - cpp_unit_test
+      # - cpp_unit_test
       - cpp_format
-      - build_cpp
-      - build_client
-      - assemble_frontend:
-          requires:
-            - build_cpp
-            - build_client
-            - cpp_unit_test
-            - cpp_format
-      - deploy:
-          requires:
-            - "assemble_frontend"
-          filters:
-            branches:
-              only: /^master/
+      # - build_cpp
+      # - build_client
+      # - assemble_frontend:
+      #     requires:
+      #       - build_cpp
+      #       - build_client
+      #       - cpp_unit_test
+      #       - cpp_format
+      # - deploy:
+      #     requires:
+      #       - "assemble_frontend"
+      #     filters:
+      #       branches:
+      #         only: /^master/

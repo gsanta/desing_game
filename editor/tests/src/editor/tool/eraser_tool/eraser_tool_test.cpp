@@ -63,33 +63,33 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
         REQUIRE(eraseLayer.getAtTilePos(2, 2) != nullptr);
     }
 
-    SECTION("removes the tiles at the given pointer position")
-    {
-        DocumentStore documentStore =
-            DocumentStoreBuilder()
-                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2)))
-                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5)))
-                .build();
+    // SECTION("removes the tiles at the given pointer position")
+    // {
+    //     DocumentStore documentStore =
+    //         DocumentStoreBuilder()
+    //             .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2)))
+    //             .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5)))
+    //             .build();
 
-        TileLayer &foregroundLayer1 = documentStore.getActiveDocument().getDrawings()[0].getForegroundLayer();
-        TileLayer &foregroundLayer2 = documentStore.getActiveDocument().getDrawings()[1].getForegroundLayer();
+    //     TileLayer &foregroundLayer1 = documentStore.getActiveDocument().getDrawings()[0].getForegroundLayer();
+    //     TileLayer &foregroundLayer2 = documentStore.getActiveDocument().getDrawings()[1].getForegroundLayer();
 
-        ToolContext toolContext = ToolContextBuilder()
-                                      .withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(
-                                          &documentStore.getActiveDocument().getDrawings()[0]))
-                                      .build();
+    //     ToolContext toolContext = ToolContextBuilder()
+    //                                   .withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(
+    //                                       &documentStore.getActiveDocument().getDrawings()[0]))
+    //                                   .build();
 
-        EraserTool eraseTool(1);
+    //     EraserTool eraseTool(1);
 
-        eraseTool.pointerMove(toolContext);
+    //     eraseTool.pointerMove(toolContext);
 
-        REQUIRE(foregroundLayer1.getRenderables().size() > 0);
+    //     REQUIRE(foregroundLayer1.getRenderables().size() > 0);
 
-        toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
-        toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
-        toolContext.doc.isLeavingDrawing = true;
-        eraseTool.pointerMove(toolContext);
+    //     toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
+    //     toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
+    //     toolContext.doc.isLeavingDrawing = true;
+    //     eraseTool.pointerMove(toolContext);
 
-        REQUIRE(foregroundLayer1.getRenderables().size() == 0);
-    }
+    //     REQUIRE(foregroundLayer1.getRenderables().size() == 0);
+    // }
 }

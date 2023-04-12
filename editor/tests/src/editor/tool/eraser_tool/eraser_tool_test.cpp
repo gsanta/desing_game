@@ -67,8 +67,8 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
     {
         DocumentStore documentStore =
             DocumentStoreBuilder()
-                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(0, 0, 2, 2)))
-                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(3, 3, 5, 5)))
+                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(0, 2, 0, 2)))
+                .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(3, 5, 3, 5)))
                 .build();
 
         TileLayer &foregroundLayer1 = documentStore.getActiveDocument().getDrawings()[0].getForegroundLayer();
@@ -83,13 +83,13 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 
         eraseTool.pointerMove(toolContext);
 
+        REQUIRE(foregroundLayer1.getRenderables().size() > 0);
+
+        toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
+        toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
+        toolContext.doc.isLeavingDrawing = true;
+        eraseTool.pointerMove(toolContext);
+
         REQUIRE(foregroundLayer1.getRenderables().size() == 0);
-
-        // toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
-        // toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
-        // toolContext.doc.isLeavingDrawing = true;
-        // eraseTool.pointerMove(toolContext);
-
-        // REQUIRE(foregroundLayer1.getRenderables().size() == 0);
     }
 }

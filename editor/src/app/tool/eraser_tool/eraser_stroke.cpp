@@ -59,17 +59,17 @@ namespace editor
 
         int tileIndex = eraseLayer.getTileIndex(pos);
         float halfTileSize = eraseLayer.getTileSize() / 2.0f;
-        Vec2 tileCenterPos = eraseLayer.getWorldPos(0);
+        Vec2 tileCenterPos = eraseLayer.getWorldPos(tileIndex);
 
-        // if (m_Size % 2 == 0)
-        // {
-        //     tileCenterPos += Vec2(-halfTileSize, -halfTileSize);
-        // }
+        if (m_Size % 2 == 0)
+        {
+            tileCenterPos += Vec2(-halfTileSize, -halfTileSize);
+        }
 
-        // m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfEraserSize));
-        // m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfEraserSize, 0));
-        // m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfEraserSize));
-        // m_LeftLine->setCenterPosition(tileCenterPos + Vec2(-halfEraserSize, 0));
+        m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfEraserSize));
+        m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfEraserSize, 0));
+        m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfEraserSize));
+        m_LeftLine->setCenterPosition(tileCenterPos + Vec2(-halfEraserSize, 0));
     }
 } // namespace editor
 } // namespace spright

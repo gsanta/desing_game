@@ -47,6 +47,17 @@ jobs:
           command: |
             set -x
             docker-compose run --rm clang-tidy; echo $?
+  client_lint:
+    docker:
+      - image: cimg/node:16.15.0
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: cd client && npm i
+      - run:
+          name: Lint
+          command: ./client/node_modules/.bin/eslint $(git diff --name-only origin/master...HEAD | grep -E '\.(ts|tsx)$' | xargs)
   client_build:
     working_directory: ~/client
     docker:

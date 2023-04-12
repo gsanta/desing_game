@@ -32,10 +32,21 @@ jobs:
             set -x
             cd editor
             docker-compose run --rm unit-test; echo $?
-          environment: 
+          environment:
             UNIT_TEST: 'true'
       - store_test_results:
           path: editor/tests/unit_test_result.xml
+  cpp_format:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: Cpp code format check
+          command: |
+            set -x
+            docker-compose run --rm clang-tidy; echo $?
   build_client:
     working_directory: ~/client
     docker:
@@ -81,6 +92,7 @@ workflows:
   build-test-and-deploy:
     jobs:
       - cpp_unit_test
+      - cpp_format
       - build_cpp
       - build_client
       - assemble_frontend:
@@ -88,6 +100,7 @@ workflows:
             - build_cpp
             - build_client
             - cpp_unit_test
+            - cpp_format
       - deploy:
           requires:
             - "assemble_frontend"

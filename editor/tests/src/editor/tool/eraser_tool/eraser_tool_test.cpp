@@ -22,46 +22,46 @@ using namespace ::spright::editor;
 
 TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 {
-    // SECTION("removes the tiles at the given pointer position")
-    // {
-    //     DocumentStore documentStore = DocumentStoreBuilder().withDrawing().build();
-    //     TileLayer &eraseLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
-    //     TileLayer &drawLayer = documentStore.getActiveDocument().getActiveDrawing().getForegroundLayer();
+    SECTION("removes the tiles at the given pointer position")
+    {
+        DocumentStore documentStore = DocumentStoreBuilder().withDrawing().build();
+        TileLayer &eraseLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+        TileLayer &drawLayer = documentStore.getActiveDocument().getActiveDrawing().getForegroundLayer();
 
-    //     ToolContext toolContext =
-    //         ToolContextBuilder()
-    //             .withPointerInfo(PointerInfoBuilder().withCurr(eraseLayer.getWorldPos(Vec2Int(1, 1))))
-    //             .withDocumentInfo(
-    //                 DocumentInfoBuilder().withActiveDrawing(&documentStore.getActiveDocument().getActiveDrawing()))
-    //             .build();
+        ToolContext toolContext =
+            ToolContextBuilder()
+                .withPointerInfo(PointerInfoBuilder().withCurr(eraseLayer.getWorldPos(Vec2Int(1, 1))))
+                .withDocumentInfo(
+                    DocumentInfoBuilder().withActiveDrawing(&documentStore.getActiveDocument().getActiveDrawing()))
+                .build();
 
-    //     Brush brush;
-    //     brush.paint(eraseLayer, Vec2Int(0, 0), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(1, 0), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(2, 0), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(0, 1), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(1, 1), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(2, 1), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(0, 2), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(1, 2), 0xFFFFFFFF);
-    //     brush.paint(eraseLayer, Vec2Int(2, 2), 0xFFFFFFFF);
+        Brush brush;
+        brush.paint(eraseLayer, Vec2Int(0, 0), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(1, 0), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(2, 0), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(0, 1), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(1, 1), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(2, 1), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(0, 2), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(1, 2), 0xFFFFFFFF);
+        brush.paint(eraseLayer, Vec2Int(2, 2), 0xFFFFFFFF);
 
-    //     Rect2D *renderable = eraseLayer.getAtTileIndex(0);
+        Rect2D *renderable = eraseLayer.getAtTileIndex(0);
 
-    //     EraserTool eraseTool(1);
+        EraserTool eraseTool(1);
 
-    //     eraseTool.pointerDown(toolContext);
+        eraseTool.pointerDown(toolContext);
 
-    //     REQUIRE(eraseLayer.getAtTilePos(0, 0) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(1, 0) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(2, 0) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(0, 1) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(1, 1) == nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(2, 1) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(0, 2) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(1, 2) != nullptr);
-    //     REQUIRE(eraseLayer.getAtTilePos(2, 2) != nullptr);
-    // }
+        REQUIRE(eraseLayer.getAtTilePos(0, 0) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(1, 0) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(2, 0) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(0, 1) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(1, 1) == nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(2, 1) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(0, 2) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(1, 2) != nullptr);
+        REQUIRE(eraseLayer.getAtTilePos(2, 2) != nullptr);
+    }
 
     SECTION("removes the tiles at the given pointer position")
     {

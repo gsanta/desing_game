@@ -24,11 +24,11 @@ namespace editor
 
     void EraserStroke::clear(TileLayer &eraseLayer)
     {
-        // m_TopLine = nullptr;
-        // m_RightLine = nullptr;
-        // m_BottomLine = nullptr;
-        // m_LeftLine = nullptr;
-        // eraseLayer.clear();
+        m_TopLine = nullptr;
+        m_RightLine = nullptr;
+        m_BottomLine = nullptr;
+        m_LeftLine = nullptr;
+        eraseLayer.clear();
     }
 
     float EraserStroke::getStrokeWidth()

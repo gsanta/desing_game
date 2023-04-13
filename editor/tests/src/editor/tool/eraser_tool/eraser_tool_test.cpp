@@ -88,6 +88,7 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
         toolContext.doc.prevDrawing = toolContext.doc.activeDrawing;
         toolContext.doc.activeDrawing = &documentStore.getActiveDocument().getDrawings()[1];
         toolContext.doc.isLeavingDrawing = true;
+		toolContext.pointer.curr = Vec2(4.0f, 4.0f);
         eraseTool.pointerMove(toolContext);
 
         REQUIRE(foregroundLayer1.getRenderables().size() == 0);

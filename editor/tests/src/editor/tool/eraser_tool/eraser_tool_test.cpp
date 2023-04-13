@@ -90,6 +90,6 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
         toolContext.doc.isLeavingDrawing = true;
         // eraseTool.pointerMove(toolContext);
 
-        // REQUIRE(foregroundLayer1.getRenderables().size() == 0);
+        REQUIRE(foregroundLayer1.getRenderables().size() == 0);
     }
 }

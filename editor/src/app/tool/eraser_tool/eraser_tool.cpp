@@ -25,7 +25,7 @@ namespace editor
     {
         if (context.doc.isLeavingDrawing && context.doc.hasPrevDrawing())
         {
-            // m_EraserStroke.clear(context.doc.prevDrawing->getForegroundLayer());
+            m_EraserStroke.clear(context.doc.prevDrawing->getForegroundLayer());
         }
 
         if (!context.doc.hasActiveDrawing())

@@ -91,7 +91,6 @@ namespace engine
         Vec2Int tilePos = getTilePos(pos);
 
         int index = m_TileBounds.getWidth() * tilePos.y + tilePos.x;
-        ;
         if (m_IndexSize > index)
         {
             m_TileIndexes[index] = &newRect;

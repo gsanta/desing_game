@@ -42,11 +42,6 @@ namespace editor
 
         unsigned int color = 0xff0099ff;
 
-        m_TopLine = new Rect2D(-eraserArea / 2.0f, eraserArea / 2.0f, eraserArea, m_StrokeWidth, color);
-        m_RightLine = new Rect2D(eraserArea / 2.0f, -eraserArea / 2.0f, m_StrokeWidth, eraserArea, color);
-        m_BottomLine = new Rect2D(-eraserArea / 2.0f, -eraserArea / 2.0f, eraserArea, m_StrokeWidth, color);
-        m_LeftLine = new Rect2D(-eraserArea / 2.0f, -eraserArea / 2.0f, m_StrokeWidth, eraserArea, color);
-
         m_TopLine = &drawLayer.add(Rect2D(-eraserArea / 2.0f, eraserArea / 2.0f, eraserArea, m_StrokeWidth, color));
         m_RightLine = &drawLayer.add(Rect2D(eraserArea / 2.0f, -eraserArea / 2.0f, m_StrokeWidth, eraserArea, color));
         m_BottomLine = &drawLayer.add(Rect2D(-eraserArea / 2.0f, -eraserArea / 2.0f, eraserArea, m_StrokeWidth, color));

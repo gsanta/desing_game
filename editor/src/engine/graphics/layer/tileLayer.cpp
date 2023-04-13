@@ -144,8 +144,8 @@ namespace engine
 
     Vec2 TileLayer::getBottomLeftPos(int tileIndex) const
     {
-        int y = tileIndex / 1;
-        int x = tileIndex % 1;
+        int y = tileIndex / m_TileBounds.getWidth();
+        int x = tileIndex % m_TileBounds.getWidth();
         return Vec2(x * m_TileSize + m_Bounds.minX, y * m_TileSize + m_Bounds.minY);
     }
 

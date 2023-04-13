@@ -28,7 +28,7 @@ namespace editor
         m_RightLine = nullptr;
         m_BottomLine = nullptr;
         m_LeftLine = nullptr;
-        eraseLayer.clear();
+        // eraseLayer.clear();
     }
 
     float EraserStroke::getStrokeWidth()

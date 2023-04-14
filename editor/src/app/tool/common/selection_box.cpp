@@ -4,19 +4,13 @@ namespace spright
 {
 namespace editor
 {
-    SelectionBox::SelectionBox()
+    SelectionBox::SelectionBox(TileLayer &tileLayer) : m_Layer(tileLayer)
     {
     }
 
     SelectionBox::~SelectionBox()
     {
     }
-
-    void SelectionBox::setTileLayer(TileLayer &tileLayer)
-    {
-        m_Layer = &tileLayer;
-    }
-
 
     void SelectionBox::start(Vec2 pos)
     {
@@ -36,9 +30,9 @@ namespace editor
         Vec2 bottomLeft = m_Bounds.getBottomLeft();
         Vec2 topRight = m_Bounds.getTopRight();
 
-        float tileSize = m_Layer->getTileSize();
+        float tileSize = m_Layer.getTileSize();
 
-        m_Layer->clear();
+        m_Layer.clear();
         clearSprites();
 
         unsigned int color = 0xff0099ff;
@@ -55,15 +49,15 @@ namespace editor
         Rect2D *left = new Rect2D(xStart, yStart, 0.1f, height, color);
         Rect2D *right = new Rect2D(xEnd, yStart, 0.1f, height, color);
 
-        m_Layer->add(Rect2D(xStart, yStart, width, 0.1f, color));
-        m_Layer->add(Rect2D(xStart, yEnd, width, 0.1f, color));
-        m_Layer->add(Rect2D(xStart, yStart, 0.1f, height, color));
-        m_Layer->add(Rect2D(xEnd, yStart, 0.1f, height, color));
+        m_Layer.add(Rect2D(xStart, yStart, width, 0.1f, color));
+        m_Layer.add(Rect2D(xStart, yEnd, width, 0.1f, color));
+        m_Layer.add(Rect2D(xStart, yStart, 0.1f, height, color));
+        m_Layer.add(Rect2D(xEnd, yStart, 0.1f, height, color));
     }
 
     Vec2 SelectionBox::move(Vec2 delta)
     {
-        float tileSize = m_Layer->getTileSize();
+        float tileSize = m_Layer.getTileSize();
 
         m_AbsoluteDelta += delta;
 
@@ -72,7 +66,7 @@ namespace editor
 
         Vec2 tileDelta(xDelta - m_PrevTranslate.x, yDelta - m_PrevTranslate.y);
 
-        for (Rect2D *sprite : m_Layer->getRenderables())
+        for (Rect2D *sprite : m_Layer.getRenderables())
         {
             sprite->translate(tileDelta);
         }
@@ -87,7 +81,6 @@ namespace editor
     {
         clearSprites();
         m_Start = Vec2();
-
         m_Bounds = Bounds(0, 0, 0, 0);
     }
 
@@ -116,7 +109,13 @@ namespace editor
 
     void SelectionBox::clearSprites()
     {
-        m_Layer->clear();
+        m_Layer.clear();
     }
+
+    TileLayer &SelectionBox::getTileLayer()
+    {
+        return m_Layer;
+    }
+
 } // namespace editor
 } // namespace spright

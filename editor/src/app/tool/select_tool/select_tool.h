@@ -7,6 +7,7 @@
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
 
+#include <memory>
 #include <vector>
 
 namespace spright
@@ -19,26 +20,34 @@ namespace editor
 
     class SelectTool : public Tool
     {
-    private:
-        DocumentStore *m_DocumentStore;
-        SelectionBox m_SelectionBox;
-
-        vector<Rect2D *> m_Data;
-        vector<Vec2> m_OrigPositions;
-
-        float m_NoMovementTolerance = 0.1f;
-        bool m_IsMove = false;
-
     public:
         SelectTool(DocumentStore *documentHandler);
+
         void pointerDown(const ToolContext &) override;
+
         void pointerUp(const ToolContext &) override;
+
         void pointerMove(const ToolContext &) override;
 
     private:
         void makeSelection(const ToolContext &);
+
         void makePointSelection(const ToolContext &);
+
         void moveSelection(Vec2 tileDelta, Drawing *activeDrawing);
+
+    private:
+        DocumentStore *m_DocumentStore;
+
+        std::unique_ptr<SelectionBox> m_SelectionBox;
+
+        vector<Rect2D *> m_Data;
+
+        vector<Vec2> m_OrigPositions;
+
+        float m_NoMovementTolerance = 0.1f;
+
+        bool m_IsMove = false;
     };
 } // namespace editor
 } // namespace spright

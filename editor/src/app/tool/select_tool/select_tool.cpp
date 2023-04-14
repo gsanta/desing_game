@@ -13,12 +13,19 @@ namespace editor
     {
         if (context.doc.hasActiveDrawing())
         {
-            m_SelectionBox.setTileLayer(context.doc.activeDrawing->getForegroundLayer());
-            m_IsMove = m_SelectionBox.isInsideSelection(context.pointer.curr);
+            TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
+
+            if (!m_SelectionBox)
+            {
+                m_SelectionBox.reset(new SelectionBox(foregroundLayer));
+            }
+
+            m_IsMove = m_SelectionBox->isInsideSelection(context.pointer.curr);
 
             if (!m_IsMove)
             {
-                m_SelectionBox.start(context.pointer.curr);
+                m_SelectionBox.reset(new SelectionBox(foregroundLayer));
+                m_SelectionBox->start(context.pointer.curr);
             }
         }
     }
@@ -51,12 +58,12 @@ namespace editor
 
         if (m_IsMove)
         {
-            Vec2 delta = m_SelectionBox.move(context.pointer.curr - context.pointer.prev);
+            Vec2 delta = m_SelectionBox->move(context.pointer.curr - context.pointer.prev);
             moveSelection(delta, context.doc.activeDrawing);
         }
         else
         {
-            m_SelectionBox.setPosition(context.pointer.curr);
+            m_SelectionBox->setPosition(context.pointer.curr);
         }
     }
 

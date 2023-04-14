@@ -9,20 +9,20 @@ namespace editor
     {
     }
 
-    void NewDrawingTool::pointerDown(ToolContext &context)
+    void NewDrawingTool::pointerDown(const ToolContext &context)
     {
         m_SelectionBox.setTileLayer(m_DocumentStore->getActiveDocument().getCanvas().getForegroundLayer());
         m_SelectionBox.start(context.pointer.curr);
     }
 
-    void NewDrawingTool::pointerUp(ToolContext &context)
+    void NewDrawingTool::pointerUp(const ToolContext &context)
     {
         Drawing drawing = m_DocumentFactory->createDrawing(m_SelectionBox.getBounds());
         m_DocumentStore->getActiveDocument().addDrawing(drawing);
         m_SelectionBox.clear();
     }
 
-    void NewDrawingTool::pointerMove(ToolContext &context)
+    void NewDrawingTool::pointerMove(const ToolContext &context)
     {
         if (context.pointer.isDown)
         {

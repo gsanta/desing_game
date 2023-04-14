@@ -9,7 +9,7 @@ namespace editor
     {
     }
 
-    void SelectTool::pointerDown(ToolContext &context)
+    void SelectTool::pointerDown(const ToolContext &context)
     {
         if (context.doc.hasActiveDrawing())
         {
@@ -23,7 +23,7 @@ namespace editor
         }
     }
 
-    void SelectTool::pointerUp(ToolContext &context)
+    void SelectTool::pointerUp(const ToolContext &context)
     {
         if (!context.doc.hasActiveDrawing())
         {
@@ -42,7 +42,7 @@ namespace editor
         m_IsMove = false;
     }
 
-    void SelectTool::pointerMove(ToolContext &context)
+    void SelectTool::pointerMove(const ToolContext &context)
     {
         if (!context.pointer.isLeftButtonDown())
         {
@@ -60,7 +60,7 @@ namespace editor
         }
     }
 
-    void SelectTool::makeSelection(ToolContext &context)
+    void SelectTool::makeSelection(const ToolContext &context)
     {
         m_Data.clear();
         m_OrigPositions.clear();
@@ -120,7 +120,7 @@ namespace editor
         }
     }
 
-    void SelectTool::makePointSelection(ToolContext &context)
+    void SelectTool::makePointSelection(const ToolContext &context)
     {
         if (!context.doc.activeDrawing)
         {

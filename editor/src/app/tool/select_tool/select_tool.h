@@ -31,13 +31,13 @@ namespace editor
 
     public:
         SelectTool(DocumentStore *documentHandler);
-        void pointerDown(ToolContext &) override;
-        void pointerUp(ToolContext &) override;
-        void pointerMove(ToolContext &) override;
+        void pointerDown(const ToolContext &) override;
+        void pointerUp(const ToolContext &) override;
+        void pointerMove(const ToolContext &) override;
 
     private:
-        void makeSelection(ToolContext &);
-        void makePointSelection(ToolContext &);
+        void makeSelection(const ToolContext &);
+        void makePointSelection(const ToolContext &);
         void moveSelection(Vec2 tileDelta, Drawing *activeDrawing);
     };
 } // namespace editor

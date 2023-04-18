@@ -1,9 +1,9 @@
 #include "../../test_helpers/document_info_builder.h"
 #include "../../test_helpers/document_store_builder.h"
-#include "../../test_helpers/tile_layer_builder.h"
 #include "../../test_helpers/drawing_builder.h"
 #include "../../test_helpers/pointer_info_builder.h"
 #include "../../test_helpers/test_document_factory.h"
+#include "../../test_helpers/tile_layer_builder.h"
 #include "../../test_helpers/tool_context_builder.h"
 #include "../layer_provider_test_impl.h"
 #include "../src/app/document/document_store.h"
@@ -26,20 +26,18 @@ TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 {
     SECTION("removes the tiles at the given pointer position")
     {
-        DocumentStore documentStore = DocumentStoreBuilder().withDrawing(
-            DrawingBuilder().withTileLayer(
-                TileLayerBuilder()
-                    .withTile(Vec2Int(0, 0))
-                    .withTile(Vec2Int(1, 0))
-                    .withTile(Vec2Int(2, 0))
-                    .withTile(Vec2Int(0, 1))
-                    .withTile(Vec2Int(1, 1))
-                    .withTile(Vec2Int(2, 1))
-                    .withTile(Vec2Int(0, 2))
-                    .withTile(Vec2Int(1, 2))
-                    .withTile(Vec2Int(2, 2))
-            )
-        ).build();
+        DocumentStore documentStore = DocumentStoreBuilder()
+                                          .withDrawing(DrawingBuilder().withTileLayer(TileLayerBuilder()
+                                                                                          .withTile(Vec2Int(0, 0))
+                                                                                          .withTile(Vec2Int(1, 0))
+                                                                                          .withTile(Vec2Int(2, 0))
+                                                                                          .withTile(Vec2Int(0, 1))
+                                                                                          .withTile(Vec2Int(1, 1))
+                                                                                          .withTile(Vec2Int(2, 1))
+                                                                                          .withTile(Vec2Int(0, 2))
+                                                                                          .withTile(Vec2Int(1, 2))
+                                                                                          .withTile(Vec2Int(2, 2))))
+                                          .build();
         TileLayer &activeLayer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
 
         ToolContext toolContext =

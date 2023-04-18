@@ -19,11 +19,13 @@ namespace editor
 
         ~SelectionBox();
 
-        void start(Vec2 pos);
+        void setSelectionStart(Vec2 pos);
 
-        void setPosition(Vec2 pos);
+        void setSelectionEnd(Vec2 pos);
 
-        Vec2 move(Vec2 delta);
+        void setMoveStart(Vec2 delta);
+
+        Vec2 setMoveEnd(Vec2 delta);
 
         void clear();
 
@@ -47,7 +49,13 @@ namespace editor
 
         Vec2 m_PrevTranslate;
 
-        Vec2 m_Start;
+        Vec2 m_SelectioinStart;
+
+        Vec2 m_MoveStart;
+
+        Vec2 m_MovePrev;
+
+        bool m_IsMoveStarted = false;
 
         Bounds m_Bounds;
     };

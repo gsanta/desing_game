@@ -26,7 +26,7 @@ namespace maths
         friend Vec2 operator*(Vec2 left, const float right);
         friend Vec2 operator/(Vec2 left, const Vec2 &right);
         friend Vec2 operator/(Vec2 left, const float right);
-        friend std::ostream &operator<<(std::ostream &stream, const Vec2 vec);
+        friend std::ostream &operator<<(std::ostream &stream, const Vec2 &vec);
 
         Vec2 &operator=(const Vec2 &other);
         bool operator==(const Vec2 &other) const;
@@ -35,6 +35,7 @@ namespace maths
         Vec2 &operator-=(const Vec2 &other);
         Vec2 &operator*=(const Vec2 &other);
         Vec2 &operator/=(const Vec2 &other);
+        Vec2 operator-();
 
         static float distance(const Vec2 &left, const Vec2 &right);
     };

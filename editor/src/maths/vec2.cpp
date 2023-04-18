@@ -69,6 +69,11 @@ namespace maths
         return divide(other);
     }
 
+    Vec2 Vec2::operator-()
+    {
+        return Vec2(-x, -y);
+    }
+
     Vec2 &Vec2::operator=(const Vec2 &other)
     {
         x = other.x;
@@ -130,7 +135,7 @@ namespace maths
         return left;
     }
 
-    std::ostream &operator<<(std::ostream &stream, const Vec2 vec)
+    std::ostream &operator<<(std::ostream &stream, const Vec2 &vec)
     {
         stream << "vec2: {" << vec.x << ", " << vec.y << "}";
         return stream;

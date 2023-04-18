@@ -14,7 +14,7 @@ namespace editor
     void NewDrawingTool::pointerDown(const ToolContext &context)
     {
 
-        m_SelectionBox->start(context.pointer.curr);
+        m_SelectionBox->setSelectionStart(context.pointer.curr);
     }
 
     void NewDrawingTool::pointerUp(const ToolContext &context)
@@ -28,7 +28,7 @@ namespace editor
     {
         if (context.pointer.isDown)
         {
-            m_SelectionBox->setPosition(context.pointer.curr);
+            m_SelectionBox->setSelectionEnd(context.pointer.curr);
         }
     }
 } // namespace editor

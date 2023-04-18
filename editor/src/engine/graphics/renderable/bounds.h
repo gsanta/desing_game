@@ -1,30 +1,39 @@
 #pragma once
 #include "../../../maths/vec2.h"
 
-namespace spright { namespace engine {
-	using namespace spright::maths;
+#include <sstream>
 
-	struct Bounds {
-		float minX;
-		float maxX;
-		float minY;
-		float maxY;
+namespace spright
+{
+namespace engine
+{
+    using namespace spright::maths;
 
-		Bounds(float minX, float minY, float width, float height);
-		Bounds();
+    struct Bounds
+    {
+        float minX;
+        float maxX;
+        float minY;
+        float maxY;
 
-		static Bounds createWithPositions(float minX, float maxX, float minY, float maxY);
+        Bounds(float minX, float minY, float width, float height);
+        Bounds();
 
-		friend bool operator==(const Bounds&, const Bounds&);
-		friend bool operator!=(const Bounds&, const Bounds&);
+        static Bounds createWithPositions(float minX, float maxX, float minY, float maxY);
 
-		Vec2 getCenter() const;
+        friend bool operator==(const Bounds &, const Bounds &);
+        friend bool operator!=(const Bounds &, const Bounds &);
 
-		float getWidth() const;
-		float getHeight() const;
-		void setSize(float newWidth, float newHeight);
-		bool contains(float x, float y) const;
-		Vec2 getBottomLeft();
-		Vec2 getTopRight();
-	};
-}}
+        Vec2 getCenter() const;
+
+        float getWidth() const;
+        float getHeight() const;
+        void setSize(float newWidth, float newHeight);
+        bool contains(float x, float y) const;
+        Vec2 getBottomLeft();
+        Vec2 getTopRight();
+
+        std::string toString() const;
+    };
+} // namespace engine
+} // namespace spright

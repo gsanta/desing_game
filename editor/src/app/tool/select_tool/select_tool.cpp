@@ -25,7 +25,11 @@ namespace editor
             if (!m_IsMove)
             {
                 m_SelectionBox.reset(new SelectionBox(foregroundLayer));
-                m_SelectionBox->start(context.pointer.curr);
+                m_SelectionBox->setSelectionStart(context.pointer.curr);
+            }
+            else
+            {
+                m_SelectionBox->setMoveStart(context.pointer.curr);
             }
         }
     }
@@ -58,12 +62,12 @@ namespace editor
 
         if (m_IsMove)
         {
-            Vec2 delta = m_SelectionBox->move(context.pointer.curr - context.pointer.prev);
+            Vec2 delta = m_SelectionBox->setMoveEnd(context.pointer.curr);
             moveSelection(delta, context.doc.activeDrawing);
         }
         else
         {
-            m_SelectionBox->setPosition(context.pointer.curr);
+            m_SelectionBox->setSelectionEnd(context.pointer.curr);
         }
     }
 

@@ -30,8 +30,8 @@ namespace engine
         float getHeight() const;
         void setSize(float newWidth, float newHeight);
         bool contains(float x, float y) const;
-        Vec2 getBottomLeft();
-        Vec2 getTopRight();
+        Vec2 getBottomLeft() const;
+        Vec2 getTopRight() const;
 
         std::string toString() const;
     };

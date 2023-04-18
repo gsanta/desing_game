@@ -6,6 +6,7 @@
 #include "../common/selection_box.h"
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
+#include "./rect_selector.h"
 
 #include <memory>
 #include <vector>
@@ -30,16 +31,14 @@ namespace editor
         void pointerMove(const ToolContext &) override;
 
     private:
-        void makeSelection(const ToolContext &);
-
         void makePointSelection(const ToolContext &);
-
-        void moveSelection(Vec2 tileDelta, Drawing *activeDrawing);
 
     private:
         DocumentStore *m_DocumentStore;
 
         std::unique_ptr<SelectionBox> m_SelectionBox;
+
+        std::unique_ptr<RectSelector> m_RectSelector;
 
         vector<Rect2D *> m_Data;
 

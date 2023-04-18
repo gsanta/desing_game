@@ -62,12 +62,12 @@ namespace engine
         return !(lhs == rhs);
     }
 
-    Vec2 Bounds::getBottomLeft()
+    Vec2 Bounds::getBottomLeft() const
     {
         return Vec2(minX, minY);
     }
 
-    Vec2 Bounds::getTopRight()
+    Vec2 Bounds::getTopRight() const
     {
         return Vec2(maxX, maxY);
     }

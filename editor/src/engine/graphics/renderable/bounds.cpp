@@ -52,6 +52,14 @@ namespace engine
         return minX <= x && maxX >= x && minY <= y && maxY >= y;
     }
 
+    void Bounds::translate(float x, float y)
+    {
+        minX += x;
+        maxX += x;
+        minY += y;
+        maxY += y;
+    }
+
     bool operator==(const Bounds &lhs, const Bounds &rhs)
     {
         return lhs.minX == rhs.minX && lhs.maxX == rhs.maxX && lhs.minY == rhs.minY && lhs.maxY == rhs.maxY;

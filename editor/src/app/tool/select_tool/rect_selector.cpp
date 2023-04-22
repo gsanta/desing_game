@@ -4,12 +4,44 @@ namespace spright
 {
 namespace editor
 {
-
-    RectSelector::RectSelector(TileLayer &tileLayer) : m_Layer(tileLayer)
+    RectSelector::RectSelector(TileLayer *tileLayer) : m_Layer(tileLayer)
     {
     }
 
     void RectSelector::setSelection(const Vec2 &pos1, const Vec2 &pos2)
+    {
+        if (Vec2::distance(pos1, pos2) < m_PointSelectionTolerance)
+        {
+            makePointSelection(pos1);
+        }
+        else
+        {
+            makeRectSelection(pos1, pos2);
+        }
+    }
+
+    void RectSelector::moveSelectionWith(const Vec2 &delta)
+    {
+        for (int i = 0; i < m_Sprites.size(); i++)
+        {
+            Rect2D *sprite = m_Sprites[i];
+            m_Layer->translateTile(sprite, delta);
+        }
+    }
+
+    const std::vector<Rect2D *> RectSelector::getSelection() const
+    {
+        return m_Sprites;
+    }
+
+    void RectSelector::reset(TileLayer *layer)
+    {
+        m_Sprites.clear();
+        m_OrigPositions.clear();
+        m_Layer = layer;
+    }
+
+    void RectSelector::makeRectSelection(const Vec2 &pos1, const Vec2 &pos2)
     {
         m_Sprites.clear();
         m_OrigPositions.clear();
@@ -21,8 +53,8 @@ namespace editor
 
         Bounds selectionBounds = Bounds::createWithPositions(startX, endX, startY, endY);
 
-        auto it = m_Layer.getRenderables().begin();
-        while (it != m_Layer.getRenderables().end())
+        auto it = m_Layer->getRenderables().begin();
+        while (it != m_Layer->getRenderables().end())
         {
             Vec2 pos = (*it)->getCenterPosition2d();
 
@@ -36,26 +68,18 @@ namespace editor
         }
     }
 
-    void RectSelector::moveSelectionWith(const Vec2 &delta)
+    void RectSelector::makePointSelection(const Vec2 &pos)
     {
-        for (int i = 0; i < m_Sprites.size(); i++)
+        Vec2Int tilePos = m_Layer->getTilePos(pos);
+        int tileIndex = m_Layer->getTileIndex(tilePos.x, tilePos.y);
+        Renderable2D *renderable = m_Layer->getAtTileIndex(tileIndex);
+
+        if (renderable != nullptr)
         {
-            Rect2D *sprite = m_Sprites[i];
-
-            sprite->translate(delta);
+            Rect2D *sprite = static_cast<Rect2D *>(renderable);
+            m_Sprites.push_back(sprite);
+            m_OrigPositions.push_back(Vec2(sprite->getPosition().x, sprite->getPosition().y));
         }
-
-        for (Rect2D *sprite : m_Sprites)
-        {
-            Vec2Int tilePos = m_Layer.getTilePos(sprite->getPosition2d());
-            int newTileIndex = m_Layer.getTileIndex(tilePos.x, tilePos.y);
-            m_Layer.updateTileIndex(sprite, newTileIndex);
-        }
-    }
-
-    const std::vector<Rect2D *> RectSelector::getSelection() const
-    {
-        return m_Sprites;
     }
 } // namespace editor
 } // namespace spright

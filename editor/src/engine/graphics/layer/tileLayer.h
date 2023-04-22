@@ -80,7 +80,7 @@ namespace engine
 
         Vec2 getWorldPos(int x, int y);
 
-        void updateTileIndex(Rect2D *rect, int newIndex);
+        void translateTile(Rect2D *rect, const Vec2 &delta);
 
         Rect2D *getAtTileIndex(int tileIndex) const;
 
@@ -109,7 +109,10 @@ namespace engine
 
     private:
         void init();
+
         void copyGroup(const Group<Rect2D> &group);
+
+        void updateTileIndex(Rect2D *rect, int newIndex);
 
     private:
         size_t m_Index = 0;

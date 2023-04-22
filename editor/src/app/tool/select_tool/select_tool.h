@@ -36,9 +36,9 @@ namespace editor
     private:
         DocumentStore *m_DocumentStore;
 
-        std::unique_ptr<SelectionBox> m_SelectionBox;
+        SelectionBox m_SelectionBox;
 
-        std::unique_ptr<RectSelector> m_RectSelector;
+        RectSelector m_RectSelector;
 
         vector<Rect2D *> m_Data;
 

@@ -19,7 +19,9 @@ namespace editor
     class RectSelector
     {
     public:
-        RectSelector(TileLayer &tileLayer);
+        RectSelector(TileLayer *tileLayer);
+
+        RectSelector() = default;
 
         void setSelection(const Vec2 &pos1, const Vec2 &pos2);
 
@@ -27,12 +29,21 @@ namespace editor
 
         const std::vector<Rect2D *> getSelection() const;
 
+        void reset(TileLayer *layer);
+
     private:
-        TileLayer &m_Layer;
+        void makeRectSelection(const Vec2 &pos1, const Vec2 &pos2);
+
+        void makePointSelection(const Vec2 &pos);
+
+    private:
+        TileLayer *m_Layer = nullptr;
 
         std::vector<Rect2D *> m_Sprites;
 
         std::vector<Vec2> m_OrigPositions;
+
+        float m_PointSelectionTolerance = 0.1f;
     };
 } // namespace editor
 } // namespace spright

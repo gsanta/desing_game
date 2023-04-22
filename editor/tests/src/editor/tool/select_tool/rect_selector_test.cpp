@@ -14,23 +14,23 @@ using namespace ::spright::maths;
 
 TEST_CASE("RectSelector", "[rect-selector]")
 {
+    DocumentStore documentStore = DocumentStoreBuilder()
+                                      .withDrawing(DrawingBuilder().withTileLayer(TileLayerBuilder()
+                                                                                      .withTile(Vec2Int(0, 1))
+                                                                                      .withTile(Vec2Int(1, 1))
+                                                                                      .withTile(Vec2Int(0, 2))
+                                                                                      .withTile(Vec2Int(1, 2))
+                                                                                      .withTile(Vec2Int(0, 4))
+                                                                                      .withTile(Vec2Int(4, 0))
+                                                                                      .withTile(Vec2Int(4, 1))))
+                                      .build();
+
+    TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+
+    RectSelector rectSelector(&layer);
+
     SECTION("can select sprites")
     {
-        DocumentStore documentStore = DocumentStoreBuilder()
-                                          .withDrawing(DrawingBuilder().withTileLayer(TileLayerBuilder()
-                                                                                          .withTile(Vec2Int(0, 1))
-                                                                                          .withTile(Vec2Int(1, 1))
-                                                                                          .withTile(Vec2Int(0, 2))
-                                                                                          .withTile(Vec2Int(1, 2))
-                                                                                          .withTile(Vec2Int(0, 4))
-                                                                                          .withTile(Vec2Int(4, 0))
-                                                                                          .withTile(Vec2Int(4, 1))))
-                                          .build();
-
-        TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
-
-        RectSelector rectSelector(layer);
-
         const Vec2 bottomLeft = layer.getBounds().getBottomLeft();
         Vec2 topRight = bottomLeft + Vec2(2, 2);
         rectSelector.setSelection(bottomLeft, topRight);
@@ -46,21 +46,6 @@ TEST_CASE("RectSelector", "[rect-selector]")
 
     SECTION("can move the selection")
     {
-        DocumentStore documentStore = DocumentStoreBuilder()
-                                          .withDrawing(DrawingBuilder().withTileLayer(TileLayerBuilder()
-                                                                                          .withTile(Vec2Int(0, 1))
-                                                                                          .withTile(Vec2Int(1, 1))
-                                                                                          .withTile(Vec2Int(0, 2))
-                                                                                          .withTile(Vec2Int(1, 2))
-                                                                                          .withTile(Vec2Int(0, 4))
-                                                                                          .withTile(Vec2Int(4, 0))
-                                                                                          .withTile(Vec2Int(4, 1))))
-                                          .build();
-
-        TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
-
-        RectSelector rectSelector(layer);
-
         const Vec2 bottomLeft = layer.getBounds().getBottomLeft();
         Vec2 topRight = bottomLeft + Vec2(2, 2);
         rectSelector.setSelection(bottomLeft, topRight);
@@ -73,5 +58,16 @@ TEST_CASE("RectSelector", "[rect-selector]")
         REQUIRE(layer.getTilePos(selection[1]->getPosition2d()) == Vec2Int(3, 3));
         REQUIRE(layer.getTilePos(selection[2]->getPosition2d()) == Vec2Int(2, 4));
         REQUIRE(layer.getTilePos(selection[3]->getPosition2d()) == Vec2Int(3, 4));
+    }
+
+    SECTION("can make a point selection")
+    {
+        Vec2 pos = layer.getRenderables()[0]->getCenterPosition2d();
+
+        rectSelector.setSelection(pos, pos + Vec2(0.11, 0.11));
+
+        const vector<Rect2D *> selection = rectSelector.getSelection();
+
+        REQUIRE(selection.size() == 1);
     }
 }

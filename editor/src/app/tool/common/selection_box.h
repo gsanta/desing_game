@@ -15,7 +15,9 @@ namespace editor
     class SelectionBox
     {
     public:
-        SelectionBox(TileLayer &tileLayer);
+        SelectionBox(TileLayer *tileLayer);
+
+        SelectionBox() = default;
 
         ~SelectionBox();
 
@@ -27,13 +29,15 @@ namespace editor
 
         Vec2 setMoveEnd(Vec2 delta);
 
-        void clear();
-
         bool isInsideSelection(Vec2 point);
 
         Bounds getBounds();
 
-        TileLayer &getTileLayer();
+        TileLayer *getTileLayer();
+
+        void clear();
+
+        void reset(TileLayer *layer);
 
     private:
         void calcSelectionBounds(Vec2 vec1, Vec2 vec2);
@@ -41,7 +45,7 @@ namespace editor
         void clearSprites();
 
     private:
-        TileLayer &m_Layer;
+        TileLayer *m_Layer = nullptr;
 
         float m_DashSize = 0.2f;
 

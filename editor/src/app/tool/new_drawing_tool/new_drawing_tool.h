@@ -25,7 +25,7 @@ namespace editor
         void pointerMove(const ToolContext &) override;
 
     private:
-        std::unique_ptr<SelectionBox> m_SelectionBox;
+˝        SelectionBox m_SelectionBox;
 
         DocumentStore *m_DocumentStore;
 

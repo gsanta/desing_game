@@ -43,7 +43,7 @@ TEST_CASE("SelectionBox", "[selection-box]")
     {
         TileLayer tileLayer = TestDocumentFactory::createTileLayers(1)[0];
 
-        SelectionBox selectionBox(tileLayer);
+        SelectionBox selectionBox(&tileLayer);
 
         selectionBox.setSelectionStart(Vec2(0, 0));
         selectionBox.setSelectionEnd(Vec2(2, 2));
@@ -58,7 +58,7 @@ TEST_CASE("SelectionBox", "[selection-box]")
     {
         TileLayer tileLayer = TestDocumentFactory::createTileLayers(1)[0];
 
-        SelectionBox selectionBox(tileLayer);
+        SelectionBox selectionBox(&tileLayer);
 
         selectionBox.setSelectionStart(Vec2(0, 0));
         selectionBox.setSelectionEnd(Vec2(2, 2));
@@ -79,7 +79,7 @@ TEST_CASE("SelectionBox", "[selection-box]")
     {
         TileLayer tileLayer = TestDocumentFactory::createTileLayers(1)[0];
 
-        SelectionBox selectionBox(tileLayer);
+        SelectionBox selectionBox(&tileLayer);
 
         selectionBox.setSelectionStart(Vec2(0, 0));
         selectionBox.setSelectionEnd(Vec2(1, 1));

@@ -200,7 +200,8 @@ namespace engine
         return Vec2(worldX, worldY);
     }
 
-    void TileLayer::translateTile(Rect2D *tile, const Vec2 &delta) {
+    void TileLayer::translateTile(Rect2D *tile, const Vec2 &delta)
+    {
         tile->translate(delta);
 
         Vec2Int tilePos = getTilePos(tile->getPosition2d());

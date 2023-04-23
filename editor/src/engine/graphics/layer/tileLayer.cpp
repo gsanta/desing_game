@@ -209,6 +209,13 @@ namespace engine
         updateTileIndex(tile, newTileIndex);
     }
 
+    void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos) {
+        tile->setPosition(getWorldPos(newPos));
+
+        int newTileIndex = getTileIndex(newPos.x, newPos.y);
+        updateTileIndex(tile, newTileIndex);
+    }
+
     int TileLayer::getTileIndex(int tileX, int tileY) const
     {
         return m_TileBounds.getWidth() * tileY + tileX;

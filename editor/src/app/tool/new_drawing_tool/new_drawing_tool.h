@@ -25,7 +25,7 @@ namespace editor
         void pointerMove(const ToolContext &) override;
 
     private:
-˝        SelectionBox m_SelectionBox;
+        SelectionBox m_SelectionBox;
 
         DocumentStore *m_DocumentStore;
 

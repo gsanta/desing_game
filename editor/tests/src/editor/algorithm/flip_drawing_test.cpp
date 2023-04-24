@@ -12,7 +12,7 @@ using namespace spright::engine;
 
 TEST_CASE("flipDrawing", "[flip-drawing]")
 {
-    SECTION("can flip a drawing")
+    SECTION("can flip a layer in a frame of a drawing")
     {
         DocumentStore documentStore =
             DocumentStoreBuilder()
@@ -30,7 +30,7 @@ TEST_CASE("flipDrawing", "[flip-drawing]")
         int tileWidth = layer.getTileBounds().getWidth();
         int tileHeight = layer.getTileBounds().getHeight();
 
-        Drawing& drawing = documentStore.getActiveDocument().getActiveDrawing();
+        Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
         flip_drawing(drawing, drawing.getActiveFrame().getIndex());
 
         REQUIRE(layer.getAtTilePos(tileWidth - 1, 1)->getColor() == COLOR_RED);
@@ -45,5 +45,33 @@ TEST_CASE("flipDrawing", "[flip-drawing]")
         REQUIRE(layer.getTileIndex(1, 1) == 13);
         REQUIRE(layer.getAtTilePos(0, 2)->getColor() == COLOR_BLUE);
         REQUIRE(layer.getTileIndex(0, 2) == 24);
+    }
+
+    SECTION("can flip multiple layers in a frame of a drawing")
+    {
+        DocumentStore documentStore =
+            DocumentStoreBuilder()
+                .withDrawing(DrawingBuilder()
+                                 .withTileLayer(TileLayerBuilder().withTile(Vec2Int(0, 1), COLOR_RED))
+                                 .withTileLayer(TileLayerBuilder().withTile(Vec2Int(0, 1), COLOR_BLUE))
+                                 .withTileLayer(TileLayerBuilder().withTile(Vec2Int(1, 1), COLOR_YELLOW)))
+                .build();
+
+        TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+
+        int tileWidth = layer.getTileBounds().getWidth();
+        int tileHeight = layer.getTileBounds().getHeight();
+
+        Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
+        Frame &frame = drawing.getActiveFrame();
+
+        flip_drawing(drawing, drawing.getActiveFrame().getIndex());
+
+        REQUIRE(frame.getLayer(0).getAtTilePos(tileWidth - 1, 1)->getColor() == COLOR_RED);
+        REQUIRE(frame.getLayer(0).getAtTilePos(0, 1) == nullptr);
+        REQUIRE(frame.getLayer(1).getAtTilePos(tileWidth - 1, 1)->getColor() == COLOR_BLUE);
+        REQUIRE(frame.getLayer(1).getAtTilePos(0, 1) == nullptr);
+        REQUIRE(frame.getLayer(2).getAtTilePos(tileWidth - 2, 1)->getColor() == COLOR_YELLOW);
+        REQUIRE(frame.getLayer(2).getAtTilePos(1, 1) == nullptr);
     }
 }

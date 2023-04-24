@@ -1,38 +1,50 @@
 #pragma once
 
-#include "frame_store.h"
 #include "../../engine/graphics/camera/camera.h"
-#include "../feature/frame/frame_player.h"
 #include "../event/event_emitter.h"
+#include "../feature/frame/frame_player.h"
+#include "frame_store.h"
 
-namespace spright { namespace editor {
+namespace spright
+{
+namespace editor
+{
 
-	using namespace ::spright::engine;
+    using namespace ::spright::engine;
 
-	class Drawing : public Container
-	{
-	private:
-		FrameStore m_FrameStore;
-		FramePlayer* m_FramePlayer;
-		EventEmitter* m_EventEmitter;
+    class Drawing : public Container
+    {
+    public:
+        Drawing(Bounds bounds, EventEmitter *eventEmitter);
 
-	public:
-		Drawing(Bounds bounds, EventEmitter* eventEmitter);
-		Drawing(const Drawing&);
-		~Drawing();
+        Drawing(const Drawing &);
 
-		FrameStore& getFrameStore();
-		ActiveFrame& getActiveFrame();
-		TileLayer& getActiveLayer();
+        ~Drawing();
 
-		TileLayer& addLayer(const TileLayer& tileLayer);
+        FrameStore &getFrameStore();
 
-		TileLayer& getForegroundLayer();
-		TileLayer& getBackgroundLayer();
+        ActiveFrame &getActiveFrame();
 
-		std::string getJson();
+        Frame &getFrame(size_t frameIndex);
 
-		void render(const Camera& camera);
-		FramePlayer& getFramePlayer();
-	};
-}}
+        TileLayer &getActiveLayer();
+
+        TileLayer &addLayer(const TileLayer &tileLayer);
+
+        TileLayer &getForegroundLayer();
+
+        TileLayer &getBackgroundLayer();
+
+        std::string getJson();
+
+        void render(const Camera &camera);
+
+        FramePlayer &getFramePlayer();
+
+    private:
+        FrameStore m_FrameStore;
+        FramePlayer *m_FramePlayer;
+        EventEmitter *m_EventEmitter;
+    };
+} // namespace editor
+} // namespace spright

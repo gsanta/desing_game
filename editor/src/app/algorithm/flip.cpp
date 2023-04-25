@@ -1,10 +1,10 @@
-#include "flip_drawing.h"
+#include "flip.h"
 
 namespace spright
 {
 namespace editor
 {
-    void flip_layer(TileLayer &layer)
+    void flip_horizontal(TileLayer &layer)
     {
         int layerWidth = layer.getTileBounds().getWidth();
         for (Rect2D *tile : layer.getRenderables())
@@ -14,14 +14,11 @@ namespace editor
         }
     }
 
-    void flip_drawing(Drawing &drawing, size_t frameIndex)
+    void flip_horizontal(std::vector<TileLayer> &layers)
     {
-
-        Frame &frame = drawing.getFrame(frameIndex);
-
-        for (TileLayer &layer : frame.getLayers())
+        for (TileLayer &layer : layers)
         {
-            flip_layer(layer);
+            flip_horizontal(layer);
         }
     }
 } // namespace editor

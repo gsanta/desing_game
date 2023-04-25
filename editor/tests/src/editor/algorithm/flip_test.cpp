@@ -1,4 +1,4 @@
-#include "../src/app/algorithm/flip_drawing.h"
+#include "../src/app/algorithm/flip.h"
 #include "../src/app/core/colors.h"
 #include "../src/engine/graphics/layer/tileLayer.h"
 #include "../test_helpers/document_store_builder.h"
@@ -10,9 +10,9 @@
 using namespace spright::editor;
 using namespace spright::engine;
 
-TEST_CASE("flipDrawing", "[flip-drawing]")
+TEST_CASE("flip_horizontal", "[flip-horizontal]")
 {
-    SECTION("can flip a layer in a frame of a drawing")
+    SECTION("can flip a layer")
     {
         DocumentStore documentStore =
             DocumentStoreBuilder()
@@ -31,7 +31,7 @@ TEST_CASE("flipDrawing", "[flip-drawing]")
         int tileHeight = layer.getTileBounds().getHeight();
 
         Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
-        flip_drawing(drawing, drawing.getActiveFrame().getIndex());
+        flip_horizontal(drawing.getActiveFrame().getActiveLayer());
 
         REQUIRE(layer.getAtTilePos(tileWidth - 1, 1)->getColor() == COLOR_RED);
         REQUIRE(layer.getTileIndex(tileWidth - 1, 1) == 23);
@@ -47,7 +47,7 @@ TEST_CASE("flipDrawing", "[flip-drawing]")
         REQUIRE(layer.getTileIndex(0, 2) == 24);
     }
 
-    SECTION("can flip multiple layers in a frame of a drawing")
+    SECTION("can flip multiple layers")
     {
         DocumentStore documentStore =
             DocumentStoreBuilder()
@@ -65,7 +65,7 @@ TEST_CASE("flipDrawing", "[flip-drawing]")
         Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
         Frame &frame = drawing.getActiveFrame();
 
-        flip_drawing(drawing, drawing.getActiveFrame().getIndex());
+        flip_horizontal(drawing.getActiveFrame().getLayers());
 
         REQUIRE(frame.getLayer(0).getAtTilePos(tileWidth - 1, 1)->getColor() == COLOR_RED);
         REQUIRE(frame.getLayer(0).getAtTilePos(0, 1) == nullptr);

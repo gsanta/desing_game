@@ -5,7 +5,7 @@ namespace spright
 namespace editor
 {
 
-    SelectTool::SelectTool(DocumentStore *documentStore) : m_DocumentStore(documentStore), Tool("select")
+    SelectTool::SelectTool() : Tool("select")
     {
     }
 
@@ -49,6 +49,8 @@ namespace editor
             Vec2 bottomLeft = m_SelectionBox.getBounds().getBottomLeft();
             Vec2 topRight = m_SelectionBox.getBounds().getTopRight();
             m_RectSelector.setSelection(bottomLeft, topRight);
+
+            context.doc.activeDrawing->getState().setBounds(Bounds(bottomLeft, topRight));
         }
     }
 

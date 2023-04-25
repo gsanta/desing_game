@@ -92,5 +92,11 @@ namespace editor
     {
         return *m_FramePlayer;
     }
+
+    DrawingState &Drawing::getState()
+    {
+        return m_DrawingState;
+    }
+
 } // namespace editor
 } // namespace spright

@@ -3,13 +3,13 @@
 #include "../../engine/graphics/camera/camera.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
+#include "drawing_state.h"
 #include "frame_store.h"
 
 namespace spright
 {
 namespace editor
 {
-
     using namespace ::spright::engine;
 
     class Drawing : public Container
@@ -41,10 +41,16 @@ namespace editor
 
         FramePlayer &getFramePlayer();
 
+        DrawingState &getState();
+
     private:
         FrameStore m_FrameStore;
+
         FramePlayer *m_FramePlayer;
+
         EventEmitter *m_EventEmitter;
+
+        DrawingState m_DrawingState;
     };
 } // namespace editor
 } // namespace spright

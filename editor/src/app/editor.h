@@ -49,7 +49,7 @@ namespace spright { namespace editor {
 		RunLoop m_RunLoop;
 		
 	public:
-		Editor(RunLoop runLoop);
+		explicit Editor(RunLoop runLoop);
 		~Editor();
 
 		Window* getWindow() const;

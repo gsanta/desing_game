@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <string.h>
+#include <cstring>
 
 namespace spright { namespace engine {
 	class FileUtils {
@@ -9,7 +9,7 @@ namespace spright { namespace engine {
 		static std::string read_file(const char* filePath) {
 			FILE* file = fopen(filePath, "rt");
 			fseek(file, 0, SEEK_END);
-			unsigned long length = ftell(file);
+			unsigned long const length = ftell(file);
 			char* data = new char[length + 1];
 			memset(data, 0, length + 1);
 			fseek(file, 0, SEEK_SET);

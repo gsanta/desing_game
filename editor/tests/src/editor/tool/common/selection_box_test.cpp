@@ -1,11 +1,10 @@
+#include "../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../../test_helpers/test_document_factory.h"
 #include "../src/app/tool/color_picker_tool.h"
 #include "../src/app/tool/common/selection_box.h"
 #include "../src/engine/graphics/layer/tileLayer.h"
 #include "../src/maths/vec2.h"
-#include "../../test_helpers/matchers/equals_bounds_matcher.h"
 
-#include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
 using namespace ::spright::editor;

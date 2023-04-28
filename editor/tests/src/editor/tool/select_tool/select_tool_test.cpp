@@ -1,10 +1,10 @@
+#include "../../test_helpers/document_info_builder.h"
 #include "../../test_helpers/document_store_builder.h"
+#include "../../test_helpers/pointer_info_builder.h"
 #include "../../test_helpers/tool_context_builder.h"
 #include "../src/app/document/document_store.h"
 #include "../src/app/tool/select_tool/select_tool.h"
 #include "../src/engine/graphics/layer/tileLayer.h"
-#include "../../test_helpers/pointer_info_builder.h"
-#include "../../test_helpers/document_info_builder.h"
 
 #include <catch2/catch_test_macros.hpp>
 
@@ -20,9 +20,7 @@ TEST_CASE("SelectTool", "[select-tool]")
         Drawing &activeDrawing = documentStore.getActiveDocument().getDrawings()[0];
 
         ToolContext toolContext =
-            ToolContextBuilder()
-                .withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(&activeDrawing))
-                .build();
+            ToolContextBuilder().withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(&activeDrawing)).build();
 
         SelectTool selectTool;
 

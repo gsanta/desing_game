@@ -30,6 +30,10 @@ DocumentStore DocumentStoreBuilder::build() {
 
 	Document document(m_DocumentBounds, camera, DrawingBuilder().withBounds(m_DocumentBounds).build());
 
+	if (m_Drawings.size() == 0) {
+		m_Drawings.push_back(DrawingBuilder().withBounds(m_DocumentBounds));
+	}
+
 	for (DrawingBuilder builder : m_Drawings) {
 		document.addDrawing(builder.build());
 	}

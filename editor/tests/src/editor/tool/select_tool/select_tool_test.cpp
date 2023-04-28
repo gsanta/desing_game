@@ -17,14 +17,25 @@ TEST_CASE("SelectTool", "[select-tool]")
     SECTION("sets the selection to the active drawing")
     {
         DocumentStore documentStore = DocumentStoreBuilder().build();
+        Drawing &activeDrawing = documentStore.getActiveDocument().getDrawings()[0];
 
         ToolContext toolContext =
             ToolContextBuilder()
-                .withPointerInfo(PointerInfoBuilder().withCurr(canvas.getForegroundLayer().getWorldPos(Vec2Int(1, 1))))
                 .withDocumentInfo(DocumentInfoBuilder().withActiveDrawing(&activeDrawing))
                 .build();
 
-
         SelectTool selectTool;
+
+        selectTool.pointerDown(toolContext);
+
+        toolContext.pointer.isDown = true;
+
+        selectTool.pointerMove(toolContext);
+        toolContext.pointer.prev = toolContext.pointer.curr;
+        toolContext.pointer.curr = Vec2(2.0f, 2.0f);
+
+        selectTool.pointerUp(toolContext);
+
+        REQUIRE(activeDrawing.getState().getBounds() == Bounds(0, 0, 0, 0));
     }
 }

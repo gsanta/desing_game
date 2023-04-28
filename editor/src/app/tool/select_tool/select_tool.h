@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../engine/graphics/renderable/rect2d.h"
-#include "../../../engine/graphics/renderable/bounds.h"
+#include "../../document/document_store.h"
 #include "../../document/drawing.h"
 #include "../common/selection_box.h"
 #include "../tool/tool.h"
@@ -22,6 +22,8 @@ namespace editor
     class SelectTool : public Tool
     {
     public:
+        SelectTool();
+
         void pointerDown(const ToolContext &) override;
 
         void pointerUp(const ToolContext &) override;
@@ -32,6 +34,8 @@ namespace editor
         void makePointSelection(const ToolContext &);
 
     private:
+        DocumentStore *m_DocumentStore;
+
         SelectionBox m_SelectionBox;
 
         RectSelector m_RectSelector;

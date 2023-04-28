@@ -8,6 +8,8 @@ namespace spright
 {
 namespace editor
 {
+    using namespace engine;
+
     void flip_horizontal(TileLayer &layer);
 
     void flip_horizontal(TileLayer &layer, const Bounds &bounds);

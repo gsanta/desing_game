@@ -1,9 +1,6 @@
-#include "../src/app/algorithm/flip.h"
+#include "../src/app/algorithm/flip_horizontal.h"
 #include "../src/app/core/colors.h"
-#include "../src/engine/graphics/layer/tileLayer.h"
 #include "../test_helpers/document_store_builder.h"
-#include "../test_helpers/drawing_builder.h"
-#include "../test_helpers/tile_layer_builder.h"
 
 #include <catch2/catch_test_macros.hpp>
 
@@ -12,7 +9,7 @@ using namespace spright::engine;
 
 TEST_CASE("flip_horizontal", "[flip-horizontal]")
 {
-    SECTION("can flip a layer")
+    SECTION("can flip a layer horizontally")
     {
         DocumentStore documentStore =
             DocumentStoreBuilder()

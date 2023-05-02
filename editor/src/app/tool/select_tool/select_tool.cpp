@@ -46,11 +46,19 @@ namespace editor
 
         if (!m_IsMove)
         {
-            Vec2 bottomLeft = m_SelectionBox.getBounds().getBottomLeft();
-            Vec2 topRight = m_SelectionBox.getBounds().getTopRight();
-            m_RectSelector.setSelection(bottomLeft, topRight);
+            if (context.pointer.downDelta().length() < m_NoMovementTolerance)
+            {
+                m_SelectionBox.clear();
+                context.doc.activeDrawing->getState().clearBounds();
+            }
+            else
+            {
+                Vec2 bottomLeft = m_SelectionBox.getBounds().getBottomLeft();
+                Vec2 topRight = m_SelectionBox.getBounds().getTopRight();
+                m_RectSelector.setSelection(bottomLeft, topRight);
 
-            context.doc.activeDrawing->getState().setBounds(Bounds(bottomLeft, topRight));
+                context.doc.activeDrawing->getState().setBounds(Bounds(bottomLeft, topRight));
+            }
         }
     }
 

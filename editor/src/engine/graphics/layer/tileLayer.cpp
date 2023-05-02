@@ -202,7 +202,7 @@ namespace engine
 
     void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos)
     {
-        tile->setPosition(getWorldPos(newPos) + Vec2(getTileSize() / 2.0f, getTileSize() / 2.0f));
+        tile->setPosition(getWorldPos(newPos));
 
         int newTileIndex = getTileIndex(newPos.x, newPos.y);
         updateTileIndex(tile, newTileIndex);

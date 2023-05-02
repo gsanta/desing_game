@@ -1,5 +1,5 @@
 import ToolName from '@/features/tool/state/ToolName';
-import {EmsVector} from '@/types/EmscriptenTypes';
+import { EmsVector } from '@/types/EmscriptenTypes';
 
 interface EditorApi {
   setWindowSize(width: number, height: number): void;

@@ -21,7 +21,7 @@ namespace editor
 
         const vector<Rect2D *> tiles = rectSelector.getSelection();
 
-        int boundsTileX = std::round(layer.getTilePos(bounds.getBottomLeft()).x / layer.getTileSize());
+        int boundsTileX = std::round(layer.getTilePos(bounds.getBottomLeft()).x);
         int boundsTileWidth = std::round(bounds.getWidth() / layer.getTileSize());
 
         for (Rect2D *tile : tiles)

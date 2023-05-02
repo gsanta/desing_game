@@ -95,31 +95,61 @@ TEST_CASE("flip_horizontal", "[flip-horizontal]")
 
         flip_horizontal(frame.getLayers(), bounds);
 
-        REQUIRE(frame.getLayer(0).getAtTilePos(4, 0) != nullptr);
-        REQUIRE(frame.getLayer(0).getAtTilePos(4, 1) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 0) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 1) != nullptr);
         REQUIRE(frame.getLayer(0).getAtTilePos(1, 0) == nullptr);
         REQUIRE(frame.getLayer(0).getAtTilePos(1, 1) == nullptr);
         REQUIRE(frame.getLayer(0).getAtTilePos(0, 0) != nullptr);
         REQUIRE(frame.getLayer(0).getAtTilePos(0, 1) != nullptr);
     }
 
-    SECTION("removes tiles that would be out of bounds after the flip")
+    SECTION("can flip a selected region, when selection is on the right side of the drawing")
     {
-        DocumentStore documentStore = DocumentStoreBuilder()
-                                          .withDrawing(DrawingBuilder()
-                                                           .withBounds(Bounds(0, 0, 7.0f, 7.0f))
-                                                           .withTileSize(1)
-                                                           .withTileLayer(TileLayerBuilder()
-                                                                              .withTile(Vec2Int(0, 0))
-                                                                              .withTile(Vec2Int(0, 1))
-                                                                              .withTile(Vec2Int(1, 0))
-                                                                              .withTile(Vec2Int(1, 1))))
-                                          .build();
+        DocumentStore documentStore =
+            DocumentStoreBuilder()
+                .withDrawing(DrawingBuilder().withTileSize(1).withTileLayer(TileLayerBuilder()
+                                                                                .withTile(Vec2Int(3, 0))
+                                                                                .withTile(Vec2Int(3, 1))
+                                                                                .withTile(Vec2Int(5, 0))
+                                                                                .withTile(Vec2Int(5, 1))))
+                .build();
 
         Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
 
-        const Vec2 bottomLeft = activeLayer.getWorldPos(0, 0);
+        const Vec2 bottomLeft = activeLayer.getWorldPos(1, 0);
+        const Vec2 topRight = activeLayer.getWorldPos(5, 2);
+        const Bounds bounds(bottomLeft, topRight);
+
+        drawing.getState().setBounds(bounds);
+
+        Frame &frame = drawing.getActiveFrame();
+
+        flip_horizontal(frame.getLayers(), bounds);
+
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 0) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 1) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(3, 0) == nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(3, 1) == nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(5, 0) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(5, 1) != nullptr);
+    }
+
+    SECTION("can flip a selected region, when selection tile width is odd")
+    {
+        DocumentStore documentStore =
+            DocumentStoreBuilder()
+                .withDrawing(DrawingBuilder().withTileSize(1).withTileLayer(TileLayerBuilder()
+                                                                                .withTile(Vec2Int(2, 0))
+                                                                                .withTile(Vec2Int(2, 1))
+                                                                                .withTile(Vec2Int(3, 0))
+                                                                                .withTile(Vec2Int(3, 1))))
+                .build();
+
+        Drawing &drawing = documentStore.getActiveDocument().getActiveDrawing();
+        TileLayer &activeLayer = drawing.getActiveLayer();
+
+        const Vec2 bottomLeft = activeLayer.getWorldPos(1, 0);
         const Vec2 topRight = activeLayer.getWorldPos(4, 2);
         const Bounds bounds(bottomLeft, topRight);
 
@@ -129,8 +159,11 @@ TEST_CASE("flip_horizontal", "[flip-horizontal]")
 
         flip_horizontal(frame.getLayers(), bounds);
 
-        REQUIRE(activeLayer.getRenderables().size() == 2);
-        REQUIRE(frame.getLayer(0).getAtTilePos(6, 0) != nullptr);
-        REQUIRE(frame.getLayer(0).getAtTilePos(6, 1) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(1, 0) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(1, 1) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 0) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(2, 1) != nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(3, 0) == nullptr);
+        REQUIRE(frame.getLayer(0).getAtTilePos(3, 1) == nullptr);
     }
 }

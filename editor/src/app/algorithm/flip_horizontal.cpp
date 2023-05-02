@@ -21,19 +21,16 @@ namespace editor
 
         const vector<Rect2D *> tiles = rectSelector.getSelection();
 
+        int boundsTileX = std::round(layer.getTilePos(bounds.getBottomLeft()).x / layer.getTileSize());
+        int boundsTileWidth = std::round(bounds.getWidth() / layer.getTileSize());
+
         for (Rect2D *tile : tiles)
         {
             const Vec2 bottomLeft = tile->getPosition2d();
+            const Vec2Int tilePos = layer.getTilePos(tile->getPosition2d());
+            int xStart = tilePos.x - boundsTileX;
 
-            const float diffX = bounds.getTopRight().x - (bottomLeft + tile->getSize()).x;
-
-            layer.translateTile(tile, Vec2(2 * diffX + 1, 0));
-
-            const Vec2 newCenter = tile->getCenterPosition2d();
-            if (!layer.getBounds().contains(newCenter.x, newCenter.y))
-            {
-                layer.remove(*tile);
-            }
+            layer.setTilePos(tile, Vec2Int(boundsTileX + boundsTileWidth - 1 - xStart, tilePos.y));
         }
     }
 

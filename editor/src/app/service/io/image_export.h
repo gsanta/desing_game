@@ -1,29 +1,39 @@
 #pragma once
 
-#include <cstring>
-#include "../../../stb_image_write.h"
-#include "../../rendering.h"
-#include "../../document/document.h"
+#include "../../../engine/graphics/renderable/bounds.h"
+#include "../../../engine/graphics/renderable/bounds_int.h"
 #include "../../../engine/system/window/window.h"
+#include "../../../stb_image_write.h"
+#include "../../document/document.h"
+#include "../../rendering.h"
 #include "./image_data.h"
 
-namespace spright { namespace editor {
+#include <cstring>
 
-	class ImageExport {
-	private:
-		Rendering* m_Rendering;
-		Window* m_Window;
+namespace spright
+{
+namespace editor
+{
+    class ImageExport
+    {
+    public:
+        ImageExport(Window *window, Rendering *rendering);
+        ~ImageExport();
+        void exportImage(Document &document);
+        unsigned char *getImageData();
+        size_t getImageSize();
 
-		unsigned char* m_Data = nullptr;
-		size_t m_Size;
+    private:
+        void writeImageData();
 
-	public:
-		ImageExport(Window* window, Rendering* rendering);
-		~ImageExport();
-		void exportImage(Document& document);
-		unsigned char* getImageData();
-		size_t getImageSize();
-	private:
-		void writeImageData();
-	};
-}}
+    private:
+        Rendering *m_Rendering;
+
+        Window *m_Window;
+
+        unsigned char *m_Data = nullptr;
+
+        size_t m_Size;
+    };
+} // namespace editor
+} // namespace spright

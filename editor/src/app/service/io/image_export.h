@@ -3,6 +3,7 @@
 #include "../../../engine/graphics/renderable/bounds.h"
 #include "../../../engine/graphics/renderable/bounds_int.h"
 #include "../../../engine/system/window/window.h"
+#include "../../../maths/vec2_int.h"
 #include "../../../stb_image_write.h"
 #include "../../document/document.h"
 #include "../../rendering.h"
@@ -24,7 +25,7 @@ namespace editor
         size_t getImageSize();
 
     private:
-        void writeImageData();
+        void writeImageData(BoundsInt bounds);
 
     private:
         Rendering *m_Rendering;

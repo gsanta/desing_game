@@ -25,13 +25,12 @@ void Rendering::render()
     m_Window->afterRender();
 }
 
-void Rendering::enableImageTarget(BoundsInt bounds)
+void Rendering::enableImageTarget()
 {
     if (m_ActiveRenderTarget != m_ImageRenderTarget)
     {
         m_ActiveRenderTarget = m_ImageRenderTarget;
         m_DefaultRenderTarget->disable();
-        m_ImageRenderTarget->setImageBounds(bounds);
         m_ImageRenderTarget->enable();
     }
 }

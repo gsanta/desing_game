@@ -3,6 +3,7 @@
 #include "../../../maths/mat4.h"
 #include "../../../maths/mathFuncs.h"
 #include "../../../maths/vec2.h"
+#include "../../../maths/vec2_int.h"
 #include "../../../maths/vec3.h"
 #include "../renderable/bounds.h"
 #include "./ortho_projection_info.h"
@@ -34,7 +35,7 @@ namespace engine
 
         Vec2 screenToWorldPos(float x, float y) const;
 
-        Vec2 worldToScreenPos(float x, float y) const;
+        Vec2Int worldToScreenPos(float x, float y) const;
 
         void updateWindowSize(float windowWidth, float windowHeight);
 

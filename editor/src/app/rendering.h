@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../engine/graphics/renderable/bounds_int.h"
 #include "../engine/graphics/renderer/default_render_target.h"
 #include "../engine/graphics/renderer/image_render_target.h"
 #include "../engine/graphics/renderer/render_target.h"
@@ -26,7 +25,7 @@ public:
     ~Rendering();
 
     void render();
-    void enableImageTarget(BoundsInt bounds);
+    void enableImageTarget();
     void disableImageTarget();
     ImageRenderTarget *getImageTarget();
 };

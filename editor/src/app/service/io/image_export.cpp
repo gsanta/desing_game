@@ -20,35 +20,38 @@ namespace editor
     {
         const Bounds bounds = document.getActiveDrawing().getBounds();
         const Camera camera = document.getCamera();
-        Vec2 bottomLeft = camera.worldToScreenPos(bounds.minX, bounds.minY);
-        Vec2 topRight = camera.worldToScreenPos(bounds.maxX, bounds.maxY);
+        Vec2Int bottomLeft = camera.worldToScreenPos(bounds.minX, bounds.minY);
+        Vec2Int topRight = camera.worldToScreenPos(bounds.maxX, bounds.maxY);
 
-        m_Rendering->enableImageTarget(BoundsInt(bottomLeft.x, topRight.x, bottomLeft.y, topRight.y));
+        const BoundsInt intBounds(bottomLeft.x, topRight.x, bottomLeft.y, topRight.y);
+
+        m_Rendering->enableImageTarget();
+
         document.render();
-
-        writeImageData();
+        writeImageData(intBounds);
 
         m_Rendering->disableImageTarget();
     }
 
-    void ImageExport::writeImageData()
+    void ImageExport::writeImageData(BoundsInt bounds)
     {
         delete[] m_Data;
 
-        int width = m_Window->getWidth();
-        int height = m_Window->getHeight();
+        int width = bounds.getWidth();
+        int height = bounds.getHeight();
+        int bytes = 4 * width * height;
 
-        ImageData *image = new ImageData(static_cast<size_t>(4) * width * height);
+        ImageData *image = new ImageData(bytes);
+        GLubyte *data = new GLubyte[bytes];
+        memset(data, 0, bytes);
 
-        GLubyte *data = new GLubyte[static_cast<size_t>(4) * width * height];
-        memset(data, 0, 4 * width * height);
-        glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glReadPixels(bounds.minX, bounds.minY, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
         stbi_flip_vertically_on_write(1);
         stbi_write_png_to_func(
             [](void *context, void *data, int size) {
-                memcpy(((ImageData *)context)->data, data, size);
-                ((ImageData *)context)->size = size;
+                memcpy(static_cast<ImageData *>(context)->data, data, size);
+                static_cast<ImageData *>(context)->size = size;
             },
             image,
             width,

@@ -1,6 +1,5 @@
 #pragma once
 #include "../../system/window/window.h"
-#include "../renderable/bounds_int.h"
 #include "render_target.h"
 
 #include <GL/glew.h>
@@ -16,9 +15,6 @@ namespace engine
     public:
         ImageRenderTarget(Window *window);
 
-        // NOTE: it has to be called before enable to set the bounds to render
-        void setImageBounds(BoundsInt);
-
         void enable();
 
         void disable();
@@ -32,8 +28,6 @@ namespace engine
         unsigned int m_Texture;
 
         Window *m_Window;
-
-        BoundsInt m_ImageBounds;
     };
 } // namespace engine
 } // namespace spright

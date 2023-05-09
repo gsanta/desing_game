@@ -11,42 +11,10 @@ namespace engine
 
     void ImageRenderTarget::init()
     {
-        //		glGenFramebuffers(1, &m_FrameBuffer);
-        //		glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
-        //
-        //		glGenTextures(1, &m_Texture);
-        //		glBindTexture(GL_TEXTURE_2D, m_Texture);
-        //		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Window->getWidth(), m_Window->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-        //		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        //		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        //		glBindTexture(GL_TEXTURE_2D, 0);
-        //		//glDisable(GL_BLEND);
-        //
-        //		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-        //
-        //		//unsigned int rbo;
-        //		//glGenRenderbuffers(1, &rbo);
-        //		//glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-        //		//glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
-        //		//glBindRenderbuffer(GL_RENDERBUFFER, 0);
-        //
-        //		//glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-        //
-        //		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        //			std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-        //		}
-        //
-        //		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    }
-
-    void ImageRenderTarget::setImageBounds(BoundsInt bounds)
-    {
-        m_ImageBounds = bounds;
     }
 
     void ImageRenderTarget::enable()
     {
-        //		glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
         glGenFramebuffers(1, &m_FrameBuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, m_FrameBuffer);
 
@@ -55,8 +23,8 @@ namespace engine
         glTexImage2D(GL_TEXTURE_2D,
                      0,
                      GL_RGBA,
-                     m_ImageBounds.getWidth(),
-                     m_ImageBounds.getHeight(),
+                     m_Window->getWidth(),
+                     m_Window->getHeight(),
                      0,
                      GL_RGBA,
                      GL_UNSIGNED_BYTE,
@@ -64,19 +32,8 @@ namespace engine
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBindTexture(GL_TEXTURE_2D, 0);
-        //glDisable(GL_BLEND);
 
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-
-        //unsigned int rbo;
-        //glGenRenderbuffers(1, &rbo);
-        //glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-        //glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
-        //glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
-        //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-
-        glViewport(m_ImageBounds.minX, m_ImageBounds.minY, m_ImageBounds.getWidth(), m_ImageBounds.getHeight());
 
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         {
@@ -88,7 +45,6 @@ namespace engine
 
     void ImageRenderTarget::disable()
     {
-        glViewport(0, 0, m_Window->getWidth(), m_Window->getHeight());
         glDeleteTextures(1, &m_Texture);
         glDeleteFramebuffers(1, &m_FrameBuffer);
     }

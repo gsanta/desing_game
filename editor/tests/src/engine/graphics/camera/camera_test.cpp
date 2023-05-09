@@ -31,9 +31,9 @@ TEST_CASE("Camera", "[camera]")
     {
         Camera camera(500.0f, 500.0f, Bounds(-10.0f, -10.0f, 20.0f, 20.0f), -1.0f, 1.0f);
 
-        REQUIRE(camera.worldToScreenPos(10.0f, -10.0f) == Vec2(500.0f, 0));
-        REQUIRE(camera.worldToScreenPos(-10.0f, -10.0f) == Vec2(0, 0));
-        REQUIRE(camera.worldToScreenPos(-8.0f, 8.0f) == Vec2(50.0f, 450.0f));
+        REQUIRE(camera.worldToScreenPos(10.0f, -10.0f) == Vec2Int(500, 0));
+        REQUIRE(camera.worldToScreenPos(-10.0f, -10.0f) == Vec2Int(0, 0));
+        REQUIRE(camera.worldToScreenPos(-8.0f, 8.0f) == Vec2Int(50, 450));
     }
 
     SECTION("can convert from world to screen pos with camera translate")
@@ -42,8 +42,8 @@ TEST_CASE("Camera", "[camera]")
 
         camera.translate2D(Vec2(5.0f, 0.0f));
 
-        REQUIRE(camera.worldToScreenPos(15.0f, -10.0f) == Vec2(500.0f, 0.0f));
-        REQUIRE(camera.worldToScreenPos(-5.0f, -10.0f) == Vec2(0, 0));
-        REQUIRE(camera.worldToScreenPos(-3.0f, 8.0f) == Vec2(50.0f, 450.0f));
+        REQUIRE(camera.worldToScreenPos(15.0f, -10.0f) == Vec2Int(500, 0));
+        REQUIRE(camera.worldToScreenPos(-5.0f, -10.0f) == Vec2Int(0, 0));
+        REQUIRE(camera.worldToScreenPos(-3.0f, 8.0f) == Vec2Int(50, 450));
     }
 }

@@ -101,24 +101,20 @@ namespace engine
         return {result.x, result.y};
     }
 
-    Vec2 Camera::worldToScreenPos(float x, float y) const
+    Vec2Int Camera::worldToScreenPos(float x, float y) const
     {
-        float w = m_CameraDim.getWidth();
-        float h = m_CameraDim.getHeight();
-
         Vec2 pos(x, y);
 
-        float translateX = m_Translate.x - w / 2.0f;
-        float translateY = m_Translate.y + h / 2.0f;
+        pos -= Vec2(m_CameraDim.minX, m_CameraDim.minY);
 
-        pos += Vec2(-translateX, translateY);
+        pos -= m_Translate;
 
         float scaleX = m_WindowWidth / m_CameraDim.getWidth();
         float scaleY = m_WindowHeight / m_CameraDim.getHeight();
 
         pos *= Vec2(scaleX, scaleY);
 
-        return {pos.x, pos.y};
+        return {(int)pos.x, (int)pos.y};
     }
 
     Bounds Camera::getCameraDimensions()

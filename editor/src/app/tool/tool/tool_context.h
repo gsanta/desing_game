@@ -14,7 +14,9 @@ namespace editor
     struct ToolContext
     {
         PointerInfo pointer;
+
         DocumentInfo doc;
+
         std::shared_ptr<EditorState> editorState;
 
         explicit ToolContext(std::shared_ptr<EditorState>);

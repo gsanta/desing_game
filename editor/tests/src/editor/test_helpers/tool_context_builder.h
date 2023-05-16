@@ -7,7 +7,11 @@ class ToolContextBuilder
 {
 public:
     ToolContextBuilder &withDocumentInfo(DocumentInfoBuilder builder);
+
     ToolContextBuilder &withPointerInfo(PointerInfoBuilder builder);
+
+    ToolContextBuilder &withActiveDrawing(DocumentStore &documentStore);
+
     ToolContext build();
 
 private:

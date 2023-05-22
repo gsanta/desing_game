@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns">
+  <head>
+    <% title @page_title %>
+    <%= render 'application/shared_head' %>
+    <%= stylesheet_pack_tag(react.pack_name) %>
+    <script type="text/javascript">
+      window.pageProps = <%=raw json_escape(react.props) %>;
+    </script>
+    <% if @page_scripts %>
+      <% @page_scripts.each do |src| %>
+        <script type="text/javascript" src="<%= src %>"></script>
+      <% end %>
+    <% end %>
+    <% if @include_chargebee_script %>
+      <script src="https://js.chargebee.com/v2/chargebee.js" data-cb-site="<%= GlobalSettings.chargebee_site_name %>"></script>
+    <% end %>
+  </head>
+  <body>
+    <% if Rails.env.production? %>
+      <%= render "application/gtm-iframe" %>
+    <% end %>
+    <div class="main">
+      <div id="react-mount"></div>
+      <%= javascript_pack_tag(react.pack_name) %>
+    </div>
+    <%= render 'application/brightback' %>
+  </body>
+</html>

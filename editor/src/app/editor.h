@@ -27,6 +27,7 @@
 #include "tool/select_tool/select_tool.h"
 #include "tool/tool_handler.h"
 #include "tool/zoom_tool.h"
+#include "tool/line_tool/line_tool.h"
 
 #include <vector>
 

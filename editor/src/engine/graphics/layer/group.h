@@ -129,6 +129,11 @@ namespace spright { namespace engine {
 	template <typename T>
 	void Group<T>::clear() {
 		// TODO: check if the renderables will be destroyed
+        for (T* element : m_Renderables)
+        {
+            delete element;
+        }
+
 		m_Renderables.clear();
 	}
 

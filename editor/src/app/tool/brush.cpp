@@ -1,4 +1,4 @@
-#include "brush.h"
+    #include "brush.h"
 
 namespace spright { namespace editor {
 
@@ -10,8 +10,11 @@ namespace spright { namespace editor {
 		if (renderable == nullptr) {
 			Vec2 worldPos = tileLayer.getBottomLeftPos(tileIndex);
 			tileLayer.add(Rect2D(worldPos.x, worldPos.y, tileLayer.getTileSize(), tileLayer.getTileSize(), color));
+            std::cout << "creates a renderable" << std::endl;
 		}
 		else {
+            std::cout << "sets the color" << std::endl;
+
 			renderable->setColor(color);
 		}
 	}

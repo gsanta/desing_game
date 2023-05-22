@@ -115,6 +115,7 @@ namespace engine
     // TODO: fix clear to remove from m_TileIndexes
     void TileLayer::clear()
     {
+
         m_Group.clear();
     }
 

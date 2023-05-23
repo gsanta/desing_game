@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class EditorController < ApplicationController
   def index
     render react: {
         hello: "world"

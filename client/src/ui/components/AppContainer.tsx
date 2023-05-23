@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ChakraProvider, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import '../../app.scss';
 import Layout from './layout/Layout';
@@ -15,19 +15,32 @@ import ToolOptionsPanel from '@/panels/tool_options/ui/ToolOptionsPanel';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import SceneViewer from '@/panels/scene_viewer/SceneViewer';
+import KeyboardHandler from '@/services/keyboard/KeyboardHandler';
+import { editor } from '@/services/editor/Editor';
+import ToolEventListener from '@/panels/toolbar/ToolEventListener';
 
-type AppContainerProps = {
-  app: App;
-};
-
-const AppContainer = ({ app }: AppContainerProps) => {
+const AppContainer = () => {
   const [canvasContainer, setCanvasContainer] = useState<HTMLCanvasElement | undefined>();
 
+  console.log('app container runs');
+
   const canvasRef = useCallback((node: HTMLCanvasElement) => node && setCanvasContainer(node), []);
+
+  const app: App = useMemo(
+    () => ({
+      editorApi: editor,
+      editorEvents: window.EditorEvents,
+      keyboardHandler: new KeyboardHandler(),
+    }),
+    [],
+  );
 
   useInitApp(app, canvasContainer);
 
   useEffect(() => {
+    const toolEventListener = new ToolEventListener(app.editorApi);
+    toolEventListener.listen(window.EditorEvents);
+
     /* code to prevent emscripten compiled code from eating key input */
     window.addEventListener(
       'keydown',

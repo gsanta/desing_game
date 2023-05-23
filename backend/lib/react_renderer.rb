@@ -1,21 +1,17 @@
 # frozen_string_literal: true
 
+require "active_support"
+
 class ReactRenderer
-  # module DSL
-  #   extend ActiveSupport::Concern
-  #
-  #   def react
-  #     @react ||= ReactRenderer.new(self)
-  #   end
-  #
-  #   included { helper_method :react }
-  # end
-  #
-  # module RSpec
-  #   def rendered_react_props
-  #     JSON.parse(controller.react.props)
-  #   end
-  # end
+  module DSL
+    extend ActiveSupport::Concern
+
+    def react
+      @react ||= ReactRenderer.new(self)
+    end
+
+    included { helper_method :react }
+  end
 
   attr_reader :props
 

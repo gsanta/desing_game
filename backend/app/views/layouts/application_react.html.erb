@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript">
-      window.pageProps = <%=raw json_escape(react.props) %>;
-    </script>
+      <meta charset="utf-8">
+      <title>Spright</title>
+      <%= css_asset_tag(react.pack_name) %>
+      <script type="text/javascript">
+        window.pageProps = <%=raw json_escape(react.props) %>;
+      </script>
   </head>
   <body>
-      <div id="react-mount"/>
-      <%= javascript_pack_tag(react.pack_name) %>
+      <div id="react-mount" style="height: 100vh"/>
+      <%= javascript_asset_tag(react.pack_name) %>
       <script type='text/javascript'>
           window.onerror = function (event) {
               // TODO: do not warn on ok events like simulating an infinite loop or exitStatus

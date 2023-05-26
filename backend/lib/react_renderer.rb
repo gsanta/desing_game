@@ -14,6 +14,7 @@ class ReactRenderer
   end
 
   attr_reader :props
+  attr_reader :globalProps
 
   def initialize(controller)
     @controller = controller
@@ -21,6 +22,7 @@ class ReactRenderer
 
   def set_props(props)
     @props = props.to_json
+    @globalProps = props[:globalProps].to_json
   end
 
   def render(props)

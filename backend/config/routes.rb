@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "editor#index"
 
   get "/editor", to: "editor#index"

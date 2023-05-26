@@ -1,3 +1,4 @@
+import GlobalProps from '@/ui/components/layout/GlobalProps';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -7,6 +8,7 @@ type ReactProps = Parameters<typeof React.createElement>[1];
 declare global {
   interface Window {
     pageProps: ReactProps;
+    globalProps: GlobalProps;
   }
 }
 

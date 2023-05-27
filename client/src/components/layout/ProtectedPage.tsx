@@ -1,4 +1,4 @@
-import { setLoggedIn } from '@/features/user/userSlice';
+import { setUser } from '@/features/user/userSlice';
 import { useAppDispatch } from '@/hooks';
 import { store } from '@/utils/store';
 import React, { ReactNode } from 'react';
@@ -14,7 +14,7 @@ const StoreSetup = ({ children }: { children: ReactNode }): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  dispatch(setLoggedIn(globalProps.user.isLoggedIn));
+  dispatch(setUser(globalProps.user));
 
   return <>{children}</>;
 };

@@ -76,36 +76,6 @@ const ButtonTheme: ComponentStyleConfig = {
   variants: {
     outline: variantOutline,
     solid: variantSolid,
-    // 'secondary-default': {
-    //   bgColor: 'inherit',
-    // },
-    // 'primary-action': {
-    //   bgColor: 'orange.500',
-    //   color: 'gray.50',
-    //   fontWeight: 'bold',
-    //   _hover: {
-    //     bgColor: 'orange.400',
-    //     _disabled: {
-    //       ...disabled,
-    //     },
-    //   },
-    //   _disabled: disabled,
-    // },
-    // 'primary-default': {
-    //   bgColor: 'gray.500',
-    //   color: 'gray.50',
-    //   fontWeight: 'bold',
-    //   _hover: {
-    //     bgColor: 'gray.400',
-    //     _disabled: {
-    //       ...disabled,
-    //     },
-    //   },
-    //   _disabled: disabled,
-    //   _active: {
-    //     bg: 'gray.400',
-    //   },
-    // },
   },
 };
 

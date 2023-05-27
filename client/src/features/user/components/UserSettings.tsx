@@ -1,9 +1,10 @@
-import { setLoggedIn } from '@/features/user/userSlice';
+import { signOut } from '@/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { Button, ButtonGroup, useDisclosure, useToast } from '@chakra-ui/react';
+import { Avatar, Button, ButtonGroup, useDisclosure, useToast } from '@chakra-ui/react';
 import React from 'react';
 import SignUpDialog from './SignUpDialog';
 import SignInDialog from './SignInDialog';
+import UserDialog from './UserDialog';
 
 const UserSettings = () => {
   const toast = useToast();
@@ -12,6 +13,7 @@ const UserSettings = () => {
 
   const { isOpen: isSignInDialogOpen, onOpen: onSignInDialogOpen, onClose: onSignInDialogClose } = useDisclosure();
   const { isOpen: isSignUpDialogOpen, onOpen: onSignUpDialogOpen, onClose: onSignUpDialogClose } = useDisclosure();
+  const { isOpen: isUserDialogOpen, onOpen: onUserDialogOpen, onClose: onUserDialogClose } = useDisclosure();
 
   const logOut = async () => {
     try {
@@ -21,7 +23,7 @@ const UserSettings = () => {
           'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
         },
       });
-      dispatch(setLoggedIn(false));
+      dispatch(signOut());
       toast({
         title: 'Logged out successfully',
         position: 'top',
@@ -32,9 +34,14 @@ const UserSettings = () => {
   return (
     <>
       {isLoggedIn ? (
-        <Button size="sm" onClick={logOut}>
-          Log out
-        </Button>
+        <ButtonGroup>
+          <Button size="sm" variant="ghost" onClick={onUserDialogOpen}>
+            <Avatar name="Dan Abrahmov" size="sm" />
+          </Button>
+          <Button size="sm" onClick={logOut}>
+            Log out
+          </Button>
+        </ButtonGroup>
       ) : (
         <ButtonGroup>
           <Button size="sm" onClick={onSignInDialogOpen}>
@@ -47,6 +54,7 @@ const UserSettings = () => {
       )}
       <SignInDialog isOpen={isSignInDialogOpen} onClose={onSignInDialogClose} />
       <SignUpDialog isOpen={isSignUpDialogOpen} onClose={onSignUpDialogClose} />
+      <UserDialog isOpen={isUserDialogOpen} onClose={onUserDialogClose} />
     </>
   );
 };

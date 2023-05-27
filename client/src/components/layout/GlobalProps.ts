@@ -1,7 +1,7 @@
+import { UserState } from '@/features/user/userSlice';
+
 type GlobalProps = {
-  user: {
-    isLoggedIn: boolean;
-  };
+  user: UserState;
 };
 
 export default GlobalProps;

@@ -1,4 +1,4 @@
-import { setLoggedIn } from '@/features/user/userSlice';
+import { setUser } from '@/features/user/userSlice';
 import { useAppDispatch } from '@/hooks';
 import Dialog, { DialogBody, DialogButtons } from '@/components/dialog/Dialog';
 import api from '@/utils/api';
@@ -66,7 +66,7 @@ const SignUpDialog = ({ isOpen, onClose }: SignUpDialogProps) => {
 
   const onSubmit = async (data: SignUpRequestData) => {
     await mutateSignUp(data);
-    dispatch(setLoggedIn(true));
+    dispatch(setUser({ isLoggedIn: true, email: data.email }));
     handleClose();
   };
 

@@ -1,6 +1,6 @@
 import { setLoggedIn } from '@/features/user/userSlice';
 import { useAppDispatch } from '@/hooks';
-import Dialog, { DialogBody, DialogButtons } from '@/ui/components/dialog/Dialog';
+import Dialog, { DialogBody, DialogButtons } from '@/components/dialog/Dialog';
 import api from '@/utils/api';
 import { FormControl, FormLabel, Input, FormErrorMessage, Button, Text } from '@chakra-ui/react';
 import { AxiosError } from 'axios';

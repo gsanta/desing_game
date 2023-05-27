@@ -2,6 +2,7 @@ import { setLoggedIn } from '@/features/user/userSlice';
 import { useAppDispatch } from '@/hooks';
 import { store } from '@/store';
 import React, { ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 type ProtectedPageProps = {
@@ -18,11 +19,15 @@ const StoreSetup = ({ children }: { children: ReactNode }): JSX.Element => {
   return <>{children}</>;
 };
 
+const queryClient = new QueryClient();
+
 const ProtectedPage = ({ children }: ProtectedPageProps) => {
   return (
-    <Provider store={store}>
-      <StoreSetup>{children}</StoreSetup>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <StoreSetup>{children}</StoreSetup>
+      </Provider>
+    </QueryClientProvider>
   );
 };
 

@@ -1,7 +1,7 @@
 import SettingsPanel from '@/panels/settings/SettingsPanel';
 import { Box } from '@chakra-ui/react';
 import React from 'react';
-import Login from './Login';
+import UserSettings from './UserSettings';
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
       paddingBlock="1"
     >
       <SettingsPanel />
-      <Login />
+      <UserSettings />
     </Box>
   );
 };

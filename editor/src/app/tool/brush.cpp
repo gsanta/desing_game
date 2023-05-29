@@ -8,7 +8,8 @@ namespace spright { namespace editor {
 		Renderable2D* renderable = tileLayer.getAtTileIndex(tileIndex);
 
 		if (renderable == nullptr) {
-			Vec2 worldPos = tileLayer.getBottomLeftPos(tileIndex);
+			float halfTileSize = tileLayer.getTileSize() / 2.0f;
+			Vec2 worldPos = tileLayer.getWorldPos(tileIndex) - Vec2(halfTileSize, halfTileSize);
 			tileLayer.add(Rect2D(worldPos.x, worldPos.y, tileLayer.getTileSize(), tileLayer.getTileSize(), color));
 		}
 		else {

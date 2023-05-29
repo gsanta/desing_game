@@ -136,8 +136,8 @@ namespace engine
         Vec2Int tilePos = getTilePos(pointer);
         float tileSize = m_TileSize;
 
-        float x = static_cast<float>(tilePos.x) * tileSize + m_Bounds.minX;
-        float y = static_cast<float>(tilePos.y) * tileSize + m_Bounds.minY;
+        float x = static_cast<float>(tilePos.x) * tileSize + m_Bounds.minX + m_TileSize / 2;
+        float y = static_cast<float>(tilePos.y) * tileSize + m_Bounds.minY + m_TileSize / 2;
 
         return Vec2(x, y);
     }
@@ -146,7 +146,7 @@ namespace engine
     {
         int y = tileIndex / m_TileBounds.getWidth();
         int x = tileIndex % m_TileBounds.getWidth();
-        return Vec2(x * m_TileSize + m_Bounds.minX, y * m_TileSize + m_Bounds.minY);
+        return Vec2(x * m_TileSize + m_Bounds.minX + m_TileSize / 2, y * m_TileSize + m_Bounds.minY + m_TileSize / 2);
     }
 
     Vec2 TileLayer::getWorldPos(int tileIndex) const

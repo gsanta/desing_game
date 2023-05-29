@@ -10,7 +10,7 @@ namespace spright {
         layer.getAtTileIndex(1851);
 
         m_IsEmptyTile = renderable == nullptr;
-        
+
         if (renderable) {
             m_SourceColor = renderable->getColor();
         }
@@ -68,7 +68,7 @@ namespace spright {
             }
         }
         rightMostX -= 1;
-	
+
         m_Queue.addToEnd(FloodFillRange(leftMostX, rightMostX, y));
     }
 
@@ -104,12 +104,12 @@ namespace spright {
     void QueueLinearFloodFill::setColor(TileLayer& layer, int x, int y, int color)
     {
         int tileIndex = layer.getTileIndex(x, y);
-        
+
         Renderable2D* renderable = layer.getAtTileIndex(tileIndex);
 
         if (renderable == nullptr) {
-            Vec2 bottomLeftPos = layer.getBottomLeftPos(tileIndex);
             float tileSize = layer.getTileSize();
+            Vec2 bottomLeftPos = layer.getBottomLeftPos(tileIndex) - Vec2(tileSize / 2.0f, tileSize / 2.0f);
             layer.add(Rect2D(bottomLeftPos.x, bottomLeftPos.y, tileSize, tileSize, color));
         }
         else {

@@ -1,4 +1,5 @@
 #pragma once
+#include "../brush.h"
 #include "../tool/tool.h"
 
 namespace spright

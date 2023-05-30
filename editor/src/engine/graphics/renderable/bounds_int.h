@@ -1,19 +1,33 @@
 #pragma once
 
-namespace spright { namespace engine {
+namespace spright
+{
+namespace engine
+{
 
-	class BoundsInt {
-	public:
-		int minX;
-		int maxX;
-		int minY;
-		int maxY;
+    class BoundsInt
+    {
+    public:
+        int minX;
 
-		BoundsInt();
-		BoundsInt(int minX, int maxX, int minY, int maxY);
+        int maxX;
 
-		int getWidth() const;
-		int getHeight() const;
-	};
+        int minY;
 
-}}
+        int maxY;
+
+        BoundsInt();
+
+        BoundsInt(int minX, int maxX, int minY, int maxY);
+
+        friend bool operator==(const BoundsInt &, const BoundsInt &);
+
+        friend bool operator!=(const BoundsInt &, const BoundsInt &);
+
+        int getWidth() const;
+
+        int getHeight() const;
+    };
+
+} // namespace engine
+} // namespace spright

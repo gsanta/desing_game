@@ -116,6 +116,9 @@ namespace engine
     void TileLayer::clear()
     {
         m_Group.clear();
+        delete[] m_TileIndexes;
+        m_TileIndexes = new Renderable2D *[m_IndexSize]();
+
     }
 
     void TileLayer::render(const Camera &camera)

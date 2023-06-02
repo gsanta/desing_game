@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/src
     command: >
-      sh -c   "cd editor/Web &&
+      sh -c   "cd editor/emscripten &&
               emcmake cmake . &&
               cmake --build ."
   clang-format:

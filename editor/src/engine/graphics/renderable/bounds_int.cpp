@@ -24,6 +24,12 @@ namespace engine
         return maxY - minY;
     }
 
+
+    Vec2Int BoundsInt::getCenter() const
+    {
+        return Vec2Int(minX + (maxX - minX) / 2.0, minY + (maxY - minY) / 2.0);
+    }
+
     bool operator==(const BoundsInt &lhs, const BoundsInt &rhs)
     {
         return lhs.minX == rhs.minX && lhs.maxX == rhs.maxX && lhs.minY == rhs.minY && lhs.maxY == rhs.maxY;

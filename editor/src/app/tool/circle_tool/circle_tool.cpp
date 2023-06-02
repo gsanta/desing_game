@@ -18,9 +18,13 @@ namespace editor
         TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
         BoundsInt bounds = getCircleBounds(context, foregroundLayer);
 
+        if (bounds.getWidth() <= 2 && bounds.getHeight() <= 2)
+        {
+            return;
+        }
+
         if (bounds != m_PrevCircleBounds)
         {
-            std::cout << "not equal" << std::endl;
             foregroundLayer.clear();
             m_PrevCircleBounds = bounds;
         }
@@ -30,7 +34,21 @@ namespace editor
     void CircleTool::pointerUp(const ToolContext &context)
     {
         BoundsInt bounds = getCircleBounds(context, context.doc.activeDrawing->getActiveLayer());
+
         drawCircle(bounds, context.editorState->color, context.doc.activeDrawing->getActiveLayer());
+
+        if (m_IsFilled)
+        {
+            m_FloodFill.floodFill(context.doc.activeDrawing->getActiveLayer(),
+                                  bounds.getCenter().x,
+                                  bounds.getCenter().y,
+                                  context.editorState->color);
+        }
+    }
+
+    void CircleTool::setFilled(bool isFilled)
+    {
+        m_IsFilled = isFilled;
     }
 
     void CircleTool::drawCircle(BoundsInt &bounds, int color, TileLayer &tileLayer)

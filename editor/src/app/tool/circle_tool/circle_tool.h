@@ -1,6 +1,7 @@
 #pragma once
 #include "../brush.h"
 #include "../tool/tool.h"
+#include "../paint_bucket/queue_linear_flood_fill.h"
 
 namespace spright
 {
@@ -15,6 +16,8 @@ namespace editor
 
         void pointerUp(const ToolContext &) override;
 
+        void setFilled(bool isFilled);
+
     private:
         void drawCircle(BoundsInt &bounds, int color, TileLayer &layer);
 
@@ -22,6 +25,10 @@ namespace editor
 
     private:
         BoundsInt m_PrevCircleBounds;
+
+        QueueLinearFloodFill m_FloodFill;
+
+        bool m_IsFilled = false;
     };
 } // namespace editor
 } // namespace spright

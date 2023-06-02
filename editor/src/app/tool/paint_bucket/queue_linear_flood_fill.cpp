@@ -2,14 +2,10 @@
 
 namespace spright
 {
-
 void QueueLinearFloodFill::floodFill(TileLayer &layer, int x, int y, int color)
 {
-    layer.getAtTileIndex(1851);
-
     int tileIndex = layer.getTileIndex(x, y);
     Renderable2D *renderable = layer.getAtTileIndex(tileIndex);
-    layer.getAtTileIndex(1851);
 
     m_IsEmptyTile = renderable == nullptr;
 
@@ -17,7 +13,6 @@ void QueueLinearFloodFill::floodFill(TileLayer &layer, int x, int y, int color)
     {
         m_SourceColor = renderable->getColor();
     }
-    layer.getAtTileIndex(1851);
 
     linearFill(layer, x, y, color);
 
@@ -52,7 +47,6 @@ void QueueLinearFloodFill::linearFill(TileLayer &layer, int x, int y, int color)
     while (true)
     {
         setColor(layer, leftMostX, y, color);
-        layer.getAtTileIndex(1851);
 
         m_VisitedIndexes.insert(layer.getTileIndex(leftMostX, y));
         leftMostX -= 1;
@@ -69,7 +63,6 @@ void QueueLinearFloodFill::linearFill(TileLayer &layer, int x, int y, int color)
         auto testTile = layer.getAtTileIndex(1851);
 
         setColor(layer, rightMostX, y, color);
-        layer.getAtTileIndex(1851);
 
         m_VisitedIndexes.insert(layer.getTileIndex(leftMostX, y));
         rightMostX += 1;

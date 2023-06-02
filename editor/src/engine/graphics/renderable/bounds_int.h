@@ -1,9 +1,12 @@
 #pragma once
+#include "../../../maths/vec2_int.h"
 
 namespace spright
 {
 namespace engine
 {
+
+    using namespace maths;
 
     class BoundsInt
     {
@@ -27,6 +30,8 @@ namespace engine
         int getWidth() const;
 
         int getHeight() const;
+
+        Vec2Int getCenter() const;
     };
 
 } // namespace engine

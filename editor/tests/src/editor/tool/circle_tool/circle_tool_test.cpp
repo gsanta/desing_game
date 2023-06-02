@@ -46,7 +46,7 @@ void REQUIRE_CIRCLE(TileLayer &layer)
 
 TEST_CASE("CircleTool", "[circle_tool]")
 {
-    SECTION("draws a horizontal oval shape on pointer up")
+    SECTION("can draw a horizontal oval shape on pointer up")
     {
         DocumentStore documentStore = DocumentStoreBuilder().build();
         ToolContext toolContext = ToolContextBuilder().withActiveDrawing(documentStore).build();
@@ -64,7 +64,7 @@ TEST_CASE("CircleTool", "[circle_tool]")
         REQUIRE_ELLIPSE(layer);
     }
 
-    SECTION("draws a circle on pointer up")
+    SECTION("can draw a circle on pointer up")
     {
         DocumentStore documentStore = DocumentStoreBuilder().build();
 
@@ -82,7 +82,7 @@ TEST_CASE("CircleTool", "[circle_tool]")
         REQUIRE_CIRCLE(layer);
     }
 
-    SECTION("draws on pointer drag")
+    SECTION("can draw on pointer drag")
     {
         DocumentStore documentStore = DocumentStoreBuilder().build();
 
@@ -97,12 +97,44 @@ TEST_CASE("CircleTool", "[circle_tool]")
 
         circleTool.pointerMove(toolContext);
 
-        toolContext.pointer.curr = layer.getWorldPos(Vec2Int(6.0f, 6.0f));
-
         REQUIRE_ELLIPSE(layer);
 
+        toolContext.pointer.curr = layer.getWorldPos(Vec2Int(6.0f, 6.0f));
         circleTool.pointerMove(toolContext);
 
         REQUIRE_CIRCLE(layer);
+    }
+
+    SECTION("can draw a filled circle")
+    {
+        DocumentStore documentStore = DocumentStoreBuilder().build();
+        ToolContext toolContext = ToolContextBuilder().withActiveDrawing(documentStore).build();
+
+        TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+
+        CircleTool circleTool;
+
+        toolContext.pointer.down = layer.getWorldPos(Vec2Int(0, 0));
+        toolContext.pointer.curr = layer.getWorldPos(Vec2Int(4.0f, 2.0f));
+        toolContext.pointer.isDown = true;
+
+        circleTool.setFilled(true);
+        circleTool.pointerUp(toolContext);
+
+        REQUIRE(layer.getRenderables().size() == 11);
+
+        REQUIRE(layer.getAtTilePos(0, 1) != nullptr);
+        REQUIRE(layer.getAtTilePos(1, 2) != nullptr);
+        REQUIRE(layer.getAtTilePos(2, 2) != nullptr);
+        REQUIRE(layer.getAtTilePos(3, 2) != nullptr);
+        REQUIRE(layer.getAtTilePos(4, 1) != nullptr);
+        REQUIRE(layer.getAtTilePos(3, 0) != nullptr);
+        REQUIRE(layer.getAtTilePos(2, 0) != nullptr);
+        REQUIRE(layer.getAtTilePos(1, 0) != nullptr);
+
+        // filled inner tiles
+        REQUIRE(layer.getAtTilePos(1, 1) != nullptr);
+        REQUIRE(layer.getAtTilePos(2, 1) != nullptr);
+        REQUIRE(layer.getAtTilePos(3, 1) != nullptr);
     }
 }

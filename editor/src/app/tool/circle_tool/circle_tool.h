@@ -1,7 +1,7 @@
 #pragma once
 #include "../brush.h"
-#include "../tool/tool.h"
 #include "../paint_bucket/queue_linear_flood_fill.h"
+#include "../tool/tool.h"
 
 namespace spright
 {

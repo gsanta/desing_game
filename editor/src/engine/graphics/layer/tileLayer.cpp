@@ -112,13 +112,11 @@ namespace engine
         m_Group.remove(rect);
     }
 
-    // TODO: fix clear to remove from m_TileIndexes
     void TileLayer::clear()
     {
         m_Group.clear();
         delete[] m_TileIndexes;
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
-
     }
 
     void TileLayer::render(const Camera &camera)

@@ -19,7 +19,9 @@ services:
       - .:/src
     command: >
       sh -c   "cd editor/emscripten &&
-              emcmake cmake . &&
+              mkdir build &&
+              cd build &&
+              emcmake cmake .. &&
               cmake --build ."
   clang-format:
     build:

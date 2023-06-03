@@ -15,7 +15,7 @@ jobs:
             cd editor
             docker-compose run --rm compile-emscripten; echo $?
       - persist_to_workspace:
-          root: editor/emscripten
+          root: editor/emscripten/build
           paths:
             - spright.js
             - spright.wasm

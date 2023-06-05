@@ -3,6 +3,7 @@
 #include "../engine/graphics/layer/tileLayer.h"
 #include "algorithm/flip_horizontal.h"
 #include "document/drawing.h"
+#include "tool/circle_tool/circle_tool.h"
 #include "document/frame_impl.h"
 #include "editor.h"
 

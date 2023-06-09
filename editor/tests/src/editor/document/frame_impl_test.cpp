@@ -96,25 +96,25 @@ TEST_CASE("FrameImpl", "[frame_impl]")
         Rect2D rect1(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
         Rect2D rect2(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
 
+        layers[0].add(rect1);
+        layers[0].add(rect2);
+
         frame.addLayer(layers[0]);
         frame.addLayer(layers[1]);
-
-        layers[0].add(rect1);
-        layers[1].add(rect2);
 
         frame.changeLayerOrder(0, 1);
 
         REQUIRE(frame.getLayer(0).getName() == "layer_1");
         REQUIRE(frame.getLayer(1).getName() == "layer_0");
-        REQUIRE(layers[0].getRenderables().size() == 1);
-        REQUIRE(layers[1].getRenderables().size() == 1);
+        REQUIRE(frame.getLayer(0).getRenderables().size() == 0);
+        REQUIRE(frame.getLayer(1).getRenderables().size() == 2);
 
         frame.changeLayerOrder(1, 0);
 
         REQUIRE(frame.getLayer(0).getName() == "layer_0");
         REQUIRE(frame.getLayer(1).getName() == "layer_1");
-        REQUIRE(layers[0].getRenderables().size() == 1);
-        REQUIRE(layers[1].getRenderables().size() == 1);
+        REQUIRE(frame.getLayer(0).getRenderables().size() == 2);
+        REQUIRE(frame.getLayer(1).getRenderables().size() == 0);
     }
 
     SECTION("throws when change layer order is out of bounds")

@@ -89,6 +89,7 @@ namespace editor
             throw std::invalid_argument("Layer order is out of bounds");
         }
 
+        TileLayer &tileLayer1 = getLayer(1);
         TileLayer tileLayer = getLayer(oldOrder);
 
         m_Layers.erase(m_Layers.begin() + oldOrder);

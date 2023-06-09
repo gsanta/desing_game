@@ -24,27 +24,29 @@ namespace editor
 
         FrameImpl(size_t index);
 
-		FrameImpl(const Frame &);
+        FrameImpl(const Frame &);
 
         bool isEqual(const Frame &) const override;
 
-		TileLayer &addLayer(const TileLayer &tileLayer) override;
+        TileLayer &addLayer(const TileLayer &tileLayer) override;
 
-		void insertLayer(const TileLayer &tileLayer, size_t index) override;
+        void insertLayer(const TileLayer &tileLayer, size_t index) override;
 
-		void removeLayer(size_t layerIndex) override;
+        void removeLayer(size_t layerIndex) override;
 
-		TileLayer &getLayer(size_t index) override;
+        void changeLayerOrder(size_t oldOrder, size_t newOrder) override;
 
-		std::vector<TileLayer> &getLayers() override;
+        TileLayer &getLayer(size_t index) override;
 
-		const std::vector<TileLayer> &getLayers() const override;
+        std::vector<TileLayer> &getLayers() override;
 
-		size_t getIndex() const override;
+        const std::vector<TileLayer> &getLayers() const override;
 
-		void setIndex(size_t index) override;
+        size_t getIndex() const override;
 
-		nlohmann::json getJson() const override;
+        void setIndex(size_t index) override;
+
+        nlohmann::json getJson() const override;
 
     private:
         void resetLayerIndexes();

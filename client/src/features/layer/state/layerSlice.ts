@@ -70,7 +70,7 @@ export const layerSlice = createSlice({
 
       const finalLayerIndex = layer.index < newLayerIndex ? newLayerIndex - 1 : newLayerIndex;
 
-      state.editor?.setLayerIndex(layer.index, newLayerIndex);
+      state.editor?.setLayerIndex(layer.index, finalLayerIndex);
 
       state.layers.splice(layer.index, 1);
       state.layers.splice(finalLayerIndex, 0, layer);

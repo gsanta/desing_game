@@ -82,6 +82,20 @@ namespace editor
         resetLayerIndexes();
     }
 
+    void FrameImpl::changeLayerOrder(size_t oldOrder, size_t newOrder)
+    {
+        if (oldOrder >= m_Layers.size() || newOrder >= m_Layers.size())
+        {
+            throw std::invalid_argument("Layer order is out of bounds");
+        }
+
+        TileLayer tileLayer = getLayer(oldOrder);
+
+        m_Layers.erase(m_Layers.begin() + oldOrder);
+
+        insertLayer(tileLayer, newOrder);
+    }
+
     size_t FrameImpl::getIndex() const
     {
         return m_Index;

@@ -6,8 +6,7 @@ extern class Editor *editor;
 
 void setLayerIndex(size_t oldIndex, size_t newIndex)
 {
-    TileLayer &tileLayer = editor->getActiveFrame().getLayer(oldIndex);
-    editor->getActiveFrame().insertLayer(std::move(tileLayer), newIndex);
+    editor->getActiveFrame().changeLayerOrder(oldIndex, newIndex);
 }
 
 void removeLayer(size_t layerIndex)
@@ -88,6 +87,18 @@ void api_flip_horizontal()
     }
 }
 
+void set_circle_tool_filled(bool isFilled)
+{
+    CircleTool *circleTool = static_cast<CircleTool *>(editor->getToolHandler()->getTool("circle"));
+    circleTool->setFilled(isFilled);
+}
+
+bool is_circle_tool_filled()
+{
+    CircleTool *circleTool = static_cast<CircleTool *>(editor->getToolHandler()->getTool("circle"));
+    return circleTool->isFilled();
+}
+
 EMSCRIPTEN_BINDINGS(spright)
 {
     emscripten::function("getFrames", &getFrames);
@@ -103,6 +114,8 @@ EMSCRIPTEN_BINDINGS(spright)
     emscripten::function("activateFramePlayer", &activateFramePlayer);
     emscripten::function("deActivateFramePlayer", &deActivateFramePlayer);
     emscripten::function("flipHorizontal", &api_flip_horizontal);
+    emscripten::function("setCircleToolFilled", &set_circle_tool_filled);
+    emscripten::function("isCircleToolFilled", &is_circle_tool_filled);
 }
 
 #endif

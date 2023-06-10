@@ -1,10 +1,12 @@
 #pragma once
 
-#include "../../engine/graphics/renderable/rect2d.h"
-#include "../../maths/vec2.h"
-#include "../../maths/vec3.h"
-#include "tool/tool.h"
-#include "tool/tool_context.h"
+#include "../../../engine/graphics/renderable/rect2d.h"
+#include "../../../maths/vec2.h"
+#include "../../../maths/vec3.h"
+#include "../tool/tool.h"
+#include "../tool/tool_context.h"
+#include "draw_rect.h"
+#include "temp_rect_drawer.h"
 
 namespace spright
 {
@@ -27,6 +29,7 @@ namespace editor
         float m_Size = 10;
 
         Rect2D *m_Rect = nullptr;
+        TempRectDrawer m_TempRectDrawer;
     };
 } // namespace editor
 } // namespace spright

@@ -8,10 +8,6 @@ namespace editor
     {
     }
 
-    void LineTool::pointerDown(const ToolContext &toolContext)
-    {
-    }
-
     void LineTool::pointerMove(const ToolContext &context)
     {
         if (!context.pointer.isDown)
@@ -24,21 +20,7 @@ namespace editor
 
         foregroundLayer.clear();
 
-        const Vec2 &down = context.pointer.down;
-        const Vec2 &curr = context.pointer.curr;
-
-        Vec2 start = down.x < curr.x ? down : curr;
-        Vec2 end = down.x < curr.x ? curr : down;
-
-        float slope = (start.x - end.x) / (start.y - end.y);
-
-        for (float x = start.x; x < end.x; x += activeLayer.getTileSize())
-        {
-            float y = start.y + (x - start.x) / slope;
-            Vec2Int tilePos = activeLayer.getTilePos(Vec2(x, y));
-
-            brush.paint(foregroundLayer, tilePos, context.editorState->color);
-        }
+        drawLine(context.pointer.down, context.pointer.curr, context.editorState->color, activeLayer, foregroundLayer);
     }
 
     void LineTool::pointerUp(const ToolContext &context)
@@ -52,6 +34,48 @@ namespace editor
         }
 
         foregroundLayer.clear();
+
+        drawLine(context.pointer.down, context.pointer.curr, context.editorState->color, activeLayer, activeLayer);
     }
+
+    void LineTool::drawLine(Vec2 start, Vec2 end, int color, TileLayer &tileLayer, TileLayer &drawLayer)
+    {
+        bool isHorizontalDir = std::abs(end.x - start.x) > std::abs(end.y - start.y);
+        float xDelta = start.x - end.x == 0 ? 0.01 : start.x - end.x;
+        float yDelta = start.y - end.y == 0 ? 0.01 : start.y - end.y;
+        float tileSize = tileLayer.getTileSize();
+
+        if (isHorizontalDir)
+        {
+            float slope = xDelta / yDelta;
+            int len = std::round(std::abs(start.x - end.x) / tileSize);
+            int neg = start.x < end.x ? 1 : -1;
+
+            for (int i = 0; i < len; i++)
+            {
+                float x = start.x + i * tileSize * neg;
+                float y = start.y + (x - start.x) / slope;
+                Vec2Int tilePos = tileLayer.getTilePos(Vec2(x, y));
+
+                m_Brush.paint(drawLayer, tilePos, color);
+            }
+        }
+        else
+        {
+            float slope = yDelta / xDelta;
+            int len = std::round(std::abs(start.y - end.y) / tileSize);
+            int neg = start.y < end.y ? 1 : -1;
+
+            for (int i = 0; i < len; i++)
+            {
+                float y = start.y + i * tileSize * neg;
+                float x = start.x + (y - start.y) / slope;
+                Vec2Int tilePos = tileLayer.getTilePos(Vec2(x, y));
+
+                m_Brush.paint(drawLayer, tilePos, color);
+            }
+        }
+    }
+
 } // namespace editor
 } // namespace spright

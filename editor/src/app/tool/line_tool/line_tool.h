@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../tool/tool.h"
 #include "../brush.h"
+#include "../tool/tool.h"
 
 namespace spright
 {
@@ -12,16 +12,17 @@ namespace editor
     public:
         LineTool();
 
-        void pointerDown(const ToolContext &toolContext) override;
-
         void pointerMove(const ToolContext &toolContext) override;
 
         void pointerUp(const ToolContext &toolContext) override;
 
     private:
-        std::vector<Rect2D*> m_Rects;
+        void drawLine(Vec2 start, Vec2 end, int color, TileLayer &tileLayer, TileLayer &drawLayer);
 
-        Brush brush;
+    private:
+        std::vector<Rect2D *> m_Rects;
+
+        Brush m_Brush;
     };
 } // namespace editor
 } // namespace spright

@@ -22,13 +22,13 @@
 #include "tool/circle_tool/circle_tool.h"
 #include "tool/color_picker_tool.h"
 #include "tool/eraser_tool/eraser_tool.h"
+#include "tool/line_tool/line_tool.h"
 #include "tool/new_drawing_tool/new_drawing_tool.h"
 #include "tool/paint_bucket/paint_bucket_tool.h"
 #include "tool/pan_tool.h"
 #include "tool/select_tool/select_tool.h"
 #include "tool/tool_handler.h"
 #include "tool/zoom_tool.h"
-#include "tool/line_tool/line_tool.h"
 
 #include <vector>
 

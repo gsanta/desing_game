@@ -13,5 +13,7 @@ namespace editor
 
     void draw_filled_rect(TileLayer &tileLayer, const Bounds &bounds, int color);
 
+    void draw_outlined_rect(TileLayer &tileLayer, const Bounds &bounds, int color);
+
 } // namespace editor
 } // namespace spright

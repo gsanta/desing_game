@@ -28,7 +28,10 @@ namespace editor
     private:
         float m_Size = 10;
 
+        bool m_IsFilled = false;
+
         Rect2D *m_Rect = nullptr;
+
         TempRectDrawer m_TempRectDrawer;
     };
 } // namespace editor

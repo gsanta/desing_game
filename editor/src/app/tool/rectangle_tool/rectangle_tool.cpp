@@ -27,7 +27,14 @@ namespace editor
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
         int color = context.editorState->color;
 
-        draw_filled_rect(activeLayer, m_TempRectDrawer.getBounds(), color);
+        if (m_IsFilled)
+        {
+            draw_filled_rect(activeLayer, m_TempRectDrawer.getBounds(), color);
+        }
+        else
+        {
+            draw_outlined_rect(activeLayer, m_TempRectDrawer.getBounds(), color);
+        }
 
         context.doc.activeDrawing->getForegroundLayer().clear();
         m_TempRectDrawer.reset();
@@ -42,7 +49,20 @@ namespace editor
 
         TileLayer &tileLayer = context.doc.activeDrawing->getForegroundLayer();
 
-        m_TempRectDrawer.draw(tileLayer, context.pointer.down, context.pointer.curr, context.editorState->color);
+        if (m_IsFilled)
+        {
+            m_TempRectDrawer.drawFilled(tileLayer,
+                                        context.pointer.down,
+                                        context.pointer.curr,
+                                        context.editorState->color);
+        }
+        else
+        {
+            m_TempRectDrawer.drawOutlined(tileLayer,
+                                          context.pointer.down,
+                                          context.pointer.curr,
+                                          context.editorState->color);
+        }
     }
 } // namespace editor
 } // namespace spright

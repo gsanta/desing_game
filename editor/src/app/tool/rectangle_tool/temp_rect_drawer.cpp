@@ -4,27 +4,25 @@ namespace spright
 {
 namespace editor
 {
-
-    void TempRectDrawer::draw(TileLayer &tileLayer, Vec2 from, Vec2 to, int color)
-    {
-        drawFilled(tileLayer, from, to, color);
-    }
-
     void TempRectDrawer::reset()
     {
-        m_FilledRect = nullptr;
+        m_Filled = nullptr;
+        m_OutlinedTop = nullptr;
+        m_OutlinedRight = nullptr;
+        m_OutlinedBottom = nullptr;
+        m_OutlinedLeft = nullptr;
     }
 
     const Bounds &TempRectDrawer::getBounds() const
     {
-        return m_FilledRect->getBounds();
+        return m_Bounds;
     }
 
     void TempRectDrawer::drawFilled(TileLayer &tileLayer, Vec2 from, Vec2 to, int color)
     {
-        if (m_FilledRect == nullptr)
+        if (m_Filled == nullptr)
         {
-            m_FilledRect = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
+            m_Filled = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
         }
 
         maths::Vec2 downTilePos = tileLayer.getCenterPos(from);
@@ -36,8 +34,42 @@ namespace editor
         float top = downTilePos.y > currTilePos.y ? downTilePos.y : currTilePos.y;
 
         float halfTileSize = tileLayer.getTileSize() / 2.0f;
-        m_FilledRect->setPosition(maths::Vec2(left - halfTileSize, bottom - halfTileSize));
-        m_FilledRect->setSize(maths::Vec2(right - left, top - bottom));
+        m_Filled->setPosition(maths::Vec2(left - halfTileSize, bottom - halfTileSize));
+        m_Filled->setSize(maths::Vec2(right - left, top - bottom));
+
+        m_Bounds = m_Filled->getBounds();
+    }
+
+    void TempRectDrawer::drawOutlined(TileLayer &tileLayer, Vec2 from, Vec2 to, int color)
+    {
+        float tileSize = tileLayer.getTileSize();
+
+        Vec2 downTilePos = tileLayer.getCenterPos(from) - tileSize / 2;
+        Vec2 currTilePos = tileLayer.getCenterPos(to) - tileSize / 2;
+
+        Bounds bounds = Bounds::createWithPositions(downTilePos.x, currTilePos.x, downTilePos.y, currTilePos.y);
+
+        if (m_OutlinedTop == nullptr)
+        {
+            m_OutlinedTop = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
+            m_OutlinedRight = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
+            m_OutlinedBottom = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
+            m_OutlinedLeft = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
+        }
+
+        m_OutlinedTop->setSize(Vec2(bounds.getWidth(), tileSize));
+        m_OutlinedTop->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getTopRight().y - tileSize));
+
+        m_OutlinedRight->setSize(Vec2(tileSize, bounds.getHeight() - 2 * tileSize));
+        m_OutlinedRight->setPosition(Vec2(bounds.getTopRight().x - tileSize, bounds.getBottomLeft().y + tileSize));
+
+        m_OutlinedBottom->setSize(Vec2(bounds.getWidth(), tileSize));
+        m_OutlinedBottom->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getBottomLeft().y));
+
+        m_OutlinedLeft->setSize(Vec2(tileSize, bounds.getHeight() - 2 * tileSize));
+        m_OutlinedLeft->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getBottomLeft().y + tileSize));
+
+        m_Bounds = bounds;
     }
 } // namespace editor
 } // namespace spright

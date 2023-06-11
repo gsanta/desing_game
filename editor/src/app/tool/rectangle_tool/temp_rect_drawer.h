@@ -14,17 +14,26 @@ namespace editor
     class TempRectDrawer
     {
     public:
-        void draw(TileLayer &tileLayer, Vec2 from, Vec2 to, int color);
+        void drawFilled(TileLayer &tileLayer, Vec2 from, Vec2 to, int color);
+
+        void drawOutlined(TileLayer &tileLayer, Vec2 from, Vec2 to, int color);
 
         void reset();
 
         const Bounds &getBounds() const;
 
     private:
-        void drawFilled(TileLayer &tileLayer, Vec2 from, Vec2 to, int color);
+        Rect2D *m_Filled = nullptr;
 
-    private:
-        Rect2D *m_FilledRect = nullptr;
+        Rect2D *m_OutlinedTop = nullptr;
+
+        Rect2D *m_OutlinedRight = nullptr;
+
+        Rect2D *m_OutlinedBottom = nullptr;
+
+        Rect2D *m_OutlinedLeft = nullptr;
+
+        Bounds m_Bounds;
     };
 } // namespace editor
 } // namespace spright

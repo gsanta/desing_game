@@ -25,6 +25,10 @@ namespace editor
 
         void pointerMove(const ToolContext &) override;
 
+        void setFilled(bool isFilled);
+
+        bool isFilled();
+
     private:
         float m_Size = 10;
 

@@ -64,5 +64,15 @@ namespace editor
                                           context.editorState->color);
         }
     }
+
+    void RectangleTool::setFilled(bool isFilled)
+    {
+        m_IsFilled = isFilled;
+    }
+
+    bool RectangleTool::isFilled()
+    {
+        return m_IsFilled;
+    }
 } // namespace editor
 } // namespace spright

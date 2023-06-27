@@ -70,7 +70,7 @@ namespace editor
         return drawing;
     }
 
-    Drawing DocumentFactory::resizeDrawing(Drawing &orig, Bounds bounds, bool checkerboard = true, float zPos = 0)
+    Drawing DocumentFactory::resizeDrawing(Drawing &orig, Bounds bounds, bool checkerboard, float zPos)
     {
         Drawing newDrawing(bounds);
         for (Frame &frame : orig.getFrameStore().getFrames())
@@ -78,13 +78,23 @@ namespace editor
             Frame &newFrame = newDrawing.getFrameStore().addFrame(FrameImpl(frame.getIndex()));
             for (TileLayer &layer : frame.getLayers())
             {
-                newFrame.addLayer(TileLayer(layer.getName(),
-                                            Group<Rect2D>(m_RendererProvider->createRenderer2D()),
-                                            bounds,
-                                            layer.getTileSize(),
-                                            zPos));
+                TileLayer &newLayer = newFrame.addLayer(TileLayer(layer.getName(),
+                                                                  Group<Rect2D>(m_RendererProvider->createRenderer2D()),
+                                                                  bounds,
+                                                                  layer.getTileSize(),
+                                                                  zPos));
+                for (Rect2D *rect : layer.getRenderables())
+                {
+                    Vec2 rectCenter = rect->getCenterPosition2d();
+                    if (newLayer.getBounds().contains(rectCenter.x, rectCenter.y))
+                    {
+                        newLayer.add(*rect);
+                    }
+                }
             }
         }
+
+        return newDrawing;
     }
 
     Document DocumentFactory::createDocument()

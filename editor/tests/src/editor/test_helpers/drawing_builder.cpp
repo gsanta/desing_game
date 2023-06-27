@@ -32,7 +32,7 @@ DrawingBuilder &DrawingBuilder::withTileLayer()
 
 Drawing DrawingBuilder::build()
 {
-    Drawing drawing(m_Bounds, &TestDocumentFactory::eventEmitter);
+    Drawing drawing(m_Bounds);
 
     const FrameImpl frame(0);
 

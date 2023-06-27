@@ -5,15 +5,15 @@ namespace spright
 namespace editor
 {
 
-    Drawing::Drawing(Bounds bounds, EventEmitter *eventEmitter) : Container(bounds), m_EventEmitter(eventEmitter)
+    Drawing::Drawing(Bounds bounds) : Container(bounds)
     {
-        m_FramePlayer = new FramePlayer(m_FrameStore, eventEmitter);
+        m_FramePlayer = new FramePlayer(m_FrameStore);
     }
 
-    Drawing::Drawing(const Drawing &other) : Container(other.getBounds()), m_EventEmitter(other.m_EventEmitter)
+    Drawing::Drawing(const Drawing &other) : Container(other.getBounds())
     {
         m_FrameStore = other.m_FrameStore;
-        m_FramePlayer = new FramePlayer(m_FrameStore, m_EventEmitter);
+        m_FramePlayer = new FramePlayer(m_FrameStore);
     }
 
     Drawing::~Drawing()

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../engine/graphics/camera/camera.h"
-#include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
 #include "drawing_state.h"
 #include "frame_store.h"
@@ -15,7 +14,7 @@ namespace editor
     class Drawing : public Container
     {
     public:
-        Drawing(Bounds bounds, EventEmitter *eventEmitter);
+        Drawing(Bounds bounds);
 
         Drawing(const Drawing &);
 
@@ -47,8 +46,6 @@ namespace editor
         FrameStore m_FrameStore;
 
         FramePlayer *m_FramePlayer;
-
-        EventEmitter *m_EventEmitter;
 
         DrawingState m_DrawingState;
     };

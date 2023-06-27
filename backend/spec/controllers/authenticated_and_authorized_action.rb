@@ -20,7 +20,7 @@ end
 RSpec.shared_examples_for 'an authenticated and authorized action for post' do
 
   context 'when the user is not signed in' do
-    it 'redirects to the sign in page' do
+    it 'should return 401:unauthorized' do
       subject
       expect(response).to have_http_status :unauthorized
     end
@@ -28,7 +28,7 @@ RSpec.shared_examples_for 'an authenticated and authorized action for post' do
 
   context "when the user is signed in" do
     it "should return 200:OK" do
-      sign_in user
+      sign_in userx
       subject
       expect(response).to have_http_status(:success)
     end

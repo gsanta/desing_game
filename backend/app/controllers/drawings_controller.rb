@@ -2,6 +2,8 @@
 
 class DrawingsController < InternalApiController
   def index
+    current_user
+
     @drawings = Drawing.all
 
     render react: {

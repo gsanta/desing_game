@@ -28,7 +28,7 @@ RSpec.shared_examples_for 'an authenticated and authorized action for post' do
 
   context "when the user is signed in" do
     it "should return 200:OK" do
-      sign_in userx
+      sign_in user
       subject
       expect(response).to have_http_status(:success)
     end

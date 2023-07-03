@@ -255,6 +255,10 @@ namespace engine
         return m_IndexSize;
     }
 
+    float TileLayer::getZPos() const {
+        return m_ZPos;
+    }
+
     nlohmann::json TileLayer::getLayerDescription() const
     {
         nlohmann::json json = {

@@ -7,10 +7,10 @@ namespace spright { namespace editor {
 		}
 
 		for (Drawing& drawing : m_DocumentStore->getActiveDocument().getDrawings()) {
-			drawing.getFramePlayer().update(elapsed);
+			// drawing.getFramePlayer().update(elapsed);
 		}
 	}
-	
+
 	void FramePlayerHandler::setDocumentStore(DocumentStore* documentStore) {
 		m_DocumentStore = documentStore;
 	}

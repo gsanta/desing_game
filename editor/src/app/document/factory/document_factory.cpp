@@ -94,6 +94,8 @@ namespace editor
             }
         }
 
+        orig = newDrawing;
+
         return newDrawing;
     }
 

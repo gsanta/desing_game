@@ -42,6 +42,8 @@ namespace editor
 
         DrawingState &getState();
 
+        void resize(Bounds newBounds);
+
     private:
         FrameStore m_FrameStore;
 

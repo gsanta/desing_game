@@ -1,28 +1,9 @@
 require "rails_helper"
 require_relative 'authenticated_and_authorized_action'
+require_relative './helpers/examples_for_required_params'
 
 RSpec.describe DrawingsController, type: :controller do
   let(:user) { create :user }
-
-  shared_examples_for 'required parameter' do |param:|
-    context "when #{param} param is missing" do
-      let(:param_name) { param.is_a?(Hash) ? param.values.first : param }
-
-      before do
-        if param.is_a?(Hash)
-          params[param.keys.first].delete param_name
-        else
-          params.delete param_name
-        end
-      end
-
-      it 'responds with 400 Bad Request' do
-        subject
-
-        expect(response).to have_http_status :bad_request
-      end
-    end
-  end
 
   describe "#index" do
     subject(:get_drawings) { get :index }
@@ -45,10 +26,17 @@ RSpec.describe DrawingsController, type: :controller do
       end
 
       it_behaves_like 'required parameter', param: { drawing: :title }
+      it_behaves_like 'required parameter', param: { drawing: :content }
 
       it "should return 200:OK" do
         subject
         expect(response).to have_http_status(:success)
+      end
+
+      it "creates a new drawing" do
+        expect {subject}.to change(Drawing, :count).by 1
+
+        expect(Drawing.last).to have_attributes title: title, content: content
       end
     end
 

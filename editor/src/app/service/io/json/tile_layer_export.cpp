@@ -49,7 +49,7 @@ namespace editor
         {
             nlohmann::json tile = json["tiles"][i];
 
-            Vec2 bottomLeftPos = layer.getBottomLeftPos(tile["i"]);
+            Vec2 bottomLeftPos = layer.getCenterPos(tile["i"]);
             float tileSize = layer.getTileSize();
             layer.add(Rect2D(bottomLeftPos.x, bottomLeftPos.y, tileSize, tileSize, tile["c"]));
         }

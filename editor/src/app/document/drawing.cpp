@@ -20,8 +20,13 @@ namespace editor
 
     Drawing::~Drawing()
     {
-        delete m_FramePlayer;
+        // delete m_FramePlayer;
     }
+
+    // Drawing &Drawing::operator=(const Drawing &other) {
+    //     delete m_FramePlayer;
+    //     // m_FramePlayer = new FramePlayer(m_FrameStore);
+    // }
 
     FrameStore &Drawing::getFrameStore()
     {

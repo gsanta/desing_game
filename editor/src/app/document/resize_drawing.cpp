@@ -7,14 +7,14 @@ namespace engine
     TileLayer resize_tile_layer(TileLayer &orig, const Bounds &bounds)
     {
         TileLayer newTileLayer(orig.getName(),
-                               Group<Rect2D>(orig.m_Group.getRenderer()),
+                               Group<Rect2D>(orig.m_Group.getRenderer()->clone()),
                                bounds,
                                orig.getTileSize(),
                                orig.getZPos());
         for (Rect2D *rect : orig.getRenderables())
         {
             Vec2 rectCenter = rect->getCenterPosition2d();
-            if (!newTileLayer.getBounds().contains(rectCenter.x, rectCenter.y))
+            if (newTileLayer.getBounds().contains(rectCenter.x, rectCenter.y))
             {
                 newTileLayer.add(*rect);
             }

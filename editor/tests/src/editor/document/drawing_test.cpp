@@ -7,7 +7,7 @@
 
 using namespace spright::editor;
 
-SCENARIO("DocumentFactory can resize a drawing")
+SCENARIO("Drawing")
 {
     GIVEN("a drawing")
     {
@@ -30,14 +30,12 @@ SCENARIO("DocumentFactory can resize a drawing")
         {
             THEN("removes pixels beyond the new bounds")
             {
+                drawing.resize(Bounds::createWithPositions(-1.0f, 1.0f, -2.0f, 2.0f));
+                // documentFactory.resizeDrawing(drawing, Bounds::createWithPositions(-1.0f, 1.0f, -2.0f, 2.0f));
 
-
-                Drawing newDrawing =
-                    documentFactory.resizeDrawing(drawing, Bounds::createWithPositions(-1.0f, 1.0f, -2.0f, 2.0f));
-
-                REQUIRE(newDrawing.getFrame(0).getLayers()[0].getRenderables().size() == 2);
-                REQUIRE(newDrawing.getFrame(0).getLayers()[0].getRenderables()[0]->getPosition2d() == Vec2(-1, -2));
-                REQUIRE(newDrawing.getFrame(0).getLayers()[0].getRenderables()[1]->getPosition2d() == Vec2(-1, -1));
+                REQUIRE(drawing.getFrame(0).getLayers()[0].getRenderables().size() == 2);
+                REQUIRE(drawing.getFrame(0).getLayers()[0].getRenderables()[0]->getPosition2d() == Vec2(-1, -2));
+                REQUIRE(drawing.getFrame(0).getLayers()[0].getRenderables()[1]->getPosition2d() == Vec2(-1, -1));
             }
         }
 

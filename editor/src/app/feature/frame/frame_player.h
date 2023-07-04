@@ -17,7 +17,7 @@ namespace editor
 
         void update(double elapsed) override;
 
-		void setIsActive(bool isActive);
+        void setIsActive(bool isActive);
 
     private:
         bool m_IsActive;

@@ -18,14 +18,15 @@ namespace editor
         m_FramePlayer = new FramePlayer(m_FrameStore);
     }
 
-    Drawing::~Drawing()
-    {
-        // delete m_FramePlayer;
-    }
+    //TODO: FIX THIS
+    // Drawing::~Drawing()
+    // {
+    //     delete m_FramePlayer;
+    // }
 
     // Drawing &Drawing::operator=(const Drawing &other) {
     //     delete m_FramePlayer;
-    //     // m_FramePlayer = new FramePlayer(m_FrameStore);
+    //     m_FramePlayer = new FramePlayer(m_FrameStore);
     // }
 
     FrameStore &Drawing::getFrameStore()
@@ -105,7 +106,8 @@ namespace editor
         return m_DrawingState;
     }
 
-    void Drawing::resize(Bounds newBounds) {
+    void Drawing::resize(Bounds newBounds)
+    {
         *this = resize_drawing(*this, newBounds);
     }
 

@@ -255,7 +255,8 @@ namespace engine
         return m_IndexSize;
     }
 
-    float TileLayer::getZPos() const {
+    float TileLayer::getZPos() const
+    {
         return m_ZPos;
     }
 

@@ -18,16 +18,22 @@ namespace editor
         m_FramePlayer = new FramePlayer(m_FrameStore);
     }
 
-    //TODO: FIX THIS
-    // Drawing::~Drawing()
-    // {
-    //     delete m_FramePlayer;
-    // }
+    Drawing::~Drawing()
+    {
+        delete m_FramePlayer;
+    }
 
-    // Drawing &Drawing::operator=(const Drawing &other) {
-    //     delete m_FramePlayer;
-    //     m_FramePlayer = new FramePlayer(m_FrameStore);
-    // }
+    Drawing &Drawing::operator=(const Drawing &other)
+    {
+        m_FrameStore = other.m_FrameStore;
+        FramePlayer *framePlayer = new FramePlayer(m_FrameStore);
+        m_DrawingState = other.m_DrawingState;
+
+        delete m_FramePlayer;
+        m_FramePlayer = framePlayer;
+
+        return *this;
+    }
 
     FrameStore &Drawing::getFrameStore()
     {

@@ -18,9 +18,9 @@ namespace editor
 
         Drawing(const Drawing &);
 
-        // ~Drawing();
+        ~Drawing();
 
-        // Drawing &operator=(const Drawing &);
+        Drawing &operator=(const Drawing &);
 
         FrameStore &getFrameStore();
 

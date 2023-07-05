@@ -18,13 +18,19 @@ namespace editor
 
         Drawing(const Drawing &);
 
-        ~Drawing();
-
         Drawing &operator=(const Drawing &);
 
         FrameStore &getFrameStore();
 
-        ActiveFrame &getActiveFrame();
+        std::vector<FrameImpl> &getFrames();
+
+        Frame &getActiveFrame();
+
+        void setActiveFrame(size_t index);
+
+        Frame &addFrame(const Frame &frame);
+
+        void removeFrame(size_t index);
 
         Frame &getFrame(size_t frameIndex);
 
@@ -36,20 +42,28 @@ namespace editor
 
         TileLayer &getBackgroundLayer();
 
+        void addBackgroundLayer(const TileLayer &tileLayer);
+
+        void addForegroundLayer(const TileLayer &tileLayer);
+
         std::string getJson();
 
         void render(const Camera &camera);
-
-        FramePlayer &getFramePlayer();
 
         DrawingState &getState();
 
         void resize(Bounds newBounds);
 
     private:
-        FrameStore m_FrameStore;
+        std::vector<TileLayer> m_BackgroundLayers;
 
-        FramePlayer *m_FramePlayer;
+        std::vector<TileLayer> m_ForegroundLayers;
+
+        std::vector<FrameImpl> m_Frames;
+
+        size_t m_ActiveFrameIndex;
+
+        size_t m_ActiveLayerIndex;
 
         DrawingState m_DrawingState;
     };

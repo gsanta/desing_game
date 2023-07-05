@@ -18,21 +18,21 @@ namespace editor
     public:
         FrameStore();
 
-        void activateNextFrame();
+        void activateNextFrame(); //
 
-        Frame &addFrame(const Frame &frame);
+        Frame &addFrame(const Frame &frame); //
 
-        void removeFrame(size_t index);
+        void removeFrame(size_t index); //
 
-        void setActiveFrame(size_t index);
+        void setActiveFrame(size_t index); //
 
-        ActiveFrame &getActiveFrame();
+        ActiveFrame &getActiveFrame(); //
 
-        bool hasActiveFrame() const;
+        bool hasActiveFrame() const; //
 
-        std::vector<FrameImpl> &getFrames();
+        std::vector<FrameImpl> &getFrames(); //
 
-        Frame &getFrame(size_t index);
+        Frame &getFrame(size_t index); //
 
     private:
         std::vector<FrameImpl> m_Frames;

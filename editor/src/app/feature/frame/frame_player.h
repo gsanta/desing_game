@@ -1,9 +1,8 @@
 #pragma once
 
 #include "../../core/run_loop/timed.h"
-#include "../../document/frame_store.h"
 #include "../../event/event_emitter.h"
-
+#include "../../document/drawing.h"
 #include <iostream>
 
 namespace spright
@@ -13,7 +12,7 @@ namespace editor
     class FramePlayer : public Timed
     {
     public:
-        FramePlayer(FrameStore &frameStore);
+        FramePlayer(Drawing &drawing);
 
         void update(double elapsed) override;
 
@@ -24,7 +23,7 @@ namespace editor
 
         double m_Elapsed;
 
-        FrameStore &m_FrameStore;
+        Drawing &m_Drawing;
     };
 } // namespace editor
 } // namespace spright

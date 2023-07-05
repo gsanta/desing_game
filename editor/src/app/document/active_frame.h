@@ -36,23 +36,23 @@ namespace editor
 
         const std::vector<TileLayer> &getLayers() const override;
 
-        size_t getIndex() const override;
+        size_t getIndex() const override; //
 
-        void setIndex(size_t index) override;
+        void setIndex(size_t index) override; //
 
-        void addBackgroundLayer(const TileLayer &tileLayer);
+        void addBackgroundLayer(const TileLayer &tileLayer); //
 
-        std::vector<TileLayer> &getBackgroundLayers();
+        std::vector<TileLayer> &getBackgroundLayers(); //
 
-        void addForegroundLayer(const TileLayer &tileLayer);
+        void addForegroundLayer(const TileLayer &tileLayer); //
 
-        std::vector<TileLayer> &getForegroundLayers();
+        std::vector<TileLayer> &getForegroundLayers(); //
 
         TileLayer &getActiveLayer();
 
         void setActiveLayer(size_t layerIndex);
 
-        nlohmann::json getJson() const override;
+        nlohmann::json getJson() const override; //
 
     private:
         FrameImpl &getActiveFrame() const;

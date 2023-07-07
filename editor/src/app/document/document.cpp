@@ -6,18 +6,14 @@ namespace spright { namespace editor {
 	{
 	}
 
-	FrameStore& Document::getFrameStore() {
-		return m_Drawings[m_ActiveDrawing].getFrameStore();
-	}
-
-	ActiveFrame& Document::getActiveFrame() {
-		return getFrameStore().getActiveFrame();
-	}
+	Frame& Document::getActiveFrame() {
+        return m_Drawings[m_ActiveDrawing].getActiveFrame();
+    }
 
 
 	TileLayer& Document::getActiveLayer() {
-		return getFrameStore().getActiveFrame().getActiveLayer();
-	}
+        return m_Drawings[m_ActiveDrawing].getActiveLayer();
+    }
 
 	Drawing& Document::getActiveDrawing() {
 		return m_Drawings[m_ActiveDrawing];
@@ -67,9 +63,5 @@ namespace spright { namespace editor {
 		}
 
 		m_Canvas.render(m_Camera);
-	}
-
-	FramePlayer& Document::getFramePlayer() {
-		return m_Drawings[m_ActiveDrawing].getFramePlayer();
 	}
 }}

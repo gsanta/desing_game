@@ -63,16 +63,6 @@ namespace editor
         return m_DocumentStore->getActiveDocument();
     }
 
-    ActiveFrame &Editor::getActiveFrame()
-    {
-        return m_DocumentStore->getActiveDocument().getActiveFrame();
-    }
-
-    TileLayer &Editor::getActiveLayer()
-    {
-        return getActiveFrame().getActiveLayer();
-    }
-
     Window *Editor::getWindow() const
     {
         return m_Window;

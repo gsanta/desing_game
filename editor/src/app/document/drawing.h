@@ -1,9 +1,8 @@
 #pragma once
 
 #include "../../engine/graphics/camera/camera.h"
-#include "../feature/frame/frame_player.h"
 #include "drawing_state.h"
-#include "frame_store.h"
+#include "frame.h"
 
 namespace spright
 {
@@ -16,13 +15,7 @@ namespace editor
     public:
         Drawing(Bounds bounds);
 
-        Drawing(const Drawing &);
-
-        Drawing &operator=(const Drawing &);
-
-        FrameStore &getFrameStore();
-
-        std::vector<FrameImpl> &getFrames();
+        std::vector<Frame> &getFrames();
 
         Frame &getActiveFrame();
 
@@ -59,9 +52,9 @@ namespace editor
 
         std::vector<TileLayer> m_ForegroundLayers;
 
-        std::vector<FrameImpl> m_Frames;
+        std::vector<Frame> m_Frames;
 
-        size_t m_ActiveFrameIndex;
+        size_t m_ActiveFrameIndex = 0;
 
         size_t m_ActiveLayerIndex;
 

@@ -11,15 +11,8 @@ namespace editor
     {
     }
 
-    Drawing::Drawing(const Drawing &other) : Container(other.getBounds())
-    {
-    }
-
-    Drawing &Drawing::operator=(const Drawing &other)
-    {
-        m_DrawingState = other.m_DrawingState;
-
-        return *this;
+    std::vector<Frame> &Drawing::getFrames() {
+        return m_Frames;
     }
 
     Frame &Drawing::getActiveFrame()
@@ -65,14 +58,14 @@ namespace editor
 
     Frame &Drawing::getFrame(size_t frameIndex)
     {
-        auto it = find_if(m_Frames.begin(), m_Frames.end(), [=](Frame &frame) { return frame.getIndex() == index; });
+        auto it = find_if(m_Frames.begin(), m_Frames.end(), [=](Frame &frame) { return frame.getIndex() == frameIndex; });
 
         if (it != m_Frames.end())
         {
             return *it;
         }
 
-        throw std::invalid_argument("Frame with index " + std::to_string(index) + " not found");
+        throw std::invalid_argument("Frame with index " + std::to_string(frameIndex) + " not found");
     }
 
     TileLayer &Drawing::addLayer(const TileLayer &tileLayer)
@@ -89,7 +82,7 @@ namespace editor
 
     TileLayer &Drawing::getActiveLayer()
     {
-        return getFrameStore().getActiveFrame().getActiveLayer();
+        return getActiveFrame().getLayers()[m_ActiveLayerIndex];
     }
 
     TileLayer &Drawing::getForegroundLayer()

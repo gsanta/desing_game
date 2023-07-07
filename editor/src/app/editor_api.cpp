@@ -31,7 +31,7 @@ std::string getToolData(std::string tool)
 
 std::vector<std::string> getFrames()
 {
-    const std::vector<FrameImpl> &frames = editor->getActiveDocument().getFrameStore().getFrames();
+    const std::vector<Frame> &frames = editor->getActiveDocument().getFrames();
 
     std::vector<std::string> target;
 
@@ -50,12 +50,12 @@ void addFrame()
 
 void removeFrame(size_t index)
 {
-    editor->getActiveDocument().getFrameStore().removeFrame(index);
+    editor->getActiveDocument().removeFrame(index);
 }
 
 void setActiveFrame(size_t index)
 {
-    editor->getActiveDocument().getFrameStore().setActiveFrame(index);
+    editor->getActiveDocument().setActiveFrame(index);
 }
 
 std::string getActiveFrame()
@@ -78,11 +78,11 @@ void api_flip_horizontal()
     Drawing &drawing = editor->getActiveDocument().getActiveDrawing();
     if (drawing.getState().getBounds().isNull())
     {
-        flip_horizontal(editor->getActiveDocument().getFrameStore().getActiveFrame().getLayers());
+        flip_horizontal(editor->getActiveDocument().getActiveFrame().getLayers());
     }
     else
     {
-        flip_horizontal(editor->getActiveDocument().getFrameStore().getActiveFrame().getLayers(),
+        flip_horizontal(editor->getActiveDocument().getActiveFrame().getLayers(),
                         drawing.getState().getBounds());
     }
 }

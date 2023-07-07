@@ -13,7 +13,7 @@
 #include "./../document.h"
 #include "./../drawing.h"
 #include "./../frame.h"
-#include "./../frame_impl.h"
+#include "./../frame.h"
 #include "renderer_provider.h"
 
 #include <vector>
@@ -37,8 +37,6 @@ namespace editor
         Document createDocument();
 
         Drawing createDrawing(Bounds bounds, bool checkerboard = true, float zPos = 0);
-
-        Drawing resizeDrawing(Drawing &orig, Bounds bounds, bool checkerboard = true, float zPos = 0);
 
         void createFrame(Document &document);
 

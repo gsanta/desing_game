@@ -11,7 +11,8 @@ namespace editor
     {
     }
 
-    std::vector<Frame> &Drawing::getFrames() {
+    std::vector<Frame> &Drawing::getFrames()
+    {
         return m_Frames;
     }
 
@@ -58,7 +59,8 @@ namespace editor
 
     Frame &Drawing::getFrame(size_t frameIndex)
     {
-        auto it = find_if(m_Frames.begin(), m_Frames.end(), [=](Frame &frame) { return frame.getIndex() == frameIndex; });
+        auto it =
+            find_if(m_Frames.begin(), m_Frames.end(), [=](Frame &frame) { return frame.getIndex() == frameIndex; });
 
         if (it != m_Frames.end())
         {
@@ -83,6 +85,11 @@ namespace editor
     TileLayer &Drawing::getActiveLayer()
     {
         return getActiveFrame().getLayers()[m_ActiveLayerIndex];
+    }
+
+    void Drawing::setActiveLayer(size_t index)
+    {
+        m_ActiveLayerIndex = index;
     }
 
     TileLayer &Drawing::getForegroundLayer()

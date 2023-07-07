@@ -13,7 +13,6 @@
 #include "./../document.h"
 #include "./../drawing.h"
 #include "./../frame.h"
-#include "./../frame.h"
 #include "renderer_provider.h"
 
 #include <vector>

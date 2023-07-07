@@ -82,8 +82,7 @@ void api_flip_horizontal()
     }
     else
     {
-        flip_horizontal(editor->getActiveDocument().getActiveFrame().getLayers(),
-                        drawing.getState().getBounds());
+        flip_horizontal(editor->getActiveDocument().getActiveFrame().getLayers(), drawing.getState().getBounds());
     }
 }
 

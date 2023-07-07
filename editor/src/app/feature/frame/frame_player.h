@@ -1,8 +1,9 @@
 #pragma once
 
 #include "../../core/run_loop/timed.h"
-#include "../../event/event_emitter.h"
 #include "../../document/drawing.h"
+#include "../../event/event_emitter.h"
+
 #include <iostream>
 
 namespace spright

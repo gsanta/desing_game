@@ -167,4 +167,17 @@ TEST_CASE("Frame", "[frame]")
 
         REQUIRE_THROWS_WITH(frame.getLayer(2), "No layer at index 2");
     }
+
+    SECTION("can get the json representation of the active layer")
+    {
+        std::vector<TileLayer> layers = TestDocumentFactory::createTileLayers(3);
+
+        Frame frame;
+
+        frame.addLayer(layers[0]);
+        frame.addLayer(layers[1]);
+        frame.addLayer(layers[2]);
+
+        REQUIRE(frame.getJson().dump() == "{\"index\":0}");
+    }
 }

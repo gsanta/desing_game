@@ -29,6 +29,8 @@ namespace editor
 
         TileLayer &getActiveLayer();
 
+        void setActiveLayer(size_t index);
+
         TileLayer &addLayer(const TileLayer &tileLayer);
 
         TileLayer &getForegroundLayer();
@@ -56,7 +58,7 @@ namespace editor
 
         size_t m_ActiveFrameIndex = 0;
 
-        size_t m_ActiveLayerIndex;
+        size_t m_ActiveLayerIndex = 0;
 
         DrawingState m_DrawingState;
     };

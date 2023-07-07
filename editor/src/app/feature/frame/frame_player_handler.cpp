@@ -11,7 +11,8 @@ namespace editor
             return;
         }
 
-        for (FramePlayer *player : m_FramePlayers) {
+        for (FramePlayer *player : m_FramePlayers)
+        {
             player->update(elapsed);
         }
     }
@@ -21,7 +22,8 @@ namespace editor
         m_DocumentStore = documentStore;
     }
 
-    void FramePlayerHandler::addDrawing(Drawing &drawing) {
+    void FramePlayerHandler::addDrawing(Drawing &drawing)
+    {
         m_FramePlayers.push_back(new FramePlayer(drawing));
     }
 

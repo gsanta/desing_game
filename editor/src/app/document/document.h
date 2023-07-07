@@ -10,6 +10,7 @@
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
 #include "frame.h"
+
 #include <algorithm>
 #include <memory>
 #include <vector>

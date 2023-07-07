@@ -12,14 +12,14 @@ namespace editor
     public:
         void update(double elapsed) override;
 
-		void setDocumentStore(DocumentStore *documentStore);
+        void setDocumentStore(DocumentStore *documentStore);
 
-		void addDrawing(Drawing &drawing);
+        void addDrawing(Drawing &drawing);
 
     private:
         DocumentStore *m_DocumentStore = nullptr;
 
-		std::vector<FramePlayer*> m_FramePlayers;
+        std::vector<FramePlayer *> m_FramePlayers;
     };
 } // namespace editor
 } // namespace spright

@@ -14,18 +14,14 @@ class DrawingsController < InternalApiController
   end
 
   def create
-    CreateDrawing.new(create_drawing_attributes).execute
+    Drawing.create! user: current_user,
+                    title: params.require(:title),
+                    content: params.require(:content)
+
     render json: {
       pageProps: {
         hello: "world",
       }
     }
-  end
-
-  private
-
-  def create_drawing_attributes
-    params.require(:drawing).require([:content, :title])
-    params.require(:drawing).permit([:content, :title])
   end
 end

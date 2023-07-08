@@ -16,7 +16,7 @@ RSpec.describe DrawingsController, type: :controller do
 
     let(:title) { "Test drawing" }
     let(:content) { '{ "drawing": "content" }' }
-    let(:params) { { drawing: { title: title, content: content } } }
+    let(:params) { { title: title, content: content } }
 
     it_behaves_like "an authenticated and authorized action for post"
 
@@ -25,18 +25,18 @@ RSpec.describe DrawingsController, type: :controller do
         sign_in user
       end
 
-      it_behaves_like 'required parameter', param: { drawing: :title }
-      it_behaves_like 'required parameter', param: { drawing: :content }
+      it_behaves_like 'required parameter', param: :title
 
       it "should return 200:OK" do
         subject
         expect(response).to have_http_status(:success)
       end
 
-      it "creates a new drawing" do
-        expect {subject}.to change(Drawing, :count).by 1
-
-        expect(Drawing.last).to have_attributes title: title, content: content
+      it "creates a drawing" do
+        expect { subject }.to change(Drawing, :count).by 1
+        expect(Drawing.last).to have_attributes user_id: user.id,
+                                                title: title,
+                                                content: content
       end
     end
 

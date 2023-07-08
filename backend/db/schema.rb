@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_074358) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_101406) do
   create_table "drawings", force: :cascade do |t|
     t.string "title"
     t.json "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_drawings_on_user_id"
   end
 

@@ -103,13 +103,17 @@ RSpec.describe DrawingsController, type: :controller do
         content: '{ "drawing": "new-content" }'
       }
     end
-    let(:drawing) { create :drawing, title: title, content: content, user: user }
+    let!(:drawing) { create :drawing, title: title, content: content, user: user }
 
     it_behaves_like "an authenticated and authorized action for api"
 
     context "when updating a drawing" do
+      before do
+        sign_in user
+      end
+
       it "updates the drawing" do
-        expect { update_drawing }.to change { drawing.reload.content }.to eq params.content
+        expect { update_drawing }.to change {drawing.reload.content}.to params[:content]
       end
     end
   end

@@ -22,7 +22,9 @@ class DrawingsController < InternalApiController
   end
 
   def update
-
+    update_params = params.permit(:title, :content)
+    drawing = Drawing.find(params.require(:id))
+    drawing.update!(update_params)
   end
 
   def destroy

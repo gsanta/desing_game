@@ -42,6 +42,11 @@ namespace editor
             }
         }
 
+        for (TileLayer &layer : orig.getBackgroundLayers()) {
+            TileLayer newLayer = resize_tile_layer(layer, bounds);
+            newDrawing.addBackgroundLayer(newLayer);
+        }
+
         return newDrawing;
     }
 } // namespace editor

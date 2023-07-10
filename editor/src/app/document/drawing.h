@@ -35,7 +35,7 @@ namespace editor
 
         TileLayer &getForegroundLayer();
 
-        TileLayer &getBackgroundLayer();
+        std::vector<TileLayer> &getBackgroundLayers();
 
         void addBackgroundLayer(const TileLayer &tileLayer);
 

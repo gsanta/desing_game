@@ -64,7 +64,7 @@ namespace editor
 
         if (checkerboard)
         {
-            m_Checkerboard.create(drawing.getBackgroundLayer());
+            m_Checkerboard.create(drawing.getBackgroundLayers()[0]);
         }
 
         return drawing;

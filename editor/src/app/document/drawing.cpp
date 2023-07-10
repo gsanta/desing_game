@@ -97,9 +97,9 @@ namespace editor
         return m_ForegroundLayers[0];
     }
 
-    TileLayer &Drawing::getBackgroundLayer()
+    std::vector<TileLayer> &Drawing::getBackgroundLayers()
     {
-        return m_BackgroundLayers[0];
+        return m_BackgroundLayers;
     }
 
     void Drawing::addBackgroundLayer(const TileLayer &tileLayer)

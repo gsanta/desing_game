@@ -107,13 +107,25 @@ RSpec.describe DrawingsController, type: :controller do
 
     it_behaves_like "an authenticated and authorized action for api"
 
-    context "when updating a drawing" do
-      before do
+    context 'when patching the content' do
+      it "updates the content of the model" do
         sign_in user
+        expect { update_drawing }.to change { drawing.reload.content }.to params[:content]
       end
+    end
 
-      it "updates the drawing" do
-        expect { update_drawing }.to change {drawing.reload.content}.to params[:content]
+    context 'when patching the title' do
+      let(:params) do
+        {
+          id: drawing.id,
+          title: new_title
+        }
+      end
+      let(:new_title) { 'New Title' }
+
+      it 'updates the title of the model' do
+        sign_in user
+        expect { update_drawing }.to change { drawing.reload.title }.to params[:title]
       end
     end
   end

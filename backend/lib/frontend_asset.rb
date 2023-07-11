@@ -40,14 +40,7 @@ module FrontendAsset
     private
 
     def manifest
-      # @manifest = nil unless Rails.env.production?
-      if Rails.env.production?
-        url = 'manifest.json'
-      else
-        # url = asset_url 'manifest.json'
-        # url = base_url + '/manifest.json'
-      end
-      @manifest ||= manifest_client.get('http://localhost:3113/manifest.json').body
+      @manifest ||= manifest_client.get("#{ENV['RENDER_EXTERNAL_URL']}/manifest.json").body
     end
 
     def manifest_client

@@ -34,7 +34,7 @@ module FrontendAsset
     end
 
     def base_url
-      URI(ENV['ASSET_URL'])
+      URI(ENV['RENDER_EXTERNAL_URL'])
     end
 
     private

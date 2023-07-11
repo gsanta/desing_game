@@ -34,7 +34,7 @@ module FrontendAsset
     end
 
     def base_url
-      URI('http://localhost:3012')
+      URI(ENV['RENDER_EXTERNAL_URL'])
     end
 
     private

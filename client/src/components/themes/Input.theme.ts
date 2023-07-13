@@ -13,8 +13,8 @@ const OutlineVariant = definePartsStyle((props) => {
       bg: 'brand.background',
       _focusVisible: {
         zIndex: 1,
-        borderColor: 'brand.primary',
-        boxShadow: `0 0 0 1px ${getColor(theme, 'brand.primary')}`,
+        borderColor: 'orange.400',
+        boxShadow: `0 0 0 1px var(--chakra-colors-orange-600)`,
       },
     },
   };

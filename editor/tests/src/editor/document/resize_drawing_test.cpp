@@ -69,6 +69,15 @@ SCENARIO("resize_drawing")
                     resize_drawing(drawing, Bounds::createWithPositions(-2.0f, 1.0f, -2.0f, 1.0f), &documentFactory);
 
                 REQUIRE(drawing.getBackgroundLayer().getRenderables().size() == 9);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(0)->getColor() == COLOR_DARK_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(1)->getColor() == COLOR_LIGHT_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(2)->getColor() == COLOR_DARK_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(3)->getColor() == COLOR_LIGHT_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(4)->getColor() == COLOR_DARK_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(5)->getColor() == COLOR_LIGHT_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(6)->getColor() == COLOR_DARK_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(7)->getColor() == COLOR_LIGHT_GREY);
+                REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(8)->getColor() == COLOR_DARK_GREY);
             }
         }
     }

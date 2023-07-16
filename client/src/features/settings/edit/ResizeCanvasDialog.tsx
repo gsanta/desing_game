@@ -20,7 +20,7 @@ const ResizeCanvasDialog = ({ isOpen, onClose }: Omit<DialogProps, 'title' | 'ch
     if (isOpen) {
       reset({ width: String(canvasSize.width), height: String(canvasSize.height) });
     }
-  }, [isOpen, canvasSize]);
+  }, [isOpen, canvasSize, reset]);
 
   const onSubmit = handleSubmit((values) => {
     dispatch(setCanvasSize({ width: Number(values.width), height: Number(values.height) }));

@@ -1,4 +1,3 @@
-import Editor from '@/features/editor/Editor';
 import EditorApi from '@/features/editor/EditorApi';
 import { toRGBAColor } from '@/utils/colorUtils';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';

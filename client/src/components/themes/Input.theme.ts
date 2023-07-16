@@ -2,9 +2,7 @@ import { inputAnatomy as parts } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys);
 
-const OutlineVariant = definePartsStyle((props) => {
-  const { theme } = props;
-
+const OutlineVariant = definePartsStyle(() => {
   return {
     field: {
       border: '1px solid',

@@ -205,8 +205,8 @@ namespace editor
                                                                pixelCount / 2.0f,
                                                                -pixelCount / 2.0f,
                                                                pixelCount / 2.0f);
-            m_DocumentStore->getActiveDocument().getActiveDrawing().resize(drawingBounds);
-            // m_DocumentStore->getActiveDocument().getActiveDrawing().removeFrame(1);
+            Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
+            drawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
         }
     }
 

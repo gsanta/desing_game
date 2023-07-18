@@ -21,14 +21,14 @@ SCENARIO("TileLayer")
             THEN("the copy equals to the original")
             {
                 Rect2D rect(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
-                Bounds bounds = Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f);
+                Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
                 TileLayer layer1("layer", Group<Rect2D>(new HeadlessRenderer2D()), bounds);
 
                 layer1.add(rect);
 
                 TileLayer layer2("layer2",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-5.0f, 5.0f, -5.0f, 5.0f));
+                                 Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
 
                 layer2 = layer1;
 
@@ -43,10 +43,10 @@ SCENARIO("TileLayer")
             {
                 TileLayer layer1("layer",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer2("layer",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
                 Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
                 Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
@@ -66,19 +66,19 @@ SCENARIO("TileLayer")
             {
                 TileLayer layer1("layer",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer2("layer_2",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer3("layer_3",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer4("layer_4",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-5.0f, 5.0f, -5.0f, 5.0f));
+                                 Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
                 TileLayer layer5("layer_5",
                                  Group<Rect2D>(new HeadlessRenderer2D()),
-                                 Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 layer5.add(Rect2D(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF));
 
                 REQUIRE(layer1 != layer2);
@@ -94,7 +94,7 @@ SCENARIO("TileLayer")
             {
                 TileLayer layer("layer",
                                 Group<Rect2D>(new HeadlessRenderer2D()),
-                                Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
                 REQUIRE(layer.getRenderables().size() == 0);
 
@@ -116,7 +116,7 @@ SCENARIO("TileLayer")
             {
                 TileLayer layer("layer",
                                 Group<Rect2D>(new HeadlessRenderer2D()),
-                                Bounds::createWithPositions(-16.0f, 16.0f, -16.0f, 16.0f));
+                                Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
                 float tileSize = layer.getTileSize();
 

@@ -37,7 +37,7 @@ namespace editor
         {
             nlohmann::json layer = json["layers"][i];
 
-            m_TileLayerExport->importLayer(document, layer);
+            m_TileLayerExport->importLayer(layer);
         }
     }
 } // namespace editor

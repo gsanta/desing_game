@@ -8,13 +8,12 @@ namespace editor
     {
     }
 
-    nlohmann::json TileLayerExport::exportLayer(const TileLayer &layer)
+    nlohmann::json TileLayerExport::exportLayer(const TileLayer &layer) const
     {
         nlohmann::json json;
 
         json["layerType"] = "tile";
-        json["tileW"] = layer.getTileBounds().getWidth();
-        json["tileH"] = layer.getTileBounds().getHeight();
+        json["bounds"] = layer.getBounds().toArray();
         json["name"] = layer.getName();
         json["index"] = layer.getIndex();
         for (int i = 0; i < layer.getIndexSize(); i++)
@@ -22,7 +21,9 @@ namespace editor
             if (layer.getAtTileIndex(i) != nullptr)
             {
                 unsigned int color = layer.getAtTileIndex(i)->getColor();
-                json["tiles"] += {{"i", i}, {"c", color}};
+                json["tiles"] += color;
+            } else {
+                json["tiles"] += -1;
             }
         }
 
@@ -31,12 +32,12 @@ namespace editor
     }
 
 
-    void TileLayerExport::importLayer(Document &document, nlohmann::json json)
+    TileLayer TileLayerExport::importLayer(nlohmann::json json) const
     {
-        std::string string = json.dump();
+        nlohmann::json b = json["bounds"];
+        Bounds bounds = Bounds::createWithPositions(b[0].get<float>(), b[1].get<float>(), b[2].get<float>(), b[3].get<float>());
 
-        m_DocumentFactory->createUserLayer(document.getActiveDrawing(), json["name"]);
-        TileLayer &layer = document.getActiveFrame().getLayers().back();
+        TileLayer layer = m_DocumentFactory->createUserLayer(bounds, json["name"]);
 
         int tileCount = json["tiles"].size();
 

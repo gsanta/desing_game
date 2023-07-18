@@ -17,8 +17,8 @@ namespace editor
 
     public:
         TileLayerExport(DocumentFactory *documentHandler);
-        nlohmann::json exportLayer(const TileLayer &layer);
-        void importLayer(Document &document, nlohmann::json json);
+        nlohmann::json exportLayer(const TileLayer &layer) const;
+        TileLayer importLayer(nlohmann::json json) const;
     };
 } // namespace editor
 } // namespace spright

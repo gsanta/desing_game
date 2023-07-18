@@ -20,14 +20,9 @@ namespace editor
         delete m_RendererProvider;
     }
 
-    void DocumentFactory::createUserLayer(Drawing &drawing, std::string name)
+    TileLayer DocumentFactory::createUserLayer(const Bounds &bounds, std::string name) const
     {
-        TileLayer layer(name, Group<Rect2D>(m_RendererProvider->createRenderer2D()), drawing.getBounds());
-
-        for (Frame &frame : drawing.getFrames())
-        {
-            frame.addLayer(std::move(layer));
-        }
+        return TileLayer(name, Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds);
     }
 
     TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize)
@@ -95,7 +90,7 @@ namespace editor
     {
         float pixelCount = 32.0f;
         Bounds drawingBounds =
-            Bounds::createWithPositions(-pixelCount / 2.0f, pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f);
+            Bounds::createWithPositions(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
         Camera camera(m_WindowContainer->getBounds().getWidth(),
                       m_WindowContainer->getBounds().getHeight(),
@@ -106,7 +101,7 @@ namespace editor
         Document document(drawingBounds, camera, createDrawing(drawingBounds, false, 0.01f));
 
         document.addDrawing(
-            createDrawing(Bounds::createWithPositions(-16.0f, 16.0f, -pixelCount / 2.0f, pixelCount / 2.0f)));
+            createDrawing(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
         return document;
     }

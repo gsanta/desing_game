@@ -43,7 +43,7 @@ namespace editor
 
         void createFrame(Document &document);
 
-        void createUserLayer(Drawing &drawing, std::string name);
+        TileLayer createUserLayer(const Bounds &bounds, std::string name) const;
 
     private:
         Container *m_WindowContainer;

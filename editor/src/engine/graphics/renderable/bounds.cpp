@@ -75,8 +75,9 @@ namespace engine
         return minX == 0 && maxX == 0 && minY == 0 && maxY == 0;
     }
 
-    std::vector<float> Bounds::toArray() const {
-        return std::vector<float> { minX, minY, maxX, maxY };
+    std::vector<float> Bounds::toArray() const
+    {
+        return std::vector<float>{minX, minY, maxX, maxY};
     }
 
     bool operator==(const Bounds &lhs, const Bounds &rhs)

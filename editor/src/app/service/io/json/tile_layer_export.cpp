@@ -12,18 +12,18 @@ namespace editor
     {
         nlohmann::json json;
 
-        json["layerType"] = "tile";
         json["bounds"] = layer.getBounds().toArray();
         json["name"] = layer.getName();
         json["index"] = layer.getIndex();
+        json["tile_size"] = layer.getTileSize();
         for (int i = 0; i < layer.getIndexSize(); i++)
         {
             if (layer.getAtTileIndex(i) != nullptr)
             {
                 unsigned int color = layer.getAtTileIndex(i)->getColor();
-                json["tiles"] += color;
-            } else {
-                json["tiles"] += -1;
+                std::string colorHex = int_to_hex(color);
+                std::string string(colorHex + ":" + std::to_string(i));
+                json["tiles"] += string;
             }
         }
 
@@ -34,21 +34,39 @@ namespace editor
 
     TileLayer TileLayerExport::importLayer(nlohmann::json json) const
     {
-        nlohmann::json b = json["bounds"];
-        Bounds bounds = Bounds::createWithPositions(b[0].get<float>(), b[1].get<float>(), b[2].get<float>(), b[3].get<float>());
+        nlohmann::json boundsStr = json["bounds"];
+        Bounds bounds = Bounds::createWithPositions(boundsStr[0].get<float>(),
+                                                    boundsStr[1].get<float>(),
+                                                    boundsStr[2].get<float>(),
+                                                    boundsStr[3].get<float>());
 
-        TileLayer layer = m_DocumentFactory->createUserLayer(bounds, json["name"]);
+        std::string tileSizeStr = json["tile_size"].dump();
+        float tilsSize = std::stof(tileSizeStr);
+
+        TileLayer layer = m_DocumentFactory->createUserLayer(bounds, json["name"], tilsSize);
 
         int tileCount = json["tiles"].size();
 
+        Vec2 halfTileSize = Vec2(layer.getTileSize() / 2.0f, layer.getTileSize() / 2.0f);
+        float tileSize = layer.getTileSize();
+
         for (int i = 0; i < tileCount; i++)
         {
-            nlohmann::json tile = json["tiles"][i];
+            std::string tile = json["tiles"][i].dump();
 
-            Vec2 bottomLeftPos = layer.getCenterPos(tile["i"]);
-            float tileSize = layer.getTileSize();
-            layer.add(Rect2D(bottomLeftPos.x, bottomLeftPos.y, tileSize, tileSize, tile["c"]));
+            std::string colorStr = tile.substr(1, 10);
+
+            std::string tileIndexStr = tile.substr(12);
+            tileIndexStr.pop_back();
+
+            unsigned int index = std::stoi(tileIndexStr);
+            unsigned int color = std::stoul(colorStr, nullptr, 16);
+
+            Vec2 bottomLeftPos = layer.getCenterPos(index) - halfTileSize;
+            layer.add(Rect2D(bottomLeftPos.x, bottomLeftPos.y, tileSize, tileSize, color));
         }
+
+        return layer;
     }
 } // namespace editor
 } // namespace spright

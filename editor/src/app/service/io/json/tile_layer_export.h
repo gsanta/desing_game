@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../../engine/graphics/layer/tileLayer.h"
+#include "../../../core/colors.h"
 #include "../../../document/document.h"
 #include "../../../document/factory/document_factory.h"
 

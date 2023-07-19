@@ -20,9 +20,9 @@ namespace editor
         delete m_RendererProvider;
     }
 
-    TileLayer DocumentFactory::createUserLayer(const Bounds &bounds, std::string name) const
+    TileLayer DocumentFactory::createUserLayer(const Bounds &bounds, std::string name, float tileSize) const
     {
-        return TileLayer(name, Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds);
+        return TileLayer(name, Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, tileSize);
     }
 
     TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize)

@@ -11,7 +11,7 @@ namespace spright { namespace editor {
 	public:
 		DocumentStore();
 		Document& getActiveDocument();
-		void addDocument(Document document);
+		void addDocument(const Document &document);
 		void setActiveDocument(size_t index);
 		bool hasActiveDocument() const;
 	};

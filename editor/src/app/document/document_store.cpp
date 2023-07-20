@@ -9,7 +9,7 @@ namespace spright { namespace editor {
 		return m_Documents[m_ActiveDocument];
 	}
 
-	void DocumentStore::addDocument(Document document) {
+	void DocumentStore::addDocument(const Document &document) {
 		m_Documents.push_back(document);
 	}
 

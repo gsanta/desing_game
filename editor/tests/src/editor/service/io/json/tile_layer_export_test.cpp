@@ -20,6 +20,7 @@ SCENARIO("TileLayerExport")
                                       .withTileSize(1)
                                       .withTile(Vec2Int(0, 0), COLOR_RED)
                                       .withTile(Vec2Int(1, 0), COLOR_BLUE)
+                                      .withTile(Vec2Int(1, 1), COLOR_YELLOW)
                                       .build();
 
             Container container(bounds);
@@ -36,7 +37,7 @@ SCENARIO("TileLayerExport")
 
             REQUIRE(json["tile_size"].dump() == "1.0");
             REQUIRE(json["bounds"].dump() == "[-1.0,-1.0,1.0,1.0]");
-            REQUIRE(json["tiles"].dump() == "[\"0xff0000ff:0\",\"0xffff0000:1\"]");
+            REQUIRE(json["tiles"].dump() == "[\"0xff0000ff:0\",\"0xffff0000:1\",\"0xff00ffff:3\"]");
         }
     }
 

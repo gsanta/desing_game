@@ -2,6 +2,7 @@
 #include "../../../maths/vec2.h"
 
 #include <sstream>
+#include <vector>
 
 namespace spright
 {

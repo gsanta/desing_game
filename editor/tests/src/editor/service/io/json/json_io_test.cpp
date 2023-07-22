@@ -75,14 +75,14 @@ SCENARIO("JsonIO")
                                   "{"
                                   "\"bounds\":[-1.0,-1.0,1.0,1.0],"
                                   "\"index\":0,"
-                                  "\"name\":\"layer_0\","
+                                  "\"name\":\"layer_1\","
                                   "\"tile_size\":1.0,"
                                   "\"tiles\":[\"0xff0000ff:0\"]"
                                   "},"
                                   "{"
                                   "\"bounds\":[-1.0,-1.0,1.0,1.0],"
                                   "\"index\":1,"
-                                  "\"name\":\"layer_0\","
+                                  "\"name\":\"layer_2\","
                                   "\"tile_size\":1.0,"
                                   "\"tiles\":[\"0xffff0000:1\"]"
                                   "}"
@@ -94,14 +94,14 @@ SCENARIO("JsonIO")
                                   "{"
                                   "\"bounds\":[-1.0,-1.0,1.0,1.0],"
                                   "\"index\":0,"
-                                  "\"name\":\"layer_0\","
+                                  "\"name\":\"layer_1\","
                                   "\"tile_size\":1.0,"
                                   "\"tiles\":[\"0xff0000ff:2\"]"
                                   "},"
                                   "{"
                                   "\"bounds\":[-1.0,-1.0,1.0,1.0],"
                                   "\"index\":1,"
-                                  "\"name\":\"layer_0\","
+                                  "\"name\":\"layer_2\","
                                   "\"tile_size\":1.0,"
                                   "\"tiles\":[\"0xffff0000:3\"]"
                                   "}"
@@ -122,10 +122,26 @@ SCENARIO("JsonIO")
             Drawing &drawing = document.getActiveDrawing();
 
             REQUIRE(drawing.getFrames().size() == 2);
+
             REQUIRE(drawing.getFrames()[0].getLayers().size() == 2);
 
+            REQUIRE(drawing.getFrames()[0].getLayer(0).getName() == "layer_1");
             REQUIRE(drawing.getFrames()[0].getLayer(0).getRenderables().size() == 1);
             REQUIRE(drawing.getFrames()[0].getLayer(0).getAtTileIndex(0)->getColor() == COLOR_RED);
+
+            REQUIRE(drawing.getFrames()[0].getLayer(1).getName() == "layer_2");
+            REQUIRE(drawing.getFrames()[0].getLayer(1).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[0].getLayer(1).getAtTileIndex(1)->getColor() == COLOR_BLUE);
+
+            REQUIRE(drawing.getFrames()[0].getLayers().size() == 2);
+
+            REQUIRE(drawing.getFrames()[1].getLayer(0).getName() == "layer_1");
+            REQUIRE(drawing.getFrames()[1].getLayer(0).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[1].getLayer(0).getAtTileIndex(2)->getColor() == COLOR_RED);
+
+            REQUIRE(drawing.getFrames()[1].getLayer(1).getName() == "layer_2");
+            REQUIRE(drawing.getFrames()[1].getLayer(1).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[1].getLayer(1).getAtTileIndex(3)->getColor() == COLOR_BLUE);
         }
     }
 }

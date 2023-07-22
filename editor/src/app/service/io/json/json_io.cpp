@@ -47,7 +47,6 @@ namespace editor
         Document document = m_DocumentFactory->createEmptyDocument();
         std::vector<Frame> frames;
 
-
         for (int i = 0; i < frameCount; i++)
         {
             Frame frame;
@@ -57,8 +56,7 @@ namespace editor
 
             for (int j = 0; j < layerCount; j++)
             {
-
-                TileLayer tileLayer = m_TileLayerExport->importLayer(frameJson["layers"][i]);
+                TileLayer tileLayer = m_TileLayerExport->importLayer(frameJson["layers"][j]);
                 frame.addLayer(tileLayer);
             }
             frames.push_back(frame);

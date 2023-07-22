@@ -1,24 +1,34 @@
 #pragma once
-#include <nlohmann/json.hpp>
-#include "../../../document/document.h"
 #include "../../../../engine/graphics/layer/tileLayer.h"
-#include "tile_layer_export.h"
+#include "../../../document/document.h"
 #include "../../../document/factory/document_factory.h"
+#include "tile_layer_export.h"
 
-namespace spright { namespace editor {
+#include <nlohmann/json.hpp>
 
-	class JsonIO {
-	private:
-		DocumentFactory* m_DocumentFactory;
-		TileLayerExport* m_TileLayerExport;
-		int m_i;
+namespace spright
+{
+namespace editor
+{
 
-	public:
-		JsonIO(DocumentFactory* documentHandler);
+    class JsonIO
+    {
 
-		~JsonIO();
+    public:
+        JsonIO(DocumentFactory *documentHandler);
 
-		nlohmann::json exportDocument(Document& document);
-		Document importDocument(std::string string) const;
-	};
-}}
+        ~JsonIO();
+
+        nlohmann::json exportDocument(Document &document);
+
+        Document importDocument(std::string string) const;
+
+    private:
+        DocumentFactory *m_DocumentFactory;
+
+        TileLayerExport *m_TileLayerExport;
+
+        int m_i;
+    };
+} // namespace editor
+} // namespace spright

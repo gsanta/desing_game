@@ -49,7 +49,7 @@ SCENARIO("TileLayerExport")
             {
                 const char *jsonStr = "{"
                                       "\"index\": 0,"
-                                      "\"name\": \"\","
+                                      "\"name\": \"layer23\","
                                       "\"tile_size\": 1,"
                                       "\"bounds\": [-1.0,-1.0,1.0,1.0],"
                                       "\"tiles\": [\"0xff0000ff:0\",\"0xffff0000:2\"] }";
@@ -66,6 +66,7 @@ SCENARIO("TileLayerExport")
 
                 TileLayer tileLayer = exporter.importLayer(json);
 
+                REQUIRE(tileLayer.getName() == "layer23");
                 REQUIRE(tileLayer.getRenderables().size() == 2);
                 REQUIRE(tileLayer.getAtTileIndex(0) != nullptr);
                 REQUIRE(tileLayer.getAtTileIndex(0)->getColor() == COLOR_RED);

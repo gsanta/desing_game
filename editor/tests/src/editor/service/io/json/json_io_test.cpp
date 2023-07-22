@@ -67,16 +67,48 @@ SCENARIO("JsonIO")
         THEN("the created document contains all the relevant information")
         {
 
-            const char *jsonStr =
-                "{\"frames\":"
-                "[{\"layers\":"
-                "["
-                "{\"bounds\":[-1.0,-1.0,1.0,1.0],"
-                "\"index\":0,"
-                "\"name\":\"layer_0\","
-                "\"tile_size\":1.0,"
-                "\"tiles\":[\"0xff0000ff:0\"]},"
-                "{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":1,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xffff0000:1\"]}]},{\"layers\":[{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":0,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xff0000ff:2\"]},{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":1,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xffff0000:3\"]}]}]}\r\n{\"frames\":[{\"layers\":[{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":0,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xff0000ff:0\"]},{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":1,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xffff0000:1\"]}]},{\"layers\":[{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":0,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xff0000ff:2\"]},{\"bounds\":[-1.0,-1.0,1.0,1.0],\"index\":1,\"name\":\"layer_0\",\"tile_size\":1.0,\"tiles\":[\"0xffff0000:3\"]}]}]}";
+            const char *jsonStr = "{\"frames\":"
+                                  "["
+                                  "{"
+                                  "\"layers\":"
+                                  "["
+                                  "{"
+                                  "\"bounds\":[-1.0,-1.0,1.0,1.0],"
+                                  "\"index\":0,"
+                                  "\"name\":\"layer_0\","
+                                  "\"tile_size\":1.0,"
+                                  "\"tiles\":[\"0xff0000ff:0\"]"
+                                  "},"
+                                  "{"
+                                  "\"bounds\":[-1.0,-1.0,1.0,1.0],"
+                                  "\"index\":1,"
+                                  "\"name\":\"layer_0\","
+                                  "\"tile_size\":1.0,"
+                                  "\"tiles\":[\"0xffff0000:1\"]"
+                                  "}"
+                                  "]"
+                                  "},"
+                                  "{"
+                                  "\"layers\":"
+                                  "["
+                                  "{"
+                                  "\"bounds\":[-1.0,-1.0,1.0,1.0],"
+                                  "\"index\":0,"
+                                  "\"name\":\"layer_0\","
+                                  "\"tile_size\":1.0,"
+                                  "\"tiles\":[\"0xff0000ff:2\"]"
+                                  "},"
+                                  "{"
+                                  "\"bounds\":[-1.0,-1.0,1.0,1.0],"
+                                  "\"index\":1,"
+                                  "\"name\":\"layer_0\","
+                                  "\"tile_size\":1.0,"
+                                  "\"tiles\":[\"0xffff0000:3\"]"
+                                  "}"
+                                  "]"
+                                  "}"
+                                  "]"
+                                  "}";
 
             Bounds bounds = Bounds::createWithPositions(-1.0f, -1.0f, 1.0f, 1.0f);
 
@@ -86,6 +118,14 @@ SCENARIO("JsonIO")
             JsonIO jsonIO(&documentFactory);
 
             Document document = jsonIO.importDocument(jsonStr);
+
+            Drawing &drawing = document.getActiveDrawing();
+
+            REQUIRE(drawing.getFrames().size() == 2);
+            REQUIRE(drawing.getFrames()[0].getLayers().size() == 2);
+
+            REQUIRE(drawing.getFrames()[0].getLayer(0).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[0].getLayer(0).getAtTileIndex(0)->getColor() == COLOR_RED);
         }
     }
 }

@@ -34,8 +34,6 @@ namespace editor
             framesJson["frames"] += layersJson;
         }
 
-        std::cout << framesJson.dump() << std::endl;
-
 
         return framesJson;
     }
@@ -46,7 +44,7 @@ namespace editor
         nlohmann::json json = nlohmann::json::parse(string);
         int frameCount = json["frames"].size();
 
-        Document document = m_DocumentFactory->createDocument();
+        Document document = m_DocumentFactory->createEmptyDocument();
         std::vector<Frame> frames;
 
 
@@ -66,11 +64,7 @@ namespace editor
             frames.push_back(frame);
         }
 
-        TileLayer aLayer = frames[0].getLayer(0);
-
-        TileLayer backgroundLayer = m_DocumentFactory->createBackgroundLayer(aLayer.getBounds(), aLayer.getTileSize());
-
-        Drawing drawing(frames, backgroundLayer);
+        Drawing drawing = m_DocumentFactory->createDrawing(frames, true);
 
         document.addDrawing(drawing);
 

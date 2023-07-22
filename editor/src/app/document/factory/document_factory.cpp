@@ -65,16 +65,25 @@ namespace editor
         document.getActiveDrawing().addFrame(std::move(frame));
     }
 
-    Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard, float zPos)
+    Drawing DocumentFactory::createDrawing(std::vector<Frame> &frames, bool checkerboard) const
     {
-        TileLayer backgroundLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 2.0f, zPos - 0.1f);
-        TileLayer initialLayer("layer1", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 0.5f, zPos);
+        TileLayer &aLayer = frames[0].getLayers()[0];
 
-        Drawing drawing(initialLayer, backgroundLayer);
+        TileLayer backgroundLayer("",
+                                  Group<Rect2D>(m_RendererProvider->createRenderer2D()),
+                                  aLayer.getBounds(),
+                                  2.0f,
+                                  m_BackgroundZPos);
+
+        Drawing drawing(frames, backgroundLayer);
 
         float tileSize = TileLayer::defaultTileSize;
 
-        TileLayer tempLayer("", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, tileSize, zPos);
+        TileLayer tempLayer("",
+                            Group<Rect2D>(m_RendererProvider->createRenderer2D()),
+                            aLayer.getBounds(),
+                            tileSize,
+                            aLayer.getZPos());
 
         drawing.addForegroundLayer(tempLayer);
 
@@ -86,7 +95,21 @@ namespace editor
         return drawing;
     }
 
-    Document DocumentFactory::createDocument()
+    Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard, float zPos) const
+    {
+        TileLayer initialLayer("layer1", Group<Rect2D>(m_RendererProvider->createRenderer2D()), bounds, 0.5f, zPos);
+
+        std::vector<Frame> frames;
+
+        Frame frame(0);
+
+        frame.addLayer(initialLayer);
+        frames.push_back(frame);
+
+        return createDrawing(frames, checkerboard);
+    }
+
+    Document DocumentFactory::createEmptyDocument() const
     {
         float pixelCount = 32.0f;
         Bounds drawingBounds =
@@ -99,6 +122,15 @@ namespace editor
                       1.0f);
 
         Document document(drawingBounds, camera, createDrawing(drawingBounds, false, 0.01f));
+
+        return document;
+    }
+
+    Document DocumentFactory::createDocument()
+    {
+        float pixelCount = 32.0f;
+
+        Document document = createEmptyDocument();
 
         document.addDrawing(
             createDrawing(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));

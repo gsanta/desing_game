@@ -35,7 +35,11 @@ namespace editor
 
         Document createDocument();
 
-        Drawing createDrawing(Bounds bounds, bool checkerboard = true, float zPos = 0);
+        Document createEmptyDocument() const;
+
+        Drawing createDrawing(std::vector<Frame> &frames, bool checkerboard) const;
+
+        Drawing createDrawing(Bounds bounds, bool checkerboard = true, float zPos = 0) const;
 
         TileLayer createTileLayer(std::string name, const Bounds &bounds, float tileSize);
 

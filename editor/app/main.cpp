@@ -97,7 +97,7 @@ size_t createLayer(std::string name)
 
     for (Frame &frame : drawing.getFrames())
     {
-        frame.addLayer(layer);
+        frame.addLayer(tileLayer);
     }
 
     return drawing.getActiveFrame().getLayers().back().getIndex();

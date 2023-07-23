@@ -10,13 +10,11 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "webpack",
+    "build:deploy": "yarn && yarn build && ./scripts/build.sh",
     "start": "webpack-dev-server",
     "test": "./node_modules/.bin/jest",
-    "build-storybook": "build-storybook",
     "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "deploy-build": "npm ci && npm run build && ./scripts/build.sh",
-    "deploy-start": "node ./deploy/index.js"
+    "lint:fix": "eslint --fix"
   },
   "author": "Gergely Santa",
   "license": "MIT",
@@ -88,8 +86,5 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"
-  },
-  "msw": {
-    "workerDirectory": ".storybook/public"
   }
 }

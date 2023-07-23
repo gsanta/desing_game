@@ -18,7 +18,8 @@ namespace editor
         delete m_Services;
     }
 
-    void Editor::init() {
+    void Editor::init()
+    {
         m_EventEmitter = std::make_unique<EmscriptenEventEmitter>();
 
         m_EditorState = std::make_shared<EditorState>();

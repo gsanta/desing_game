@@ -2,7 +2,7 @@ import Editor from '@/features/editor/Editor';
 import EditorApi from '@/features/editor/EditorApi';
 import { initLayers } from '@/features/layer/state/layerSlice';
 import { toRGBAColor } from '@/utils/colorUtils';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
 interface SettingsState {
   color: string;
@@ -62,7 +62,7 @@ export const settingsSlice = createSlice({
 
 export const { flipHorizontal, initSettings, receiveColor, setCanvasSize, setColor } = settingsSlice.actions;
 
-export const importDocument = (fileContent: string, editor: EditorApi) => async (dispatch: any) => {
+export const importDocument = (fileContent: string, editor: EditorApi) => async (dispatch: Dispatch) => {
   editor.importDocument(fileContent);
   dispatch(initLayers(editor as Editor));
 };

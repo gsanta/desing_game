@@ -25,7 +25,7 @@ const ImportDialog = ({ isOpen, onClose }: Omit<DialogProps, 'title' | 'children
       setImporting(false);
       onClose();
     }
-  }, [isImporting, setImporting]);
+  }, [isImporting, setImporting, dispatch]);
 
   const handleImport = () => {
     setImporting(true);

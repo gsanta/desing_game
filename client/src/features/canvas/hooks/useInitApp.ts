@@ -14,10 +14,8 @@ const useInitApp = (appContext: App, canvasNode?: HTMLCanvasElement) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!isEditorInitialized.current && editor && canvasNode) {
-      editor.canvas = canvasNode;
-
       const script = document.createElement('script');
-      script.src = 'spright.js';
+      script.src = process.env.RENDER_EXTERNAL_URL + '/spright.js';
       script.async = true;
       document.body.appendChild(script);
 

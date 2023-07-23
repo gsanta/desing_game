@@ -25,7 +25,7 @@ const ImportDialog = ({ isOpen, onClose }: Omit<DialogProps, 'title' | 'children
       setImporting(false);
       onClose();
     }
-  }, [isImporting, setImporting, dispatch]);
+  }, [isImporting, setImporting, dispatch, fileContent, editor, onClose]);
 
   const handleImport = () => {
     setImporting(true);

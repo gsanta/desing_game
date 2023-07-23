@@ -3,15 +3,27 @@ import { initSettings } from '@/features/settings/state/settingsSlice';
 import { initTools } from '@/features/tool/state/toolSlice';
 import { initLayers } from '@/features/layer/state/layerSlice';
 import { App } from '../../../app/App';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { store } from '@/utils/store';
 
 const useInitApp = (appContext: App, canvasNode?: HTMLCanvasElement) => {
   const [isModuleInitialized, setIsModuleInitialized] = useState(false);
 
+  const isEditorInitialized = useRef<boolean>(false);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    appContext.editorApi.canvas = canvasNode;
+    if (!isEditorInitialized.current && editor && canvasNode) {
+      editor.canvas = canvasNode;
+
+      const script = document.createElement('script');
+      script.src = 'spright.js';
+      script.async = true;
+      document.body.appendChild(script);
+
+      isEditorInitialized.current = true;
+    }
+
     if (window?.Module?.isRuntimeInitialized && !isModuleInitialized) {
       setIsModuleInitialized(true);
 
@@ -20,7 +32,7 @@ const useInitApp = (appContext: App, canvasNode?: HTMLCanvasElement) => {
       store.dispatch(initTools(appContext.editorApi));
 
       const canvasSize = JSON.parse(appContext.editorApi.getCanvasSize());
-      store.dispatch(initSettings({ editor: appContext.editorApi, canvasSize }));
+      store.dispatch(initSettings({ canvasSize }));
     }
   });
 

@@ -6,7 +6,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface SettingsState {
   color: string;
-  editor?: EditorApi;
   canvasSize: {
     width: number;
     height: number;
@@ -25,8 +24,7 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    initSettings: (state, action: PayloadAction<Pick<SettingsState, 'editor' | 'canvasSize'>>) => {
-      state.editor = action.payload.editor;
+    initSettings: (state, action: PayloadAction<Pick<SettingsState, 'canvasSize'>>) => {
       state.canvasSize = action.payload.canvasSize;
     },
 
@@ -47,17 +45,17 @@ export const settingsSlice = createSlice({
       const b = color.substring(5, 7);
       const a = color.substring(7, 9);
       const hexColor = Number('0x' + a + b + g + r);
-      state.editor?.setColor(hexColor);
+      editor.setColor(hexColor);
     },
 
     setCanvasSize: (state, action: PayloadAction<SettingsState['canvasSize']>) => {
       state.canvasSize = action.payload;
 
-      state.editor?.setCanvasSize(state.canvasSize.width, state.canvasSize.height);
+      editor.setCanvasSize(state.canvasSize.width, state.canvasSize.height);
     },
 
-    flipHorizontal: (state) => {
-      state.editor?.flipHorizontal();
+    flipHorizontal: () => {
+      editor.flipHorizontal();
     },
   },
 });

@@ -24,6 +24,10 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
+    flipHorizontal: () => {
+      editor.flipHorizontal();
+    },
+
     initSettings: (state, action: PayloadAction<Pick<SettingsState, 'canvasSize'>>) => {
       state.canvasSize = action.payload.canvasSize;
     },
@@ -52,10 +56,6 @@ export const settingsSlice = createSlice({
       state.canvasSize = action.payload;
 
       editor.setCanvasSize(state.canvasSize.width, state.canvasSize.height);
-    },
-
-    flipHorizontal: () => {
-      editor.flipHorizontal();
     },
   },
 });

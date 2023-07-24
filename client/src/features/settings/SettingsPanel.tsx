@@ -1,6 +1,6 @@
 import Box from '@/components/box/Box';
 import Icon from '@/components/icon/Icon';
-import { IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { Button, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import ExportDialog from './io/ExportDialog';
 import ImportDialog from './io/import/ImportDialog';
@@ -8,6 +8,14 @@ import { useAppDispatch } from '@/hooks';
 import { flipHorizontal } from '@/features/settings/state/settingsSlice';
 import { useBoolean } from 'usehooks-ts';
 import ResizeCanvasDialog from './edit/ResizeCanvasDialog';
+import { useMutation, useQuery } from 'react-query';
+import api from '@/utils/api';
+import { AxiosError } from 'axios';
+
+type CreateDrawingRequest = {
+  title: string;
+  content: string;
+};
 
 const SettingsPanel = () => {
   const [isExportDialogOpen, setExportDialogOpen] = useState(false);
@@ -16,6 +24,21 @@ const SettingsPanel = () => {
   const dispatch = useAppDispatch();
 
   const handleFlipHorizontal = () => dispatch(flipHorizontal());
+
+  const { mutate } = useMutation<unknown, AxiosError<unknown>, CreateDrawingRequest>(async (data) => {
+    const resp = await api.post('/drawings', {
+      ...data,
+    });
+
+    return resp;
+  });
+
+  const handleSave = () => {
+    mutate({
+      title: 'test drawing',
+      content: JSON.stringify({ a: 'b' }),
+    });
+  };
 
   const {
     value: isResizeCanvasDialogOpen,
@@ -39,6 +62,9 @@ const SettingsPanel = () => {
           <MenuItem onClick={openResizeCanvasDialog}>Resize canvas</MenuItem>
         </MenuList>
       </Menu>
+      <Button variant="outline" size="sm" isLoading={false} onClick={handleSave}>
+        <Icon name="BiSave" />
+      </Button>
       <ImportDialog isOpen={isImportDialogOpen} onClose={closeImportDialog} />
       <ExportDialog isOpen={isExportDialogOpen} onClose={() => setExportDialogOpen(false)} />
       <ResizeCanvasDialog isOpen={isResizeCanvasDialogOpen} onClose={closeResizeCanvasDialog} />

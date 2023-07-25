@@ -43,10 +43,6 @@ const variantOutline = defineStyle((props) => {
 
   const defaultTheme = theme.components.Button.variants?.outline(props);
 
-  // if (colorScheme === 'gray') {
-  //   return { ...defaultTheme };
-  // }
-
   return {
     ...defaultTheme,
     bg: getBackgroundColor(),

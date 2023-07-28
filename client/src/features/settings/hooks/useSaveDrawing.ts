@@ -1,7 +1,7 @@
-import { useAppSelector } from "@/hooks";
-import api from "@/utils/api";
-import { AxiosError } from "axios";
-import { useMutation } from "react-query";
+import { useAppSelector } from '@/hooks';
+import api from '@/utils/api';
+import { AxiosError } from 'axios';
+import { useMutation } from 'react-query';
 
 type CreateDrawingRequest = {
   title: string;
@@ -9,7 +9,7 @@ type CreateDrawingRequest = {
 };
 
 const useSaveDrawing = () => {
-  const { editor } = useAppSelector((state) => state.editor )
+  const { editor } = useAppSelector((state) => state.editor);
 
   const { mutate, isLoading } = useMutation<unknown, AxiosError<unknown>, CreateDrawingRequest>(async (data) => {
     const resp = await api.post('/drawings', {
@@ -29,8 +29,8 @@ const useSaveDrawing = () => {
 
   return {
     save: handleSave,
-    isLoading: isLoading
-  }
-}
+    isLoading: isLoading,
+  };
+};
 
 export default useSaveDrawing;

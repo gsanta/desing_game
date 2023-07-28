@@ -1,4 +1,4 @@
-import Editor, { editor } from '@/features/editor/Editor';
+import Editor from '@/features/editor/Editor';
 import { initLayers } from '@/features/layer/state/layerSlice';
 import { toRGBAColor } from '@/utils/colorUtils';
 import type { RootState } from '@/utils/store';
@@ -44,13 +44,11 @@ export const settingsSlice = createSlice({
 
     setCanvasSize: (state, action: PayloadAction<SettingsState['canvasSize']>) => {
       state.canvasSize = action.payload;
-
-      editor.setCanvasSize(state.canvasSize.width, state.canvasSize.height);
     },
   },
 });
 
-export const { initSettings, receiveColor, setCanvasSize } = settingsSlice.actions;
+export const { initSettings, receiveColor } = settingsSlice.actions;
 
 const actions = settingsSlice.actions;
 
@@ -62,20 +60,27 @@ export function flipHorizontal() {
 
 export function setColor(color: string) {
   return (dispatch: ThunkDispatch<unknown, unknown, Action>, getState: () => RootState) => {
-      dispatch(actions.setColor(color));
+    dispatch(actions.setColor(color));
 
-      const r = color.substring(1, 3);
-      const g = color.substring(3, 5);
-      const b = color.substring(5, 7);
-      const a = color.substring(7, 9);
-      const hexColor = Number('0x' + a + b + g + r);
-      getState().editor.editor?.setColor(hexColor);
+    const r = color.substring(1, 3);
+    const g = color.substring(3, 5);
+    const b = color.substring(5, 7);
+    const a = color.substring(7, 9);
+    const hexColor = Number('0x' + a + b + g + r);
+    getState().editor.editor?.setColor(hexColor);
   };
 }
 
 export const importDocument = (fileContent: string, editor: Editor) => async (dispatch: Dispatch) => {
   editor.importDocument(fileContent);
   dispatch(initLayers(editor));
+};
+
+export const setCanvasSize = (canvasSize: SettingsState['canvasSize']) => {
+  return (_dispatch: ThunkDispatch<unknown, unknown, Action>, getState: () => RootState) => {
+    getState().editor.editor.setCanvasSize(canvasSize.width, canvasSize.height);
+    actions.setCanvasSize(canvasSize);
+  };
 };
 
 export default settingsSlice.reducer;

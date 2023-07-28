@@ -14,7 +14,11 @@ import LoadDrawingDialog from './components/LoadDrawingDialog';
 const SettingsPanel = () => {
   const [isExportDialogOpen, setExportDialogOpen] = useState(false);
   const { value: isImportDialogOpen, setTrue: openImportDialog, setFalse: closeImportDialog } = useBoolean(false);
-  const { value: isLoadDrawingDialogOpen, setTrue: openLoadDrawingDialog, setFalse: cloaseLoadDrawingDialog } = useBoolean(false);
+  const {
+    value: isLoadDrawingDialogOpen,
+    setTrue: openLoadDrawingDialog,
+    setFalse: cloaseLoadDrawingDialog,
+  } = useBoolean(false);
 
   const dispatch = useAppDispatch();
 
@@ -52,7 +56,7 @@ const SettingsPanel = () => {
       </Button>
       <ImportDialog isOpen={isImportDialogOpen} onClose={closeImportDialog} />
       <ExportDialog isOpen={isExportDialogOpen} onClose={() => setExportDialogOpen(false)} />
-      <LoadDrawingDialog isOpen={isLoadDrawingDialogOpen} onClose={cloaseLoadDrawingDialog}/>
+      <LoadDrawingDialog isOpen={isLoadDrawingDialogOpen} onClose={cloaseLoadDrawingDialog} />
       <ResizeCanvasDialog isOpen={isResizeCanvasDialogOpen} onClose={closeResizeCanvasDialog} />
     </Box>
   );

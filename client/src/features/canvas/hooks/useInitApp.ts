@@ -6,19 +6,19 @@ import { useEffect, useRef, useState } from 'react';
 import { store } from '@/utils/store';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { setEditor } from '@/features/editor/editorSlice';
-import Editor, { editor } from '@/features/editor/Editor';
+import Editor from '@/features/editor/Editor';
 
 const loadEditor = () => {
   const script = document.createElement('script');
   script.src = process.env.RENDER_EXTERNAL_URL + '/spright.js';
   script.async = true;
   document.body.appendChild(script);
-}
+};
 
 const useInitApp = (canvasNode?: HTMLCanvasElement) => {
   const [isModuleInitialized, setIsModuleInitialized] = useState(false);
   const dispatch = useAppDispatch();
-  const editor = useAppSelector((state) => state.editor.editor)
+  const editor = useAppSelector((state) => state.editor.editor);
 
   const isEditorInitialized = useRef<boolean>(false);
 

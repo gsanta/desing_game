@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import Editor from "./Editor";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import Editor from './Editor';
 
 type EditorState = {
   editor: Editor;
-}
+};
 
 const initialState: EditorState = {} as EditorState;
 
@@ -12,13 +12,11 @@ export const editorSlice = createSlice({
   initialState,
   reducers: {
     setEditor: (state, action: PayloadAction<Editor>) => {
-        state.editor = action.payload;
-    }
-  }
+      state.editor = action.payload;
+    },
+  },
 });
 
-export const {
-  setEditor,
-} = editorSlice.actions;
+export const { setEditor } = editorSlice.actions;
 
 export default editorSlice.reducer;

@@ -54,7 +54,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd client && npm i
+          command: cd client && yarn
       - run:
           name: Lint
           command: ./client/node_modules/.bin/eslint $(git diff --diff-filter=ACMR --name-only origin/master...HEAD | grep -E '\.(ts|tsx)$' | xargs)
@@ -66,10 +66,10 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd client && npm i
+          command: cd client && yarn
       - run:
           name: Build
-          command: cd client && npm run build
+          command: cd client && yarn build
   assemble_frontend:
     docker:
       - image: cimg/node:16.15.0

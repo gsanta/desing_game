@@ -49,7 +49,7 @@ jobs:
             docker-compose run --rm clang-format; echo $?
   client_lint:
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:18.16.0
     steps:
       - checkout
       - run:
@@ -61,7 +61,7 @@ jobs:
   client_build:
     working_directory: ~/client
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:18.16.0
     steps:
       - checkout
       - run:
@@ -72,7 +72,7 @@ jobs:
           command: cd client && yarn build
   assemble_frontend:
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:18.16.0
     steps:
       - checkout
       - add_ssh_keys:
@@ -93,7 +93,7 @@ jobs:
             git push origin master
   deploy:
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:18.16.0
     steps:
       - run:
           name: Trigger deploy

@@ -27,6 +27,7 @@
 #include "tool/select_tool/select_tool.h"
 #include "tool/tool_handler.h"
 #include "tool/zoom_tool.h"
+#include "./core/editor/abstract_editor.h"
 
 #include <vector>
 
@@ -36,7 +37,7 @@ namespace editor
 {
     using namespace ::spright::engine;
 
-    class Editor
+    class Editor : public AbstractEditor
     {
     public:
         explicit Editor(RunLoop runLoop);

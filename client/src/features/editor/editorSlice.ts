@@ -2,10 +2,10 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import Editor from "./Editor";
 
 type EditorState = {
-  editor?: Editor;
+  editor: Editor;
 }
 
-const initialState: EditorState = {}
+const initialState: EditorState = {} as EditorState;
 
 export const editorSlice = createSlice({
   name: 'editor',

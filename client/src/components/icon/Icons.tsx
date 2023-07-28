@@ -16,3 +16,4 @@ export { BiImageAlt } from 'react-icons/bi';
 export { BiCircle } from 'react-icons/bi';
 export { BsSlashLg } from 'react-icons/bs';
 export { BiSave } from 'react-icons/bi';
+export { BiCloudDownload } from 'react-icons/bi';

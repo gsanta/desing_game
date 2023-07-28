@@ -7,38 +7,20 @@ import ImportDialog from './io/import/ImportDialog';
 import { useAppDispatch } from '@/hooks';
 import { flipHorizontal } from '@/features/settings/state/settingsSlice';
 import { useBoolean } from 'usehooks-ts';
-import ResizeCanvasDialog from './edit/ResizeCanvasDialog';
-import { useMutation, useQuery } from 'react-query';
-import api from '@/utils/api';
-import { AxiosError } from 'axios';
-
-type CreateDrawingRequest = {
-  title: string;
-  content: string;
-};
+import ResizeCanvasDialog from './components/ResizeCanvasDialog';
+import useSaveDrawing from './hooks/useSaveDrawing';
+import LoadDrawingDialog from './components/LoadDrawingDialog';
 
 const SettingsPanel = () => {
   const [isExportDialogOpen, setExportDialogOpen] = useState(false);
   const { value: isImportDialogOpen, setTrue: openImportDialog, setFalse: closeImportDialog } = useBoolean(false);
+  const { value: isLoadDrawingDialogOpen, setTrue: openLoadDrawingDialog, setFalse: cloaseLoadDrawingDialog } = useBoolean(false);
 
   const dispatch = useAppDispatch();
 
   const handleFlipHorizontal = () => dispatch(flipHorizontal());
 
-  const { mutate } = useMutation<unknown, AxiosError<unknown>, CreateDrawingRequest>(async (data) => {
-    const resp = await api.post('/drawings', {
-      ...data,
-    });
-
-    return resp;
-  });
-
-  const handleSave = () => {
-    mutate({
-      title: 'test drawing',
-      content: JSON.stringify({ a: 'b' }),
-    });
-  };
+  const { save, isLoading: isSaveLoading } = useSaveDrawing();
 
   const {
     value: isResizeCanvasDialogOpen,
@@ -62,11 +44,15 @@ const SettingsPanel = () => {
           <MenuItem onClick={openResizeCanvasDialog}>Resize canvas</MenuItem>
         </MenuList>
       </Menu>
-      <Button variant="outline" size="sm" isLoading={false} onClick={handleSave}>
+      <Button variant="outline" size="sm" isLoading={isSaveLoading} onClick={save}>
         <Icon name="BiSave" />
+      </Button>
+      <Button variant="outline" size="sm" isLoading={isSaveLoading} onClick={openLoadDrawingDialog}>
+        <Icon name="BiCloudDownload" />
       </Button>
       <ImportDialog isOpen={isImportDialogOpen} onClose={closeImportDialog} />
       <ExportDialog isOpen={isExportDialogOpen} onClose={() => setExportDialogOpen(false)} />
+      <LoadDrawingDialog isOpen={isLoadDrawingDialogOpen} onClose={cloaseLoadDrawingDialog}/>
       <ResizeCanvasDialog isOpen={isResizeCanvasDialogOpen} onClose={closeResizeCanvasDialog} />
     </Box>
   );

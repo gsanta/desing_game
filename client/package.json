@@ -13,7 +13,7 @@
     "build:production": "NODE_ENV=production webpack",
     "deploy": "yarn && yarn build:production  && ./scripts/build.sh",
     "start": "NODE_ENV=development webpack-dev-server",
-    "lint": "eslint",
+    "lint": "eslint --quiet",
     "lint:fix": "eslint --fix"
   },
   "author": "Gergely Santa",

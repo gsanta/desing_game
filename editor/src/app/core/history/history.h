@@ -16,7 +16,7 @@ namespace editor
     public:
         void add(std::shared_ptr<Undoable> undoable);
 
-        voidß undo(AbstractEditor &editor);
+        void undo(AbstractEditor &editor);
 
         void redo(AbstractEditor &editor);
 

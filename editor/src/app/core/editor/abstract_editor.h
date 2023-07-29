@@ -10,7 +10,7 @@ namespace editor
 
     class AbstractEditor
     {
-
+    public:
         virtual Document &getActiveDocument() = 0;
     };
 } // namespace editor

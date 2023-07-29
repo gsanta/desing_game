@@ -2,15 +2,18 @@
 
 #include "../editor/abstract_editor.h"
 
+#include <memory>
+
 namespace spright
 {
 namespace editor
 {
-    class Undoable {
+    class Undoable
+    {
     public:
-        void undo(AbstractEditor& editor) const;
+        virtual void undo(AbstractEditor &editor) const = 0;
 
-        void redo(AbstractEditor& editor) const;
+        virtual void redo(AbstractEditor &editor) const = 0;
     };
-}
-} // namespace spright
+} // namespace editor
+} // namespace sprightß

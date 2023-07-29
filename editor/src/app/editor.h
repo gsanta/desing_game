@@ -2,6 +2,7 @@
 
 #include "../engine/system/window/impl/glfw/gl_window.h"
 #include "../engine/system/window/window.h"
+#include "./core/editor/abstract_editor.h"
 #include "./rendering/rendering.h"
 #include "./service/io/image_export.h"
 #include "./service/io/json/json_io.h"
@@ -27,7 +28,6 @@
 #include "tool/select_tool/select_tool.h"
 #include "tool/tool_handler.h"
 #include "tool/zoom_tool.h"
-#include "./core/editor/abstract_editor.h"
 
 #include <vector>
 

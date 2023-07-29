@@ -2,23 +2,32 @@
 
 #include "../editor/abstract_editor.h"
 #include "undoable.h"
+
+#include <memory>
 #include <vector>
 
-namespace spright {
-    namespace editor {
-        class History {
+namespace spright
+{
+namespace editor
+{
+    class History
+    {
 
-        public:
-            void add(const Undoable& undoable);
+    public:
+        void add(std::shared_ptr<Undoable> undoable);
 
-            void undo(AbstractEditor& editor);
+        voidß undo(AbstractEditor &editor);
 
-            size_t undoSize();
+        void redo(AbstractEditor &editor);
 
-            // void redo(AbstractEditor& editor);
+        size_t undoSize();
 
-        private:
-            std::vector<Undoable> undoList;
-        };
-    }
-}
+        size_t redoSize();
+
+    private:
+        std::vector<std::shared_ptr<Undoable>> m_UndoList;
+
+        std::vector<std::shared_ptr<Undoable>> m_RedoList;
+    };
+} // namespace editor
+} // namespace spright

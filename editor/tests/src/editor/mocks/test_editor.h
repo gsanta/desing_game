@@ -4,7 +4,8 @@
 
 using namespace spright::editor;
 
-class TestEditor : public AbstractEditor {
+class TestEditor : public AbstractEditor
+{
 public:
     TestEditor(Document document);
 

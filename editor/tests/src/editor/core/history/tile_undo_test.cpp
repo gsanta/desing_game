@@ -1,41 +1,78 @@
-#include <catch2/catch_test_macros.hpp>
-#include "../../test_helpers/tile_layer_builder.h"
-#include "../../test_helpers/drawing_builder.h"
-#include "../../test_helpers/document_builder.h"
-#include "../../test_helpers/builders/tile_builder.h"
-#include "../src/app/core/colors.h"
 #include "../../mocks/test_editor.h"
+#include "../../test_helpers/builders/tile_builder.h"
+#include "../../test_helpers/document_builder.h"
+#include "../../test_helpers/drawing_builder.h"
+#include "../../test_helpers/tile_layer_builder.h"
+#include "../src/app/core/colors.h"
+#include "../src/app/core/history/tile_undo.h"
+
+#include <catch2/catch_test_macros.hpp>
 
 SCENARIO("TileUndo")
 {
     GIVEN("the user calls undo")
     {
-        Document document = DocumentBuilder().build();
-        TestEditor editor(document);
-
-        Drawing drawing = DrawingBuilder()
-                        .withFrame(FrameBuilder().withTileLayer(
-                                        TileLayerBuilder()
-                                            .withTileSize(1)
-                                            .withBounds(Bounds::createWithPositions(-2.0f, -2.0f, 2.0f, 2.0f))
-                                            //   .withTile(Vec2Int(-5, 0), COLOR_RED)
-                                            // .withTile(Vec2Int(0, 0), COLOR_RED)
-                                            // .withTile(Vec2Int(1, 0), COLOR_RED)
-                                            // .withTile(Vec2Int(1, 1), COLOR_RED)
-                                            ),
-                                    2)
-                        .build();
-
-        document.addDrawing(drawing);
-
         THEN("it undoes the changes on the tile layer")
         {
-            TileLayer &layer = document.getDrawings()[0].getFrames()[1].getLayers()[1];
+            Document document = DocumentBuilder().build();
+            TestEditor editor(document);
+
+            Drawing drawing = DrawingBuilder()
+                                  .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder().withTileSize(1).withBounds(
+                                                 Bounds::createWithPositions(-2.0f, -2.0f, 2.0f, 2.0f))
+                                                                          //   .withTile(Vec2Int(-5, 0), COLOR_RED)
+                                                                          // .withTile(Vec2Int(0, 0), COLOR_RED)
+                                                                          // .withTile(Vec2Int(1, 0), COLOR_RED)
+                                                                          // .withTile(Vec2Int(1, 1), COLOR_RED)
+                                                                          ),
+                                             2)
+                                  .build();
+
+            document.addDrawing(drawing);
+            editor.setDocument(document);
+
+            size_t drawingIndex = 0;
+            size_t frameIndex = 1;
+            size_t layerIndex = 0;
+
+                TileLayer &layer = editor.getActiveDocument()
+                                       .getDrawings()[drawingIndex]
+                                       .getFrames()[frameIndex]
+                                       .getLayers()[layerIndex];
 
             TileBuilder tileBuilder(layer);
 
-            layer.add(tileBuilder.withPos(Vec2Int(0, 0)).build());
-            REQUIRE(1 == 2);
+            layer.add(tileBuilder.withPos(Vec2Int(0, 0)).withColor(COLOR_RED).build());
+            layer.add(tileBuilder.withPos(Vec2Int(1, 0)).withColor(COLOR_RED).build());
+            layer.add(tileBuilder.withPos(Vec2Int(0, 1)).withColor(COLOR_RED).build());
+
+            TileUndo tileUndo;
+
+            Rect2D *prevRect1 = layer.getAtTilePos(1, 0);
+            Rect2D nextRect1 = tileBuilder.withPos(Vec2Int(1, 0)).withColor(COLOR_YELLOW).build();
+            tileUndo.addTile(std::make_shared<Rect2D>(*prevRect1), std::make_shared<Rect2D>(nextRect1));
+            layer.add(nextRect1);
+
+            Rect2D nextRect2 = tileBuilder.withPos(Vec2Int(1, 1)).withColor(COLOR_YELLOW).build();
+            tileUndo.addTile(std::shared_ptr<Rect2D>(nullptr), std::make_shared<Rect2D>(nextRect2));
+            layer.add(nextRect2);
+
+
+            tileUndo.setTileLayer(drawingIndex, frameIndex, layerIndex);
+            tileUndo.undo(editor);
+
+            REQUIRE(layer.getRenderables().size() == 3);
+            REQUIRE(layer.getRenderables()[0]->getColor() == COLOR_RED);
+            REQUIRE(layer.getRenderables()[1]->getColor() == COLOR_RED);
+            REQUIRE(layer.getRenderables()[2]->getColor() == COLOR_RED);
+
+            tileUndo.redo(editor);
+
+            REQUIRE(layer.getRenderables().size() == 4);
+            REQUIRE(layer.getAtTilePos(0, 0)->getColor() == COLOR_RED);
+            REQUIRE(layer.getAtTilePos(0, 1)->getColor() == COLOR_RED);
+            REQUIRE(layer.getAtTilePos(1, 0)->getColor() == COLOR_YELLOW);
+            REQUIRE(layer.getAtTilePos(1, 1)->getColor() == COLOR_YELLOW);
         }
     }
 }

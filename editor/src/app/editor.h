@@ -54,6 +54,8 @@ namespace editor
 
         Document &getActiveDocument();
 
+        void setDocument(const Document& document) override;
+
         ToolHandler *getToolHandler();
 
         Rendering *getRendering();

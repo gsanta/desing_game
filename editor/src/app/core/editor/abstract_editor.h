@@ -12,6 +12,8 @@ namespace editor
     {
     public:
         virtual Document &getActiveDocument() = 0;
+
+        virtual void setDocument(const Document& document) = 0;
     };
 } // namespace editor
 } // namespace spright

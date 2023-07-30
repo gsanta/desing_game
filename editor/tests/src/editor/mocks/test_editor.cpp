@@ -13,3 +13,7 @@ Document &TestEditor::getActiveDocument()
 {
     return m_Document;
 }
+
+void TestEditor::setDocument(const Document &document) {
+    m_Document = document;
+}

@@ -13,6 +13,8 @@ public:
 
     Document &getActiveDocument() override;
 
+    void setDocument(const Document &document) override;
+
 private:
     Document m_Document;
 };

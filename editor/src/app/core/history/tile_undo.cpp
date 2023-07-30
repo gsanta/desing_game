@@ -21,6 +21,17 @@ namespace editor
         }
     }
 
+    void TileUndo::redo(AbstractEditor &editor) const
+    {
+        TileLayer &tileLayer =
+            editor.getActiveDocument().getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
+
+        for (std::shared_ptr<Rect2D> rect : m_NewList)
+        {
+            tileLayer.add(*rect);
+        }
+    }
+
     void TileUndo::setTileLayer(size_t drawingPos, size_t framePos, size_t tileLayerPos)
     {
         m_DrawingPos = drawingPos;

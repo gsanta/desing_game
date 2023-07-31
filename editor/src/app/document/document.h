@@ -10,6 +10,7 @@
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
 #include "frame.h"
+// #include "../core/history/history.h"
 
 #include <algorithm>
 #include <memory>
@@ -19,12 +20,14 @@ namespace spright
 {
 namespace editor
 {
+    class DocumentHistory;
+
     using namespace ::spright::engine;
 
     class Document : public Container
     {
     public:
-        Document(Bounds bounds, Camera m_Camera, Drawing canvas);
+        Document(Bounds bounds, Camera m_Camera, Drawing canvas, std::shared_ptr<DocumentHistory> history);
 
         Frame &getActiveFrame();
 
@@ -33,6 +36,8 @@ namespace editor
         Drawing &getActiveDrawing();
 
         Drawing &getDrawing(size_t index);
+
+        size_t getActiveDrawingIndex() const;
 
         Drawing *getDrawingAt(const Vec2 &pos);
 
@@ -58,6 +63,8 @@ namespace editor
         size_t m_ActiveDrawing;
 
         Camera m_Camera;
+
+        std::shared_ptr<DocumentHistory> m_History;
     };
 } // namespace editor
 } // namespace spright

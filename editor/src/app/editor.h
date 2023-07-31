@@ -2,7 +2,6 @@
 
 #include "../engine/system/window/impl/glfw/gl_window.h"
 #include "../engine/system/window/window.h"
-#include "./core/editor/abstract_editor.h"
 #include "./rendering/rendering.h"
 #include "./service/io/image_export.h"
 #include "./service/io/json/json_io.h"
@@ -37,7 +36,7 @@ namespace editor
 {
     using namespace ::spright::engine;
 
-    class Editor : public AbstractEditor
+    class Editor
     {
     public:
         explicit Editor(RunLoop runLoop);
@@ -54,7 +53,7 @@ namespace editor
 
         Document &getActiveDocument();
 
-        void setDocument(const Document& document) override;
+        void setDocument(const Document& document);
 
         ToolHandler *getToolHandler();
 

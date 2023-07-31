@@ -1,8 +1,5 @@
-
-#include "../../mocks/test_editor.h"
 #include "../../test_helpers/document_builder.h"
-#include "../src/app/core/editor/abstract_editor.h"
-#include "../src/app/core/history/history.h"
+#include "../src/app/core/history/document_history.h"
 #include "../src/app/core/history/undoable.h"
 
 #include <catch2/catch_test_macros.hpp>
@@ -16,12 +13,12 @@ public:
     {
     }
 
-    void undo(AbstractEditor &editor) const
+    void undo(Document &document) const
     {
         undoCounter++;
     }
 
-    virtual void redo(AbstractEditor &editor) const
+    virtual void redo(Document &document) const
     {
         redoCounter++;
     }
@@ -34,13 +31,12 @@ public:
 SCENARIO("History")
 {
     Document document = DocumentBuilder().build();
-    TestEditor editor(document);
 
     int undoCount = 0;
 
     int redoCount = 0;
 
-    History history;
+    DocumentHistory history;
 
     GIVEN("the user calls the undo action")
     {
@@ -48,7 +44,7 @@ SCENARIO("History")
         {
             THEN("nothing happens")
             {
-                history.undo(editor);
+                history.undo(document);
 
                 REQUIRE(undoCount == 0);
                 REQUIRE(history.undoSize() == 0);
@@ -64,7 +60,7 @@ SCENARIO("History")
 
                 REQUIRE(history.undoSize() == 1);
 
-                history.undo(editor);
+                history.undo(document);
 
                 REQUIRE(undoCount == 1);
                 REQUIRE(history.undoSize() == 0);
@@ -79,7 +75,7 @@ SCENARIO("History")
         {
             THEN("nothing happends")
             {
-                history.redo(editor);
+                history.redo(document);
 
                 REQUIRE(redoCount == 0);
                 REQUIRE(history.redoSize() == 0);
@@ -92,8 +88,8 @@ SCENARIO("History")
             THEN("redo is called and undoable is moved into undo list")
             {
                 history.add(std::make_shared<TestUndoable>(undoCount, redoCount));
-                history.undo(editor);
-                history.redo(editor);
+                history.undo(document);
+                history.redo(document);
 
                 REQUIRE(redoCount == 1);
                 REQUIRE(history.undoSize() == 1);

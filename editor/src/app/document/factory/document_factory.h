@@ -14,6 +14,7 @@
 #include "./../drawing.h"
 #include "./../frame.h"
 #include "renderer_provider.h"
+#include "../../core/history/document_history.h"
 
 #include <vector>
 

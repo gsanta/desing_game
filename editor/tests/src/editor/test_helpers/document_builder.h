@@ -1,8 +1,10 @@
 #pragma once
 #include "../src/engine/graphics/renderable/bounds.h"
+#include "../src/app/core/history/document_history.h"
 #include "drawing_builder.h"
 
 #include <vector>
+#include <memory>
 
 class DocumentBuilder
 {

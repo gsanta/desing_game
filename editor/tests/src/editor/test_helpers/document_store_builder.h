@@ -1,6 +1,7 @@
 #pragma once
 #include "../src/engine/graphics/renderable/bounds.h"
 #include "drawing_builder.h"
+#include "../src/app/core/history/document_history.h"
 
 #include <vector>
 

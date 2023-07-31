@@ -144,9 +144,7 @@ namespace engine
     template <typename T>
     void Group<T>::remove(const T &renderable)
     {
-
-        // auto findRenderable = [&](Renderable2D &other) { return num == numberToFind; };
-
+        // TODO: fix operator== for renderable/rect2d so that simple find can be used
         auto it = std::find_if(m_Renderables.begin(), m_Renderables.end(), [&](Renderable2D *other) {
             return other->isEqual(renderable);
         });

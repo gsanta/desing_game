@@ -29,7 +29,10 @@ namespace editor
 
         if (m_IsFilled)
         {
-            draw_filled_rect(activeLayer, m_TempRectDrawer.getBounds(), color);
+            TileUndo tileUndo = TileUndo::createForActiveTileLayer(*context.doc.document);
+            draw_filled_rect(activeLayer, m_TempRectDrawer.getBounds(), color, [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) {
+                tileUndo.addTile(prev, next);
+            });
         }
         else
         {

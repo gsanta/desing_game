@@ -41,6 +41,8 @@ namespace editor
     {
         Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
 
+        m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
+
         for (Tool *tool : *m_ActiveTools)
         {
             m_ToolContext.pointer.buttons[0] = buttons[0];
@@ -55,6 +57,8 @@ namespace editor
     void ToolHandler::onMouseDown(bool buttons[3])
     {
         Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToWorldPos(x_tmp, y_tmp);
+
+        m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
 
         m_ToolContext.pointer.isDown = true;
         m_ToolContext.pointer.down = m_ToolContext.pointer.curr;
@@ -73,6 +77,7 @@ namespace editor
 
     void ToolHandler::onMouseMove(double x, double y)
     {
+        m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
         Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getDrawingAt(m_ToolContext.pointer.curr);
         if (m_ToolContext.doc.activeDrawing != activeDrawing)
         {

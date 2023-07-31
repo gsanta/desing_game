@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../../../engine/graphics/layer/tileLayer.h"
+#include "../../../engine/graphics/renderable/rect2d.h"
+#include "../../document/document.h"
 #include "./undoable.h"
 
 namespace spright
@@ -9,15 +12,17 @@ namespace editor
     class TileUndo : Undoable
     {
     public:
-        void undo(AbstractEditor &editor) const override;
+        static TileUndo createForActiveTileLayer(Document &document);
 
-        void redo(AbstractEditor &editor) const override;
+        void undo(Document &document) const override;
 
-        void setTileLayer(size_t drawingPos, size_t framePos, size_t tileLayerPos);
+        void redo(Document &document) const override;
 
         void addTile(std::shared_ptr<Rect2D> prevRect, std::shared_ptr<Rect2D> newRect);
 
     private:
+        TileUndo(Document &document);
+
         std::vector<std::shared_ptr<Rect2D>> m_PrevList;
 
         std::vector<std::shared_ptr<Rect2D>> m_NewList;

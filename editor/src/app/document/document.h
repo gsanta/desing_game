@@ -45,6 +45,8 @@ namespace editor
 
         std::vector<Drawing> &getDrawings();
 
+        std::shared_ptr<DocumentHistory> getHistory();
+
         void empty();
 
         Drawing &getCanvas();

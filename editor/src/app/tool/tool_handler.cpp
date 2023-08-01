@@ -205,13 +205,18 @@ namespace editor
         }
         else if (key == GLFW_KEY_R)
         {
-            float pixelCount = 16.0f;
-            Bounds drawingBounds = Bounds::createWithPositions(-pixelCount / 2.0f,
-                                                               -pixelCount / 2.0f,
-                                                               pixelCount / 2.0f,
-                                                               pixelCount / 2.0f);
-            Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
-            drawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
+            // float pixelCount = 16.0f;
+            // Bounds drawingBounds = Bounds::createWithPositions(-pixelCount / 2.0f,
+            //                                                    -pixelCount / 2.0f,
+            //                                                    pixelCount / 2.0f,
+            //                                                    pixelCount / 2.0f);
+            // Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
+            // drawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
+            setSelectedTool("rectangle");
+        } else if (key == GLFW_KEY_U) {
+            m_DocumentStore->getActiveDocument().getHistory()->undo(m_DocumentStore->getActiveDocument());
+        } else if (key == GLFW_KEY_I) {
+            m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
         }
     }
 

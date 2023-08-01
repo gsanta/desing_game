@@ -21,11 +21,7 @@ SCENARIO("TileUndo")
 
         document.addDrawing(drawing);
 
-        size_t drawingIndex = 0;
-        size_t frameIndex = 1;
-        size_t layerIndex = 0;
-
-        TileLayer &layer = document.getDrawings()[drawingIndex].getFrames()[frameIndex].getLayers()[layerIndex];
+        TileLayer &layer = document.getActiveDrawing().getActiveLayer();
 
         TileBuilder tileBuilder(layer);
 

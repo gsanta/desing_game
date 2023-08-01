@@ -9,7 +9,7 @@ namespace spright
 {
 namespace editor
 {
-    class TileUndo : Undoable
+    class TileUndo : public Undoable
     {
     public:
         static TileUndo createForActiveTileLayer(Document &document);

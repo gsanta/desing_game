@@ -8,6 +8,7 @@
 #include "../../core/history/tile_undo.h"
 #include "draw_rect.h"
 #include "temp_rect_drawer.h"
+#include "../../core/history/document_history.h"
 
 namespace spright
 {

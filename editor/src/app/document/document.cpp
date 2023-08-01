@@ -58,6 +58,11 @@ namespace editor
         return m_Drawings;
     }
 
+    std::shared_ptr<DocumentHistory> Document::getHistory()
+    {
+        return m_History;
+    }
+
     void Document::empty()
     {
         m_Drawings.clear();

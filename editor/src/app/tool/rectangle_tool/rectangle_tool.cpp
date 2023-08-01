@@ -35,7 +35,6 @@ namespace editor
                 m_TempRectDrawer.getBounds(),
                 color,
                 [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) { tileUndo.addTile(prev, next); });
-
         }
         else
         {

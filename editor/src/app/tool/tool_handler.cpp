@@ -213,9 +213,13 @@ namespace editor
             // Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
             // drawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
             setSelectedTool("rectangle");
-        } else if (key == GLFW_KEY_U) {
+        }
+        else if (key == GLFW_KEY_U)
+        {
             m_DocumentStore->getActiveDocument().getHistory()->undo(m_DocumentStore->getActiveDocument());
-        } else if (key == GLFW_KEY_I) {
+        }
+        else if (key == GLFW_KEY_I)
+        {
             m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
         }
     }

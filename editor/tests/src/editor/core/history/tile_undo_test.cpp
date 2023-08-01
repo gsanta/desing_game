@@ -40,7 +40,8 @@ SCENARIO("TileUndo")
         tileUndo.addTile(std::shared_ptr<Rect2D>(nullptr), std::make_shared<Rect2D>(nextRect2));
         layer.add(nextRect2);
 
-        WHEN("the user calls undo") {
+        WHEN("the user calls undo")
+        {
             THEN("it undoes the changes on the tile layer")
             {
                 tileUndo.undo(document);
@@ -52,8 +53,10 @@ SCENARIO("TileUndo")
             }
         }
 
-        WHEN("the user calls redo") {
-            THEN("it redoes the changes on the tile layer") {
+        WHEN("the user calls redo")
+        {
+            THEN("it redoes the changes on the tile layer")
+            {
                 tileUndo.undo(document);
                 tileUndo.redo(document);
 

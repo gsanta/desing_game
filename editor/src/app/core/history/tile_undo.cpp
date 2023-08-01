@@ -4,7 +4,8 @@ namespace spright
 {
 namespace editor
 {
-    TileUndo::TileUndo(Document &document) {
+    TileUndo::TileUndo(Document &document)
+    {
         m_DrawingPos = document.getActiveDrawingIndex();
         m_FramePos = document.getActiveDrawing().getActiveFrameIndex();
         m_TileLayerPos = document.getActiveDrawing().getActiveLayerIndex();
@@ -12,8 +13,7 @@ namespace editor
 
     void TileUndo::undo(Document &document) const
     {
-        TileLayer &tileLayer =
-            document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
+        TileLayer &tileLayer = document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
 
         for (std::shared_ptr<Rect2D> rect : m_NewList)
         {
@@ -28,8 +28,7 @@ namespace editor
 
     void TileUndo::redo(Document &document) const
     {
-        TileLayer &tileLayer =
-            document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
+        TileLayer &tileLayer = document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
 
         for (std::shared_ptr<Rect2D> rect : m_NewList)
         {
@@ -50,7 +49,8 @@ namespace editor
         }
     }
 
-    TileUndo TileUndo::createForActiveTileLayer(Document &document) {
+    TileUndo TileUndo::createForActiveTileLayer(Document &document)
+    {
         return TileUndo(document);
     }
 

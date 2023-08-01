@@ -7,10 +7,11 @@ DocumentInfoBuilder &DocumentInfoBuilder::withActiveDrawing(Drawing *drawing)
     return *this;
 }
 
-DocumentInfoBuilder &DocumentInfoBuilder::withDocument(Document *document) {
+DocumentInfoBuilder &DocumentInfoBuilder::withDocument(Document *document)
+{
     m_Document = document;
 
-    return  *this;
+    return *this;
 }
 
 

@@ -26,7 +26,8 @@ namespace editor
         return m_Drawings[m_ActiveDrawing];
     }
 
-    size_t Document::getActiveDrawingIndex() const {
+    size_t Document::getActiveDrawingIndex() const
+    {
         return m_ActiveDrawing;
     }
 

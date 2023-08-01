@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../document/document.h"
+
 #include <memory>
 
 namespace spright
@@ -15,4 +16,4 @@ namespace editor
         virtual void redo(Document &document) const = 0;
     };
 } // namespace editor
-} // namespace sprightß
+} // namespace spright

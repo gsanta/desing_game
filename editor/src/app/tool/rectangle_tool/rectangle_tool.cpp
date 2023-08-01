@@ -30,9 +30,11 @@ namespace editor
         TileUndo tileUndo = TileUndo::createForActiveTileLayer(*context.doc.document);
         if (m_IsFilled)
         {
-            draw_filled_rect(activeLayer, m_TempRectDrawer.getBounds(), color, [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) {
-                tileUndo.addTile(prev, next);
-            });
+            draw_filled_rect(
+                activeLayer,
+                m_TempRectDrawer.getBounds(),
+                color,
+                [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) { tileUndo.addTile(prev, next); });
 
             context.doc.document->getHistory()->add(std::make_shared<TileUndo>(tileUndo));
         }

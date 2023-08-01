@@ -6,7 +6,9 @@ namespace spright
 {
 namespace editor
 {
-    void defaultRect2DCreate(std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) {}
+    void defaultRect2DCreate(std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next)
+    {
+    }
 
     void draw_filled_rect(TileLayer &tileLayer, const Bounds &bounds, int color, const onRect2DCreate &operation)
     {
@@ -67,7 +69,8 @@ namespace editor
 
         Vec2 halfTilesize(tileLayer.getTileSize() / 2);
 
-        for (Vec2Int &tilePos : positions) {
+        for (Vec2Int &tilePos : positions)
+        {
             std::shared_ptr<Rect2D> prev;
             if (auto tile = tileLayer.getAtTilePos(tilePos.x, tilePos.y))
             {

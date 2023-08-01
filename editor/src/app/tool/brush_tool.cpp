@@ -16,17 +16,17 @@ namespace editor
 
     void BrushTool::pointerMove(const ToolContext &context)
     {
-        paint(context.pointer);
+        paint(context);
     }
 
     void BrushTool::pointerDown(const ToolContext &context)
     {
-        paint(context.pointer);
+        paint(context);
     }
 
-    void BrushTool::paint(const PointerInfo &pointerInfo)
+    void BrushTool::paint(const ToolContext &context)
     {
-        if (pointerInfo.isLeftButtonDown() == false)
+        if (context.pointer.isLeftButtonDown() == false)
         {
             return;
         }
@@ -37,21 +37,30 @@ namespace editor
 
         float zoom = camera.getZoom();
 
-        Drawing *drawing = m_documentStore->getActiveDocument().getDrawingAt(pointerInfo.curr);
+        Drawing *drawing = m_documentStore->getActiveDocument().getDrawingAt(context.pointer.curr);
 
         if (drawing != nullptr)
         {
             TileLayer &layer = drawing->getActiveLayer();
 
+            TileUndo tileUndo = TileUndo::createForActiveTileLayer(*context.doc.document);
+
             for (int i = 0; i < m_Size; i++)
             {
                 for (int j = 0; j < m_Size; j++)
                 {
-                    Vec2Int tilePos = layer.getTilePos(pointerInfo.curr);
+                    Vec2Int tilePos = layer.getTilePos(context.pointer.curr);
 
-                    brush.paint(layer, tilePos, getColor());
+                    brush.paint(layer,
+                                tilePos,
+                                getColor(),
+                                [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) {
+                                    tileUndo.addTile(prev, next);
+                                });
                 }
             }
+
+            context.doc.document->getHistory()->add(std::make_shared<TileUndo>(tileUndo));
         }
     }
 } // namespace editor

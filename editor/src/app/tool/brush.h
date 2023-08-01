@@ -4,6 +4,7 @@
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../maths/vec2_int.h"
 #include "../../maths/vec2.h"
+#include "../utils/declarations.h"
 
 namespace spright { namespace editor {
 	using namespace spright::engine;
@@ -12,6 +13,6 @@ namespace spright { namespace editor {
 	class Brush {
 
 	public:
-		void paint(TileLayer& tileLayer, const Vec2Int& tilePos, unsigned int color);
+		void paint(TileLayer& tileLayer, const Vec2Int& tilePos, unsigned int color, const onRect2DCreate &operation = defaultRect2DCreate);
 	};
 }}

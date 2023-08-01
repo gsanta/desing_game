@@ -8,6 +8,8 @@
 #include "colorable.h"
 #include "tool/tool.h"
 #include "tool/tool_context.h"
+#include "../core/history/tile_undo.h"
+#include "../core/history/document_history.h"
 
 #include <vector>
 
@@ -39,7 +41,7 @@ namespace editor
         void pointerDown(const ToolContext &) override;
 
     private:
-        void paint(const PointerInfo &pointerInfo);
+        void paint(const ToolContext &context);
     };
 } // namespace editor
 } // namespace spright

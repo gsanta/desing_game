@@ -20,6 +20,8 @@ namespace editor
 
         void addTile(std::shared_ptr<Rect2D> prevRect, std::shared_ptr<Rect2D> newRect);
 
+        void merge(const Undoable &other) override;
+
     private:
         TileUndo(Document &document);
 

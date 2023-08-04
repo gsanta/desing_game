@@ -36,6 +36,10 @@ namespace editor
         }
     }
 
+    Undoable *DocumentHistory::peek() {
+        return m_UndoList.back().get();
+    }
+
     size_t DocumentHistory::undoSize()
     {
         return m_UndoList.size();

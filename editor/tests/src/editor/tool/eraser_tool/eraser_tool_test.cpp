@@ -1,4 +1,5 @@
 #include "../../test_helpers/document_info_builder.h"
+#include "../../test_helpers/document_builder.h"
 #include "../../test_helpers/document_store_builder.h"
 #include "../../test_helpers/drawing_builder.h"
 #include "../../test_helpers/pointer_info_builder.h"
@@ -20,6 +21,18 @@
 
 using namespace ::spright::engine;
 using namespace ::spright::editor;
+
+SCENARIO("Erase tool") {
+    // GIVEN("a document with an active layer with pixels") {
+    //     Document document = DocumentBuilder().build();
+    //     BrushTool brushTool;
+    //     ToolContext toolContext = ToolContextBuilder().withDocument(document).build();
+    // }
+
+    GIVEN("a document with an active layer with pixels") {
+        WHEN("")
+    }
+}
 
 TEST_CASE("EraseTool pointerDown", "[erase-tool]")
 {

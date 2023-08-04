@@ -22,6 +22,8 @@ namespace editor
 
         void redo(Document &document);
 
+        Undoable *peek();
+
         size_t undoSize();
 
         size_t redoSize();

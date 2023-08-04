@@ -23,8 +23,6 @@ namespace editor
     class BrushTool : public Tool, public Colorable
     {
     private:
-        DocumentStore *m_documentStore;
-
         int m_Size = 1;
 
         Rect2D *sprite;
@@ -32,7 +30,7 @@ namespace editor
         Brush brush;
 
     public:
-        BrushTool(DocumentStore *documentStore);
+        BrushTool();
 
         void setSize(int size);
 
@@ -41,7 +39,7 @@ namespace editor
         void pointerDown(const ToolContext &) override;
 
     private:
-        void paint(const ToolContext &context);
+        void paint(const ToolContext &context, bool isPointerMove);
     };
 } // namespace editor
 } // namespace spright

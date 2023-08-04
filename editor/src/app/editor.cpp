@@ -45,7 +45,7 @@ namespace editor
 
         m_toolHandler =
             new ToolHandler(m_EditorState, m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
-        m_toolHandler->addTool(new BrushTool(getDocumentStore()));
+        m_toolHandler->addTool(new BrushTool());
         m_toolHandler->addTool(new RectangleTool());
         m_toolHandler->addTool(new EraserTool(3));
         m_toolHandler->addTool(new PanTool(getDocumentStore()));

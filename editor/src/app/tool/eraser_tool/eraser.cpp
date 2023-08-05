@@ -1,8 +1,9 @@
 #include "eraser.h"
 
 namespace spright { namespace editor {
-	void editor::Eraser::erase(TileLayer& layer, const Vec2Int& vec2, int eraserSize) {
-		int tileIndex = layer.getTileIndex(vec2.x, vec2.y);
+    void editor::Eraser::erase(TileLayer &layer, const Vec2Int &vec2, int eraserSize, onRect2DErase callback)
+    {
+        int tileIndex = layer.getTileIndex(vec2.x, vec2.y);
 
 		bool isEven = true;
 
@@ -20,10 +21,19 @@ namespace spright { namespace editor {
 			for (int j = start; j < end; j++) {
 				int currentTileIndex = layer.getTileIndex(centerCol + i, centerRow + j);
 				Rect2D* sprite = layer.getAtTileIndex(currentTileIndex);
+
+                std::shared_ptr<Rect2D> copy;
+
+				if (sprite) {
+					copy.reset(new Rect2D(*sprite));
+                }
+
+                callback(copy);
+
 				if (sprite != nullptr) {
 					layer.remove(*sprite);
 				}
 			}
 		}
-	}
+    }
 }}

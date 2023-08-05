@@ -12,6 +12,8 @@ class DocumentBuilder
 public:
     DocumentBuilder &withEmptyDocument();
 
+    DocumentBuilder &withDrawing(const DrawingBuilder &drawing);
+
     Document build();
 
 private:
@@ -20,4 +22,6 @@ private:
     int m_WindowSize = 500;
 
     bool m_IsEmptyDocument = false;
+
+    std::vector<DrawingBuilder> m_Drawings;
 };

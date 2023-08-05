@@ -42,5 +42,10 @@ namespace editor
         }
         deactivate(context);
     }
+
+    std::shared_ptr<Cursor> Tool::getCursor() const {
+        return m_Cursor;
+    }
+
 } // namespace editor
 } // namespace spright

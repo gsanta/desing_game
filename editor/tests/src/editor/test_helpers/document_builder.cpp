@@ -1,10 +1,16 @@
 #include "document_builder.h"
 
-DocumentBuilder &DocumentBuilder::withEmptyDocument() {
+DocumentBuilder &DocumentBuilder::withEmptyDocument()
+{
     m_IsEmptyDocument = true;
     return *this;
 }
 
+DocumentBuilder &DocumentBuilder::withDrawing(const DrawingBuilder &drawing){
+    m_Drawings.push_back(drawing);
+
+    return *this;
+}
 
 Document DocumentBuilder::build()
 {
@@ -15,7 +21,13 @@ Document DocumentBuilder::build()
                       DrawingBuilder().withBounds(m_DocumentBounds).build(),
                       std::make_shared<DocumentHistory>());
 
-    if (!m_IsEmptyDocument) {
+    if (m_Drawings.size() > 0) {
+        for (DrawingBuilder builder : m_Drawings) {
+            document.addDrawing(builder.build());
+        }
+    }
+    else if (!m_IsEmptyDocument)
+    {
         document.addDrawing(DrawingBuilder().build());
     }
 

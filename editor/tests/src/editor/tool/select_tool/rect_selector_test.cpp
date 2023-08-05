@@ -16,7 +16,7 @@ using namespace ::spright::maths;
 TEST_CASE("RectSelector", "[rect-selector]")
 {
     DocumentStore documentStore = DocumentStoreBuilder()
-                                      .withDrawing(DrawingBuilder().withTileLayer(TileLayerBuilder()
+                                      .withDrawing(DrawingBuilder().withTileSize(0.5f).withTileLayer(TileLayerBuilder()
                                                                                       .withTile(Vec2Int(0, 1))
                                                                                       .withTile(Vec2Int(1, 1))
                                                                                       .withTile(Vec2Int(0, 2))

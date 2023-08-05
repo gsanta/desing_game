@@ -308,6 +308,8 @@ Devise.setup do |config|
   config.http_authenticatable_on_xhr = false
   config.navigational_formats = [:"*/*", "*/*", :html, :js, :turbo_stream]
 
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET'], {}
+
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is

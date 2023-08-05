@@ -1,13 +1,14 @@
 import { setUser } from '@/features/user/userSlice';
 import { useAppDispatch } from '@/hooks';
-import Dialog, { DialogBody, DialogButtons } from '@/components/dialog/Dialog';
+import Dialog, { DialogBody, DialogButtons, DialogFooter } from '@/components/dialog/Dialog';
 import api from '@/utils/api';
-import { FormControl, FormLabel, Input, FormErrorMessage, Button, Text } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, FormErrorMessage, Button, Text, Box } from '@chakra-ui/react';
 import { AxiosError } from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { emailRegex } from '../utils/userUtils';
+import GoogleSignInButton from './GoogleSignInButton';
 
 type SignInDialogProps = {
   isOpen: boolean;
@@ -67,42 +68,48 @@ const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
 
   return (
     <Dialog isOpen={isOpen} onClose={handleClose} title="Log in">
-      <DialogBody as="form" onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={Boolean(errors.email)}>
-          <FormLabel>Email</FormLabel>
-          <Input
-            {...register('email', {
-              required: {
-                value: true,
-                message: 'Please enter your email address',
-              },
-              pattern: {
-                value: emailRegex,
-                message: 'Invalid email address',
-              },
-            })}
-            autoFocus
-          />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        </FormControl>
-        <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" {...register('password')} />
-        </FormControl>
-        {isSignInError && (
-          <Text color="red.300" fontSize="--chakra - fontSizes - sm">
-            {signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
-          </Text>
-        )}
-        <DialogButtons>
-          <Button size="sm" onClick={handleClose}>
-            Close
-          </Button>
-          <Button size="sm" colorScheme="orange" type="submit">
-            Log in
-          </Button>
-        </DialogButtons>
-      </DialogBody>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DialogBody>
+          <FormControl isInvalid={Boolean(errors.email)}>
+            <FormLabel>Email</FormLabel>
+            <Input
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'Please enter your email address',
+                },
+                pattern: {
+                  value: emailRegex,
+                  message: 'Invalid email address',
+                },
+              })}
+            />
+            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
+            <Input type="password" {...register('password')} />
+          </FormControl>
+          <Box display="flex" marginTop="4" justifyContent="space-around">
+            <GoogleSignInButton />
+          </Box>
+          {isSignInError && (
+            <Text color="red.300" fontSize="--chakra - fontSizes - sm">
+              {signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
+            </Text>
+          )}
+        </DialogBody>
+        <DialogFooter>
+          <DialogButtons>
+            <Button size="sm" onClick={handleClose}>
+              Close
+            </Button>
+            <Button size="sm" colorScheme="orange" type="submit">
+              Log in
+            </Button>
+          </DialogButtons>
+        </DialogFooter>
+      </form>
     </Dialog>
   );
 };

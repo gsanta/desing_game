@@ -27,7 +27,7 @@ export type DialogProps = {
 export type DialogBodyProps = ModalBodyProps;
 
 export const DialogBody = (props: DialogBodyProps) => {
-  return <ModalBody paddingInline="2" paddingBlockEnd="2" {...props} />;
+  return <ModalBody paddingBlockEnd="2" {...props} />;
 };
 
 export type DialogFooterProps = ModalFooterProps;

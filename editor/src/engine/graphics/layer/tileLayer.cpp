@@ -13,7 +13,8 @@ namespace engine
                          float tileSize,
                          float zPos,
                          bool allowDuplicatedPixels)
-        : m_Group(group), m_TileSize(tileSize), m_Name(name), m_Bounds(bounds), m_ZPos(zPos), m_AllowDuplicatedPixels(allowDuplicatedPixels)
+        : m_Group(group), m_TileSize(tileSize), m_Name(name), m_Bounds(bounds), m_ZPos(zPos),
+          m_AllowDuplicatedPixels(allowDuplicatedPixels)
     {
         init();
     }
@@ -21,7 +22,8 @@ namespace engine
     TileLayer::TileLayer(const TileLayer &tileLayer)
         : m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name),
           m_Group(Group<Rect2D>(tileLayer.m_Group.getRenderer()->clone())), m_Bounds(tileLayer.m_Bounds),
-          m_TileSize(tileLayer.m_TileSize), m_ZPos(tileLayer.m_ZPos), m_AllowDuplicatedPixels(tileLayer.m_AllowDuplicatedPixels)
+          m_TileSize(tileLayer.m_TileSize), m_ZPos(tileLayer.m_ZPos),
+          m_AllowDuplicatedPixels(tileLayer.m_AllowDuplicatedPixels)
     {
 
         init();

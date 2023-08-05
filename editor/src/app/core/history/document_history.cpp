@@ -36,7 +36,8 @@ namespace editor
         }
     }
 
-    Undoable *DocumentHistory::peek() {
+    Undoable *DocumentHistory::peek()
+    {
         return m_UndoList.back().get();
     }
 

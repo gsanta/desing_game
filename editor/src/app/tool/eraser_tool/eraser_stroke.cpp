@@ -60,21 +60,25 @@ namespace editor
 
         unsigned int color = 0xff0099ff;
 
-        if (!m_TopLine) {
+        if (!m_TopLine)
+        {
             m_TopLine = &drawLayer.add(Rect2D(-eraserArea / 2.0f, eraserArea / 2.0f, eraserArea, m_StrokeWidth, color));
         }
         m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfEraserSize));
-        if (!m_RightLine) {
+        if (!m_RightLine)
+        {
             m_RightLine =
                 &drawLayer.add(Rect2D(eraserArea / 2.0f, -eraserArea / 2.0f, m_StrokeWidth, eraserArea, color));
         }
         m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfEraserSize, 0));
-        if (!m_BottomLine) {
+        if (!m_BottomLine)
+        {
             m_BottomLine =
                 &drawLayer.add(Rect2D(-eraserArea / 2.0f, -eraserArea / 2.0f, eraserArea, m_StrokeWidth, color));
         }
         m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfEraserSize));
-        if (!m_LeftLine) {
+        if (!m_LeftLine)
+        {
             m_LeftLine =
                 &drawLayer.add(Rect2D(-eraserArea / 2.0f, -eraserArea / 2.0f, m_StrokeWidth, eraserArea, color));
         }

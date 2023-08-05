@@ -68,17 +68,21 @@ SCENARIO("Erase tool")
                 REQUIRE(activeLayer.getAtTilePos(2, 2) != nullptr);
             }
 
-            WHEN("undoing the last action") {
+            WHEN("undoing the last action")
+            {
                 document.getHistory()->undo(document);
 
-                THEN ("it restores the erased pixels") {
+                THEN("it restores the erased pixels")
+                {
 
                     REQUIRE(activeLayer.getRenderables().size() == 9);
                     REQUIRE(activeLayer.getAtTilePos(1, 1) != nullptr);
                 }
 
-                WHEN("redoing the last action") {
-                    THEN("it removes the previously restored pixels") {
+                WHEN("redoing the last action")
+                {
+                    THEN("it removes the previously restored pixels")
+                    {
                         document.getHistory()->redo(document);
 
                         REQUIRE(activeLayer.getRenderables().size() == 8);
@@ -88,7 +92,8 @@ SCENARIO("Erase tool")
             }
         }
 
-        WHEN("dragging with the erase tool") {
+        WHEN("dragging with the erase tool")
+        {
             toolContext.pointer.curr = activeLayer.getWorldPos(Vec2Int(1, 0));
             toolContext.pointer.down = toolContext.pointer.curr;
             toolContext.pointer.isDown = true;
@@ -103,7 +108,8 @@ SCENARIO("Erase tool")
             eraseTool.execPointerMove(toolContext);
             eraseTool.execPointerUp(toolContext);
 
-            THEN("it erases the pixels at the drag positions") {
+            THEN("it erases the pixels at the drag positions")
+            {
                 REQUIRE(activeLayer.getRenderables().size() == 6);
                 REQUIRE(activeLayer.getAtTilePos(1, 0) == nullptr);
                 REQUIRE(activeLayer.getAtTilePos(2, 0) == nullptr);
@@ -114,7 +120,8 @@ SCENARIO("Erase tool")
             {
                 document.getHistory()->undo(document);
 
-                THEN("it restores all of the pixels erased during the drag") {
+                THEN("it restores all of the pixels erased during the drag")
+                {
                     REQUIRE(activeLayer.getRenderables().size() == 9);
                     REQUIRE(activeLayer.getAtTilePos(1, 0) != nullptr);
                     REQUIRE(activeLayer.getAtTilePos(2, 0) != nullptr);

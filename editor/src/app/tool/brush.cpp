@@ -21,7 +21,8 @@ namespace editor
                 prev.reset(new Rect2D(*tile));
             }
 
-            Rect2D& rect = tileLayer.add(Rect2D(worldPos.x, worldPos.y, tileLayer.getTileSize(), tileLayer.getTileSize(), color));
+            Rect2D &rect =
+                tileLayer.add(Rect2D(worldPos.x, worldPos.y, tileLayer.getTileSize(), tileLayer.getTileSize(), color));
 
             std::shared_ptr<Rect2D> next = std::make_shared<Rect2D>(rect);
 

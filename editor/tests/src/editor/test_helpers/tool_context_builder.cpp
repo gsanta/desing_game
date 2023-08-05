@@ -36,7 +36,8 @@ ToolContext ToolContextBuilder::build()
 
     DocumentInfo doc = m_DocInfo.build();
 
-    if (m_Document) {
+    if (m_Document)
+    {
         doc.document = m_Document;
         doc.activeDrawing = &m_Document->getActiveDrawing();
     }

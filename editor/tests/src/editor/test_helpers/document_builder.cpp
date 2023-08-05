@@ -6,7 +6,8 @@ DocumentBuilder &DocumentBuilder::withEmptyDocument()
     return *this;
 }
 
-DocumentBuilder &DocumentBuilder::withDrawing(const DrawingBuilder &drawing){
+DocumentBuilder &DocumentBuilder::withDrawing(const DrawingBuilder &drawing)
+{
     m_Drawings.push_back(drawing);
 
     return *this;
@@ -21,8 +22,10 @@ Document DocumentBuilder::build()
                       DrawingBuilder().withBounds(m_DocumentBounds).build(),
                       std::make_shared<DocumentHistory>());
 
-    if (m_Drawings.size() > 0) {
-        for (DrawingBuilder builder : m_Drawings) {
+    if (m_Drawings.size() > 0)
+    {
+        for (DrawingBuilder builder : m_Drawings)
+        {
             document.addDrawing(builder.build());
         }
     }

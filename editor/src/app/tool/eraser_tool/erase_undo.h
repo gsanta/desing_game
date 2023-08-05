@@ -24,7 +24,6 @@ namespace editor
         void merge(const Undoable &other) override;
 
     private:
-
         std::vector<std::shared_ptr<Rect2D>> m_Rects;
 
         size_t m_TileLayerPos;

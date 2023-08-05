@@ -41,12 +41,13 @@ namespace editor
         {
             TileLayer &layer = drawing->getActiveLayer();
 
-            if (!isPointerMove) {
+            if (!isPointerMove)
+            {
                 context.doc.document->getHistory()->add(
                     std::make_shared<TileUndo>(TileUndo::createForActiveTileLayer(*context.doc.document)));
             }
 
-            TileUndo *tileUndo = dynamic_cast<TileUndo*>(context.doc.document->getHistory()->peek());
+            TileUndo *tileUndo = dynamic_cast<TileUndo *>(context.doc.document->getHistory()->peek());
 
             for (int i = 0; i < m_Size; i++)
             {

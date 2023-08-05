@@ -1,6 +1,8 @@
 #pragma once
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../engine/graphics/renderable/renderable2d.h"
+#include "../core/history/document_history.h"
+#include "../core/history/tile_undo.h"
 #include "../document/document_store.h"
 #include "../document/drawing.h"
 #include "../editor_config.h"
@@ -8,8 +10,6 @@
 #include "colorable.h"
 #include "tool/tool.h"
 #include "tool/tool_context.h"
-#include "../core/history/tile_undo.h"
-#include "../core/history/document_history.h"
 
 #include <vector>
 

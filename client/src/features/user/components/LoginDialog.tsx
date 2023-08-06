@@ -8,19 +8,19 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { emailRegex } from '../utils/userUtils';
-import GoogleSignInButton from './GoogleSignInButton';
+import GoogleLogin from './GoogleLogin';
 
-type SignInDialogProps = {
+type LoginDialogProps = {
   isOpen: boolean;
   onClose(): void;
 };
 
-type SignInRequestData = {
+type LoginRequestData = {
   email: string;
   password: string;
 };
 
-const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
+const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
   const dispatch = useAppDispatch();
 
   const {
@@ -40,12 +40,11 @@ const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
     mutateAsync: mutateSignIn,
     isError: isSignInError,
     error: signInError,
-  } = useMutation<unknown, AxiosError<unknown>, SignInRequestData>(
+  } = useMutation<unknown, AxiosError<unknown>, LoginRequestData>(
     async (data) => {
       const resp = await api.post('/users/sign_in', {
         user: data,
       });
-
       return resp;
     },
     {
@@ -60,7 +59,7 @@ const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
     onClose();
   };
 
-  const onSubmit = async (data: SignInRequestData) => {
+  const onSubmit = async (data: LoginRequestData) => {
     await mutateSignIn(data);
     dispatch(setUser({ isLoggedIn: true, email: data.email }));
     handleClose();
@@ -91,7 +90,7 @@ const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
             <Input type="password" {...register('password')} />
           </FormControl>
           <Box display="flex" marginTop="4" justifyContent="space-around">
-            <GoogleSignInButton />
+            <GoogleLogin />
           </Box>
           {isSignInError && (
             <Text color="red.300" fontSize="--chakra - fontSizes - sm">
@@ -114,4 +113,4 @@ const SignInDialog = ({ isOpen, onClose }: SignInDialogProps) => {
   );
 };
 
-export default SignInDialog;
+export default LoginDialog;

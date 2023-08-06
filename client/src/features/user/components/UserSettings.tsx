@@ -2,8 +2,8 @@ import { signOut } from '@/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { Avatar, Button, ButtonGroup, useDisclosure, useToast } from '@chakra-ui/react';
 import React from 'react';
-import SignUpDialog from './SignUpDialog';
-import SignInDialog from './SignInDialog';
+import RegistrationDialog from './RegistrationDialog';
+import LoginDialog from './LoginDialog';
 import UserDialog from './UserDialog';
 
 const UserSettings = () => {
@@ -52,8 +52,8 @@ const UserSettings = () => {
           </Button>
         </ButtonGroup>
       )}
-      <SignInDialog isOpen={isSignInDialogOpen} onClose={onSignInDialogClose} />
-      <SignUpDialog isOpen={isSignUpDialogOpen} onClose={onSignUpDialogClose} />
+      <LoginDialog isOpen={isSignInDialogOpen} onClose={onSignInDialogClose} />
+      <RegistrationDialog isOpen={isSignUpDialogOpen} onClose={onSignUpDialogClose} />
       <UserDialog isOpen={isUserDialogOpen} onClose={onUserDialogClose} />
     </>
   );

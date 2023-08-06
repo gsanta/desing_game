@@ -308,7 +308,9 @@ Devise.setup do |config|
   config.http_authenticatable_on_xhr = false
   config.navigational_formats = [:"*/*", "*/*", :html, :js, :turbo_stream]
 
-  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET'], {}
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET'], scope: 'email, profile', provider_ignores_state: true
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], token_params: { parse: :json }
+
 
   # ==> Configuration for :registerable
 

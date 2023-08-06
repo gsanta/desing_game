@@ -8,9 +8,32 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
        sign_in_and_redirect user, event: :authentication
      else
        flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-       redirect_to new_user_session_path
+       # redirect_to new_user_session_path
      end
-    end
+     # render json: {
+     #   name: "abcd"
+     # }
+   end
+
+   def facebook
+     puts "facebook callback called"
+   end
+
+   def self.from_omniauth(access_token)
+     puts "from_omniauth entered"
+
+     data = access_token.info
+     user = User.where(email: data['email']).first
+
+     # Uncomment the section below if you want users to be created if they don't exist
+     # unless user
+     #     user = User.create(name: data['name'],
+     #        email: data['email'],
+     #        password: Devise.friendly_token[0,20]
+     #     )
+     # end
+     user
+   end
 
     def from_google_params
       @from_google_params ||= {

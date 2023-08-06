@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    registrations: 'users/registrations'
   }
 
   post '/social_auth/callback', to: 'social_auth#authenticate_social_auth_user' # this is the line where we add our routes

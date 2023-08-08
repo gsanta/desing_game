@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def self.signin_or_create_from_provider(provider_data)
-    where(provider: provider_data[:provider], uid: provider_data[:uid]).first_or_create do |user|
-      user.email = provider_data[:info][:email]
+  def self.sign_in_or_create_for_google(email)
+    where(provider: 'google', email: email).first_or_create do |user|
+      user.email = email
+      user.provider = 'google'
       user.password = Devise.friendly_token[0, 20]
     end
   end

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const GoogleLogin = () => {
   const handleCallbackResponse = (response: { credential?: string }) => {
     return api
-      .post('social_auth/callback', undefined, {
+      .post('/users/sign_in/google', undefined, {
         headers: {
           Authorization: `Bearer ${response.credential}`,
           'Content-Type': 'application/json',

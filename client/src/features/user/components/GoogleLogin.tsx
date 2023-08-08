@@ -7,7 +7,7 @@ const GoogleLogin = () => {
     return api
       .post('/users/sign_in/google', undefined, {
         headers: {
-          Authorization: `Bearer ${response.credential}`,
+          Authorization: `Bearer ${response.credential}12345`,
           'Content-Type': 'application/json',
         },
       })

@@ -9,7 +9,5 @@ module Users
       token_info = verifier.verify(access_token)
       token_info["email"]
     end
-
   end
-
 end

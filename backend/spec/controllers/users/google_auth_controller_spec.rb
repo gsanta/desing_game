@@ -20,7 +20,7 @@ RSpec.describe Users::GoogleAuthController do
       request.headers.merge! headers
     end
 
-    context "if this is the first google login for the user" do
+    context "if this is the first google sign in for the user" do
       it "creates the user based on the auth header" do
         expect { subject }.to change { User.count }.by(1)
 
@@ -33,6 +33,19 @@ RSpec.describe Users::GoogleAuthController do
 
       it "does not create a new database entry" do
         expect { subject }.to_not change { User.count }
+      end
+    end
+
+    context 'if sign in was successful' do
+      let(:response_body) { JSON.parse response.body }
+
+      it 'returns the user data' do
+        subject
+
+        expect(response).to have_http_status :ok
+
+        expect(response_body).to eq 'id' => User.last.id,
+                                    'email' => 'test_user@test.com'
       end
     end
   end

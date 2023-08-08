@@ -1,15 +1,18 @@
 # Api Controller to handle our call backs
 class Users::GoogleAuthController < ApplicationController
+
+  rescue_from Google::Auth::IDTokens::SignatureError do
+    respond_unauthorized 'Unauthorized'
+  end
   def authenticate
     access_token = request.headers['Authorization']&.gsub(/bearer /i, '')
     email = verifier.verify access_token
     user = User.sign_in_or_create_for_google(email)
 
     render json: {
-
+      id: user['id'],
+      email: user['email'],
     }
-
-
 
     # render json: TaskPresenter.new(task).to_h, status: :created
     # if @user.persisted?
@@ -30,6 +33,6 @@ class Users::GoogleAuthController < ApplicationController
   end
 
   def verifier
-    @verifier ||= GoogleAccessTokenVerifier.new
+    @verifier ||= Users::GoogleAccessTokenVerifier.new
   end
 end

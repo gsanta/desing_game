@@ -8,7 +8,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { emailRegex } from '../utils/userUtils';
-import GoogleLogin from './GoogleLogin';
+import GoogleLogin, { useGoogleLogin } from './GoogleLogin';
+import ErrorMessage from '@/components/ErrorMessage';
 
 type LoginDialogProps = {
   isOpen: boolean;
@@ -54,12 +55,25 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
     },
   );
 
-  const handleClose = () => {
+  const {
+    login: loginGoogle,
+    isError: isGoogleLoginError,
+    error: googleLoginError,
+    reset: googleLoginReset,
+  } = useGoogleLogin();
+
+  const resetAll = () => {
+    googleLoginReset();
     resetForm();
+  };
+
+  const handleClose = () => {
+    resetAll();
     onClose();
   };
 
   const onSubmit = async (data: LoginRequestData) => {
+    resetAll();
     await mutateSignIn(data);
     dispatch(setUser({ isLoggedIn: true, email: data.email }));
     handleClose();
@@ -90,13 +104,18 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
             <Input type="password" {...register('password')} />
           </FormControl>
           <Box display="flex" marginTop="4" justifyContent="space-around">
-            <GoogleLogin />
+            <GoogleLogin onLogin={loginGoogle} />
           </Box>
-          {isSignInError && (
-            <Text color="red.300" fontSize="--chakra - fontSizes - sm">
-              {signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
-            </Text>
+          {signInError && (
+            // <Text color="red.300" fontSize="--chakra - fontSizes - sm">
+            //   {signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
+            // </Text>
+            <ErrorMessage
+              error={signInError}
+              fallbackMessage={signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
+            />
           )}
+          {googleLoginError && <ErrorMessage error={googleLoginError} />}
         </DialogBody>
         <DialogFooter>
           <DialogButtons>

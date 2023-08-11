@@ -1,9 +1,9 @@
 # Api Controller to handle our call backs
 class Users::GoogleAuthController < ApplicationController
 
-  rescue_from Google::Auth::IDTokens::SignatureError do
-    respond_unauthorized 'Unauthorized'
-  end
+  # rescue_from Google::Auth::IDTokens::SignatureError, Google::Auth::IDTokens::AudienceMismatchError do
+  #   respond_unauthorized 'Unauthorized'
+  # end
   def authenticate
     access_token = request.headers['Authorization']&.gsub(/bearer /i, '')
     email = verifier.verify access_token

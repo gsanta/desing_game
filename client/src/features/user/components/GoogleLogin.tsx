@@ -1,37 +1,56 @@
+import { ServerError } from '@/components/ErrorMessage';
 import api from '@/utils/api';
+import { Box } from '@chakra-ui/react';
+import { AxiosError } from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
+import { useMutation } from 'react-query';
 
-const GoogleLogin = () => {
-  const handleCallbackResponse = (response: { credential?: string }) => {
-    return api
-      .post('/users/sign_in/google', undefined, {
+export const useGoogleLogin = () => {
+  const { mutate, error, isError, isLoading, reset } = useMutation<unknown, AxiosError<ServerError>, string>(
+    (credential) =>
+      api.post('/users/sign_in/google', undefined, {
         headers: {
-          Authorization: `Bearer ${response.credential}12345`,
+          Authorization: `Bearer ${credential}1`,
           'Content-Type': 'application/json',
         },
-      })
-      .then((response) => {
-        console.log(response, 'I AM  RESPONSE FROM THE BACKEND WITH THE USER LOGIN TOKEN AND HEADERS');
-        // set cookies or something
-      })
-      .catch((err) => err);
+      }),
+  );
+
+  return {
+    login: (credential: string) => mutate(credential),
+    error,
+    isError,
+    isLoading,
+    reset,
+  };
+};
+
+type GoogleLoginProps = {
+  onLogin(credential: string): void;
+};
+
+const GoogleLogin = ({ onLogin }: GoogleLoginProps) => {
+  const handleLogin = async (response: { credential?: string }) => {
+    response.credential && onLogin(response.credential);
   };
 
   useEffect(() => {
-    google.accounts.id.initialize({
-      client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
-      callback: handleCallbackResponse,
-      cancel_on_tap_outside: false,
-    });
+    if (google) {
+      google.accounts.id.initialize({
+        client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
+        callback: handleLogin,
+        cancel_on_tap_outside: false,
+      });
 
-    google.accounts.id.renderButton(document.getElementById('signInDiv'), {
-      theme: 'outline',
-      size: 'medium',
-    });
-  }, []);
+      google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+        theme: 'outline',
+        size: 'medium',
+      });
+    }
+  }, [google]);
 
-  return <div id="signInDiv" />;
+  return <Box id="signInDiv" marginBottom="20px" />;
 };
 
 export default GoogleLogin;

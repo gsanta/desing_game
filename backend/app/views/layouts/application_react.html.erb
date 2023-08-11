@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= css_asset_tag(react.pack_name) %>
     <script type="text/javascript">
+        var google = null;
         window.pageProps = <%=raw json_escape(react.props) %>;
         window.globalProps = <%=raw json_escape(react.globalProps) %>;
     </script>

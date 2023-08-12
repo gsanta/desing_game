@@ -59,7 +59,7 @@ const useEmailRegistration = ({ onClose, resetLogin }: UseEmailRegistrationProps
       reset();
       mutate(data);
     },
-    [mutate, resetLogin],
+    [mutate, resetLogin, reset],
   );
 
   return {

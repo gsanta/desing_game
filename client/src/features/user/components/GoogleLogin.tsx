@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useEffect } from 'react';
 
 type GoogleLoginProps = {
@@ -7,24 +7,27 @@ type GoogleLoginProps = {
 };
 
 const GoogleLogin = ({ onLogin }: GoogleLoginProps) => {
-  const handleLogin = async (response: { credential?: string }) => {
-    response.credential && onLogin(response.credential);
-  };
+  const handleLogin = useCallback(
+    async (response: { credential?: string }) => {
+      if (response.credential) {
+        onLogin(response.credential);
+      }
+    },
+    [onLogin],
+  );
 
   useEffect(() => {
-    if (google) {
-      google.accounts.id.initialize({
-        client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
-        callback: handleLogin,
-        cancel_on_tap_outside: false,
-      });
+    google.accounts.id.initialize({
+      client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
+      callback: handleLogin,
+      cancel_on_tap_outside: false,
+    });
 
-      google.accounts.id.renderButton(document.getElementById('signInDiv'), {
-        theme: 'outline',
-        size: 'medium',
-      });
-    }
-  }, [google]);
+    google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+      theme: 'outline',
+      size: 'medium',
+    });
+  }, [handleLogin]);
 
   return <Box id="signInDiv" marginBottom="20px" />;
 };

@@ -13,26 +13,24 @@ type LoginDialogProps = {
 };
 
 const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
-  const handleClose = () => {
-    resetState();
-    onClose();
-  };
-
-  const { loginGoogle, loginGooglError, isLoginGoogleLoading, loginGoogleReset } = useGoogleLogin({ onClose });
+  const { loginGoogle, loginGooglError, isLoginGoogleLoading, loginGoogleReset } = useGoogleLogin({
+    onClose,
+  });
 
   const {
     form: { handleSubmit, formErrors, register, reset: resetForm },
     query: { loginEmail, loginEmailError, isLoginEmailLoding },
   } = useEmailLogin({
-    onClose: handleClose,
+    onClose,
     resetLogin: () => {
       loginGoogleReset();
     },
   });
 
-  const resetState = () => {
+  const handleClose = () => {
     loginGoogleReset();
     resetForm();
+    onClose();
   };
 
   return (

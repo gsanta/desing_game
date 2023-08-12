@@ -4,6 +4,7 @@ import api from '@/utils/api';
 import { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import { setUser } from '../userSlice';
+import { useCallback } from 'react';
 
 type GoogleLoginResponse = {
   id: number;
@@ -33,8 +34,10 @@ export const useGoogleLogin = ({ onClose }: UseGoogleLoginProps) => {
     },
   );
 
+  const loginGoogle = useCallback((credential: string) => mutate(credential), [mutate]);
+
   return {
-    loginGoogle: (credential: string) => mutate(credential),
+    loginGoogle,
     loginGooglError: error,
     isLoginGoogleLoading: isLoading,
     loginGoogleReset: reset,

@@ -31,9 +31,6 @@ const useEmailLogin = ({ onClose, resetLogin }: UseEmailLoginProps) => {
         dispatch(setUser({ isLoggedIn: true, email: variables.email }));
         onClose();
       },
-      onError(error) {
-        console.log(error);
-      },
     },
   );
 

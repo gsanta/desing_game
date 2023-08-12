@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def self.sign_in_or_create_for_google(email)
+  def self.return_existing_or_create_for_google(email)
     where(provider: 'google', email: email).first_or_create do |user|
       user.email = email
       user.provider = 'google'

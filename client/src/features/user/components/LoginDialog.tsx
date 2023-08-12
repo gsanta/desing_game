@@ -1,89 +1,45 @@
-import { setUser } from '@/features/user/userSlice';
-import { useAppDispatch } from '@/hooks';
 import Dialog, { DialogBody, DialogButtons, DialogFooter } from '@/components/dialog/Dialog';
-import api from '@/utils/api';
-import { FormControl, FormLabel, Input, FormErrorMessage, Button, Text, Box } from '@chakra-ui/react';
-import { AxiosError } from 'axios';
+import { FormControl, FormLabel, Input, FormErrorMessage, Button, Box } from '@chakra-ui/react';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 import { emailRegex } from '../utils/userUtils';
-import GoogleLogin, { useGoogleLogin } from './GoogleLogin';
+import GoogleLogin from './GoogleLogin';
 import ErrorMessage from '@/components/ErrorMessage';
+import useEmailLogin from '../hooks/useEmailLogin';
+import useGoogleLogin from '../hooks/useGoogleLogin';
 
 type LoginDialogProps = {
   isOpen: boolean;
   onClose(): void;
 };
 
-type LoginRequestData = {
-  email: string;
-  password: string;
-};
-
 const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
-  const dispatch = useAppDispatch();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset: resetForm,
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-    mode: 'onBlur',
-  });
-
-  const {
-    mutateAsync: mutateSignIn,
-    isError: isSignInError,
-    error: signInError,
-  } = useMutation<unknown, AxiosError<unknown>, LoginRequestData>(
-    async (data) => {
-      const resp = await api.post('/users/sign_in', {
-        user: data,
-      });
-      return resp;
-    },
-    {
-      onError: (error) => {
-        console.log(error);
-      },
-    },
-  );
-
-  const {
-    login: loginGoogle,
-    isError: isGoogleLoginError,
-    error: googleLoginError,
-    reset: googleLoginReset,
-  } = useGoogleLogin();
-
-  const resetAll = () => {
-    googleLoginReset();
-    resetForm();
-  };
-
   const handleClose = () => {
-    resetAll();
+    resetState();
     onClose();
   };
 
-  const onSubmit = async (data: LoginRequestData) => {
-    resetAll();
-    await mutateSignIn(data);
-    dispatch(setUser({ isLoggedIn: true, email: data.email }));
-    handleClose();
+  const { loginGoogle, loginGooglError, isLoginGoogleLoading, loginGoogleReset } = useGoogleLogin({ onClose });
+
+  const {
+    form: { handleSubmit, formErrors, register, reset: resetForm },
+    query: { loginEmail, loginEmailError, isLoginEmailLoding },
+  } = useEmailLogin({
+    onClose: handleClose,
+    resetLogin: () => {
+      loginGoogleReset();
+    },
+  });
+
+  const resetState = () => {
+    loginGoogleReset();
+    resetForm();
   };
 
   return (
     <Dialog isOpen={isOpen} onClose={handleClose} title="Log in">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(loginEmail)}>
         <DialogBody>
-          <FormControl isInvalid={Boolean(errors.email)}>
+          <FormControl isInvalid={Boolean(formErrors.email)}>
             <FormLabel>Email</FormLabel>
             <Input
               {...register('email', {
@@ -97,7 +53,7 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
                 },
               })}
             />
-            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+            <FormErrorMessage>{formErrors.email?.message}</FormErrorMessage>
           </FormControl>
           <FormControl>
             <FormLabel>Password</FormLabel>
@@ -106,23 +62,22 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
           <Box display="flex" marginTop="4" justifyContent="space-around">
             <GoogleLogin onLogin={loginGoogle} />
           </Box>
-          {signInError && (
-            // <Text color="red.300" fontSize="--chakra - fontSizes - sm">
-            //   {signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
-            // </Text>
+          {loginEmailError && (
             <ErrorMessage
-              error={signInError}
-              fallbackMessage={signInError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'}
+              error={loginEmailError}
+              fallbackMessage={
+                loginEmailError?.response?.status === 401 ? 'Invalid email or password' : 'Failed to log in'
+              }
             />
           )}
-          {googleLoginError && <ErrorMessage error={googleLoginError} />}
+          {loginGooglError && <ErrorMessage error={loginGooglError} />}
         </DialogBody>
         <DialogFooter>
           <DialogButtons>
-            <Button size="sm" onClick={handleClose}>
+            <Button size="sm" onClick={handleClose} isDisabled={isLoginEmailLoding || isLoginGoogleLoading}>
               Close
             </Button>
-            <Button size="sm" colorScheme="orange" type="submit">
+            <Button size="sm" colorScheme="orange" type="submit" isLoading={isLoginEmailLoding || isLoginGoogleLoading}>
               Log in
             </Button>
           </DialogButtons>

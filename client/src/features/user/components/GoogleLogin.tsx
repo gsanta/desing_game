@@ -1,30 +1,6 @@
-import { ServerError } from '@/components/ErrorMessage';
-import api from '@/utils/api';
 import { Box } from '@chakra-ui/react';
-import { AxiosError } from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
-import { useMutation } from 'react-query';
-
-export const useGoogleLogin = () => {
-  const { mutate, error, isError, isLoading, reset } = useMutation<unknown, AxiosError<ServerError>, string>(
-    (credential) =>
-      api.post('/users/sign_in/google', undefined, {
-        headers: {
-          Authorization: `Bearer ${credential}1`,
-          'Content-Type': 'application/json',
-        },
-      }),
-  );
-
-  return {
-    login: (credential: string) => mutate(credential),
-    error,
-    isError,
-    isLoading,
-    reset,
-  };
-};
 
 type GoogleLoginProps = {
   onLogin(credential: string): void;

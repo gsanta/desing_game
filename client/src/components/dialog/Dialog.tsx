@@ -34,7 +34,7 @@ export type DialogFooterProps = ModalFooterProps;
 
 export const DialogFooter = ({ children, ...rest }: DialogFooterProps) => {
   return (
-    <ModalFooter paddingInline="2" {...rest}>
+    <ModalFooter paddingInline="2" paddingTop="0" {...rest}>
       <HStack justifyContent="end">{children}</HStack>
     </ModalFooter>
   );

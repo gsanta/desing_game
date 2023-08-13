@@ -12,7 +12,6 @@ class ToolEventListener {
     this.editorApi = editorApi;
 
     this.onToolDataChanged = this.onToolDataChanged.bind(this);
-    this.onActiveFrameChanged = this.onActiveFrameChanged.bind(this);
   }
 
   listens = ['on_tool_data_changed', 'active_frame_changed'];
@@ -23,13 +22,8 @@ class ToolEventListener {
     store.dispatch(receiveColor(JSON.parse(data)));
   }
 
-  onActiveFrameChanged(): void {
-    store.dispatch(activeFrameChanged());
-  }
-
   listen(editorEvents: EditorEvents) {
     editorEvents.on('tool_data_changed', this.onToolDataChanged);
-    editorEvents.on('active_frame_changed', this.onActiveFrameChanged);
   }
 }
 

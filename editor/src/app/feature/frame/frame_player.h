@@ -4,6 +4,7 @@
 #include "../../document/drawing.h"
 #include "../../event/event_emitter.h"
 
+#include <emscripten.h>
 #include <iostream>
 
 namespace spright
@@ -13,18 +14,29 @@ namespace editor
     class FramePlayer : public Timed
     {
     public:
-        FramePlayer(Drawing &drawing);
+        FramePlayer(float duration = 1000.0f);
 
-        void update(double elapsed) override;
+        void update(int elapsed) override;
 
         void setIsActive(bool isActive);
 
+        void setDuration(int duration);
+
+        void setDrawing(Drawing *drawing);
+
+        void clearDrawing();
+
     private:
+        void setNextFrame();
+
+    private:
+        int m_Duration;
+
         bool m_IsActive;
 
-        double m_Elapsed;
+        int m_Elapsed;
 
-        Drawing &m_Drawing;
+        Drawing *m_Drawing;
     };
 } // namespace editor
 } // namespace spright

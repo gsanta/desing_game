@@ -8,5 +8,5 @@ export class EditorCallbacks {
 }
 
 window.editorCallbacks = {
-  onActiveFrameChanged(_index: number) {},
+  onActiveFrameChanged() {},
 };

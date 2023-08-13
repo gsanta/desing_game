@@ -1,4 +1,3 @@
-import { activeFrameChanged } from '@/features/frame/state/frameSlice';
 import { receiveColor } from '@/features/settings/state/settingsSlice';
 import Editor from '@/features/editor/Editor';
 import EditorEvents from '@/features/editor/EditorEvents';

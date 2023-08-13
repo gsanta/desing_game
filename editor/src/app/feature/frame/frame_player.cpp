@@ -4,10 +4,6 @@ namespace spright
 {
 namespace editor
 {
-#ifdef SPARKY_EMSCRIPTEN
-    EM_JS(void, on_active_frame_changed, (int index), { editorCallbacks.onActiveFrameChanged(index); });
-#endif
-
     FramePlayer::FramePlayer(float duration) : m_IsActive(false), m_Duration(duration), m_Elapsed(0)
     {
     }
@@ -31,9 +27,7 @@ namespace editor
                 setNextFrame();
             }
 
-#ifdef SPARKY_EMSCRIPTEN
             on_active_frame_changed(m_Drawing->getActiveFrame().getIndex());
-#endif
             m_Elapsed = remainder;
         }
     }

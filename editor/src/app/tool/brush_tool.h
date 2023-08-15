@@ -1,6 +1,7 @@
 #pragma once
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../engine/graphics/renderable/renderable2d.h"
+#include "./common/rectangle_cursor/rectangle_cursor.h"
 #include "../core/history/document_history.h"
 #include "../core/history/tile_undo.h"
 #include "../document/document_store.h"

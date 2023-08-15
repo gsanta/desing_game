@@ -9,8 +9,8 @@
 #include "../tool/tool_context.h"
 #include "./erase_undo.h"
 #include "eraser.h"
-#include "eraser_cursor.h"
-#include "eraser_stroke.h"
+#include "../common/rectangle_cursor/rectangle_cursor.h"
+#include "../common/rectangle_cursor/rectangle_stroke.h"
 
 #include <memory>
 #include <vector>

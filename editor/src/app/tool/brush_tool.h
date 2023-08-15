@@ -1,12 +1,12 @@
 #pragma once
 #include "../../engine/graphics/renderable/rect2d.h"
 #include "../../engine/graphics/renderable/renderable2d.h"
-#include "./common/rectangle_cursor/rectangle_cursor.h"
 #include "../core/history/document_history.h"
 #include "../core/history/tile_undo.h"
 #include "../document/document_store.h"
 #include "../document/drawing.h"
 #include "../editor_config.h"
+#include "./common/rectangle_cursor/rectangle_cursor.h"
 #include "brush.h"
 #include "colorable.h"
 #include "tool/tool.h"

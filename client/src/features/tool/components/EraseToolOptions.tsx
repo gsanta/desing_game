@@ -8,7 +8,7 @@ const labelStyles = {
 };
 
 const EraseToolOptions = () => {
-  const [sliderValue, setSliderValue] = useState(50);
+  const [, setSliderValue] = useState(50);
 
   return (
     <Box padding="4">

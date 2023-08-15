@@ -37,10 +37,14 @@ namespace editor
 
         unsigned int color = 0xff0099ff;
 
-        m_TopLine = &drawLayer.add(Rect2D(-rectangleArea / 2.0f, rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
-        m_RightLine = &drawLayer.add(Rect2D(rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
-        m_BottomLine = &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
-        m_LeftLine = &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
+        m_TopLine =
+            &drawLayer.add(Rect2D(-rectangleArea / 2.0f, rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
+        m_RightLine =
+            &drawLayer.add(Rect2D(rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
+        m_BottomLine =
+            &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
+        m_LeftLine =
+            &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
     }
 
     void RectangleStroke::setPosition(TileLayer &drawLayer, const Vec2 &pos)
@@ -62,25 +66,26 @@ namespace editor
 
         if (!m_TopLine)
         {
-            m_TopLine = &drawLayer.add(Rect2D(-rectangleArea / 2.0f, rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
+            m_TopLine = &drawLayer.add(
+                Rect2D(-rectangleArea / 2.0f, rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
         }
         m_TopLine->setCenterPosition(tileCenterPos + Vec2(0, halfRectangleSize));
         if (!m_RightLine)
         {
-            m_RightLine =
-                &drawLayer.add(Rect2D(rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
+            m_RightLine = &drawLayer.add(
+                Rect2D(rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
         }
         m_RightLine->setCenterPosition(tileCenterPos + Vec2(halfRectangleSize, 0));
         if (!m_BottomLine)
         {
-            m_BottomLine =
-                &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
+            m_BottomLine = &drawLayer.add(
+                Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, rectangleArea, m_StrokeWidth, color));
         }
         m_BottomLine->setCenterPosition(tileCenterPos + Vec2(0, -halfRectangleSize));
         if (!m_LeftLine)
         {
-            m_LeftLine =
-                &drawLayer.add(Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
+            m_LeftLine = &drawLayer.add(
+                Rect2D(-rectangleArea / 2.0f, -rectangleArea / 2.0f, m_StrokeWidth, rectangleArea, color));
         }
         m_LeftLine->setCenterPosition(tileCenterPos + Vec2(-halfRectangleSize, 0));
     }

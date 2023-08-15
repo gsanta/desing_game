@@ -137,7 +137,8 @@ namespace editor
         Document document = createEmptyDocument();
 
         document.addDrawing(
-            createDrawing(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f), true,
+            createDrawing(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f),
+                          true,
                           m_TileLayerZPos));
 
         return document;

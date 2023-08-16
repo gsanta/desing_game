@@ -9,7 +9,7 @@ import {
   FormControl,
   FormLabel,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { setEraserSize } from '../state/toolSlice';
 
 const labelStyles = {

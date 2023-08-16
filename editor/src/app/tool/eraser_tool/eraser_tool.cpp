@@ -69,5 +69,9 @@ namespace editor
 
         return json.dump();
     }
+
+    void EraserTool::setEraserSize(int size) {
+        m_Size = size;
+    }
 } // namespace editor
 } // namespace spright

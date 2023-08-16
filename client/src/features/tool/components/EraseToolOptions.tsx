@@ -1,9 +1,18 @@
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Box } from '@chakra-ui/react';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+  Box,
+  Text,
+  FormControl,
+  FormLabel,
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 const labelStyles = {
-  mt: '2',
-  ml: '-2.5',
+  mt: '3',
   fontSize: 'sm',
 };
 
@@ -12,29 +21,32 @@ const EraseToolOptions = () => {
 
   return (
     <Box padding="4">
-      <Slider
-        aria-label="slider-ex-6"
-        colorScheme="orange"
-        onChange={(val) => setSliderValue(val)}
-        min={1}
-        max={5}
-        defaultValue={3}
-        maxW="100px"
-      >
-        <SliderMark value={1} {...labelStyles}>
-          1
-        </SliderMark>
-        <SliderMark value={3} {...labelStyles}>
-          3
-        </SliderMark>
-        <SliderMark value={5} {...labelStyles}>
-          5
-        </SliderMark>
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
+      <FormControl display="flex">
+        <FormLabel htmlFor="eraser-size-slider">Size</FormLabel>
+        <Slider
+          aria-label="slider-ex-6"
+          onChange={(val) => setSliderValue(val)}
+          min={1}
+          max={5}
+          defaultValue={3}
+          maxW="100px"
+          id="eraser-size-slider"
+        >
+          <SliderMark value={1} {...labelStyles}>
+            1
+          </SliderMark>
+          <SliderMark value={3} {...labelStyles}>
+            3
+          </SliderMark>
+          <SliderMark value={5} {...labelStyles}>
+            5
+          </SliderMark>
+          <SliderTrack>
+            <SliderFilledTrack bg="orange.600" />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </FormControl>
     </Box>
   );
 };

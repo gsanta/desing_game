@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
   Slider,
   SliderTrack,
@@ -5,11 +6,11 @@ import {
   SliderThumb,
   SliderMark,
   Box,
-  Text,
   FormControl,
   FormLabel,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { setEraserSize } from '../state/toolSlice';
 
 const labelStyles = {
   mt: '3',
@@ -17,7 +18,15 @@ const labelStyles = {
 };
 
 const EraseToolOptions = () => {
-  const [, setSliderValue] = useState(50);
+  const editor = useAppSelector((state) => state.editor.editor);
+  const eraserSize = useAppSelector((state) => state.tool.eraserSize);
+
+  const dispatch = useAppDispatch();
+
+  const handleChangeEnd = (val: number) => {
+    editor.setEraserSize(val);
+    dispatch(setEraserSize(val));
+  };
 
   return (
     <Box padding="4">
@@ -25,10 +34,10 @@ const EraseToolOptions = () => {
         <FormLabel htmlFor="eraser-size-slider">Size</FormLabel>
         <Slider
           aria-label="slider-ex-6"
-          onChange={(val) => setSliderValue(val)}
+          onChangeEnd={handleChangeEnd}
           min={1}
           max={5}
-          defaultValue={3}
+          defaultValue={eraserSize}
           maxW="100px"
           id="eraser-size-slider"
         >

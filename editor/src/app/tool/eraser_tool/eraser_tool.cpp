@@ -72,6 +72,7 @@ namespace editor
 
     void EraserTool::setEraserSize(int size) {
         m_Size = size;
+        setCursor(std::make_shared<RectangleCursor>(m_Size));
     }
 } // namespace editor
 } // namespace spright

@@ -166,8 +166,8 @@ namespace editor
             {
                 m_Window->setSize(800, 1100);
             }
-            m_DocumentStore->getActiveDocument().getCamera().updateWindowSize(m_Window->getWidth(),
-                                                                              m_Window->getHeight());
+            // m_DocumentStore->getActiveDocument().getCamera().updateWindowSize(m_Window->getWidth(),
+            //                                                                   m_Window->getHeight());
             //std::string str = m_JsonExport->exportDocument(m_DocumentHandler->getActiveDocument());
             //m_JsonExport->importDocument(m_DocumentHandler, str);
             //m_JsonExport->importDocument("{ \"tiles\": [ {\"i\": 1, \"c\": \"black\"} ] }");
@@ -223,6 +223,8 @@ namespace editor
         else if (key == GLFW_KEY_I)
         {
             m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
+        } else if (key == GLFW_KEY_LEFT) {
+            m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
         }
     }
 

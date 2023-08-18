@@ -29,6 +29,8 @@ namespace editor
 
     void BrushTool::paint(const ToolContext &context, bool isPointerMove)
     {
+        std::cout << context.pointer.curr << std::endl;
+
         Camera &camera = context.doc.document->getCamera();
 
         Vec2 center2D = camera.getCenter2D();

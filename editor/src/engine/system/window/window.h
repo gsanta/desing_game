@@ -22,7 +22,7 @@ namespace spright { namespace engine {
 		virtual int getWidth() const = 0;
 		virtual int getHeight() const = 0;
 		virtual void setSize(int width, int height) = 0;
-		
+
 		virtual bool isKeyPressed(unsigned int keycode) const = 0;
 		virtual bool isMouseButtonPressed(unsigned int button) const = 0;
 		virtual void getMousePosition(double& x, double& y) const = 0;
@@ -31,4 +31,3 @@ namespace spright { namespace engine {
 		virtual InputHandler* getInputHandler() const = 0;
 	};
 }}
-

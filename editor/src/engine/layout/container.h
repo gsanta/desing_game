@@ -10,5 +10,6 @@ namespace spright { namespace engine {
 	public:
 		Container(Bounds bounds);
 		const Bounds& getBounds() const;
-	};
+        void setSize(int width, int height);
+    };
 }}

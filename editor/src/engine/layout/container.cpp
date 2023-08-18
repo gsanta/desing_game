@@ -9,4 +9,9 @@ namespace spright { namespace engine {
 	const Bounds& Container::getBounds() const {
 		return m_Bounds;
 	}
+
+    void Container::setSize(int width, int height)
+    {
+		m_Bounds.setSize(width, height);
+    }
 }}

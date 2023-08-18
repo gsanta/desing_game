@@ -1,5 +1,8 @@
 #include "gl_window.h"
 
+int windowW = 0;
+int windowH = 0;
+
 namespace spright { namespace engine {
 
 	void window_resize(GLFWwindow* window, int width, int height);
@@ -173,12 +176,8 @@ namespace spright { namespace engine {
 		GLWindow* win = (GLWindow*)glfwGetWindowUserPointer(window);
 		win->m_Width = width;
 		win->m_Height = height;
-	}
 
-	//void window_resize(GLFWwindow* window, int width, int height) {
-	//	glViewport(0, 0, width, height);
-	//	Window* win = (Window*)glfwGetWindowUserPointer(window);
-	//	win->m_Width = width;
-	//	win->m_Height = height;
-	//}
+        windowW = width;
+        windowH = height;
+    }
 }}

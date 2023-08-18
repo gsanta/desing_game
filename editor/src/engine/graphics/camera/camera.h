@@ -7,6 +7,7 @@
 #include "../../../maths/vec3.h"
 #include "../renderable/bounds.h"
 #include "./ortho_projection_info.h"
+#include "../../system/window/window.h"
 
 namespace spright
 {
@@ -17,15 +18,15 @@ namespace engine
     class Camera
     {
     public:
-        Camera(float windowWidth, float windowHeight, Bounds canvasDimensions, float near, float far);
+        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int scaleFactor = 35);
 
         void translate2D(Vec2 pos);
 
         void zoom(float newWidth);
 
-        float getZoom();
+        void setScaleFactor(int scaleFactor);
 
-        const Bounds &getBounds() const;
+        float getZoom();
 
         const Mat4 getProjectionMatrix() const;
 
@@ -37,14 +38,8 @@ namespace engine
 
         Vec2Int worldToScreenPos(float x, float y) const;
 
-        void updateWindowSize(float windowWidth, float windowHeight);
-
     private:
-        void updateAspectRatio();
-
-        float getAspectRatio() const;
-
-        Bounds getCameraDimensions();
+        float getScaleFactor() const;
 
     private:
         Mat4 m_ProjectionMatrix;
@@ -53,25 +48,17 @@ namespace engine
 
         Vec2 m_Translate;
 
-        Bounds m_CameraDim;
-
         float m_Near;
 
         float m_Far;
 
-        float z = 0.5f;
+        float m_Z = 0.5f;
 
         float m_Zoom = 1.0f;
 
-        float m_AspectRatio;
+        int m_ScaleFactor = 35;
 
-        float m_InitialWidth;
-
-        float m_WindowWidth;
-
-        float m_WindowHeight;
-
-        Bounds m_DocumentBounds;
+        const Window *m_Window;
     };
 } // namespace engine
 } // namespace spright

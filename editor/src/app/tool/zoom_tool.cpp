@@ -10,8 +10,8 @@ namespace editor
 
     void ZoomTool::scroll(const ToolContext &context)
     {
-        m_DocumentStore->getActiveDocument().getCamera().zoom(context.pointer.scroll.y > 0 ? -m_ZoomFactor
-                                                                                           : m_ZoomFactor);
+        m_DocumentStore->getActiveDocument().getCamera().zoom(context.pointer.scroll.y > 0 ? m_ZoomFactor
+                                                                                           : -m_ZoomFactor);
     }
 } // namespace editor
 } // namespace spright

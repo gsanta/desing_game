@@ -5,9 +5,9 @@
 #include "../../../maths/vec2.h"
 #include "../../../maths/vec2_int.h"
 #include "../../../maths/vec3.h"
+#include "../../system/window/window.h"
 #include "../renderable/bounds.h"
 #include "./ortho_projection_info.h"
-#include "../../system/window/window.h"
 
 namespace spright
 {

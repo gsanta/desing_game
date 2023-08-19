@@ -223,7 +223,9 @@ namespace editor
         else if (key == GLFW_KEY_I)
         {
             m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
-        } else if (key == GLFW_KEY_LEFT) {
+        }
+        else if (key == GLFW_KEY_LEFT)
+        {
             m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
         }
     }

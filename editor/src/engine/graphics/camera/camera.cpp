@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
 
-    Camera::Camera(const Window * window, float near, float far, int scaleFactor)
+    Camera::Camera(const Window *window, float near, float far, int scaleFactor)
         : m_Window(window), m_Near(near), m_Far(far), m_ScaleFactor(scaleFactor)
     {
         m_View = Mat4::lookAt(Vec3(0, 0, m_Z), Vec3(0, 0, 0), Vec3(0, 1, 0));
@@ -52,8 +52,8 @@ namespace engine
 
     Vec2 Camera::screenToWorldPos(float x, float y) const
     {
-        float w = (float) m_Window->getWidth() / (float) getScaleFactor();
-        float h = (float) m_Window->getHeight() / (float) getScaleFactor();
+        float w = (float)m_Window->getWidth() / (float)getScaleFactor();
+        float h = (float)m_Window->getHeight() / (float)getScaleFactor();
 
         const Mat4 mat4 = spright::maths::Mat4::scale(Vec3(1.0 / getScaleFactor(), 1.0 / getScaleFactor(), 1));
         Vec4 result = mat4 * Vec4(x, -y, 0.0f, 1.0f);
@@ -81,7 +81,7 @@ namespace engine
 
     float Camera::getScaleFactor() const
     {
-        return ((float) m_ScaleFactor) * m_Zoom;
+        return ((float)m_ScaleFactor) * m_Zoom;
     }
 } // namespace engine
 } // namespace spright

@@ -1,6 +1,8 @@
 #include "document_builder.h"
 
-DocumentBuilder::DocumentBuilder(): m_Window(500, 500) {}
+DocumentBuilder::DocumentBuilder() : m_Window(500, 500)
+{
+}
 
 DocumentBuilder &DocumentBuilder::withEmptyDocument()
 {

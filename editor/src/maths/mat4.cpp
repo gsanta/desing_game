@@ -159,7 +159,7 @@ namespace maths
     Mat4 Mat4::otrthographic(float left, float right, float bottom, float top, float near, float far)
     {
         Mat4 result(1.0f);
-        result.elements[0 + 0 * 4] = 2.0f / (right - left) ;
+        result.elements[0 + 0 * 4] = 2.0f / (right - left);
         result.elements[1 + 1 * 4] = 2.0f / (top - bottom);
         result.elements[2 + 2 * 4] = 2.0f / (near - far);
         result.elements[0 + 3 * 4] = (left + right) / (left - right);

@@ -23,7 +23,8 @@ SCENARIO("Camera")
             REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
         }
 
-        THEN("it can convert from world to screen pos") {
+        THEN("it can convert from world to screen pos")
+        {
             REQUIRE(camera.worldToScreenPos(0, 0) == Vec2Int(5, 4));
             // REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
             // REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));

@@ -116,9 +116,7 @@ namespace editor
         Bounds drawingBounds =
             Bounds::createWithPositions(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
-        Camera camera(m_Window ,
-                      -1.0f,
-                      1.0f);
+        Camera camera(m_Window, -1.0f, 1.0f);
 
         Document document(drawingBounds,
                           camera,

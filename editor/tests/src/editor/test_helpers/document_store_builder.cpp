@@ -1,8 +1,8 @@
 #include "document_store_builder.h"
 
 
-DocumentStoreBuilder::DocumentStoreBuilder(): m_Window(500, 500) {
-
+DocumentStoreBuilder::DocumentStoreBuilder() : m_Window(500, 500)
+{
 }
 
 DocumentStoreBuilder &DocumentStoreBuilder::withWindowSize(int windowSize)

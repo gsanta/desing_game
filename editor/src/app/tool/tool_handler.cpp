@@ -156,16 +156,9 @@ namespace editor
         {
             m_Services->getColorPalette()->color = COLOR_BLUE;
         }
-        else if (key == GLFW_KEY_E)
+        else if (key == GLFW_KEY_I)
         {
-            if (m_Window->getWidth() == 800)
-            {
-                m_Window->setSize(1500, 1000);
-            }
-            else
-            {
-                m_Window->setSize(800, 1100);
-            }
+            m_ImageExport->exportImage(m_DocumentStore->getActiveDocument());
             // m_DocumentStore->getActiveDocument().getCamera().updateWindowSize(m_Window->getWidth(),
             //                                                                   m_Window->getHeight());
             //std::string str = m_JsonExport->exportDocument(m_DocumentHandler->getActiveDocument());
@@ -220,10 +213,10 @@ namespace editor
         {
             m_DocumentStore->getActiveDocument().getHistory()->undo(m_DocumentStore->getActiveDocument());
         }
-        else if (key == GLFW_KEY_I)
-        {
-            m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
-        }
+        // else if (key == GLFW_KEY_I)
+        // {
+        //     m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
+        // }
         else if (key == GLFW_KEY_LEFT)
         {
             m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));

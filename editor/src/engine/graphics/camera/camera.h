@@ -18,7 +18,7 @@ namespace engine
     class Camera
     {
     public:
-        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int scaleFactor = 35);
+        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int scaleFactor = 17);
 
         void translate2D(Vec2 pos);
 

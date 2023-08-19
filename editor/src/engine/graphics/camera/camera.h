@@ -20,7 +20,9 @@ namespace engine
     public:
         Camera(const Window *window, float near = -1.0f, float far = 1.0f, int zoomFactor = 17);
 
-        void translate2D(Vec2 pos);
+        void translate2D(Vec2 delta);
+
+        void setTranslate(Vec2 translate);
 
         void setZoom(float zoom);
 

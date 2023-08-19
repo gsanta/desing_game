@@ -11,9 +11,13 @@ namespace engine
         m_View = Mat4::lookAt(Vec3(0, 0, m_Z), Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
 
-    void Camera::translate2D(Vec2 translate)
+    void Camera::translate2D(Vec2 delta)
     {
-        m_Translate += translate;
+        setTranslate(m_Translate + delta);
+    }
+
+    void Camera::setTranslate(Vec2 translate) {
+        m_Translate = translate;
         Vec3 eye(m_Translate.x, m_Translate.y, m_Z);
         Vec3 at(m_Translate.x, m_Translate.y, 0);
         m_View = Mat4::lookAt(eye, at, Vec3(0, 1, 0));
@@ -51,8 +55,8 @@ namespace engine
             zoom = m_Window->getHeight() / height / m_ZoomFactor;
         }
 
-        m_Translate = bounds.getCenter();
         setZoom(zoom);
+        setTranslate(bounds.getCenter());
     }
 
     float Camera::getZoom()

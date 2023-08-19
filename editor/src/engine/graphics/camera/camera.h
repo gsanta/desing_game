@@ -18,11 +18,9 @@ namespace engine
     class Camera
     {
     public:
-        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int scaleFactor = 17);
+        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int zoomFactor = 17);
 
         void translate2D(Vec2 pos);
-
-        void setScaleFactor(int scaleFactor);
 
         void setZoom(float zoom);
 
@@ -30,7 +28,7 @@ namespace engine
 
         void zoomOut();
 
-        void zoomToFit(Bounds bounds);
+        void zoomToFit(const Bounds &bounds);
 
         float getZoom();
 
@@ -62,7 +60,7 @@ namespace engine
 
         float m_Zoom = 1.0f;
 
-        int m_ScaleFactor = 35;
+        int m_ZoomFactor = 35;
 
         const Window *m_Window;
     };

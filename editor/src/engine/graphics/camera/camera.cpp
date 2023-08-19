@@ -34,6 +34,26 @@ namespace engine
         m_Zoom /= 1.05;
     }
 
+    void Camera::zoomToFit(Bounds bounds) {
+        float windowRatio = m_Window->getWidth() / m_Window->getHeight();
+
+        float zoom = m_Zoom;
+
+        if (bounds.getWidth() / windowRatio > bounds.getHeight())
+        {
+            float width = bounds.getWidth();
+            zoom = m_Window->getWidth() / width / m_ScaleFactor;
+        }
+        else
+        {
+            float height = bounds.getHeight();
+            zoom = m_Window->getHeight() / height / m_ScaleFactor;
+        }
+
+        m_Translate = Vec2(0, 0);
+        setZoom(zoom);
+    }
+
     float Camera::getZoom()
     {
         return m_Zoom;

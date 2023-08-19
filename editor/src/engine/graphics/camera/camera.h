@@ -30,6 +30,8 @@ namespace engine
 
         void zoomOut();
 
+        void zoomToFit(Bounds bounds);
+
         float getZoom();
 
         const Mat4 getProjectionMatrix() const;

@@ -16,7 +16,7 @@ SCENARIO("Camera")
 
         Camera camera(&window, -1.0f, 1.0f, 1);
 
-        THEN("it converts from top/left=zero based system to center=zero system with flipped y coordinate")
+        THEN("it can convert from screen to world pos")
         {
             REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-5.0f, 4.0f));
             REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
@@ -26,8 +26,8 @@ SCENARIO("Camera")
         THEN("it can convert from world to screen pos")
         {
             REQUIRE(camera.worldToScreenPos(0, 0) == Vec2Int(5, 4));
-            // REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
-            // REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
+            REQUIRE(camera.worldToScreenPos(5.0f, -4.0f) == Vec2Int(10, 8));
+            REQUIRE(camera.worldToScreenPos(-5.0f, 4.0f) == Vec2Int(0, 0));
         }
 
         WHEN("the camera has a zoom factor of 2")
@@ -41,11 +41,18 @@ SCENARIO("Camera")
                 REQUIRE(cameraWithZoomFactor.screenToWorldPos(10, 8) == Vec2(2.5f, -2.0f));
                 REQUIRE(cameraWithZoomFactor.screenToWorldPos(5, 4) == Vec2(0, 0));
             }
+
+            THEN("screen pos is twice of the world pos")
+            {
+                REQUIRE(cameraWithZoomFactor.worldToScreenPos(0, 0) == Vec2Int(5, 4));
+                REQUIRE(cameraWithZoomFactor.worldToScreenPos(2.5f, -2.0f) == Vec2Int(10, 8));
+                REQUIRE(cameraWithZoomFactor.worldToScreenPos(-2.5f, 2.0f) == Vec2Int(0, 0));
+            }
         }
 
-        WHEN("the camera is zoomed")
+        WHEN("the camera has a 2 times zoom")
         {
-            camera.zoom(2);
+            camera.setZoom(2);
 
             THEN("world pos is half of the screen pos")
             {
@@ -54,60 +61,31 @@ SCENARIO("Camera")
                 REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
             }
 
+            THEN("screen pos is twice of the world pos")
+            {
+                REQUIRE(camera.worldToScreenPos(0, 0) == Vec2Int(5, 4));
+                REQUIRE(camera.worldToScreenPos(2.5f, -2.0f) == Vec2Int(10, 8));
+                REQUIRE(camera.worldToScreenPos(-2.5f, 2.0f) == Vec2Int(0, 0));
+            }
+
             WHEN("the camera is translated")
             {
                 camera.translate2D(Vec2(1.0f, 2.0f));
 
-                THEN("world pos is translated accordingly")
+                THEN("world pos is translated from screen pos to right/up direction")
                 {
                     REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-1.5f, 4.0f));
                     REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(3.5f, 0));
                     REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(1, 2));
                 }
+
+                THEN("screen pos is translated from world pos to left/down direction")
+                {
+                    REQUIRE(camera.worldToScreenPos(1.0f, 2.0f) == Vec2Int(5, 4));
+                    REQUIRE(camera.worldToScreenPos(3.5f, 0) == Vec2Int(10, 8));
+                    REQUIRE(camera.worldToScreenPos(-1.5f, 4.0f) == Vec2Int(0, 0));
+                }
             }
         }
     }
 }
-
-// TEST_CASE("Camera", "[camera]")
-// {
-//     SECTION("can convert from screen to world pos")
-//     {
-//         Camera camera(&window);
-
-//         REQUIRE(camera.screenToWorldPos(500.0f, 500.0f) == Vec2(10.0f, -10.0f));
-//         REQUIRE(camera.screenToWorldPos(0.0f, 0.0f) == Vec2(-10.0f, 10.0f));
-//         REQUIRE(camera.screenToWorldPos(50.0f, 50.0f) == Vec2(-8.0f, 8.0f));
-//     }
-
-//     SECTION("can convert from screen to world pos with camera translate")
-//     {
-//         Camera camera(&window);
-
-//         camera.translate2D(Vec2(5.0f, 0.0f));
-
-//         REQUIRE(camera.screenToWorldPos(500.0f, 500.0f) == Vec2(15.0f, -10.0f));
-//         REQUIRE(camera.screenToWorldPos(0.0f, 0.0f) == Vec2(-5.0f, 10.0f));
-//         REQUIRE(camera.screenToWorldPos(50.0f, 50.0f) == Vec2(-3.0f, 8.0f));
-//     }
-
-//     SECTION("can convert from world to screen pos")
-//     {
-//         Camera camera(&window);
-
-//         REQUIRE(camera.worldToScreenPos(10.0f, -10.0f) == Vec2Int(500, 0));
-//         REQUIRE(camera.worldToScreenPos(-10.0f, -10.0f) == Vec2Int(0, 0));
-//         REQUIRE(camera.worldToScreenPos(-8.0f, 8.0f) == Vec2Int(50, 450));
-//     }
-
-//     SECTION("can convert from world to screen pos with camera translate")
-//     {
-//         Camera camera(&window);
-
-//         camera.translate2D(Vec2(5.0f, 0.0f));
-
-//         REQUIRE(camera.worldToScreenPos(15.0f, -10.0f) == Vec2Int(500, 0));
-//         REQUIRE(camera.worldToScreenPos(-5.0f, -10.0f) == Vec2Int(0, 0));
-//         REQUIRE(camera.worldToScreenPos(-3.0f, 8.0f) == Vec2Int(50, 450));
-//     }
-// }

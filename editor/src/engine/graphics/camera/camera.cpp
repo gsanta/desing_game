@@ -19,9 +19,19 @@ namespace engine
         m_View = Mat4::lookAt(eye, at, Vec3(0, 1, 0));
     }
 
-    void Camera::zoom(float zoomFactor)
+    void Camera::setZoom(float zoom)
     {
-        m_Zoom = zoomFactor;
+        m_Zoom = zoom;
+    }
+
+    void Camera::zoomIn()
+    {
+        m_Zoom *= 1.05;
+    }
+
+    void Camera::zoomOut()
+    {
+        m_Zoom /= 1.05;
     }
 
     float Camera::getZoom()
@@ -52,31 +62,35 @@ namespace engine
 
     Vec2 Camera::screenToWorldPos(float x, float y) const
     {
-        float w = (float)m_Window->getWidth() / (float)getScaleFactor();
-        float h = (float)m_Window->getHeight() / (float)getScaleFactor();
+        float w = (float)m_Window->getWidth() / getScaleFactor();
+        float h = (float)m_Window->getHeight() / getScaleFactor();
 
-        const Mat4 mat4 = spright::maths::Mat4::scale(Vec3(1.0 / getScaleFactor(), 1.0 / getScaleFactor(), 1));
-        Vec4 result = mat4 * Vec4(x, -y, 0.0f, 1.0f);
+        const Mat4 scaleMatrix = spright::maths::Mat4::scale(Vec3(1.0 / getScaleFactor(), 1.0 / getScaleFactor(), 1));
 
         // from the screen's top/left zero pos to center zero pos
-        const Mat4 mat2 =
+        const Mat4 translateMatrix =
             spright::maths::Mat4::translation(Vec3(m_Translate.x - w / 2.0f, m_Translate.y + h / 2.0f, 0.0f));
-        result = mat2 * result;
+
+        Vec4 result = translateMatrix * scaleMatrix * Vec4(x, -y, 0.0f, 1.0f);
 
         return {result.x, result.y};
     }
 
     Vec2Int Camera::worldToScreenPos(float x, float y) const
     {
-        Vec2 pos(x, y);
-        pos -= m_Translate;
-
         float scaleX = m_Window->getWidth() / getScaleFactor();
         float scaleY = m_Window->getHeight() / getScaleFactor();
 
-        pos *= Vec2(scaleX, scaleY);
+        const Mat4 translateMatrix = spright::maths::Mat4::translation(
+            Vec3(-m_Translate.x + scaleX / 2.0f, -m_Translate.y - scaleY / 2.0f, 0.0f));
+        // Vec4 result = mat4 * Vec4(x, -y, 0.0f, 1.0f);
+        // pos -= m_Translate;
+        const Mat4 scaleMatrix = spright::maths::Mat4::scale(Vec3(getScaleFactor(), getScaleFactor(), 1));
 
-        return {(int)pos.x, (int)pos.y};
+        // pos *= Vec2(scaleX, scaleY);
+        Vec4 result = scaleMatrix * translateMatrix * Vec4(x, y, 0.0f, 1.0f);
+
+        return {(int)result.x, (int)-result.y};
     }
 
     float Camera::getScaleFactor() const

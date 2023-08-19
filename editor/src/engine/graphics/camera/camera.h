@@ -22,9 +22,13 @@ namespace engine
 
         void translate2D(Vec2 pos);
 
-        void zoom(float newWidth);
-
         void setScaleFactor(int scaleFactor);
+
+        void setZoom(float zoom);
+
+        void zoomIn();
+
+        void zoomOut();
 
         float getZoom();
 

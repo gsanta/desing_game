@@ -141,8 +141,8 @@ void set_canvas_size(int width, int height)
 
 void set_eraser_size(int size)
 {
-    Tool* tool = editor->getToolHandler()->getTool("erase");
-    dynamic_cast<EraserTool*>(tool)->setEraserSize(size);
+    Tool *tool = editor->getToolHandler()->getTool("erase");
+    dynamic_cast<EraserTool *>(tool)->setEraserSize(size);
 }
 
 void undo()

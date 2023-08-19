@@ -70,7 +70,8 @@ namespace editor
         return json.dump();
     }
 
-    void EraserTool::setEraserSize(int size) {
+    void EraserTool::setEraserSize(int size)
+    {
         m_Size = size;
         setCursor(std::make_shared<RectangleCursor>(m_Size));
     }

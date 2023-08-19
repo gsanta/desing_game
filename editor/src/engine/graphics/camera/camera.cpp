@@ -16,7 +16,8 @@ namespace engine
         setTranslate(m_Translate + delta);
     }
 
-    void Camera::setTranslate(Vec2 translate) {
+    void Camera::setTranslate(Vec2 translate)
+    {
         m_Translate = translate;
         Vec3 eye(m_Translate.x, m_Translate.y, m_Z);
         Vec3 at(m_Translate.x, m_Translate.y, 0);

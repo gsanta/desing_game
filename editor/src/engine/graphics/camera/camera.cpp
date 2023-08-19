@@ -21,11 +21,7 @@ namespace engine
 
     void Camera::zoom(float zoomFactor)
     {
-        m_Zoom += zoomFactor;
-    }
-
-    void setScaleFactor(int scaleFactor) {
-
+        m_Zoom = zoomFactor;
     }
 
     float Camera::getZoom()

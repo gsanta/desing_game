@@ -6,39 +6,59 @@
 
 using namespace spright::engine;
 
-SCENARIO("Camera") {
-    GIVEN("a window") {
+SCENARIO("Camera")
+{
+    GIVEN("a window")
+    {
         int windowWidth = 10;
         int windowHeight = 8;
         HeadlessWindow window(10, 8);
 
-        WHEN("converting from screen to world pos") {
-            THEN("it converts from top/left=zero based system to center=zero system with flipped y coordinate") {
-                int scaleFactor = 1;
-                Camera camera(&window, -1.0f, 1.0f, scaleFactor);
-                REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-5.0f, 4.0f));
-                REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
+        Camera camera(&window, -1.0f, 1.0f, 1);
+
+        THEN("it converts from top/left=zero based system to center=zero system with flipped y coordinate")
+        {
+            REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-5.0f, 4.0f));
+            REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
+            REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
+        }
+
+        THEN("it can convert from world to screen pos") {
+            REQUIRE(camera.worldToScreenPos(0, 0) == Vec2Int(5, 4));
+            // REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(5.0f, -4.0f));
+            // REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
+        }
+
+        WHEN("the camera has a zoom factor of 2")
+        {
+            int zoomFactor = 2;
+            Camera cameraWithZoomFactor(&window, -1.0f, 1.0f, zoomFactor);
+
+            THEN("world pos is half of the screen pos")
+            {
+                REQUIRE(cameraWithZoomFactor.screenToWorldPos(0, 0) == Vec2(-2.5f, 2.0f));
+                REQUIRE(cameraWithZoomFactor.screenToWorldPos(10, 8) == Vec2(2.5f, -2.0f));
+                REQUIRE(cameraWithZoomFactor.screenToWorldPos(5, 4) == Vec2(0, 0));
+            }
+        }
+
+        WHEN("the camera is zoomed")
+        {
+            camera.zoom(2);
+
+            THEN("world pos is half of the screen pos")
+            {
+                REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-2.5f, 2.0f));
+                REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(2.5f, -2.0f));
                 REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
             }
 
-            WHEN("the camera has a scale factor of 2") {
-                int scaleFactor = 2;
-                Camera camera(&window, -1.0f, 1.0f, scaleFactor);
-
-                THEN("world pos is half of the screen pos") {
-                    REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-2.5f, 2.0f));
-                    REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(2.5f, -2.0f));
-                    REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(0, 0));
-                }
-            }
-
-            WHEN("the camera is translated") {
-                int scaleFactor = 2;
-                Camera camera(&window, -1.0f, 1.0f, scaleFactor);
-
+            WHEN("the camera is translated")
+            {
                 camera.translate2D(Vec2(1.0f, 2.0f));
 
-                THEN("world pos is translated accordingly") {
+                THEN("world pos is translated accordingly")
+                {
                     REQUIRE(camera.screenToWorldPos(0, 0) == Vec2(-1.5f, 4.0f));
                     REQUIRE(camera.screenToWorldPos(10, 8) == Vec2(3.5f, 0));
                     REQUIRE(camera.screenToWorldPos(5, 4) == Vec2(1, 2));

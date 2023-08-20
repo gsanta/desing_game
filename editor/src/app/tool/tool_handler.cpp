@@ -158,9 +158,9 @@ namespace editor
         }
         else if (key == GLFW_KEY_I)
         {
-            m_DocumentStore->getActiveDocument().getCamera().zoomToFit(
-                m_DocumentStore->getActiveDocument().getActiveDrawing().getBounds());
-            // m_ImageExport->exportImage(m_DocumentStore->getActiveDocument());
+            // m_DocumentStore->getActiveDocument().getCamera().zoomToFit(
+            //     m_DocumentStore->getActiveDocument().getActiveDrawing().getBounds());
+            m_ImageExport->exportImage(m_DocumentStore->getActiveDocument());
 
             // m_DocumentStore->getActiveDocument().getCamera().updateWindowSize(m_Window->getWidth(),
             //                                                                   m_Window->getHeight());
@@ -171,7 +171,9 @@ namespace editor
         }
         else if (key == GLFW_KEY_L)
         {
-            setSelectedTool("line");
+            m_DocumentStore->getActiveDocument().getCamera().zoomToFit(
+                m_DocumentStore->getActiveDocument().getActiveDrawing().getBounds());
+            // setSelectedTool("line");
         }
         else if (key == GLFW_KEY_N)
         {

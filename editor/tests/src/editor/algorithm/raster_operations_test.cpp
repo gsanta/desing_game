@@ -8,16 +8,16 @@ using namespace spright::engine;
 SCENARIO("Raster operations")
 {
     GIVEN("a tile layer") {
-        // TileLayer sourceTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).withTileFill().build();
-        // TileLayer destTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).withTileFill().build();
+        TileLayer sourceTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).withTileFill().build();
+        TileLayer destTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).withTileFill().build();
 
-        // WHEN("copying an area of raster to another tile layer") {
-        //     raster_operation_copy_area(sourceTileLayer, destTileLayer, Vec2Int(1, 1), Vec2Int(1, 1), Vec2Int(2, 2));
+        WHEN("copying an area of raster to another tile layer") {
+            raster_operation_copy_area(sourceTileLayer, destTileLayer, Vec2Int(1, 1), Vec2Int(1, 1), Vec2Int(2, 2));
 
-        //     THEN("the destination layer contains the raster area")
-        //     {
-        //         REQUIRE(destTileLayer.getRenderables().size() == 4);
-        //     }
-        // }
+            THEN("the destination layer contains the raster area")
+            {
+                REQUIRE(destTileLayer.getRenderables().size() == 4);
+            }
+        }
     }
 }

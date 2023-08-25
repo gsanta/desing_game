@@ -5,7 +5,7 @@ using namespace spright::engine;
 
 TEST_CASE("Bounds", "[bounds]") {
 	SECTION("can check if it contains a coordinate") {
-		Bounds bounds(2, -2, 5, 5);
+		Bounds bounds(2, -2, 7, 3);
 
 		REQUIRE(bounds.contains(1.9f, 0) == false);
 		REQUIRE(bounds.contains(7.1f, 0) == false);

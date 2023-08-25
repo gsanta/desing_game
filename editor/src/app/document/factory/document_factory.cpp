@@ -54,11 +54,11 @@ namespace editor
     TileLayer DocumentFactory::createForegroundLayer(const Bounds &bounds, float tileSize)
     {
         TileLayer foregroundLayer("",
-                            Group<Rect2D>(m_RendererProvider->createRenderer2D()),
-                            bounds,
-                            tileSize,
-                            m_ForegroundZPos,
-                            true);
+                                  Group<Rect2D>(m_RendererProvider->createRenderer2D()),
+                                  bounds,
+                                  tileSize,
+                                  m_ForegroundZPos,
+                                  true);
 
         return foregroundLayer;
     }

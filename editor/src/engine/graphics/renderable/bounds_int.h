@@ -31,7 +31,13 @@ namespace engine
 
         int getHeight() const;
 
+        Vec2Int getTopRight();
+
+        Vec2Int getBottomLeft();
+
         Vec2Int getCenter() const;
+
+        bool isDefault();
     };
 
 } // namespace engine

@@ -152,16 +152,16 @@ SCENARIO("Erase tool")
                 REQUIRE(foregroundLayer1.getRenderables().size() == 4);
                 // top
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[0]->getBounds(),
-                             EqualsBounds(Bounds(2.0f, 2.0 - dashSize / 2.0f, 1.0f, dashSize)));
+                             EqualsBounds(Bounds::createWithSize(2.0f, 2.0 - dashSize / 2.0f, 1.0f, dashSize)));
                 // bottom
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[2]->getBounds(),
-                             EqualsBounds(Bounds(2.0f, 1.0 - dashSize / 2.0f, 1.0f, dashSize)));
+                             EqualsBounds(Bounds::createWithSize(2.0f, 1.0 - dashSize / 2.0f, 1.0f, dashSize)));
                 // left
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[1]->getBounds(),
-                             EqualsBounds(Bounds(3.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
+                             EqualsBounds(Bounds::createWithSize(3.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
                 // right
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[3]->getBounds(),
-                             EqualsBounds(Bounds(2.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
+                             EqualsBounds(Bounds::createWithSize(2.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
 
                 toolContext.pointer.curr = foregroundLayer1.getWorldPos(Vec2Int(3, 1));
                 eraseTool.execPointerMove(toolContext);
@@ -169,16 +169,16 @@ SCENARIO("Erase tool")
                 REQUIRE(foregroundLayer1.getRenderables().size() == 4);
                 // top
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[0]->getBounds(),
-                             EqualsBounds(Bounds(3.0f, 2.0 - dashSize / 2.0f, 1.0f, dashSize)));
+                             EqualsBounds(Bounds::createWithSize(3.0f, 2.0 - dashSize / 2.0f, 1.0f, dashSize)));
                 // bottom
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[2]->getBounds(),
-                             EqualsBounds(Bounds(3.0f, 1.0 - dashSize / 2.0f, 1.0f, dashSize)));
+                             EqualsBounds(Bounds::createWithSize(3.0f, 1.0 - dashSize / 2.0f, 1.0f, dashSize)));
                 // left
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[1]->getBounds(),
-                             EqualsBounds(Bounds(4.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
+                             EqualsBounds(Bounds::createWithSize(4.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
                 // // right
                 REQUIRE_THAT(foregroundLayer1.getRenderables()[3]->getBounds(),
-                             EqualsBounds(Bounds(3.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
+                             EqualsBounds(Bounds::createWithSize(3.0 - dashSize / 2.0, 1.0, dashSize, 1.0)));
             }
         }
     }

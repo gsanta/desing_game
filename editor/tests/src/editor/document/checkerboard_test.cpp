@@ -11,7 +11,7 @@ using namespace ::spright::editor;
 TEST_CASE("Checkerboard", "[checkerboard]") {
 	SECTION("can create a checkerboard for a tile layer") {
 
-		TileLayer layer = TestDocumentFactory::createTileLayer(0, 2.0f, Bounds(2.0f, 1.0f, 5.0f, 5.0f));
+		TileLayer layer = TestDocumentFactory::createTileLayer(0, 2.0f, Bounds(2.0f, 1.0f, 7.0f, 6.0f));
 		Checkerboard checkerBoard;
 
 		checkerBoard.create(layer);

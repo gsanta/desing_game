@@ -321,7 +321,7 @@ namespace engine
         int left = (m_Bounds.minX / m_TileSize) - 1;
         int bottom = (m_Bounds.minY / m_TileSize) - 1;
 
-        m_TileBounds = BoundsInt(left, left + width, bottom, bottom + height);
+        m_TileBounds = BoundsInt(left, bottom, left + width, bottom + height);
 
         m_IndexSize = width * height;
         m_TileIndexes = new Renderable2D *[m_IndexSize]();

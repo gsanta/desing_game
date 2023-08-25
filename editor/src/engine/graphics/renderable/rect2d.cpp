@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
     Rect2D::Rect2D(float x, float y, float width, float height, unsigned int color)
-        : m_Position(Vec3(x, y, 0)), m_Size(Vec2(width, height)), Renderable2D(Bounds(x, y, width, height), color)
+        : m_Position(Vec3(x, y, 0)), m_Size(Vec2(width, height)), Renderable2D(Bounds(x, y, x + width, y + height), color)
     {
         m_VertexCount = 4;
         updateBounds();
@@ -16,7 +16,7 @@ namespace engine
     {
         m_VertexCount = 4;
 
-        m_bounds = Bounds(m_Position.x, m_Position.y, m_Size.x, m_Size.y);
+        m_bounds = Bounds(m_Position.x, m_Position.y, m_Position.x + m_Size.x, m_Position.y +  m_Size.y);
         updateBounds();
     }
 

@@ -26,7 +26,6 @@ namespace editor
 
         for (Rect2D *tile : tiles)
         {
-            const Vec2 bottomLeft = tile->getPosition2d();
             const Vec2Int tilePos = layer.getTilePos(tile->getPosition2d());
             int xStart = tilePos.x - boundsTileX;
 

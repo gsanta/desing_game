@@ -8,21 +8,21 @@ namespace engine
     const float TileLayer::defaultTileSize = 0.5f;
 
     TileLayer::TileLayer(std::string name,
+                         const Renderer2D &renderer,
                          Group<Rect2D> group,
                          Bounds bounds,
                          float tileSize,
                          float zPos,
                          bool allowDuplicatedPixels)
-        : m_Group(group), m_TileSize(tileSize), m_Name(name), m_Bounds(bounds), m_ZPos(zPos),
-          m_AllowDuplicatedPixels(allowDuplicatedPixels)
+        : m_Group(group), m_TileSize(tileSize), m_Name(name), m_Bounds(bounds), m_Renderer(renderer.clone()),
+          m_ZPos(zPos), m_AllowDuplicatedPixels(allowDuplicatedPixels)
     {
         init();
     }
 
     TileLayer::TileLayer(const TileLayer &tileLayer)
-        : m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name),
-          m_Group(Group<Rect2D>(tileLayer.m_Group.getRenderer()->clone())), m_Bounds(tileLayer.m_Bounds),
-          m_TileSize(tileLayer.m_TileSize), m_ZPos(tileLayer.m_ZPos),
+        : m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name), m_Group(Group<Rect2D>()), m_Bounds(tileLayer.m_Bounds),
+          m_Renderer(tileLayer.m_Renderer->clone()), m_TileSize(tileLayer.m_TileSize), m_ZPos(tileLayer.m_ZPos),
           m_AllowDuplicatedPixels(tileLayer.m_AllowDuplicatedPixels)
     {
 
@@ -135,7 +135,7 @@ namespace engine
     {
         if (m_IsEnabled)
         {
-            m_Group.render(camera);
+            m_Group.render(camera, *m_Renderer.get());
         }
     }
 
@@ -239,7 +239,8 @@ namespace engine
         return getTileIndex(tilePos.x, tilePos.y);
     }
 
-    bool TileLayer::containsTile(int x, int y) const {
+    bool TileLayer::containsTile(int x, int y) const
+    {
         return 0 <= x && x < getTileBounds().getWidth() && 0 <= y && getTileBounds().getHeight() > y;
     }
 
@@ -330,7 +331,7 @@ namespace engine
         m_IndexSize = width * height;
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
         Mat4 transformation = Mat4::translation(Vec3(0, 0, m_ZPos));
-        m_Group.getRenderer()->push(transformation);
+        m_Renderer->push(transformation);
     }
 
     void TileLayer::copyGroup(const Group<Rect2D> &group)

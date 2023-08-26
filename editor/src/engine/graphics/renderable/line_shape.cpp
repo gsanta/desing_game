@@ -1,9 +1,9 @@
 #include "line_shape.h"
 
 namespace spright { namespace engine {
-	LineShape::LineShape(float x1, float y1, float x2, float y2, float thickness, unsigned int color): 
+	LineShape::LineShape(float x1, float y1, float x2, float y2, float thickness, unsigned int color):
 		m_Start(Vec2(x1, y1)), m_End(Vec2(x2, y2)), m_Thickness(thickness), Renderable2D(Bounds(), color) {
-	
+
 		Vec2 vec = m_End - m_Start;
 		m_Length = sqrt(vec.x * vec.x + vec.y * vec.y);
 		m_Dir = (m_End - m_Start) / m_Length;
@@ -21,9 +21,9 @@ namespace spright { namespace engine {
 		m_Coords[3] = Vec3(coord3.x, coord3.y, 0);
 	}
 
-	void LineShape::submit(Renderer2D* renderer) const {
-		VertexData*& buffer = renderer->getBuffer();
-		const Mat4* transformation = renderer->getTransformation();
+	void LineShape::submit(Renderer2D& renderer) const {
+		VertexData*& buffer = renderer.getBuffer();
+		const Mat4* transformation = renderer.getTransformation();
 		buffer->vertex = *transformation * m_Coords[0];
 		buffer->uv = m_UV[0];
 		buffer->tid = 0.0f;
@@ -48,6 +48,6 @@ namespace spright { namespace engine {
 		buffer->color = m_Color;
 		buffer++;
 
-		renderer->setIndexCount(renderer->getIndexCount() + 6);
+		renderer.setIndexCount(renderer.getIndexCount() + 6);
 	}
 }}

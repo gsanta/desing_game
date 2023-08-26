@@ -9,6 +9,7 @@
 #include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
 #include "group.h"
+#include "./tile_view.h"
 
 #include <math.h>
 #include <string>
@@ -19,13 +20,14 @@ namespace engine
 {
     using namespace ::spright::maths;
 
-    class TileLayer
+    class TileLayer : public TileView
     {
     public:
         const static float defaultTileSize;
 
     public:
         TileLayer(std::string name,
+                    const Renderer2D &renderer,
                   Group<Rect2D> group,
                   Bounds bounds,
                   float tileSize = TileLayer::defaultTileSize,
@@ -130,6 +132,8 @@ namespace engine
         std::string m_Name;
 
         Bounds m_Bounds;
+
+        std::shared_ptr<Renderer2D> m_Renderer;
 
         Group<Rect2D> m_Group;
 

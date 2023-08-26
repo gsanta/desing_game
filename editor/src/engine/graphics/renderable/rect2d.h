@@ -36,7 +36,7 @@ namespace engine
         void translate(Vec2 vec);
         nlohmann::json getJson() override;
 
-        virtual void submit(Renderer2D *renderer) const override;
+        virtual void submit(Renderer2D &renderer) const override;
 
     private:
         void updateBounds();

@@ -56,7 +56,7 @@ TileLayer TileLayerBuilder::build()
         std::cout << m_BoundsInt.getWidth() << " " << m_TileSize << std::endl;
     }
 
-    TileLayer layer("layer_" + std::to_string(m_Index), Group<Rect2D>(new HeadlessRenderer2D()), m_Bounds, m_TileSize);
+    TileLayer layer("layer_" + std::to_string(m_Index), HeadlessRenderer2D() , Group<Rect2D>(), m_Bounds, m_TileSize);
 
     Brush brush;
 

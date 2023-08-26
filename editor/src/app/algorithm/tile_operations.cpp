@@ -4,17 +4,35 @@ namespace spright
 {
 namespace editor
 {
-    void tile_operation_copy_area(TileLayer &source, TileLayer &dest, Vec2Int srcPos, Vec2Int dstPos, Vec2Int size) {
-        for (int i = 0; i < size.x; i++) {
-            for (int j = 0; j < size.y; j++) {
-                Rect2D *tile = source.getAtTilePos(srcPos.x + i, srcPos.y + j);
+    void tile_operation_copy_area(const TileLayer &source,
+                                  TileLayer &dest,
+                                  const BoundsInt &area,
+                                  const Vec2Int &destPos)
+    {
+        std::cout << "area: " << area.toString() << std::endl;
+        for (int i = 0; i < area.getWidth(); i++)
+        {
+            for (int j = 0; j < area.getHeight(); j++)
+            {
+                Rect2D *tile = source.getAtTilePos(area.minX + i, area.minY + j);
 
-                Rect2D newTile(*tile);
-                newTile.setCenterPosition(source.getWorldPos(Vec2Int(dstPos.x + i, dstPos.y + j)));
+                Vec2Int newDestPos = Vec2Int(destPos.x + i, destPos.y + j);
 
-                dest.add(newTile);
+                std::cout << "new dest pos: " << newDestPos << std::endl;
+
+                // if (dest.containsTile(newDestPos.x, newDestPos.y)) {
+                if (tile != nullptr) {
+                    Rect2D newTile(*tile);
+                    newTile.setCenterPosition(source.getWorldPos(newDestPos));
+                    dest.add(newTile);
+                } else {
+                    std::cout << "nullptr at pos: " << Vec2Int(area.minX + i, area.minY + j) << std::endl;
+                }
+                // newTile.setCenterPosition(source.getWorldPos(newDestPos));
+
+                // }
             }
         }
     }
-}
-}
+} // namespace editor
+} // namespace spright

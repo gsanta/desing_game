@@ -8,6 +8,6 @@ namespace editor
 {
     using namespace engine;
 
-    void tile_operation_copy_area(TileLayer &source, TileLayer &dest, Vec2Int srcPos, Vec2Int dstPos, Vec2Int size);
-}
-}
+    void tile_operation_copy_area(const TileLayer &source, TileLayer &dest, const BoundsInt &area, const Vec2Int &dstPos);
+} // namespace editor
+} // namespace spright

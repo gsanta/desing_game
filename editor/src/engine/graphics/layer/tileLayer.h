@@ -96,6 +96,8 @@ namespace engine
 
         int getTileIndex(Vec2 worldPos) const;
 
+        bool containsTile(int x, int y) const;
+
         const BoundsInt &getTileBounds() const;
 
         int getIndexSize() const;

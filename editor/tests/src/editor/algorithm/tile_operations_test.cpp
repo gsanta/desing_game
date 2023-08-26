@@ -12,7 +12,7 @@ SCENARIO("Tile operations")
         TileLayer destTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).build();
 
         WHEN("copying an area of tiles") {
-            tile_operation_copy_area(sourceTileLayer, destTileLayer, Vec2Int(1, 1), Vec2Int(1, 1), Vec2Int(2, 2));
+            tile_operation_copy_area(sourceTileLayer, destTileLayer, BoundsInt(1, 1, 3, 3), Vec2Int(1, 1));
 
             THEN("the destination layer contains the copied area")
             {
@@ -26,15 +26,15 @@ SCENARIO("Tile operations")
 
         WHEN("copying an area of tiles with a shift")
         {
-            tile_operation_copy_area(sourceTileLayer, destTileLayer, Vec2Int(1, 1), Vec2Int(2, 1), Vec2Int(2, 2));
+            tile_operation_copy_area(sourceTileLayer, destTileLayer, BoundsInt(0, 0, 2, 2), Vec2Int(1, 0));
 
             THEN("the destination layer contains the copied area")
             {
                 REQUIRE(destTileLayer.getRenderables().size() == 4);
+                REQUIRE(destTileLayer.getAtTilePos(1, 0) != nullptr);
+                REQUIRE(destTileLayer.getAtTilePos(2, 0) != nullptr);
+                REQUIRE(destTileLayer.getAtTilePos(1, 1) != nullptr);
                 REQUIRE(destTileLayer.getAtTilePos(2, 1) != nullptr);
-                REQUIRE(destTileLayer.getAtTilePos(3, 1) != nullptr);
-                REQUIRE(destTileLayer.getAtTilePos(2, 2) != nullptr);
-                REQUIRE(destTileLayer.getAtTilePos(3, 2) != nullptr);
             }
         }
     }

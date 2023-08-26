@@ -239,6 +239,10 @@ namespace engine
         return getTileIndex(tilePos.x, tilePos.y);
     }
 
+    bool TileLayer::containsTile(int x, int y) const {
+        return 0 <= x && x < getTileBounds().getWidth() && 0 <= y && getTileBounds().getHeight() > y;
+    }
+
     const BoundsInt &TileLayer::getTileBounds() const
     {
         return m_TileBounds;
@@ -318,10 +322,10 @@ namespace engine
     {
         int width = ceil((m_Bounds.maxX - m_Bounds.minX) / m_TileSize);
         int height = ceil((m_Bounds.maxY - m_Bounds.minY) / m_TileSize);
-        int left = (m_Bounds.minX / m_TileSize) - 1;
-        int bottom = (m_Bounds.minY / m_TileSize) - 1;
+        int left = (m_Bounds.minX / m_TileSize);
+        int bottom = (m_Bounds.minY / m_TileSize);
 
-        m_TileBounds = BoundsInt(left, bottom, left + width, bottom + height);
+        m_TileBounds = BoundsInt(0, 0, width, height);
 
         m_IndexSize = width * height;
         m_TileIndexes = new Renderable2D *[m_IndexSize]();

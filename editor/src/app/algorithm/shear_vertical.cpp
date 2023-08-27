@@ -16,7 +16,7 @@ namespace editor
         return number < 0 ? -1 * number : number;
     }
 
-    void copy(const TileLayer &source, TileLayer &dest, const BoundsInt &bounds)
+    void copy(const TileView &source, TileView &dest, const BoundsInt &bounds)
     {
         // RectSelector rectSelector(&source);
         // rectSelector.setSelection(bounds.getBottomLeft(), bounds.getTopRight());
@@ -51,8 +51,10 @@ namespace editor
         return radang;
     }
 
-    void shear_vertical(TileLayer &source, TileLayer &dest, const BoundsInt &bounds, float angle)
+    void shear_vertical(TileView &source, const BoundsInt &bounds, float angle)
     {
+        TileHolder dest(source.getTileBounds());
+
         angle = normalize_angle_for_shear(angle, MinDiffFromHalfPi);
 
         if (angle == 0.0 || tan(angle) == 0.0)

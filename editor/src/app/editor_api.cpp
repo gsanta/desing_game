@@ -205,8 +205,8 @@ void shear_horizontal_func()
     //     editor->getDocumentFactory()->createUserLayer(currentLayer.getBounds(), "", currentLayer.getTileSize());
     // shear_vertical(currentLayer, temp, bInt, 1.0472f);
     // currentLayer.clear();
-    // std::cout << "size: " << temp.getRenderables().size() << std::endl;
-    // for (Rect2D *tile : temp.getRenderables())
+    // std::cout << "size: " << temp.getTiles().size() << std::endl;
+    // for (Rect2D *tile : temp.getTiles())
     // {
     //     std::cout << "rect: " << tile->getJson().dump() << std::endl;
 

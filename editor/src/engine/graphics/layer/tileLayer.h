@@ -8,8 +8,8 @@
 #include "../renderable/bounds.h"
 #include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
-#include "group.h"
 #include "./tile_view.h"
+#include "group.h"
 
 #include <math.h>
 #include <string>
@@ -27,7 +27,7 @@ namespace engine
 
     public:
         TileLayer(std::string name,
-                    const Renderer2D &renderer,
+                  const Renderer2D &renderer,
                   Group<Rect2D> group,
                   Bounds bounds,
                   float tileSize = TileLayer::defaultTileSize,
@@ -56,15 +56,17 @@ namespace engine
 
         Rect2D &add(const Rect2D &rect);
 
+        Rect2D &add(const Rect2D &rect, const Vec2Int &tilePos);
+
         void remove(const Rect2D &rect);
 
         void clear();
 
         void render(const Camera &camera);
 
-        std::vector<Rect2D *> &getRenderables();
+        std::vector<Rect2D *> &getTiles();
 
-        const std::vector<Rect2D *> &getRenderables() const;
+        const std::vector<Rect2D *> &getTiles() const;
 
         Vec2 getCenterPos(Vec2 pointer) const;
 
@@ -72,9 +74,9 @@ namespace engine
 
         Vec2 getWorldPos(int tileIndex) const;
 
-        Vec2 getWorldPos(const Vec2Int tilePos) const;
+        Vec2 getWorldPos(const Vec2Int &tilePos) const;
 
-        Vec2Int getTilePos(Vec2 pos) const;
+        Vec2Int getTilePos(const Vec2 &pos) const;
 
         Vec2Int getTilePos(int tileIndex) const;
 

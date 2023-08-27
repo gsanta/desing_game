@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../../engine/graphics/layer/tileLayer.h"
+#include "../../engine/graphics/layer/tile_view.h"
+#include "../../engine/graphics/layer/tile_holder.h"
 #include "../tool/select_tool/rect_selector.h"
 #include "./tile_operations.h"
 
@@ -12,7 +13,7 @@ namespace editor
 {
     using namespace engine;
 
-    void shear_vertical(TileLayer &source, TileLayer &dest, const BoundsInt &bounds, float angle);
+    void shear_vertical(TileView &source, const BoundsInt &bounds, float angle);
 
     void shear_horizontal(TileLayer &source, TileLayer &dest, const BoundsInt &bounds, float angle);
 } // namespace editor

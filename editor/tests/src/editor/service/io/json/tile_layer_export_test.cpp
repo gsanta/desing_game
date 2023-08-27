@@ -68,7 +68,7 @@ SCENARIO("TileLayerExport")
                 TileLayer tileLayer = exporter.importLayer(json);
 
                 REQUIRE(tileLayer.getName() == "layer23");
-                REQUIRE(tileLayer.getRenderables().size() == 2);
+                REQUIRE(tileLayer.getTiles().size() == 2);
                 REQUIRE(tileLayer.getAtTileIndex(0) != nullptr);
                 REQUIRE(tileLayer.getAtTileIndex(0)->getColor() == COLOR_RED);
                 REQUIRE(tileLayer.getAtTileIndex(2) != nullptr);

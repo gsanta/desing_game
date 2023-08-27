@@ -112,6 +112,13 @@ namespace engine
         return newRect;
     }
 
+    Rect2D &TileLayer::add(const Rect2D &rect, const Vec2Int &tilePos)
+    {
+        Rect2D newRect(rect);
+        newRect.setCenterPosition(getWorldPos(tilePos));
+        add(newRect);
+    }
+
     void TileLayer::remove(const Rect2D &rect)
     {
         Vec2 pos = rect.getBounds().getCenter();
@@ -139,12 +146,12 @@ namespace engine
         }
     }
 
-    std::vector<Rect2D *> &TileLayer::getRenderables()
+    std::vector<Rect2D *> &TileLayer::getTiles()
     {
         return m_Group.getRenderables();
     }
 
-    const std::vector<Rect2D *> &TileLayer::getRenderables() const
+    const std::vector<Rect2D *> &TileLayer::getTiles() const
     {
         return m_Group.getRenderables();
     }
@@ -172,13 +179,13 @@ namespace engine
         return getCenterPos(tileIndex);
     }
 
-    Vec2 TileLayer::getWorldPos(const Vec2Int tilePos) const
+    Vec2 TileLayer::getWorldPos(const Vec2Int &tilePos) const
     {
         return getWorldPos(getTileIndex(tilePos.x, tilePos.y));
     }
 
     // TODO: check if it works for both even and odd number of tiles
-    Vec2Int TileLayer::getTilePos(Vec2 pos) const
+    Vec2Int TileLayer::getTilePos(const Vec2 &pos) const
     {
         Vec2 adjustedPos(pos.x - m_Bounds.minX, pos.y - m_Bounds.minY);
         float tileSize = m_TileSize;

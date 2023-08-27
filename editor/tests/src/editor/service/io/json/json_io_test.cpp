@@ -127,21 +127,21 @@ SCENARIO("JsonIO")
             REQUIRE(drawing.getFrames()[0].getLayers().size() == 2);
 
             REQUIRE(drawing.getFrames()[0].getLayer(0).getName() == "layer_1");
-            REQUIRE(drawing.getFrames()[0].getLayer(0).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[0].getLayer(0).getTiles().size() == 1);
             REQUIRE(drawing.getFrames()[0].getLayer(0).getAtTileIndex(0)->getColor() == COLOR_RED);
 
             REQUIRE(drawing.getFrames()[0].getLayer(1).getName() == "layer_2");
-            REQUIRE(drawing.getFrames()[0].getLayer(1).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[0].getLayer(1).getTiles().size() == 1);
             REQUIRE(drawing.getFrames()[0].getLayer(1).getAtTileIndex(1)->getColor() == COLOR_BLUE);
 
             REQUIRE(drawing.getFrames()[0].getLayers().size() == 2);
 
             REQUIRE(drawing.getFrames()[1].getLayer(0).getName() == "layer_1");
-            REQUIRE(drawing.getFrames()[1].getLayer(0).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[1].getLayer(0).getTiles().size() == 1);
             REQUIRE(drawing.getFrames()[1].getLayer(0).getAtTileIndex(2)->getColor() == COLOR_RED);
 
             REQUIRE(drawing.getFrames()[1].getLayer(1).getName() == "layer_2");
-            REQUIRE(drawing.getFrames()[1].getLayer(1).getRenderables().size() == 1);
+            REQUIRE(drawing.getFrames()[1].getLayer(1).getTiles().size() == 1);
             REQUIRE(drawing.getFrames()[1].getLayer(1).getAtTileIndex(3)->getColor() == COLOR_BLUE);
         }
     }

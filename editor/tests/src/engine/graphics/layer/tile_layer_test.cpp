@@ -33,7 +33,7 @@ SCENARIO("TileLayer")
 
                 layer2 = layer1;
 
-                REQUIRE(layer2.getRenderables().size() == 1);
+                REQUIRE(layer2.getTiles().size() == 1);
                 REQUIRE(layer2.getBounds() == bounds);
             }
         }
@@ -105,15 +105,15 @@ SCENARIO("TileLayer")
                                 Group<Rect2D>(),
                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
-                REQUIRE(layer.getRenderables().size() == 0);
+                REQUIRE(layer.getTiles().size() == 0);
 
                 layer.add(Rect2D(0, 0, 1, 1, 0x00000000));
 
-                REQUIRE(layer.getRenderables().size() == 1);
+                REQUIRE(layer.getTiles().size() == 1);
 
                 layer.add(Rect2D(2, 2, 1, 1, 0x00000000));
 
-                REQUIRE(layer.getRenderables().size() == 2);
+                REQUIRE(layer.getTiles().size() == 2);
 
                 Vec2Int pos = layer.getTilePos(Vec2(0.5f, 0.5f));
             }

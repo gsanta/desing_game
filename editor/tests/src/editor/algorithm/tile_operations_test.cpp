@@ -16,7 +16,7 @@ SCENARIO("Tile operations")
 
             THEN("the destination layer contains the copied area")
             {
-                REQUIRE(destTileLayer.getRenderables().size() == 4);
+                REQUIRE(destTileLayer.getTiles().size() == 4);
                 REQUIRE(destTileLayer.getAtTilePos(1, 1) != nullptr);
                 REQUIRE(destTileLayer.getAtTilePos(2, 1) != nullptr);
                 REQUIRE(destTileLayer.getAtTilePos(1, 2) != nullptr);
@@ -30,7 +30,7 @@ SCENARIO("Tile operations")
 
             THEN("the destination layer contains the copied area")
             {
-                REQUIRE(destTileLayer.getRenderables().size() == 4);
+                REQUIRE(destTileLayer.getTiles().size() == 4);
                 REQUIRE(destTileLayer.getAtTilePos(1, 0) != nullptr);
                 REQUIRE(destTileLayer.getAtTilePos(2, 0) != nullptr);
                 REQUIRE(destTileLayer.getAtTilePos(1, 1) != nullptr);

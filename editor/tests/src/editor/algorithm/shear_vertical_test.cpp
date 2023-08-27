@@ -17,7 +17,7 @@ SCENARIO("Vertical shear")
         //     shear_vertical(sourceTileLayer, destTileLayer, BoundsInt(0, 1, 3, 3), 0.785398f);
 
         //     THEN("the dest layer contains the sheared tiles") {
-        //         REQUIRE(destTileLayer.getRenderables().size() == 4);
+        //         REQUIRE(destTileLayer.getTiles().size() == 4);
         //     }
         // }
     }
@@ -71,7 +71,7 @@ SCENARIO("Vertical shear")
 
             THEN("the dest layer contains the sheared tiles")
             {
-                REQUIRE(destTileLayer.getRenderables().size() == 4);
+                REQUIRE(destTileLayer.getTiles().size() == 4);
             }
         }
     }

@@ -20,6 +20,8 @@ namespace engine
 
         virtual const BoundsInt &getTileBounds() const = 0;
 
+        virtual int getTileIndex(int tileX, int tileY) const = 0;
+
         virtual std::vector<Rect2D *> &getTiles() = 0;
 
         virtual const std::vector<Rect2D *> &getTiles() const = 0;

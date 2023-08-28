@@ -19,6 +19,12 @@ namespace engine
     public:
         TileHolder(const BoundsInt &tileBounds);
 
+        TileHolder(const TileHolder &tileHolder);
+
+        ~TileHolder();
+
+        TileHolder &operator=(const TileHolder &that);
+
         Rect2D *getAtTilePos(int x, int y) const override;
 
         Rect2D *getAtTileIndex(int tilePos) const override;
@@ -27,14 +33,18 @@ namespace engine
 
         const BoundsInt &getTileBounds() const override;
 
-        std::vector<Rect2D *> &getTiles();
+        int getTileIndex(int tileX, int tileY) const override;
 
-        const std::vector<Rect2D *> &getTiles() const;
+        std::vector<Rect2D *> &getTiles() override;
 
-    private:
+        const std::vector<Rect2D *> &getTiles() const override;
+
+    protected:
         Group<Rect2D> m_Group;
 
         BoundsInt m_TileBounds;
+
+        int m_IndexSize;
 
         Renderable2D **m_TileIndexes;
     };

@@ -8,7 +8,7 @@
 #include "../renderable/bounds.h"
 #include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
-#include "./tile_view.h"
+#include "./tile_holder.h"
 #include "group.h"
 
 #include <math.h>
@@ -20,12 +20,14 @@ namespace engine
 {
     using namespace ::spright::maths;
 
-    class TileLayer : public TileView
+    class TileLayer : public TileHolder
     {
     public:
         const static float defaultTileSize;
 
     public:
+        using TileHolder::getTileIndex;
+
         TileLayer(std::string name,
                   const Renderer2D &renderer,
                   Group<Rect2D> group,
@@ -35,8 +37,6 @@ namespace engine
                   bool allowDuplicatedPixels = false);
 
         TileLayer(const TileLayer &tileLayer);
-
-        ~TileLayer();
 
         TileLayer &operator=(const TileLayer &);
 
@@ -64,10 +64,6 @@ namespace engine
 
         void render(const Camera &camera);
 
-        std::vector<Rect2D *> &getTiles();
-
-        const std::vector<Rect2D *> &getTiles() const;
-
         Vec2 getCenterPos(Vec2 pointer) const;
 
         Vec2 getCenterPos(int tileIndex) const;
@@ -90,19 +86,15 @@ namespace engine
 
         void setTilePos(Rect2D *tile, const Vec2Int &newPos);
 
-        Rect2D *getAtTileIndex(int tileIndex) const;
-
-        Rect2D *getAtTilePos(int x, int y) const;
-
         Rect2D *getAtWorldPos(Vec2 pos) const;
 
-        int getTileIndex(int tileX, int tileY) const;
+        int getTileIndex(int tileX, int tileY) const {
+            return TileHolder::getTileIndex(tileX, tileY);
+        }
 
         int getTileIndex(Vec2 worldPos) const;
 
         bool containsTile(int x, int y) const;
-
-        const BoundsInt &getTileBounds() const;
 
         int getIndexSize() const;
 
@@ -137,17 +129,9 @@ namespace engine
 
         std::shared_ptr<Renderer2D> m_Renderer;
 
-        Group<Rect2D> m_Group;
-
         float m_TileSize = 0.5f;
 
-        int m_IndexSize;
-
         bool m_IsEnabled = true;
-
-        Renderable2D **m_TileIndexes;
-
-        BoundsInt m_TileBounds;
 
         float m_ZPos;
 

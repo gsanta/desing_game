@@ -1,9 +1,13 @@
+/*
+ * A basic implementation of TileView, which can be used for temporary storage of tiles (like shearing algorithm
+ * which needs to copy tiles to a temporary place and then back to the original TileLayer)
+ */
+
 #pragma once
 
-#include "../../../maths/vec2.h"
-#include "../../../maths/vec2_int.h"
 #include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
+#include "group.h"
 
 namespace spright
 {
@@ -12,19 +16,36 @@ namespace engine
     class TileView
     {
     public:
-        virtual Rect2D *getAtTilePos(int x, int y) const = 0;
+        TileView(const BoundsInt &tileBounds);
 
-        virtual Rect2D *getAtTileIndex(int tilePos) const = 0;
+        TileView(const TileView &TileView);
 
-        virtual Rect2D &add(const Rect2D &rect, const Vec2Int &tilePos) = 0;
+        ~TileView();
 
-        virtual const BoundsInt &getTileBounds() const = 0;
+        TileView &operator=(const TileView &that);
 
-        virtual int getTileIndex(int tileX, int tileY) const = 0;
+        Rect2D *getAtTilePos(int x, int y) const;
 
-        virtual std::vector<Rect2D *> &getTiles() = 0;
+        Rect2D *getAtTileIndex(int tilePos) const;
 
-        virtual const std::vector<Rect2D *> &getTiles() const = 0;
+        Rect2D &add(const Rect2D &rect, const Vec2Int &tilePos);
+
+        const BoundsInt &getTileBounds() const;
+
+        int getTileIndex(int tileX, int tileY) const;
+
+        std::vector<Rect2D *> &getTiles();
+
+        const std::vector<Rect2D *> &getTiles() const;
+
+    protected:
+        Group<Rect2D> m_Group;
+
+        BoundsInt m_TileBounds;
+
+        int m_IndexSize;
+
+        Renderable2D **m_TileIndexes;
     };
 } // namespace engine
 } // namespace spright

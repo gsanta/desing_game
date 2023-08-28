@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../engine/graphics/layer/tile_view.h"
-#include "../../engine/graphics/layer/tile_holder.h"
 #include "../tool/select_tool/rect_selector.h"
 #include "./tile_operations.h"
 

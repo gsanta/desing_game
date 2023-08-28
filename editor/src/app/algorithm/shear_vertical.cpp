@@ -53,7 +53,7 @@ namespace editor
 
     void shear_vertical(TileView &source, const BoundsInt &bounds, float angle)
     {
-        TileHolder dest(source.getTileBounds());
+        TileView dest(source.getTileBounds());
 
         angle = normalize_angle_for_shear(angle, MinDiffFromHalfPi);
 

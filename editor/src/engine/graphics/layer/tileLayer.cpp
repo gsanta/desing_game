@@ -14,7 +14,7 @@ namespace engine
                          float tileSize,
                          float zPos,
                          bool allowDuplicatedPixels)
-        : TileHolder(BoundsInt(0,
+        : TileView(BoundsInt(0,
                                0,
                                ceil((bounds.maxX - bounds.minX) / tileSize),
                                ceil((bounds.maxY - bounds.minY) / tileSize))),
@@ -25,7 +25,7 @@ namespace engine
     }
 
     TileLayer::TileLayer(const TileLayer &tileLayer)
-        : TileHolder(tileLayer), m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name), m_Bounds(tileLayer.m_Bounds),
+        : TileView(tileLayer), m_Index(tileLayer.m_Index), m_Name(tileLayer.m_Name), m_Bounds(tileLayer.m_Bounds),
           m_Renderer(tileLayer.m_Renderer->clone()), m_TileSize(tileLayer.m_TileSize), m_ZPos(tileLayer.m_ZPos),
           m_AllowDuplicatedPixels(tileLayer.m_AllowDuplicatedPixels)
     {
@@ -38,7 +38,7 @@ namespace engine
     {
         if (this != &that)
         {
-            TileHolder::operator=(that);
+            TileView::operator=(that);
 
             m_Index = that.m_Index;
             m_Name = that.m_Name;
@@ -46,9 +46,6 @@ namespace engine
             m_TileSize = that.m_TileSize;
             m_ZPos = that.m_ZPos;
             m_AllowDuplicatedPixels = that.m_AllowDuplicatedPixels;
-
-            // m_Group.clear();
-            // delete[] m_TileIndexes;
 
             init();
             copyGroup(that.m_Group);
@@ -171,7 +168,7 @@ namespace engine
 
     Vec2 TileLayer::getWorldPos(const Vec2Int &tilePos) const
     {
-        return getWorldPos(TileHolder::getTileIndex(tilePos.x, tilePos.y));
+        return getWorldPos(TileView::getTileIndex(tilePos.x, tilePos.y));
     }
 
     // TODO: check if it works for both even and odd number of tiles
@@ -211,7 +208,7 @@ namespace engine
         tile->translate(delta);
 
         Vec2Int tilePos = getTilePos(tile->getPosition2d());
-        int newTileIndex = TileHolder::getTileIndex(tilePos.x, tilePos.y);
+        int newTileIndex = TileView::getTileIndex(tilePos.x, tilePos.y);
         updateTileIndex(tile, newTileIndex);
     }
 
@@ -220,7 +217,7 @@ namespace engine
         Vec2 halfTileSize(getTileSize() / 2.0f);
         tile->setPosition(getWorldPos(newPos) - halfTileSize);
 
-        int newTileIndex = TileHolder::getTileIndex(newPos.x, newPos.y);
+        int newTileIndex = TileView::getTileIndex(newPos.x, newPos.y);
         updateTileIndex(tile, newTileIndex);
     }
 
@@ -228,7 +225,7 @@ namespace engine
     {
         Vec2Int tilePos = getTilePos(worldPos);
 
-        return TileHolder::getTileIndex(tilePos.x, tilePos.y);
+        return TileView::getTileIndex(tilePos.x, tilePos.y);
     }
 
     bool TileLayer::containsTile(int x, int y) const

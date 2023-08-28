@@ -8,7 +8,7 @@
 #include "../renderable/bounds.h"
 #include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
-#include "./tile_holder.h"
+#include "./tile_view.h"
 #include "group.h"
 
 #include <math.h>
@@ -20,13 +20,13 @@ namespace engine
 {
     using namespace ::spright::maths;
 
-    class TileLayer : public TileHolder
+    class TileLayer : public TileView
     {
     public:
         const static float defaultTileSize;
 
     public:
-        using TileHolder::getTileIndex;
+        using TileView::getTileIndex;
 
         TileLayer(std::string name,
                   const Renderer2D &renderer,
@@ -89,7 +89,7 @@ namespace engine
         Rect2D *getAtWorldPos(Vec2 pos) const;
 
         int getTileIndex(int tileX, int tileY) const {
-            return TileHolder::getTileIndex(tileX, tileY);
+            return TileView::getTileIndex(tileX, tileY);
         }
 
         int getTileIndex(Vec2 worldPos) const;

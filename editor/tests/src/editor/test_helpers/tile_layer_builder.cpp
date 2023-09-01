@@ -53,7 +53,6 @@ TileLayer TileLayerBuilder::build()
                           m_BoundsInt.minY * m_TileSize,
                           m_BoundsInt.maxX * m_TileSize,
                           m_BoundsInt.maxY * m_TileSize);
-        std::cout << m_BoundsInt.getWidth() << " " << m_TileSize << std::endl;
     }
 
     TileLayer layer("layer_" + std::to_string(m_Index), HeadlessRenderer2D() , Group<Rect2D>(), m_Bounds, m_TileSize);

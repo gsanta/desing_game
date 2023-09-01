@@ -44,8 +44,6 @@ SCENARIO("JsonIO")
 
             nlohmann::json json = jsonIO.exportDocument(document);
 
-            std::cout << json.dump() << std::endl;
-
             REQUIRE(json["frames"].size() == 2);
             REQUIRE(json["frames"][0]["layers"].size() == 2);
 

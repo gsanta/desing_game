@@ -185,9 +185,6 @@ void shear_horizontal_func()
     Bounds bounds = editor->getActiveDocument().getActiveDrawing().getState().getBounds();
     TileLayer &currentLayer = editor->getActiveDocument().getActiveDrawing().getActiveLayer();
 
-    std::cout << "bint: " << bounds.toString() << std::endl;
-
-
     (bounds.minX - drawing.getBounds().minX) / currentLayer.getTileSize();
 
     int x = (bounds.minX - drawing.getBounds().minX) / currentLayer.getTileSize();
@@ -199,20 +196,6 @@ void shear_horizontal_func()
                    y + bounds.getHeight() / currentLayer.getTileSize());
 
     rotate(currentLayer, editor->getDocumentFactory(), bInt, 0.785398f);
-
-    // std::cout << "bint: " << bInt.toString() << std::endl;
-    // TileLayer temp =
-    //     editor->getDocumentFactory()->createUserLayer(currentLayer.getBounds(), "", currentLayer.getTileSize());
-    // shear_vertical(currentLayer, temp, bInt, 1.0472f);
-    // currentLayer.clear();
-    // std::cout << "size: " << temp.getTiles().size() << std::endl;
-    // for (Rect2D *tile : temp.getTiles())
-    // {
-    //     std::cout << "rect: " << tile->getJson().dump() << std::endl;
-
-    //     currentLayer.add(*tile);
-    // }
-    // editor->getActiveDocument().getCamera().zoomToFit(editor->getActiveDocument().getActiveDrawing().getBounds());
 }
 
 EMSCRIPTEN_BINDINGS(spright)

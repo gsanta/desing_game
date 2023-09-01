@@ -17,19 +17,12 @@ namespace editor
 
                 Vec2Int newDestPos = Vec2Int(destPos.x + i, destPos.y + j);
 
-                // if (dest.containsTile(newDestPos.x, newDestPos.y)) {
                 if (tile != nullptr)
                 {
                     Rect2D newTile(*tile);
                     dest.add(newTile, newDestPos);
                 }
-                else
-                {
-                    std::cout << "nullptr at pos: " << Vec2Int(area.minX + i, area.minY + j) << std::endl;
-                }
-                // newTile.setCenterPosition(source.getWorldPos(newDestPos));
 
-                // }
             }
         }
     }

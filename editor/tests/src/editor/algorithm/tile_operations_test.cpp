@@ -1,5 +1,6 @@
 #include "../src/app/algorithm/tile_operations.h"
 #include "../test_helpers/tile_layer_builder.h"
+
 #include <catch2/catch_test_macros.hpp>
 
 using namespace spright::editor;
@@ -7,11 +8,13 @@ using namespace spright::engine;
 
 SCENARIO("Tile operations")
 {
-    GIVEN("a tile layer") {
+    GIVEN("a tile layer")
+    {
         TileLayer sourceTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).withTileFill().build();
         TileLayer destTileLayer = TileLayerBuilder().withBounds(BoundsInt(2, 2, 5, 5)).build();
 
-        WHEN("copying an area of tiles") {
+        WHEN("copying an area of tiles")
+        {
             tile_operation_copy_area(sourceTileLayer, destTileLayer, BoundsInt(1, 1, 3, 3), Vec2Int(1, 1));
 
             THEN("the destination layer contains the copied area")

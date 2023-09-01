@@ -4,13 +4,11 @@ namespace spright
 {
 namespace engine
 {
-    Bounds::Bounds(float minX, float minY, float maxX, float maxY)
-        : minX(minX), minY(minY), maxX(maxX), maxY(maxY)
+    Bounds::Bounds(float minX, float minY, float maxX, float maxY) : minX(minX), minY(minY), maxX(maxX), maxY(maxY)
     {
     }
 
-    Bounds::Bounds(Vec2 bottomLeft, Vec2 topRight)
-        : Bounds(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y)
+    Bounds::Bounds(Vec2 bottomLeft, Vec2 topRight) : Bounds(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y)
     {
     }
 
@@ -33,7 +31,8 @@ namespace engine
         return createWithPositions(pos1.x, pos1.y, pos2.x, pos2.y);
     }
 
-    Bounds Bounds::createWithSize(float minX, float minY, float width, float height) {
+    Bounds Bounds::createWithSize(float minX, float minY, float width, float height)
+    {
         return Bounds(minX, minY, minX + width, minY + height);
     }
 

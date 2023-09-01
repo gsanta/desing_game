@@ -88,7 +88,8 @@ namespace engine
 
         Rect2D *getAtWorldPos(Vec2 pos) const;
 
-        int getTileIndex(int tileX, int tileY) const {
+        int getTileIndex(int tileX, int tileY) const
+        {
             return TileView::getTileIndex(tileX, tileY);
         }
 

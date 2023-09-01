@@ -13,11 +13,13 @@ namespace engine
     {
     }
 
-    BoundsInt BoundsInt::createWithSize(int minX, int minY, int width, int height) {
+    BoundsInt BoundsInt::createWithSize(int minX, int minY, int width, int height)
+    {
         return BoundsInt(minX, minY, minX + width, minY + height);
     }
 
-    bool BoundsInt::contains(int x, int y) const {
+    bool BoundsInt::contains(int x, int y) const
+    {
         return minX <= x && maxX >= x && minY <= y && maxY >= y;
     }
 
@@ -31,11 +33,13 @@ namespace engine
         return maxY - minY;
     }
 
-    Vec2Int BoundsInt::getTopRight() {
+    Vec2Int BoundsInt::getTopRight()
+    {
         return Vec2Int(minX, minY);
     }
 
-    Vec2Int BoundsInt::getBottomLeft() {
+    Vec2Int BoundsInt::getBottomLeft()
+    {
         return Vec2Int(maxX, maxY);
     }
 

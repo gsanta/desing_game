@@ -15,9 +15,9 @@ namespace engine
                          float zPos,
                          bool allowDuplicatedPixels)
         : TileView(BoundsInt(0,
-                               0,
-                               ceil((bounds.maxX - bounds.minX) / tileSize),
-                               ceil((bounds.maxY - bounds.minY) / tileSize))),
+                             0,
+                             ceil((bounds.maxX - bounds.minX) / tileSize),
+                             ceil((bounds.maxY - bounds.minY) / tileSize))),
           m_TileSize(tileSize), m_Name(name), m_Bounds(bounds), m_Renderer(renderer.clone()), m_ZPos(zPos),
           m_AllowDuplicatedPixels(allowDuplicatedPixels)
     {

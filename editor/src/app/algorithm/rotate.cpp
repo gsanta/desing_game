@@ -6,7 +6,8 @@ namespace spright
 {
 namespace editor
 {
-    void rotate(TileLayer &source, DocumentFactory *documentFactory, const BoundsInt &bounds, float angle) {
+    void rotate(TileLayer &source, DocumentFactory *documentFactory, const BoundsInt &bounds, float angle)
+    {
         // TileLayer temp1 =
         //     documentFactory->createUserLayer(source.getBounds(), "", source.getTileSize());
 
@@ -29,5 +30,5 @@ namespace editor
         //     source.add(*tile);
         // }
     }
-}
+} // namespace editor
 } // namespace spright

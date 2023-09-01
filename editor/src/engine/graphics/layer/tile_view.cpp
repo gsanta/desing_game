@@ -10,7 +10,8 @@ namespace engine
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
 
-    TileView::TileView(const TileView &tileHolder) : m_TileBounds(tileHolder.m_TileBounds), m_IndexSize(tileHolder.m_IndexSize)
+    TileView::TileView(const TileView &tileHolder)
+        : m_TileBounds(tileHolder.m_TileBounds), m_IndexSize(tileHolder.m_IndexSize)
     {
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
@@ -54,7 +55,8 @@ namespace engine
         return m_TileBounds.getWidth() * tileY + tileX;
     }
 
-    Rect2D &TileView::add(const Rect2D &rect, const Vec2Int &tilePos) {
+    Rect2D &TileView::add(const Rect2D &rect, const Vec2Int &tilePos)
+    {
         int tileIndex = m_TileBounds.getWidth() * tilePos.y + tilePos.x;
 
         Rect2D &newRect = m_Group.add(rect);
@@ -79,5 +81,5 @@ namespace engine
     {
         return m_TileBounds;
     }
-}
-}
+} // namespace engine
+} // namespace spright

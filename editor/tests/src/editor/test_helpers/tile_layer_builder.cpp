@@ -55,11 +55,12 @@ TileLayer TileLayerBuilder::build()
                           m_BoundsInt.maxY * m_TileSize);
     }
 
-    TileLayer layer("layer_" + std::to_string(m_Index), HeadlessRenderer2D() , Group<Rect2D>(), m_Bounds, m_TileSize);
+    TileLayer layer("layer_" + std::to_string(m_Index), HeadlessRenderer2D(), Group<Rect2D>(), m_Bounds, m_TileSize);
 
     Brush brush;
 
-    if (m_Fill) {
+    if (m_Fill)
+    {
         for (size_t i = 0; i < layer.getTileBounds().getWidth(); i++)
         {
             for (size_t j = 0; j < layer.getTileBounds().getHeight(); j++)

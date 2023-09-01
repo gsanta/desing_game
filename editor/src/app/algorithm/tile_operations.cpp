@@ -4,10 +4,7 @@ namespace spright
 {
 namespace editor
 {
-    void tile_operation_copy_area(const TileView &source,
-                                  TileView &dest,
-                                  const BoundsInt &area,
-                                  const Vec2Int &destPos)
+    void tile_operation_copy_area(const TileView &source, TileView &dest, const BoundsInt &area, const Vec2Int &destPos)
     {
         for (int i = 0; i < area.getWidth(); i++)
         {
@@ -22,7 +19,6 @@ namespace editor
                     Rect2D newTile(*tile);
                     dest.add(newTile, newDestPos);
                 }
-
             }
         }
     }

@@ -11,7 +11,6 @@
 #include "./tile_view.h"
 #include "group.h"
 
-#include <math.h>
 #include <string>
 
 namespace spright
@@ -74,12 +73,6 @@ namespace engine
 
         Vec2Int getTilePos(const Vec2 &pos) const;
 
-        Vec2Int getTilePos(int tileIndex) const;
-
-        unsigned int getColumn(int tileIndex) const;
-
-        unsigned int getRow(int tileIndex) const;
-
         Vec2 getWorldPos(int x, int y);
 
         void translateTile(Rect2D *tile, const Vec2 &delta);
@@ -99,14 +92,7 @@ namespace engine
 
         int getIndexSize() const;
 
-        inline float getTileSize() const
-        {
-            return m_TileSize;
-        }
-
         float getZPos() const;
-
-        const Bounds &getBounds() const;
 
         nlohmann::json getJson() const;
 
@@ -126,11 +112,7 @@ namespace engine
 
         std::string m_Name;
 
-        Bounds m_Bounds;
-
         std::shared_ptr<Renderer2D> m_Renderer;
-
-        float m_TileSize = 0.5f;
 
         bool m_IsEnabled = true;
 

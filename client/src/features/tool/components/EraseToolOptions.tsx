@@ -29,10 +29,6 @@ const EraseToolOptions = () => {
     dispatch(setEraserSize(val));
   };
 
-  const handleShear = () => {
-    editor.shearHorizontal();
-  };
-
   return (
     <Box padding="4">
       <FormControl display="flex">
@@ -60,7 +56,6 @@ const EraseToolOptions = () => {
           </SliderTrack>
           <SliderThumb />
         </Slider>
-        <Button onClick={handleShear}>Shear</Button>
       </FormControl>
     </Box>
   );

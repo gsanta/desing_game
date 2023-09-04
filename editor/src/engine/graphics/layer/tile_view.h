@@ -6,8 +6,12 @@
 #pragma once
 
 #include "../renderable/bounds_int.h"
+#include "../renderable/bounds.h"
 #include "../renderable/rect2d.h"
 #include "group.h"
+
+#include <math.h>
+
 
 namespace spright
 {
@@ -16,7 +20,7 @@ namespace engine
     class TileView
     {
     public:
-        TileView(const BoundsInt &tileBounds);
+        TileView(const Bounds &bounds, float tileSize);
 
         TileView(const TileView &TileView);
 
@@ -28,9 +32,24 @@ namespace engine
 
         Rect2D *getAtTileIndex(int tilePos) const;
 
+        Vec2Int getTilePos(int tileIndex) const;
+
         Rect2D &add(const Rect2D &rect, const Vec2Int &tilePos);
 
+        void removeAt(int tilePos);
+
+        const Bounds &getBounds() const;
+
         const BoundsInt &getTileBounds() const;
+
+        inline float getTileSize() const
+        {
+            return m_TileSize;
+        }
+
+        unsigned int getColumn(int tileIndex) const;
+
+        unsigned int getRow(int tileIndex) const;
 
         int getTileIndex(int tileX, int tileY) const;
 
@@ -40,6 +59,10 @@ namespace engine
 
     protected:
         Group<Rect2D> m_Group;
+
+        float m_TileSize;
+
+        Bounds m_Bounds;
 
         BoundsInt m_TileBounds;
 

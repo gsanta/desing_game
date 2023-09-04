@@ -4,9 +4,11 @@ namespace spright
 {
 namespace engine
 {
-    TileView::TileView(const BoundsInt &tileBounds) : m_TileBounds(tileBounds)
+    TileView::TileView(const Bounds &bounds, float tileSize) : m_Bounds(bounds), m_TileSize(tileSize)
     {
-        m_IndexSize = tileBounds.getWidth() * tileBounds.getHeight();
+        m_TileBounds =
+            BoundsInt(0, 0, ceil((bounds.maxX - bounds.minX) / tileSize), ceil((bounds.maxY - bounds.minY) / tileSize));
+        m_IndexSize = m_TileBounds.getWidth() * m_TileBounds.getHeight();
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
 
@@ -25,6 +27,8 @@ namespace engine
     {
         if (this != &that)
         {
+            m_TileSize = that.m_TileSize;
+            m_Bounds = that.m_Bounds;
             m_TileBounds = that.m_TileBounds;
             m_IndexSize = m_TileBounds.getWidth() * m_TileBounds.getHeight();
             m_TileIndexes = new Renderable2D *[m_IndexSize]();
@@ -42,6 +46,11 @@ namespace engine
 
     Rect2D *TileView::getAtTileIndex(int tilePos) const
     {
+        if (tilePos >= m_IndexSize || tilePos < 0)
+        {
+            return nullptr;
+        }
+
         return static_cast<Rect2D *>(m_TileIndexes[tilePos]);
     }
 
@@ -53,6 +62,11 @@ namespace engine
     int TileView::getTileIndex(int tileX, int tileY) const
     {
         return m_TileBounds.getWidth() * tileY + tileX;
+    }
+
+    Vec2Int TileView::getTilePos(int tileIndex) const
+    {
+        return Vec2Int(getColumn(tileIndex), getRow(tileIndex));
     }
 
     Rect2D &TileView::add(const Rect2D &rect, const Vec2Int &tilePos)
@@ -67,6 +81,22 @@ namespace engine
         return newRect;
     }
 
+    void TileView::removeAt(int tileIndex)
+    {
+        Vec2Int tilePos = getTilePos(tileIndex);
+
+        int index = m_TileBounds.getWidth() * tilePos.y + tilePos.x;
+
+        Rect2D *rect = getAtTileIndex(tileIndex);
+
+        if (rect)
+        {
+            m_TileIndexes[index] = nullptr;
+            m_Group.remove(*rect);
+        }
+    }
+
+
     std::vector<Rect2D *> &TileView::getTiles()
     {
         return m_Group.getRenderables();
@@ -77,9 +107,24 @@ namespace engine
         return m_Group.getRenderables();
     }
 
+    const Bounds &TileView::getBounds() const
+    {
+        return m_Bounds;
+    }
+
     const BoundsInt &TileView::getTileBounds() const
     {
         return m_TileBounds;
+    }
+
+    unsigned int TileView::getColumn(int tileIndex) const
+    {
+        return tileIndex % m_TileBounds.getWidth();
+    }
+
+    unsigned int TileView::getRow(int tileIndex) const
+    {
+        return tileIndex / m_TileBounds.getWidth();
     }
 } // namespace engine
 } // namespace spright

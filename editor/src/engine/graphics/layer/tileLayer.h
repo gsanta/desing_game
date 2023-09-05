@@ -27,6 +27,9 @@ namespace engine
     public:
         using TileView::getTileIndex;
 
+        using TileView::getWorldPos;
+
+
         TileLayer(std::string name,
                   const Renderer2D &renderer,
                   Group<Rect2D> group,
@@ -62,16 +65,6 @@ namespace engine
         void clear();
 
         void render(const Camera &camera);
-
-        Vec2 getCenterPos(Vec2 pointer) const;
-
-        Vec2 getCenterPos(int tileIndex) const;
-
-        Vec2 getWorldPos(int tileIndex) const;
-
-        Vec2 getWorldPos(const Vec2Int &tilePos) const;
-
-        Vec2Int getTilePos(const Vec2 &pos) const;
 
         Vec2 getWorldPos(int x, int y);
 

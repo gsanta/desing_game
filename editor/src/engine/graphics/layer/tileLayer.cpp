@@ -109,7 +109,7 @@ namespace engine
     Rect2D &TileLayer::add(const Rect2D &rect, const Vec2Int &tilePos)
     {
         Rect2D newRect(rect);
-        newRect.setCenterPosition(getWorldPos(tilePos));
+        newRect.setCenterPosition(TileView::getWorldPos(tilePos));
         return add(newRect);
     }
 
@@ -140,49 +140,9 @@ namespace engine
         }
     }
 
-    Vec2 TileLayer::getCenterPos(Vec2 pointer) const
-    {
-        Vec2Int tilePos = getTilePos(pointer);
-        float tileSize = m_TileSize;
-
-        float x = static_cast<float>(tilePos.x) * tileSize + m_Bounds.minX + m_TileSize / 2;
-        float y = static_cast<float>(tilePos.y) * tileSize + m_Bounds.minY + m_TileSize / 2;
-
-        return Vec2(x, y);
-    }
-
-    Vec2 TileLayer::getCenterPos(int tileIndex) const
-    {
-        int y = tileIndex / m_TileBounds.getWidth();
-        int x = tileIndex % m_TileBounds.getWidth();
-        return Vec2(x * m_TileSize + m_Bounds.minX + m_TileSize / 2, y * m_TileSize + m_Bounds.minY + m_TileSize / 2);
-    }
-
-    Vec2 TileLayer::getWorldPos(int tileIndex) const
-    {
-        return getCenterPos(tileIndex);
-    }
-
-    Vec2 TileLayer::getWorldPos(const Vec2Int &tilePos) const
-    {
-        return getWorldPos(TileView::getTileIndex(tilePos.x, tilePos.y));
-    }
-
-    // TODO: check if it works for both even and odd number of tiles
-    Vec2Int TileLayer::getTilePos(const Vec2 &pos) const
-    {
-        Vec2 adjustedPos(pos.x - m_Bounds.minX, pos.y - m_Bounds.minY);
-        float tileSize = m_TileSize;
-        int tileX = (int)(adjustedPos.x / tileSize);
-
-        int tileY = (int)(adjustedPos.y / tileSize);
-
-        return Vec2Int(tileX, tileY);
-    }
-
     Vec2 TileLayer::getWorldPos(int x, int y)
     {
-        return getWorldPos(Vec2Int(x, y));
+        return TileView::getWorldPos(Vec2Int(x, y));
     }
 
     void TileLayer::translateTile(Rect2D *tile, const Vec2 &delta)
@@ -197,7 +157,7 @@ namespace engine
     void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos)
     {
         Vec2 halfTileSize(getTileSize() / 2.0f);
-        tile->setPosition(getWorldPos(newPos) - halfTileSize);
+        tile->setPosition(TileView::getWorldPos(newPos) - halfTileSize);
 
         int newTileIndex = TileView::getTileIndex(newPos.x, newPos.y);
         updateTileIndex(tile, newTileIndex);

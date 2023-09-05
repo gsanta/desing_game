@@ -12,8 +12,8 @@ namespace engine
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
 
-    TileView::TileView(const TileView &tileHolder)
-        : m_TileBounds(tileHolder.m_TileBounds), m_IndexSize(tileHolder.m_IndexSize)
+    TileView::TileView(const TileView &tileView)
+        : m_Bounds(tileView.m_Bounds), m_TileSize(tileView.m_TileSize), m_TileBounds(tileView.m_TileBounds), m_IndexSize(tileView.m_IndexSize)
     {
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
@@ -41,6 +41,46 @@ namespace engine
         }
 
         return *this;
+    }
+
+    Vec2 TileView::getCenterPos(Vec2 pointer) const
+    {
+        Vec2Int tilePos = getTilePos(pointer);
+        float tileSize = m_TileSize;
+
+        float x = static_cast<float>(tilePos.x) * tileSize + m_Bounds.minX + m_TileSize / 2;
+        float y = static_cast<float>(tilePos.y) * tileSize + m_Bounds.minY + m_TileSize / 2;
+
+        return Vec2(x, y);
+    }
+
+    Vec2 TileView::getCenterPos(int tileIndex) const
+    {
+        int y = tileIndex / m_TileBounds.getWidth();
+        int x = tileIndex % m_TileBounds.getWidth();
+        return Vec2(x * m_TileSize + m_Bounds.minX + m_TileSize / 2, y * m_TileSize + m_Bounds.minY + m_TileSize / 2);
+    }
+
+    Vec2 TileView::getWorldPos(int tileIndex) const
+    {
+        return getCenterPos(tileIndex);
+    }
+
+    Vec2 TileView::getWorldPos(const Vec2Int &tilePos) const
+    {
+        return getWorldPos(TileView::getTileIndex(tilePos.x, tilePos.y));
+    }
+
+    // TODO: check if it works for both even and odd number of tiles
+    Vec2Int TileView::getTilePos(const Vec2 &pos) const
+    {
+        Vec2 adjustedPos(pos.x - m_Bounds.minX, pos.y - m_Bounds.minY);
+        float tileSize = m_TileSize;
+        int tileX = (int)(adjustedPos.x / tileSize);
+
+        int tileY = (int)(adjustedPos.y / tileSize);
+
+        return Vec2Int(tileX, tileY);
     }
 
 

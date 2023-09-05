@@ -1,4 +1,4 @@
-#include "./shear_vertical.h"
+#include "./shear.h"
 
 namespace spright
 {
@@ -14,19 +14,6 @@ namespace editor
     float get_abs(float number)
     {
         return number < 0 ? -1 * number : number;
-    }
-
-    void copy(const TileView &source, TileView &dest, const BoundsInt &bounds)
-    {
-        // RectSelector rectSelector(&source);
-        // rectSelector.setSelection(bounds.getBottomLeft(), bounds.getTopRight());
-
-        // const std::vector<Rect2D *> tiles = rectSelector.getSelection();
-
-        // for (Rect2D *tile : tiles)
-        // {
-        //     dest.add(*tile);
-        // }
     }
 
     float normalize_angle_for_shear(float radang, float mindif)
@@ -59,7 +46,6 @@ namespace editor
 
         if (angle == 0.0 || tan(angle) == 0.0)
         {
-            copy(source, dest, bounds);
             return;
         }
 
@@ -117,7 +103,6 @@ namespace editor
 
         if (angle == 0.0 || tan(angle) == 0.0)
         {
-            copy(source, dest, bounds);
             return;
         }
 

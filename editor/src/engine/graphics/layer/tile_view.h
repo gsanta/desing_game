@@ -28,6 +28,16 @@ namespace engine
 
         TileView &operator=(const TileView &that);
 
+        Vec2 getCenterPos(Vec2 pointer) const;
+
+        Vec2 getCenterPos(int tileIndex) const;
+
+        Vec2 getWorldPos(int tileIndex) const;
+
+        Vec2 getWorldPos(const Vec2Int &tilePos) const;
+
+        Vec2Int getTilePos(const Vec2 &pos) const;
+
         Rect2D *getAtTilePos(int x, int y) const;
 
         Rect2D *getAtTileIndex(int tilePos) const;

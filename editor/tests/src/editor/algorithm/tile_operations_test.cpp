@@ -42,10 +42,12 @@ SCENARIO("Tile operations")
             }
         }
 
-        WHEN("copying all"){
+        WHEN("copying all")
+        {
             tile_operation_copy_all(sourceTileLayer, destTileLayer);
 
-            THEN("the destination view contains all tiles from the source view") {
+            THEN("the destination view contains all tiles from the source view")
+            {
                 REQUIRE(sourceTileLayer.getTiles().size() == 16);
             }
 
@@ -65,7 +67,8 @@ SCENARIO("Tile operations")
         {
             tile_operation_remove_area(sourceTileLayer, BoundsInt(1, 1, 3, 3));
 
-            THEN("the tiles within that area are removed") {
+            THEN("the tiles within that area are removed")
+            {
                 REQUIRE(sourceTileLayer.getTiles().size() == 12);
 
                 REQUIRE(destTileLayer.getAtTilePos(1, 1) == nullptr);

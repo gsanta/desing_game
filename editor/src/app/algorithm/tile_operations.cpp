@@ -34,7 +34,8 @@ namespace editor
         tile_operation_copy_area(source, dest, source.getTileBounds());
     }
 
-    void tile_operation_remove_area(TileView &tileView, const BoundsInt &area) {
+    void tile_operation_remove_area(TileView &tileView, const BoundsInt &area)
+    {
         for (int i = 0; i < area.getWidth(); i++)
         {
             for (int j = 0; j < area.getHeight(); j++)

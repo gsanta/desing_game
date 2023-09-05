@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "../renderable/bounds_int.h"
 #include "../renderable/bounds.h"
+#include "../renderable/bounds_int.h"
 #include "../renderable/rect2d.h"
 #include "group.h"
 

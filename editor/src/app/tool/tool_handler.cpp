@@ -217,7 +217,7 @@ namespace editor
             // m_DocumentStore->getActiveDocument().removeActiveDrawing();
             // m_DocumentStore->getActiveDocument().addDrawing(newDrawing);
             setSelectedTool("rectangle");
-            dynamic_cast<RectangleTool*>(getTool("rectangle"))->setFilled(true);
+            dynamic_cast<RectangleTool *>(getTool("rectangle"))->setFilled(true);
         }
         else if (key == GLFW_KEY_U)
         {
@@ -233,8 +233,10 @@ namespace editor
         }
         else if (key == GLFW_KEY_H)
         {
-            Vec2 bottomLeft = m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getBottomLeft();
-            Vec2 topRight = m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getTopRight();
+            Vec2 bottomLeft =
+                m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getBottomLeft();
+            Vec2 topRight =
+                m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getTopRight();
             Vec2Int bottomLeftTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(bottomLeft);
             Vec2Int topRightTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(topRight);
             shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),

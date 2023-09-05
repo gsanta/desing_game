@@ -14,8 +14,7 @@ namespace engine
                          float tileSize,
                          float zPos,
                          bool allowDuplicatedPixels)
-        : TileView(bounds, tileSize),
-          m_Name(name), m_Renderer(renderer.clone()), m_ZPos(zPos),
+        : TileView(bounds, tileSize), m_Name(name), m_Renderer(renderer.clone()), m_ZPos(zPos),
           m_AllowDuplicatedPixels(allowDuplicatedPixels)
     {
         init();

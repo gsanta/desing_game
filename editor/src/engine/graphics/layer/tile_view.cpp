@@ -13,7 +13,8 @@ namespace engine
     }
 
     TileView::TileView(const TileView &tileView)
-        : m_Bounds(tileView.m_Bounds), m_TileSize(tileView.m_TileSize), m_TileBounds(tileView.m_TileBounds), m_IndexSize(tileView.m_IndexSize)
+        : m_Bounds(tileView.m_Bounds), m_TileSize(tileView.m_TileSize), m_TileBounds(tileView.m_TileBounds),
+          m_IndexSize(tileView.m_IndexSize)
     {
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }

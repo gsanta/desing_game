@@ -239,9 +239,11 @@ namespace editor
                 m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getTopRight();
             Vec2Int bottomLeftTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(bottomLeft);
             Vec2Int topRightTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(topRight);
-            shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
+            std::vector<int> newIndexes = shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
                              BoundsInt(bottomLeftTile, topRightTile),
                              0.436332f);
+            dynamic_cast<SelectTool *>(getTool("select"))->setSelectedTiles(std::move(newIndexes));
+
             // m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
         }
     }

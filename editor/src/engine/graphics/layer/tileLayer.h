@@ -25,10 +25,7 @@ namespace engine
         const static float defaultTileSize;
 
     public:
-        using TileView::getTileIndex;
-
-        using TileView::getWorldPos;
-
+        using TileView::getBottomLeftPos;
 
         TileLayer(std::string name,
                   const Renderer2D &renderer,
@@ -66,20 +63,11 @@ namespace engine
 
         void render(const Camera &camera);
 
-        Vec2 getWorldPos(int x, int y);
-
         void translateTile(Rect2D *tile, const Vec2 &delta);
 
         void setTilePos(Rect2D *tile, const Vec2Int &newPos);
 
         Rect2D *getAtWorldPos(Vec2 pos) const;
-
-        int getTileIndex(int tileX, int tileY) const
-        {
-            return TileView::getTileIndex(tileX, tileY);
-        }
-
-        int getTileIndex(Vec2 worldPos) const;
 
         bool containsTile(int x, int y) const;
 

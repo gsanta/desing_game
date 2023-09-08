@@ -3,7 +3,7 @@
 #include "../../document/document_store.h"
 #include "../../document/drawing.h"
 #include "../../document/factory/document_factory.h"
-#include "../common/selection_box.h"
+// #include "../common/selection_box.h"
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
 
@@ -25,7 +25,7 @@ namespace editor
         void pointerMove(const ToolContext &) override;
 
     private:
-        SelectionBox m_SelectionBox;
+        // SelectionBox m_SelectionBox;
 
         DocumentStore *m_DocumentStore;
 

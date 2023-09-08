@@ -108,7 +108,7 @@ namespace engine
     Rect2D &TileLayer::add(const Rect2D &rect, const Vec2Int &tilePos)
     {
         Rect2D newRect(rect);
-        newRect.setCenterPosition(TileView::getWorldPos(tilePos));
+        newRect.setCenterPosition(getCenterPos(tilePos));
         return add(newRect);
     }
 
@@ -139,11 +139,6 @@ namespace engine
         }
     }
 
-    Vec2 TileLayer::getWorldPos(int x, int y)
-    {
-        return TileView::getWorldPos(Vec2Int(x, y));
-    }
-
     void TileLayer::translateTile(Rect2D *tile, const Vec2 &delta)
     {
         tile->translate(delta);
@@ -155,18 +150,10 @@ namespace engine
 
     void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos)
     {
-        Vec2 halfTileSize(getTileSize() / 2.0f);
-        tile->setPosition(TileView::getWorldPos(newPos) - halfTileSize);
+        tile->setPosition(getBottomLeftPos(newPos));
 
         int newTileIndex = TileView::getTileIndex(newPos.x, newPos.y);
         updateTileIndex(tile, newTileIndex);
-    }
-
-    int TileLayer::getTileIndex(Vec2 worldPos) const
-    {
-        Vec2Int tilePos = getTilePos(worldPos);
-
-        return TileView::getTileIndex(tilePos.x, tilePos.y);
     }
 
     bool TileLayer::containsTile(int x, int y) const

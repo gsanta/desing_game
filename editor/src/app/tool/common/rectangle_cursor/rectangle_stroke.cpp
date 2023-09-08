@@ -53,7 +53,7 @@ namespace editor
 
         int tileIndex = drawLayer.getTileIndex(pos);
         float halfTileSize = drawLayer.getTileSize() / 2.0f;
-        Vec2 tileCenterPos = drawLayer.getWorldPos(tileIndex);
+        Vec2 tileCenterPos = drawLayer.getCenterPos(tileIndex);
 
         if (m_Size % 2 == 0)
         {

@@ -31,11 +31,8 @@ namespace editor
                 Rect2D rect(i, j, tileSize, tileSize, color);
                 // rect.setCenterPosition(layer.getWorldPos(i, j));
                 int tileIndex = layer.getTileIndex(rect.getCenterPosition2d());
-                if (layer.getAtTileIndex(tileIndex) != nullptr)
-                {
-                    // layer.add(rect);
-                    m_SelectionBuffer->add(tileIndex);
-                }
+                // layer.add(rect);
+                m_SelectionBuffer->add(tileIndex);
             }
         }
     }
@@ -106,9 +103,21 @@ namespace editor
 
         unsigned int color = 0x800099ff;
 
-        float xStart = static_cast<int>(bottomLeft.x / tileSize) * tileSize - tileSize;
+        float xStart = static_cast<int>(bottomLeft.x / tileSize) * tileSize;
         float xEnd = static_cast<int>(topRight.x / tileSize) * tileSize;
-        float yStart = static_cast<int>(bottomLeft.y / tileSize) * tileSize - tileSize;
+        if (xStart < 0 && vec1.x < vec2.x) {
+            xStart -= tileSize;
+        } else if (xStart > 0 && vec1.x > vec2.x) {
+            xStart += tileSize;
+        }
+
+        float yStart = static_cast<int>(bottomLeft.y / tileSize) * tileSize;
+        if (yStart < 0 && vec1.y < vec2.y) {
+            yStart -= tileSize;
+        } else if (yStart > 0 && vec1.y > vec2.y) {
+            yStart += tileSize;
+        }
+
         float yEnd = static_cast<int>(topRight.y / tileSize) * tileSize;
 
         return BoundsInt(xStart, yStart, xEnd, yEnd);

@@ -102,6 +102,8 @@ namespace editor
         {
             Vec2 bottomLeft = tempLayer.getBottomLeftPos(index);
             Rect2D rect(bottomLeft.x, bottomLeft.y, tileSize, tileSize, color);
+
+            tempLayer.add(rect);
         }
     }
 } // namespace editor

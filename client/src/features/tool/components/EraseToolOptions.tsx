@@ -8,7 +8,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-  Button,
 } from '@chakra-ui/react';
 import React from 'react';
 import { setEraserSize } from '../state/toolSlice';

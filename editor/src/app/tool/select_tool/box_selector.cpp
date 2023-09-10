@@ -18,7 +18,7 @@ namespace editor
 
         unsigned int color = 0x800099ff;
 
-        BoundsInt bounds = calcSelectionBounds(layer, curr, start);
+        BoundsInt bounds = calcSelectionBounds(layer, start, curr);
 
         // layer.clear();
         // clearSprites(layer);
@@ -39,8 +39,8 @@ namespace editor
 
     bool BoxSelector::isSelectionChanged(const TileLayer &layer, const Vec2 &curr, const Vec2 &prev, const Vec2 &start) const
     {
-        BoundsInt currBounds = calcSelectionBounds(layer, curr, start);
-        BoundsInt prevBounds = calcSelectionBounds(layer, prev, start);
+        BoundsInt currBounds = calcSelectionBounds(layer, start, curr);
+        BoundsInt prevBounds = calcSelectionBounds(layer, start, prev);
 
         return prevBounds != currBounds;
     }
@@ -108,17 +108,17 @@ namespace editor
         if (xStart < 0 && vec1.x < vec2.x) {
             xStart -= tileSize;
         } else if (xStart > 0 && vec1.x > vec2.x) {
-            xStart += tileSize;
+            xEnd += tileSize;
         }
 
         float yStart = static_cast<int>(bottomLeft.y / tileSize) * tileSize;
+        float yEnd = static_cast<int>(topRight.y / tileSize) * tileSize;
         if (yStart < 0 && vec1.y < vec2.y) {
             yStart -= tileSize;
         } else if (yStart > 0 && vec1.y > vec2.y) {
-            yStart += tileSize;
+            yEnd += tileSize;
         }
 
-        float yEnd = static_cast<int>(topRight.y / tileSize) * tileSize;
 
         return BoundsInt(xStart, yStart, xEnd, yEnd);
     }

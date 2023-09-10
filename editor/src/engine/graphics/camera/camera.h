@@ -60,7 +60,7 @@ namespace engine
 
         float m_Z = 0.5f;
 
-        float m_Zoom = 2.0f;
+        float m_Zoom = 1.0f;
 
         int m_ZoomFactor = 1;
 

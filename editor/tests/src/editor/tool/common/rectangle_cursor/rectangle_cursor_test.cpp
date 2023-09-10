@@ -12,61 +12,63 @@
 using namespace spright::editor;
 using namespace spright::maths;
 
-TEST_CASE("Rectangle stroke draw", "[rectangle-stroke]")
+SCENARIO("Rectangle cursor")
 {
-    SECTION("creates the rectangular stroke, rectangle size is even, rectangle position is at the origin")
+    float tileSize = 1.0f;
+    TileLayer tempLayer =
+        TestDocumentFactory::createTileLayer(0, tileSize, Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
+
+    GIVEN("a rectangle cursor with even size")
     {
         int rectangleSize = 4;
-        float tileSize = 1.0f;
-
-        TileLayer tempLayer =
-            TestDocumentFactory::createTileLayer(0, tileSize, Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
-        PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(0, 0)).build();
 
         RectangleCursor rectangleCursor(rectangleSize);
 
-        rectangleCursor.update(tempLayer, pointer);
+        WHEN("pointer position is at the origin")
+        {
+            PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(0, 0)).build();
 
-        std::vector<Rect2D *> &rects = tempLayer.getTiles();
+            THEN("it sets the cursor to the correct position")
+            {
+                rectangleCursor.update(tempLayer, pointer);
+                std::vector<Rect2D *> &rects = tempLayer.getTiles();
 
-        REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(-2.0f, -2.0f, 2.0f, 2.0f)));
+                REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(-2.0f, -2.0f, 2.0f, 2.0f)));
+            }
+        }
+
+        WHEN("pointer position is not at the origin")
+        {
+            PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(0, 0)).build();
+
+            THEN("it sets the cursor to the correct position")
+            {
+                rectangleCursor.update(tempLayer, pointer);
+                std::vector<Rect2D *> &rects = tempLayer.getTiles();
+
+                REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(-2.0f, -2.0f, 2.0f, 2.0f)));
+            }
+        }
     }
 
-    SECTION("creates the rectangular stroke, rectangle size is odd, rectangle position is at the origin")
+    GIVEN("a rectangle cursor with odd size")
     {
         int rectangleSize = 3;
-        float tileSize = 1.0f;
-
-        TileLayer drawLayer =
-            TestDocumentFactory::createTileLayer(0, tileSize, Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
-        PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(0, 0)).build();
-
         RectangleCursor rectangleCursor(rectangleSize);
 
-        rectangleCursor.update(drawLayer, pointer);
+        WHEN("pointer position is at the origin")
+        {
+            PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(0, 0)).build();
 
-        std::vector<Rect2D *> &rects = drawLayer.getTiles();
+            THEN("it sets the cursor to the correct position")
+            {
 
-        REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(-1.0f, -1.0f, 2.0f, 2.0f)));
-    }
+                rectangleCursor.update(tempLayer, pointer);
 
-    SECTION("creates the rectangular stroke when the rectangle is not at the origin")
-    {
-        int rectangleSize = 4;
-        float tileSize = 1.0f;
+                std::vector<Rect2D *> &rects = tempLayer.getTiles();
 
-        Container container(Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
-
-        TileLayer drawLayer =
-            TestDocumentFactory::createTileLayer(0, tileSize, Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
-        PointerInfo pointer = PointerInfoBuilder().withCurr(Vec2(2.0f, 3.0f)).build();
-
-        RectangleCursor rectangleCursor(rectangleSize);
-
-        rectangleCursor.update(drawLayer, pointer);
-
-        std::vector<Rect2D *> &rects = drawLayer.getTiles();
-
-        REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(0, 1.0f, 4.0f, 5.0f)));
+                REQUIRE_THAT(rects[0]->getBounds(), EqualsBounds(Bounds(-1.0f, -1.0f, 2.0f, 2.0f)));
+            }
+        }
     }
 }

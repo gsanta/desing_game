@@ -31,7 +31,7 @@ namespace editor
             if (tile != nullptr)
             {
                 tile->translate(-tileDeltaPrev);
-                tile->translate(tileDelta);
+                layer.translateTile(tile, tileDelta);
             }
         }
 

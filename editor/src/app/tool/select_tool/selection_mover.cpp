@@ -5,7 +5,10 @@ namespace spright
 {
 namespace editor
 {
-    SelectionMover::SelectionMover(std::shared_ptr<SelectionBuffer> selectionBuffer): m_SelectionBuffer(selectionBuffer) {}
+    SelectionMover::SelectionMover(std::shared_ptr<SelectionBuffer> selectionBuffer)
+        : m_SelectionBuffer(selectionBuffer)
+    {
+    }
 
     Vec2 SelectionMover::move(TileLayer &layer, const Vec2 &curr, const Vec2 &prev, const Vec2 &start)
     {
@@ -25,7 +28,8 @@ namespace editor
         for (int tileIndex : m_SelectionBuffer->getTileIndexes())
         {
             Rect2D *tile = layer.getAtTileIndex(tileIndex);
-            if (tile != nullptr) {
+            if (tile != nullptr)
+            {
                 tile->translate(-tileDeltaPrev);
                 tile->translate(tileDelta);
             }

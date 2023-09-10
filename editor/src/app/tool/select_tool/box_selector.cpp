@@ -37,7 +37,10 @@ namespace editor
         }
     }
 
-    bool BoxSelector::isSelectionChanged(const TileLayer &layer, const Vec2 &curr, const Vec2 &prev, const Vec2 &start) const
+    bool BoxSelector::isSelectionChanged(const TileLayer &layer,
+                                         const Vec2 &curr,
+                                         const Vec2 &prev,
+                                         const Vec2 &start) const
     {
         BoundsInt currBounds = calcSelectionBounds(layer, start, curr);
         BoundsInt prevBounds = calcSelectionBounds(layer, start, prev);
@@ -89,7 +92,6 @@ namespace editor
 
     void BoxSelector::clear()
     {
-
     }
 
     BoundsInt BoxSelector::calcSelectionBounds(const TileLayer &layer, const Vec2 &vec1, const Vec2 &vec2) const
@@ -105,17 +107,23 @@ namespace editor
 
         float xStart = static_cast<int>(bottomLeft.x / tileSize) * tileSize;
         float xEnd = static_cast<int>(topRight.x / tileSize) * tileSize;
-        if (xStart < 0 && vec1.x < vec2.x) {
+        if (xStart < 0 && vec1.x < vec2.x)
+        {
             xStart -= tileSize;
-        } else if (xStart > 0 && vec1.x > vec2.x) {
+        }
+        else if (xStart > 0 && vec1.x > vec2.x)
+        {
             xEnd += tileSize;
         }
 
         float yStart = static_cast<int>(bottomLeft.y / tileSize) * tileSize;
         float yEnd = static_cast<int>(topRight.y / tileSize) * tileSize;
-        if (yStart < 0 && vec1.y < vec2.y) {
+        if (yStart < 0 && vec1.y < vec2.y)
+        {
             yStart -= tileSize;
-        } else if (yStart > 0 && vec1.y > vec2.y) {
+        }
+        else if (yStart > 0 && vec1.y > vec2.y)
+        {
             yEnd += tileSize;
         }
 

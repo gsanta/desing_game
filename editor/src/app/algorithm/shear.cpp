@@ -151,7 +151,8 @@ namespace editor
 
         std::vector<int> newIndexes;
 
-        for (const Rect2D *tile : dest.getTiles()) {
+        for (const Rect2D *tile : dest.getTiles())
+        {
             newIndexes.push_back(dest.getTileIndex(tile->getCenterPosition2d()));
         }
 

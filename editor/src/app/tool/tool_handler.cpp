@@ -240,8 +240,8 @@ namespace editor
             Vec2Int bottomLeftTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(bottomLeft);
             Vec2Int topRightTile = m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(topRight);
             std::vector<int> newIndexes = shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
-                             BoundsInt(bottomLeftTile, topRightTile),
-                             0.436332f);
+                                                           BoundsInt(bottomLeftTile, topRightTile),
+                                                           0.436332f);
             dynamic_cast<SelectTool *>(getTool("select"))->setSelectedTiles(std::move(newIndexes));
 
             // m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));

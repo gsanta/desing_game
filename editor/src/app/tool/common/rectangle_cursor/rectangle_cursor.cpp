@@ -4,8 +4,7 @@ namespace spright
 {
 namespace editor
 {
-    RectangleCursor::RectangleCursor(int size, bool shouldDisableOnDrag)
-        : m_Size(size), Cursor(shouldDisableOnDrag)
+    RectangleCursor::RectangleCursor(int size, bool shouldDisableOnDrag) : m_Size(size), Cursor(shouldDisableOnDrag)
     {
     }
 
@@ -30,7 +29,8 @@ namespace editor
         float halfTileSize = drawLayer.getTileSize() / 2.0f;
         Vec2 centerPos = drawLayer.getCenterPos(tileIndex);
 
-        if (m_Size % 2 == 0) {
+        if (m_Size % 2 == 0)
+        {
             centerPos -= halfTileSize;
         }
 

@@ -19,7 +19,8 @@ namespace editor
         return m_TileIndexes;
     }
 
-    void SelectionBuffer::setTileIndexes(std::vector<int> indexes) {
+    void SelectionBuffer::setTileIndexes(std::vector<int> indexes)
+    {
         m_TileIndexes = indexes;
     }
 

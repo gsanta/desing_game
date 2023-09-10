@@ -81,12 +81,12 @@ namespace engine
 
         nlohmann::json getLayerDescription() const;
 
+        void updateTileIndex(Rect2D *rect);
+
     private:
         void init();
 
         void copyGroup(const Group<Rect2D> &group);
-
-        void updateTileIndex(Rect2D *rect, int newIndex);
 
     private:
         size_t m_Index = 0;

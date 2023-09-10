@@ -26,37 +26,17 @@ namespace editor
         }
     }
 
-    void SelectTool::pointerUp(const ToolContext &context)
-    {
-        if (!context.doc.hasActiveDrawing())
-        {
-            return;
-        }
-
-        if (!m_IsMove)
-        {
-            if (context.pointer.downDelta().length() < m_NoMovementTolerance)
-            {
-                TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
-
-                m_BoxSelector->clear();
-                context.doc.activeDrawing->getState().clearBounds();
-            }
-            else
-            {
-                // Vec2 bottomLeft = m_BoxSelector->getBounds().getBottomLeft();
-                // Vec2 topRight = m_BoxSelector->getBounds().getTopRight();
-
-                // context.doc.activeDrawing->getState().setBounds(Bounds(bottomLeft, topRight));
-            }
-        }
-    }
-
     void SelectTool::pointerMove(const ToolContext &context)
     {
         if (!context.pointer.isLeftButtonDown())
         {
             return;
+        }
+
+
+        if (context.pointer.isLeftButtonDown())
+        {
+            // std::cout << "pos: " << context.pointer.curr << std::endl;
         }
 
         TileLayer &tempLayer = context.doc.activeDrawing->getForegroundLayer();
@@ -80,6 +60,40 @@ namespace editor
                 fillTempLayer(tempLayer);
             }
         }
+    }
+
+    void SelectTool::pointerUp(const ToolContext &context)
+    {
+        if (!context.doc.hasActiveDrawing())
+        {
+            return;
+        }
+
+        TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+
+        if (m_IsMove)
+        {
+            m_SelectionMover->finish(activeLayer);
+            // else
+            // {
+            // Vec2 bottomLeft = m_BoxSelector->getBounds().getBottomLeft();
+            // Vec2 topRight = m_BoxSelector->getBounds().getTopRight();
+
+            // context.doc.activeDrawing->getState().setBounds(Bounds(bottomLeft, topRight));
+            // }
+        }
+        else
+        {
+            if (context.pointer.downDelta().length() < m_NoMovementTolerance)
+            {
+                TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
+
+                m_BoxSelector->clear();
+                context.doc.activeDrawing->getState().clearBounds();
+            }
+        }
+
+        m_IsMove = false;
     }
 
     void SelectTool::setSelectedTiles(std::vector<int> indexes)

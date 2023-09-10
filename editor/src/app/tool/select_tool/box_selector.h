@@ -5,6 +5,7 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "./selection_buffer.h"
 
+#include <cmath>
 #include <vector>
 
 namespace spright
@@ -30,6 +31,8 @@ namespace editor
         BoundsInt calcSelectionBounds(const TileLayer &layer, const Vec2 &vec1, const Vec2 &vec2) const;
 
         void clearSprites(TileLayer &layer);
+
+        float roundByTileSize(float value, float tileSize) const;
 
     private:
         float m_DashSize = 0.2f;

@@ -24,5 +24,14 @@ namespace editor
         m_TileIndexes = indexes;
     }
 
+    bool SelectionBuffer::containsIndex(int index)
+    {
+        if (std::find(m_TileIndexes.begin(), m_TileIndexes.end(), index) != m_TileIndexes.end())
+        {
+            return true;
+        }
+        return false;
+    }
+
 } // namespace editor
 } // namespace spright

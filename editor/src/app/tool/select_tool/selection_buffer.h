@@ -17,6 +17,8 @@ namespace editor
 
         void setTileIndexes(std::vector<int> indexes);
 
+        bool containsIndex(int index);
+
     private:
         std::vector<int> m_TileIndexes;
     };

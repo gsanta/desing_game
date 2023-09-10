@@ -31,13 +31,25 @@ namespace editor
             if (tile != nullptr)
             {
                 tile->translate(-tileDeltaPrev);
-                layer.translateTile(tile, tileDelta);
+                tile->translate(tileDelta);
             }
         }
 
         Vec2 diff = tileDelta - tileDeltaPrev;
 
         return diff;
+    }
+
+    void SelectionMover::finish(TileLayer &layer)
+    {
+        for (int tileIndex : m_SelectionBuffer->getTileIndexes())
+        {
+            Rect2D *tile = layer.getAtTileIndex(tileIndex);
+            if (tile != nullptr)
+            {
+                layer.updateTileIndex(tile);
+            }
+        }
     }
 } // namespace editor
 } // namespace spright

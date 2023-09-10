@@ -20,6 +20,8 @@ namespace editor
 
         Vec2 move(TileLayer &layer, const Vec2 &curr, const Vec2 &prev, const Vec2 &start);
 
+        void finish(TileLayer &layer);
+
     private:
         std::shared_ptr<SelectionBuffer> m_SelectionBuffer;
     };

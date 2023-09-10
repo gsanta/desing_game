@@ -20,8 +20,6 @@ namespace editor
 
         BoundsInt bounds = calcSelectionBounds(layer, start, curr);
 
-        // layer.clear();
-        // clearSprites(layer);
         m_SelectionBuffer->clear();
 
         for (float i = bounds.minX; i < bounds.maxX; i += tileSize)
@@ -29,9 +27,7 @@ namespace editor
             for (float j = bounds.minY; j < bounds.maxY; j += tileSize)
             {
                 Rect2D rect(i, j, tileSize, tileSize, color);
-                // rect.setCenterPosition(layer.getWorldPos(i, j));
                 int tileIndex = layer.getTileIndex(rect.getCenterPosition2d());
-                // layer.add(rect);
                 m_SelectionBuffer->add(tileIndex);
             }
         }
@@ -48,48 +44,6 @@ namespace editor
         return prevBounds != currBounds;
     }
 
-    // void BoxSelector::setMoveStart(Vec2 pos)
-    // {
-    //     m_IsMoveStarted = true;
-    //     m_MoveStart = pos;
-    //     m_MovePrev = pos;
-    // }
-
-    // Vec2 BoxSelector::setMoveEnd(Vec2 pos)
-    // {
-    //     if (!m_IsMoveStarted)
-    //     {
-    //         throw "Call setMoveStart before calling setMoveEnd";
-    //     }
-
-    //     Vec2 delta = pos - m_MoveStart;
-    //     Vec2 deltaPrev = m_MovePrev - m_MoveStart;
-
-    //     float tileSize = m_Layer.getTileSize();
-
-    //     float tiledDeltaPrevX = static_cast<int>(deltaPrev.x / tileSize) * tileSize;
-    //     float tiledDeltaPrevY = static_cast<int>(deltaPrev.y / tileSize) * tileSize;
-    //     Vec2 tileDeltaPrev = Vec2(tiledDeltaPrevX, tiledDeltaPrevY);
-
-    //     float tiledDeltaX = static_cast<int>(delta.x / tileSize) * tileSize;
-    //     float tiledDeltaY = static_cast<int>(delta.y / tileSize) * tileSize;
-    //     Vec2 tileDelta = Vec2(tiledDeltaX, tiledDeltaY);
-
-    //     for (Rect2D *sprite : m_Layer.getTiles())
-    //     {
-    //         sprite->translate(-tileDeltaPrev);
-    //         sprite->translate(tileDelta);
-    //     }
-
-    //     m_MovePrev = pos;
-
-    //     Vec2 diff = tileDelta - tileDeltaPrev;
-
-    //     m_Bounds.translate(diff.x, diff.y);
-
-    //     return diff;
-    // }
-
     void BoxSelector::clear()
     {
     }
@@ -105,31 +59,21 @@ namespace editor
 
         unsigned int color = 0x800099ff;
 
-        float xStart = static_cast<int>(bottomLeft.x / tileSize) * tileSize;
-        float xEnd = static_cast<int>(topRight.x / tileSize) * tileSize;
-        if (xStart < 0 && vec1.x < vec2.x)
-        {
-            xStart -= tileSize;
-        }
-        else if (xStart > 0 && vec1.x > vec2.x)
-        {
-            xEnd += tileSize;
-        }
+        float xStart = roundByTileSize(bottomLeft.x, tileSize);
+        float xEnd = roundByTileSize(topRight.x, tileSize);
 
-        float yStart = static_cast<int>(bottomLeft.y / tileSize) * tileSize;
-        float yEnd = static_cast<int>(topRight.y / tileSize) * tileSize;
-        if (yStart < 0 && vec1.y < vec2.y)
-        {
-            yStart -= tileSize;
-        }
-        else if (yStart > 0 && vec1.y > vec2.y)
-        {
-            yEnd += tileSize;
-        }
-
+        float yStart = roundByTileSize(bottomLeft.y, tileSize);
+        float yEnd = roundByTileSize(topRight.y, tileSize);
 
         return BoundsInt(xStart, yStart, xEnd, yEnd);
     }
+
+    float BoxSelector::roundByTileSize(float value, float tileSize) const
+    {
+        float rounded = value > 0 ? (float)ceil(value / tileSize) : (float)floor(value / tileSize);
+        return rounded * tileSize;
+    }
+
 
     void BoxSelector::clearSprites(TileLayer &layer)
     {

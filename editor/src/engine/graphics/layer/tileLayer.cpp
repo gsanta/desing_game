@@ -144,16 +144,14 @@ namespace engine
         tile->translate(delta);
 
         Vec2Int tilePos = getTilePos(tile->getPosition2d());
-        int newTileIndex = TileView::getTileIndex(tilePos.x, tilePos.y);
-        updateTileIndex(tile, newTileIndex);
+        updateTileIndex(tile);
     }
 
     void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos)
     {
         tile->setPosition(getBottomLeftPos(newPos));
 
-        int newTileIndex = TileView::getTileIndex(newPos.x, newPos.y);
-        updateTileIndex(tile, newTileIndex);
+        updateTileIndex(tile);
     }
 
     bool TileLayer::containsTile(int x, int y) const
@@ -230,14 +228,17 @@ namespace engine
         }
     }
 
-    void TileLayer::updateTileIndex(Rect2D *rect, int newIndex)
+    void TileLayer::updateTileIndex(Rect2D *rect)
     {
         if (m_TileIndexes[rect->getTileIndex()] == rect)
         {
             m_TileIndexes[rect->getTileIndex()] = nullptr;
         }
-        rect->setTileIndex(newIndex);
-        m_TileIndexes[newIndex] = rect;
+        Vec2Int tilePos = getTilePos(rect->getPosition2d());
+        int newTileIndex = TileView::getTileIndex(tilePos.x, tilePos.y);
+
+        rect->setTileIndex(newTileIndex);
+        m_TileIndexes[newTileIndex] = rect;
     }
 
 } // namespace engine

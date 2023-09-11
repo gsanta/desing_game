@@ -13,6 +13,7 @@
 
 #include <memory>
 #include <vector>
+#include <limits>
 
 namespace spright
 {
@@ -20,7 +21,6 @@ namespace editor
 {
     using namespace ::spright::maths;
     using namespace ::spright::engine;
-    using namespace editor;
 
     class SelectTool : public Tool
     {
@@ -37,8 +37,12 @@ namespace editor
 
         std::shared_ptr<SelectionBuffer> getSelectionBuffer();
 
+        const Bounds &getSelectionBounds() const;
+
     private:
         void fillTempLayer(TileLayer &tempLayer);
+
+        void recalcTileIndexesAndBounds(TileLayer &layer);
 
     private:
         DocumentStore *m_DocumentStore;
@@ -52,6 +56,8 @@ namespace editor
         RectSelector m_RectSelector;
 
         vector<Vec2> m_OrigPositions;
+
+        Bounds m_SelectionBounds;
 
         float m_NoMovementTolerance = 0.1f;
 

@@ -28,7 +28,7 @@ namespace editor
             {
                 Rect2D rect(i, j, tileSize, tileSize, color);
                 int tileIndex = layer.getTileIndex(rect.getCenterPosition2d());
-                m_SelectionBuffer->add(tileIndex);
+                m_SelectionBuffer->add(tileIndex, layer);
             }
         }
     }

@@ -4,7 +4,7 @@ namespace spright
 {
 namespace editor
 {
-    void SelectionBuffer::add(int tileIndex)
+    void SelectionBuffer::add(int tileIndex, const TileLayer &layer)
     {
         m_TileIndexes.push_back(tileIndex);
     }
@@ -19,7 +19,7 @@ namespace editor
         return m_TileIndexes;
     }
 
-    void SelectionBuffer::setTileIndexes(std::vector<int> indexes)
+    void SelectionBuffer::setTileIndexes(std::vector<int> indexes, const TileLayer &layer)
     {
         m_TileIndexes = indexes;
     }
@@ -31,6 +31,32 @@ namespace editor
             return true;
         }
         return false;
+    }
+
+    const Bounds &SelectionBuffer::getSelectionBounds(const TileLayer &layer)
+    {
+        if (m_SelectionBounds.isNull())
+        {
+            m_SelectionBounds =
+                Bounds(layer.getBottomLeftPos(m_SelectionTileBounds.getBottomLeft()),
+                       layer.getBottomLeftPos(m_SelectionTileBounds.getTopRight()) + layer.getTileSize());
+        }
+
+        return m_SelectionBounds;
+    }
+
+    void SelectionBuffer::updateBounds(int tileIndex, const TileLayer &layer)
+    {
+        Vec2Int tilePos = layer.getTilePos(tileIndex);
+
+        if (m_SelectionTileBounds.isDefault())
+        {
+            m_SelectionTileBounds = BoundsInt(tilePos, tilePos);
+        }
+        else
+        {
+            m_SelectionTileBounds.expand(tilePos);
+        }
     }
 
 } // namespace editor

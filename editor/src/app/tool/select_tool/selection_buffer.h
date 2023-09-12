@@ -25,17 +25,17 @@ namespace editor
 
         bool containsIndex(int index);
 
-        const Bounds &getSelectionBounds(const TileLayer &layer);
-
-    private:
-        void updateBounds(int tileIndex, const TileLayer &layer);
-
     private:
         std::vector<int> m_TileIndexes;
 
         BoundsInt m_SelectionTileBounds;
 
         Bounds m_SelectionBounds;
+
+        int minX = std::numeric_limits<int>::max();
+        int minY = std::numeric_limits<int>::max();
+        int maxX = std::numeric_limits<int>::min();
+        int maxY = std::numeric_limits<int>::min();
     };
 } // namespace editor
 } // namespace spright

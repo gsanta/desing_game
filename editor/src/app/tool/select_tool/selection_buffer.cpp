@@ -12,6 +12,16 @@ namespace editor
     void SelectionBuffer::clear()
     {
         m_TileIndexes.clear();
+        // m_SelectionTileBounds.minX = std::numeric_limits<int>::max();
+        // m_SelectionTileBounds.minY = std::numeric_limits<int>::max();
+        // m_SelectionTileBounds.maxX = std::numeric_limits<int>::min();
+        // m_SelectionTileBounds.maxY = std::numeric_limits<int>::min();
+        int minX = std::numeric_limits<int>::max();
+        int minY = std::numeric_limits<int>::max();
+        int maxX = std::numeric_limits<int>::min();
+        int maxY = std::numeric_limits<int>::min();
+        // m_SelectionTileBounds = BoundsInt();
+        m_SelectionBounds = Bounds();
     }
 
     const std::vector<int> &SelectionBuffer::getTileIndexes()
@@ -32,32 +42,5 @@ namespace editor
         }
         return false;
     }
-
-    const Bounds &SelectionBuffer::getSelectionBounds(const TileLayer &layer)
-    {
-        if (m_SelectionBounds.isNull())
-        {
-            m_SelectionBounds =
-                Bounds(layer.getBottomLeftPos(m_SelectionTileBounds.getBottomLeft()),
-                       layer.getBottomLeftPos(m_SelectionTileBounds.getTopRight()) + layer.getTileSize());
-        }
-
-        return m_SelectionBounds;
-    }
-
-    void SelectionBuffer::updateBounds(int tileIndex, const TileLayer &layer)
-    {
-        Vec2Int tilePos = layer.getTilePos(tileIndex);
-
-        if (m_SelectionTileBounds.isDefault())
-        {
-            m_SelectionTileBounds = BoundsInt(tilePos, tilePos);
-        }
-        else
-        {
-            m_SelectionTileBounds.expand(tilePos);
-        }
-    }
-
 } // namespace editor
 } // namespace spright

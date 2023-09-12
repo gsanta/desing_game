@@ -249,7 +249,9 @@ namespace editor
             std::vector<int> newIndexes = shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
                                                            BoundsInt(bottomLeftTile, topRightTile),
                                                            0.436332f);
-            dynamic_cast<SelectTool *>(getTool("select"))->setSelectedTiles(std::move(newIndexes));
+            dynamic_cast<SelectTool *>(getTool("select"))
+                ->setSelectedTiles(std::move(newIndexes),
+                                   m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer());
 
             // m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
         }

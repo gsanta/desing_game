@@ -11,9 +11,9 @@
 #include "./selection_buffer.h"
 #include "./selection_mover.h"
 
+#include <limits>
 #include <memory>
 #include <vector>
-#include <limits>
 
 namespace spright
 {
@@ -25,7 +25,7 @@ namespace editor
     class SelectTool : public Tool
     {
     public:
-        SelectTool();
+        SelectTool(std::shared_ptr<DocumentStore> documentStore);
 
         void pointerDown(const ToolContext &) override;
 
@@ -33,19 +33,23 @@ namespace editor
 
         void pointerMove(const ToolContext &) override;
 
-        void setSelectedTiles(std::vector<int> indexes);
+        void setSelectedTiles(std::vector<int> indexes, TileLayer &layer);
 
         std::shared_ptr<SelectionBuffer> getSelectionBuffer();
 
-        const Bounds &getSelectionBounds() const;
+        const Bounds &getSelectionBounds();
+
+        const BoundsInt &getSelectionTileBounds();
 
     private:
         void fillTempLayer(TileLayer &tempLayer);
 
         void recalcTileIndexesAndBounds(TileLayer &layer);
 
+        void updateBounds();
+
     private:
-        DocumentStore *m_DocumentStore;
+        std::shared_ptr<DocumentStore> m_DocumentStore;
 
         std::shared_ptr<SelectionBuffer> m_SelectionBuffer;
 
@@ -58,6 +62,10 @@ namespace editor
         vector<Vec2> m_OrigPositions;
 
         Bounds m_SelectionBounds;
+
+        BoundsInt m_SelectionTileBounds;
+
+        bool m_SelectionBoundsDirty;
 
         float m_NoMovementTolerance = 0.1f;
 

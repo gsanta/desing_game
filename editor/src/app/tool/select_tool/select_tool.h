@@ -10,6 +10,7 @@
 #include "./rect_selector.h"
 #include "./selection_buffer.h"
 #include "./selection_mover.h"
+#include "./calc_selection_bounds.h"
 
 #include <limits>
 #include <memory>
@@ -37,16 +38,10 @@ namespace editor
 
         std::shared_ptr<SelectionBuffer> getSelectionBuffer();
 
-        const Bounds &getSelectionBounds();
-
-        const BoundsInt &getSelectionTileBounds();
-
     private:
         void fillTempLayer(TileLayer &tempLayer);
 
         void recalcTileIndexesAndBounds(TileLayer &layer);
-
-        void updateBounds();
 
     private:
         std::shared_ptr<DocumentStore> m_DocumentStore;

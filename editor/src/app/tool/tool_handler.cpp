@@ -234,20 +234,10 @@ namespace editor
         {
             SelectTool *selectTool = dynamic_cast<SelectTool *>(getTool("select"));
 
-            const Bounds &selectionBounds = selectTool->getSelectionBounds();
+            const BoundsInt &selectionBounds = selectTool->getSelectionBuffer()->getSelectionBounds();
 
-            // Vec2 bottomLeft =
-            //     m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getBottomLeft();
-            // Vec2 topRight =
-            //     m_DocumentStore->getActiveDocument().getActiveDrawing().getState().getBounds().getTopRight();
-            // dynamic_cast<SelectTool *>(getTool("select"))->setSelectedTiles(std::move(newIndexes));
-
-            Vec2Int bottomLeftTile =
-                m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(selectionBounds.getBottomLeft());
-            Vec2Int topRightTile =
-                m_DocumentStore->getActiveDocument().getActiveLayer().getTilePos(selectionBounds.getTopRight());
             std::vector<int> newIndexes = shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
-                                                           BoundsInt(bottomLeftTile, topRightTile),
+                                                           BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
                                                            0.436332f);
             dynamic_cast<SelectTool *>(getTool("select"))
                 ->setSelectedTiles(std::move(newIndexes),

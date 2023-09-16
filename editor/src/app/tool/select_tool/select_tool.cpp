@@ -6,7 +6,8 @@ namespace editor
 {
 
     SelectTool::SelectTool(std::shared_ptr<DocumentStore> documentStore)
-        : Tool("select"), m_DocumentStore(documentStore), m_SelectionBuffer(std::make_shared<SelectionBuffer>())
+        : Tool("select"), m_DocumentStore(documentStore),
+          m_SelectionBuffer(std::make_shared<SelectionBuffer>(documentStore))
     {
         m_BoxSelector = std::make_unique<BoxSelector>(m_SelectionBuffer);
         m_SelectionMover = std::make_unique<SelectionMover>(m_SelectionBuffer);
@@ -27,15 +28,9 @@ namespace editor
 
     void SelectTool::pointerMove(const ToolContext &context)
     {
-        if (!context.pointer.isLeftButtonDown())
+        if (!context.pointer.isDown)
         {
             return;
-        }
-
-
-        if (context.pointer.isLeftButtonDown())
-        {
-            // std::cout << "pos: " << context.pointer.curr << std::endl;
         }
 
         TileLayer &tempLayer = context.doc.activeDrawing->getForegroundLayer();
@@ -51,13 +46,10 @@ namespace editor
         }
         else
         {
-            if (m_BoxSelector->isSelectionChanged(tempLayer,
-                                                  context.pointer.curr,
-                                                  context.pointer.prev,
-                                                  context.pointer.down))
+            if (m_BoxSelector->isSelectionChanged(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down))
             {
                 tempLayer.clear();
-                m_BoxSelector->select(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
+                m_BoxSelector->select(tempLayer, context.pointer.curr, context.pointer.down);
                 m_SelectionBoundsDirty = true;
                 fillTempLayer(tempLayer);
             }
@@ -113,97 +105,28 @@ namespace editor
         return m_SelectionBuffer;
     }
 
-    const Bounds &SelectTool::getSelectionBounds()
-    {
-        if (m_SelectionBoundsDirty)
-        {
-            updateBounds();
-            m_SelectionBoundsDirty = false;
-        }
-        return m_SelectionBounds;
-    }
-
-    const BoundsInt &SelectTool::getSelectionTileBounds()
-    {
-        if (m_SelectionBoundsDirty)
-        {
-            TileLayer &tempLayer = m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer();
-
-            Bounds bounds = getSelectionBounds();
-            Vec2Int bottomLeft = tempLayer.getTilePos(bounds.getBottomLeft());
-            Vec2Int topRight = tempLayer.getTilePos(bounds.getTopRight());
-
-            m_SelectionTileBounds = BoundsInt(bottomLeft, topRight);
-        }
-
-        return m_SelectionTileBounds;
-    }
-
     void SelectTool::fillTempLayer(TileLayer &tempLayer)
     {
         float tileSize = tempLayer.getTileSize();
         unsigned int color = 0x800099ff;
 
-        BoundsInt bounds = getSelectionTileBounds();
+        const BoundsInt &bounds = m_SelectionBuffer->getSelectionBounds();
 
         tempLayer.clear();
 
         Vec2Int bottomLeft = bounds.getBottomLeft();
         Vec2Int topRight = bounds.getTopRight();
 
-        for (int i = bottomLeft.x; i < topRight.x; i++)
+        for (int i = bottomLeft.x; i <= topRight.x; i++)
         {
-            for (int j = bottomLeft.y; j < topRight.y; j++) {
+            for (int j = bottomLeft.y; j <= topRight.y; j++)
+            {
                 Vec2 bottomLeft = tempLayer.getBottomLeftPos(Vec2Int(i, j));
                 Rect2D rect(bottomLeft.x, bottomLeft.y, tileSize, tileSize, color);
 
                 tempLayer.add(rect);
             }
         }
-
-        // for (int index : m_SelectionBuffer->getTileIndexes())
-        // {
-        //     Vec2 bottomLeft = tempLayer.getBottomLeftPos(index);
-        //     Rect2D rect(bottomLeft.x, bottomLeft.y, tileSize, tileSize, color);
-
-        //     tempLayer.add(rect);
-        // }
-    }
-
-    void SelectTool::updateBounds()
-    {
-        TileLayer &tempLayer = m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer();
-
-        int minX = std::numeric_limits<int>::max();
-        int minY = std::numeric_limits<int>::max();
-        int maxX = std::numeric_limits<int>::min();
-        int maxY = std::numeric_limits<int>::min();
-
-        for (int tileIndex : m_SelectionBuffer->getTileIndexes())
-        {
-            Vec2Int tilePos = tempLayer.getTilePos(tileIndex);
-
-            if (tilePos.x < minX)
-            {
-                minX = tilePos.x;
-            }
-            else if (tilePos.x > maxX)
-            {
-                maxX = tilePos.x;
-            }
-
-            if (tilePos.y < minY)
-            {
-                minY = tilePos.y;
-            }
-            else if (tilePos.y > maxY)
-            {
-                maxY = tilePos.y;
-            }
-        }
-
-        m_SelectionBounds = Bounds(tempLayer.getBottomLeftPos(Vec2Int(minX, minY)),
-                                   tempLayer.getBottomLeftPos(Vec2Int(maxX, maxY)) + tempLayer.getTileSize());
     }
 } // namespace editor
 } // namespace spright

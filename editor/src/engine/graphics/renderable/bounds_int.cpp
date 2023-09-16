@@ -44,12 +44,12 @@ namespace engine
 
     Vec2Int BoundsInt::getTopRight() const
     {
-        return Vec2Int(minX, minY);
+        return Vec2Int(maxX, maxY);
     }
 
     Vec2Int BoundsInt::getBottomLeft() const
     {
-        return Vec2Int(maxX, maxY);
+        return Vec2Int(minX, minY);
     }
 
     Vec2Int BoundsInt::getCenter() const

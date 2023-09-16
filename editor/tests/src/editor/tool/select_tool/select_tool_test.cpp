@@ -24,7 +24,7 @@ SCENARIO("Select tool")
 
         WHEN("making a selection")
         {
-            TileLayer &tempLayer = activeDrawing.getForegroundLayer();
+            TileLayer &tempLayer = activeDrawing.getTempLayer();
 
             toolContext.pointer.curr = tempLayer.getCenterPos(Vec2Int(1, 1));
             toolContext.pointer.prev = toolContext.pointer.curr;

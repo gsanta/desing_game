@@ -27,7 +27,7 @@ SCENARIO("Box selector")
 
         BoxSelector boxSelector(selectionBuffer);
 
-        TileLayer &tempLayer = documentStore->getActiveDocument().getActiveDrawing().getForegroundLayer();
+        TileLayer &tempLayer = documentStore->getActiveDocument().getActiveDrawing().getTempLayer();
 
         WHEN("making a selection")
         {

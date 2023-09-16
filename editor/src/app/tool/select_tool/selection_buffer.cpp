@@ -56,7 +56,7 @@ namespace editor
 
     void SelectionBuffer::updateBounds()
     {
-        TileLayer &tempLayer = m_DocumentStore->getActiveDocument().getActiveDrawing().getForegroundLayer();
+        TileLayer &tempLayer = m_DocumentStore->getActiveDocument().getActiveDrawing().getTempLayer();
 
         int minX = std::numeric_limits<int>::max();
         int minY = std::numeric_limits<int>::max();

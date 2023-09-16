@@ -6,7 +6,7 @@ namespace editor
 {
 
     SelectTool::SelectTool(std::shared_ptr<DocumentStore> documentStore)
-        : Tool("select"), m_DocumentStore(documentStore),
+        : Tool("select", std::make_shared<RectangleCursor>(1)), m_DocumentStore(documentStore),
           m_SelectionBuffer(std::make_shared<SelectionBuffer>(documentStore))
     {
         m_BoxSelector = std::make_unique<BoxSelector>(m_SelectionBuffer);
@@ -15,15 +15,10 @@ namespace editor
 
     void SelectTool::pointerDown(const ToolContext &context)
     {
-        if (context.doc.hasActiveDrawing())
-        {
-            TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
-            TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
 
-            int tileIndex = foregroundLayer.getTileIndex(context.pointer.curr);
-
-            m_IsMove = foregroundLayer.getAtTileIndex(tileIndex) != nullptr;
-        }
+        int tileIndex = tempLayer.getTileIndex(context.pointer.curr);
+        m_IsMove = tempLayer.getAtTileIndex(tileIndex) != nullptr;
     }
 
     void SelectTool::pointerMove(const ToolContext &context)
@@ -33,8 +28,9 @@ namespace editor
             return;
         }
 
-        TileLayer &tempLayer = context.doc.activeDrawing->getForegroundLayer();
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+
         if (m_IsMove)
         {
 
@@ -44,25 +40,20 @@ namespace editor
 
             m_SelectionBoundsDirty = true;
         }
-        else
+        else if (m_BoxSelector->isSelectionChanged(tempLayer,
+                                                   context.pointer.curr,
+                                                   context.pointer.prev,
+                                                   context.pointer.down))
         {
-            if (m_BoxSelector->isSelectionChanged(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down))
-            {
-                tempLayer.clear();
-                m_BoxSelector->select(tempLayer, context.pointer.curr, context.pointer.down);
-                m_SelectionBoundsDirty = true;
-                fillTempLayer(tempLayer);
-            }
+            tempLayer.clear();
+            m_BoxSelector->select(tempLayer, context.pointer.curr, context.pointer.down);
+            m_SelectionBoundsDirty = true;
+            fillTempLayer(tempLayer);
         }
     }
 
     void SelectTool::pointerUp(const ToolContext &context)
     {
-        if (!context.doc.hasActiveDrawing())
-        {
-            return;
-        }
-
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
 
         recalcTileIndexesAndBounds(activeLayer);
@@ -71,9 +62,10 @@ namespace editor
         {
             if (context.pointer.downDelta().length() < m_NoMovementTolerance)
             {
-                TileLayer &foregroundLayer = context.doc.activeDrawing->getForegroundLayer();
+                TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
 
-                m_BoxSelector->clear();
+                tempLayer.clear();
+                m_SelectionBuffer->clear();
             }
         }
 

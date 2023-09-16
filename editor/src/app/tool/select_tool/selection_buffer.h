@@ -24,7 +24,7 @@ namespace editor
 
         const std::vector<int> &getTileIndexes();
 
-        void setTileIndexes(std::vector<int> indexes, const TileLayer &layer);
+        void setTileIndexes(std::vector<int> indexes);
 
         bool containsIndex(int index);
 

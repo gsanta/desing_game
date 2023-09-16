@@ -10,7 +10,7 @@ namespace editor
           m_SelectionBuffer(std::make_shared<SelectionBuffer>(documentStore))
     {
         m_BoxSelector = std::make_unique<BoxSelector>(m_SelectionBuffer);
-        m_SelectionMover = std::make_unique<SelectionMover>(m_SelectionBuffer);
+        m_SelectionMover = std::make_unique<SelectionMover>();
     }
 
     void SelectTool::pointerDown(const ToolContext &context)
@@ -33,10 +33,15 @@ namespace editor
 
         if (m_IsMove)
         {
+            // std::vector<int> tileIndexes;
+
+            // for (Rect2D *tile : tempLayer.getTiles()) {
+            //     tileIndexes.push_back(tempLayer.getTileIndex(tile->getCenterPosition2d()));
+            // }
 
             m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
 
-            m_SelectionMover->move(activeLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
+            m_SelectionMover->move(activeLayer, m_SelectionBuffer->getTileIndexes(), context.pointer.curr, context.pointer.prev, context.pointer.down);
 
             m_SelectionBoundsDirty = true;
         }
@@ -55,8 +60,9 @@ namespace editor
     void SelectTool::pointerUp(const ToolContext &context)
     {
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
 
-        recalcTileIndexesAndBounds(activeLayer);
+        recalcTileIndexesAndBounds(activeLayer, tempLayer);
 
         if (!m_IsMove)
         {
@@ -72,22 +78,32 @@ namespace editor
         m_IsMove = false;
     }
 
-    void SelectTool::recalcTileIndexesAndBounds(TileLayer &layer)
+    void SelectTool::recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer)
     {
+        std::vector<int> currentTileIndexes = m_SelectionBuffer->getTileIndexes();
+        std::vector<int> newTileIndexes;
+
         for (int tileIndex : m_SelectionBuffer->getTileIndexes())
         {
-            Rect2D *tile = layer.getAtTileIndex(tileIndex);
+            Rect2D *tile = activeLayer.getAtTileIndex(tileIndex);
             if (tile != nullptr)
             {
-                layer.updateTileIndex(tile);
+                newTileIndexes.push_back(activeLayer.updateTileIndex(tile));
             }
+        }
+
+        m_SelectionBuffer->setTileIndexes(newTileIndexes);
+
+        for (Rect2D *tile : tempLayer.getTiles())
+        {
+            tempLayer.updateTileIndex(tile);
         }
     }
 
     void SelectTool::setSelectedTiles(std::vector<int> indexes, TileLayer &tempLayer)
     {
         m_SelectionBoundsDirty = true;
-        m_SelectionBuffer->setTileIndexes(std::move(indexes), tempLayer);
+        m_SelectionBuffer->setTileIndexes(std::move(indexes));
         fillTempLayer(tempLayer);
     }
 

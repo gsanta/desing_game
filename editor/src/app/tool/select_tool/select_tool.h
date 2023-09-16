@@ -41,7 +41,7 @@ namespace editor
     private:
         void fillTempLayer(TileLayer &tempLayer);
 
-        void recalcTileIndexesAndBounds(TileLayer &layer);
+        void recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer);
 
     private:
         std::shared_ptr<DocumentStore> m_DocumentStore;

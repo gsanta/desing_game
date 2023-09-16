@@ -6,7 +6,8 @@ namespace editor
 {
     using namespace engine;
 
-    BoundsInt calc_selection_bounds(const TileLayer &layer, const Vec2 &vec1, const Vec2 &vec2) {
+    BoundsInt calc_selection_bounds(const TileLayer &layer, const Vec2 &vec1, const Vec2 &vec2)
+    {
         Bounds bounds(vec1, vec2);
 
         Vec2 bottomLeft = bounds.getBottomLeft();

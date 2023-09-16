@@ -120,9 +120,9 @@ namespace editor
         float tileSize = TileLayer::defaultTileSize;
 
         return Drawing(frames,
-                        createBackgroundLayer(bounds, tileSize),
-                        createTempLayer(bounds, tileSize),
-                        createCursorLayer(bounds, tileSize));
+                       createBackgroundLayer(bounds, tileSize),
+                       createTempLayer(bounds, tileSize),
+                       createCursorLayer(bounds, tileSize));
     }
 
     Drawing DocumentFactory::createDrawing(Bounds bounds, bool checkerboard, float zPos) const

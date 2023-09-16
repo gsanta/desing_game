@@ -46,7 +46,8 @@ namespace editor
 
     const BoundsInt &SelectionBuffer::getSelectionBounds()
     {
-        if (m_IsBoundsDirty) {
+        if (m_IsBoundsDirty)
+        {
             updateBounds();
             m_IsBoundsDirty = false;
         }

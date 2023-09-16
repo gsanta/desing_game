@@ -89,9 +89,12 @@ namespace engine
 
     void Bounds::expand(const Vec2 &vec)
     {
-        if (vec.x < minX) {
+        if (vec.x < minX)
+        {
             minX = vec.x;
-        } else if (vec.x > maxX) {
+        }
+        else if (vec.x > maxX)
+        {
             maxX = vec.x;
         }
 

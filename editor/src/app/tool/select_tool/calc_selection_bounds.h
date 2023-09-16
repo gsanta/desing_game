@@ -10,5 +10,5 @@ namespace editor
     using namespace engine;
 
     BoundsInt calc_selection_bounds(const TileLayer &layer, const Vec2 &vec1, const Vec2 &vec2);
-}
-}
+} // namespace editor
+} // namespace spright

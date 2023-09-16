@@ -52,7 +52,7 @@ namespace engine
 
         bool isNull() const;
 
-        void expand(const Vec2& vec);
+        void expand(const Vec2 &vec);
 
         std::vector<float> toArray() const;
 

@@ -7,10 +7,10 @@
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
 #include "./box_selector.h"
+#include "./calc_selection_bounds.h"
 #include "./rect_selector.h"
 #include "./selection_buffer.h"
 #include "./selection_mover.h"
-#include "./calc_selection_bounds.h"
 
 #include <limits>
 #include <memory>

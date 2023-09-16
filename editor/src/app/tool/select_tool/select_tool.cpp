@@ -41,7 +41,11 @@ namespace editor
 
             m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
 
-            m_SelectionMover->move(activeLayer, m_SelectionBuffer->getTileIndexes(), context.pointer.curr, context.pointer.prev, context.pointer.down);
+            m_SelectionMover->move(activeLayer,
+                                   m_SelectionBuffer->getTileIndexes(),
+                                   context.pointer.curr,
+                                   context.pointer.prev,
+                                   context.pointer.down);
 
             m_SelectionBoundsDirty = true;
         }

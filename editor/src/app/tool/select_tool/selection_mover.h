@@ -23,6 +23,7 @@ namespace editor
                   const Vec2 &curr,
                   const Vec2 &prev,
                   const Vec2 &start);
+
     private:
         Vec2 calcMoveToStart(TileLayer &layer, const Vec2 &prev, const Vec2 &start);
 

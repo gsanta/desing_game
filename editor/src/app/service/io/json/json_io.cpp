@@ -67,7 +67,8 @@ namespace editor
 
         Drawing drawing = m_DocumentFactory->createDrawing(createDrawingProps);
 
-        for (Frame &frame : frames) {
+        for (Frame &frame : frames)
+        {
             drawing.addFrame(frame);
         }
 

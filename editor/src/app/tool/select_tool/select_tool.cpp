@@ -46,7 +46,6 @@ namespace editor
                                    context.pointer.curr,
                                    context.pointer.prev,
                                    context.pointer.down);
-
         }
         else if (m_BoxSelector->isSelectionChanged(tempLayer,
                                                    context.pointer.curr,

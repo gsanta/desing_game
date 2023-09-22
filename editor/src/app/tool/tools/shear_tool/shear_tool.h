@@ -1,17 +1,17 @@
 #pragma once
 
- #include "../../tool_handler.h"
+#include "../../tool_handler.h"
 
 namespace spright
 {
 namespace editor
 {
-    class ShearTool {
+    class ShearTool
+    {
     public:
         // ShearTool(ToolHandler);
 
         void execute();
-
     };
-}
-}
+} // namespace editor
+} // namespace spright

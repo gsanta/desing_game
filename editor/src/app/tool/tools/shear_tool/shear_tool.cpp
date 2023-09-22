@@ -5,7 +5,8 @@ namespace spright
 namespace editor
 {
 
-    void ShearTool::execute() {
+    void ShearTool::execute()
+    {
         // SelectTool *selectTool = dynamic_cast<SelectTool *>(getTool("select"));
 
         // const BoundsInt &selectionBounds = selectTool->getSelectionBuffer()->getSelectionBounds();
@@ -18,5 +19,5 @@ namespace editor
         //     ->setSelectedTiles(std::move(newIndexes),
         //                        m_DocumentStore->getActiveDocument().getActiveDrawing().getTempLayer());
     }
-}
-}
+} // namespace editor
+} // namespace spright

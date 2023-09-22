@@ -7,9 +7,8 @@
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
 #include "./box_selector.h"
-#include "./calc_selection_bounds.h"
 #include "./rect_selector.h"
-#include "./selection_buffer.h"
+#include "../../document/selection_buffer.h"
 #include "./selection_mover.h"
 
 #include <limits>
@@ -39,8 +38,6 @@ namespace editor
         std::shared_ptr<SelectionBuffer> getSelectionBuffer();
 
     private:
-        void fillTempLayer(TileLayer &tempLayer);
-
         void recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer);
 
     private:
@@ -59,8 +56,6 @@ namespace editor
         Bounds m_SelectionBounds;
 
         BoundsInt m_SelectionTileBounds;
-
-        bool m_SelectionBoundsDirty;
 
         float m_NoMovementTolerance = 0.1f;
 

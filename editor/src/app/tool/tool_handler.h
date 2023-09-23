@@ -11,8 +11,9 @@
 #include "../service/io/image_export.h"
 #include "../service/services.h"
 #include "brush_tool.h"
-#include "eraser_tool/eraser_tool.h"
 #include "color_picker_tool.h"
+#include "eraser_tool/eraser_tool.h"
+#include "handler/tool_store.h"
 #include "rectangle_tool/rectangle_tool.h"
 #include "select_tool/select_tool.h"
 #include "tool/document_info.h"
@@ -28,18 +29,14 @@ namespace spright
 {
 namespace editor
 {
-
     using namespace std;
     using namespace ::spright::engine;
 
     class ToolHandler : public InputListener
     {
     public:
-        ToolHandler(Window *window,
-                    DocumentStore *documentStore,
-                    Services *services,
-                    ImageExport *imageExport,
-                    DocumentFactory *documentFactory);
+        ToolHandler(Window *window, DocumentStore *documentStore);
+
         ~ToolHandler();
 
         ToolHandler &operator=(const ToolHandler &toolHandler);
@@ -53,13 +50,9 @@ namespace editor
 
         virtual void onScroll(double x, double y) override;
 
-        virtual void onKeyChange(int key, bool isPressed) override;
+        void execute();
 
-        void addTool(Tool *tool);
-
-        Tool *getTool(string name) const;
-
-        vector<Colorable *> getColorableTools();
+        ToolStore &getToolStore();
 
         inline vector<Tool *> *getActiveTool() const
         {
@@ -72,12 +65,12 @@ namespace editor
 
         inline void addActiveTool(string name)
         {
-            m_ActiveTools->push_back(getTool(name));
+            m_ActiveTools->push_back(getToolStore().getTool(name));
         }
 
         inline void removeActiveTool(string name)
         {
-            auto it = find(m_ActiveTools->begin(), m_ActiveTools->end(), getTool(name));
+            auto it = find(m_ActiveTools->begin(), m_ActiveTools->end(), getToolStore().getTool(name));
 
             if (it != m_ActiveTools->end())
             {
@@ -88,26 +81,15 @@ namespace editor
         bool isActiveTool(string name);
 
     private:
-        SelectTool &getSelectTool();
-
-        ColorPickerTool &getColorPickerTool();
-
-    private:
         Window *m_Window;
-
-        vector<Tool *> m_Tools;
 
         vector<Tool *> *m_ActiveTools;
 
         Tool *m_SelectedTool = nullptr;
 
-        Services *m_Services;
+        ToolStore m_ToolStore;
 
         DocumentStore *m_DocumentStore;
-
-        ImageExport *m_ImageExport;
-
-        DocumentFactory *m_DocumentFactory;
 
         ToolContext m_ToolContext;
     };

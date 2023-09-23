@@ -68,18 +68,18 @@ namespace engine
         {
             minX = vec.x;
         }
-        else if (vec.x > maxX)
+        else if (vec.x + 1 > maxX)
         {
-            maxX = vec.x;
+            maxX = vec.x + 1;
         }
 
         if (vec.y < minY)
         {
             minY = vec.y;
         }
-        else if (vec.y > maxY)
+        else if (vec.y + 1 > maxY)
         {
-            maxY = vec.y;
+            maxY = vec.y + 1;
         }
     }
 

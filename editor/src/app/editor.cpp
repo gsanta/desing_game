@@ -39,18 +39,18 @@ namespace editor
 
         m_JsonExport = std::make_unique<JsonIO>(m_DocumentFactory);
 
-        m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
-        m_toolHandler->addTool(new BrushTool());
-        m_toolHandler->addTool(new RectangleTool());
-        m_toolHandler->addTool(new EraserTool(3));
-        m_toolHandler->addTool(new PanTool(getDocumentStore()));
-        m_toolHandler->addTool(new ZoomTool(getDocumentStore()));
-        m_toolHandler->addTool(new PaintBucketTool());
-        m_toolHandler->addTool(new SelectTool(m_DocumentStore));
-        m_toolHandler->addTool(new ColorPickerTool(m_EventEmitter.get()));
-        m_toolHandler->addTool(new LineTool());
-        m_toolHandler->addTool(new CircleTool());
-        m_toolHandler->addTool(new ShearTool());
+        m_toolHandler = new ToolHandler(m_Window, getDocumentStore());
+        m_toolHandler->getToolStore().addTool(new BrushTool());
+        m_toolHandler->getToolStore().addTool(new RectangleTool());
+        m_toolHandler->getToolStore().addTool(new EraserTool(3));
+        m_toolHandler->getToolStore().addTool(new PanTool(getDocumentStore()));
+        m_toolHandler->getToolStore().addTool(new ZoomTool(getDocumentStore()));
+        m_toolHandler->getToolStore().addTool(new PaintBucketTool());
+        m_toolHandler->getToolStore().addTool(new SelectTool(m_DocumentStore));
+        m_toolHandler->getToolStore().addTool(new ColorPickerTool(m_EventEmitter.get()));
+        m_toolHandler->getToolStore().addTool(new LineTool());
+        m_toolHandler->getToolStore().addTool(new CircleTool());
+        m_toolHandler->getToolStore().addTool(new ShearTool());
         m_toolHandler->addActiveTool("zoom");
         m_toolHandler->setSelectedTool("brush");
 

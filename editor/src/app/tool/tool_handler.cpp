@@ -7,13 +7,12 @@ namespace spright
 {
 namespace editor
 {
-    ToolHandler::ToolHandler(std::shared_ptr<EditorState> editorState,
-                             Window *window,
+    ToolHandler::ToolHandler(Window *window,
                              DocumentStore *documentStore,
                              Services *services,
                              ImageExport *imageExport,
                              DocumentFactory *documentFactory)
-        : m_ToolContext(editorState), m_Window(window), m_DocumentStore(documentStore), m_Services(services),
+        : m_Window(window), m_DocumentStore(documentStore), m_Services(services),
           m_ImageExport(imageExport), m_DocumentFactory(documentFactory)
     {
         window->getInputHandler()->registerListener(this);
@@ -66,6 +65,9 @@ namespace editor
         m_ToolContext.pointer.buttons[1] = buttons[1];
         m_ToolContext.pointer.buttons[2] = buttons[2];
 
+        m_ToolContext.tool.selectionBuffer = &getSelectTool().getSelectionBuffer();
+        m_ToolContext.tool.selectedColor = getColorPickerTool().getColor();
+
         Drawing *activeDrawing = &m_DocumentStore->getActiveDocument().getDrawings()[0];
         for (Tool *tool : *m_ActiveTools)
         {
@@ -73,22 +75,12 @@ namespace editor
         }
     }
 
-
     void ToolHandler::onMouseMove(double x, double y)
     {
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
-        Drawing *activeDrawing = &m_DocumentStore->getActiveDocument().getDrawings()[0];
-        if (m_ToolContext.doc.activeDrawing != activeDrawing)
-        {
-            m_ToolContext.doc.prevDrawing = m_ToolContext.doc.activeDrawing;
-            m_ToolContext.doc.activeDrawing = activeDrawing;
-            m_ToolContext.doc.setActiveDocumentChanging(true);
-        }
-        else
-        {
-            m_ToolContext.doc.setActiveDocumentChanging(false);
-        }
+        Drawing *activeDrawing = &m_DocumentStore->getActiveDocument().getActiveDrawing();
 
+        m_ToolContext.doc.prevDrawing = activeDrawing;
         m_ToolContext.doc.activeDrawing = activeDrawing;
 
         x_tmp = x;
@@ -222,29 +214,15 @@ namespace editor
         {
             m_DocumentStore->getActiveDocument().getHistory()->undo(m_DocumentStore->getActiveDocument());
         }
-        // else if (key == GLFW_KEY_I)
-        // {
-        //     m_DocumentStore->getActiveDocument().getHistory()->redo(m_DocumentStore->getActiveDocument());
-        // }
         else if (key == GLFW_KEY_LEFT)
         {
             m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
         }
         else if (key == GLFW_KEY_H)
         {
-            // SelectTool *selectTool = dynamic_cast<SelectTool *>(getTool("select"));
+            setSelectedTool("shear");
 
-            // const BoundsInt &selectionBounds = selectTool->getSelectionBuffer()->getSelectionBounds();
-
-            // std::vector<int> newIndexes =
-            //     shear_horizontal(m_DocumentStore->getActiveDocument().getActiveLayer(),
-            //                      BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
-            //                      0.436332f);
-            // dynamic_cast<SelectTool *>(getTool("select"))
-            //     ->setSelectedTiles(std::move(newIndexes),
-            //                        m_DocumentStore->getActiveDocument().getActiveDrawing().getTempLayer());
-
-            // m_DocumentStore->getActiveDocument().getCamera().translate2D(Vec2(2.0f, 0.0f));
+            getSelectedTool()->execute(m_ToolContext);
         }
     }
 
@@ -308,6 +286,16 @@ namespace editor
         auto it = find((*m_ActiveTools).begin(), (*m_ActiveTools).end(), tool);
 
         return it != (*m_ActiveTools).end();
+    }
+
+    SelectTool &ToolHandler::getSelectTool()
+    {
+        return *dynamic_cast<SelectTool *>(getTool("select"));
+    }
+
+    ColorPickerTool &ToolHandler::getColorPickerTool()
+    {
+        return *dynamic_cast<ColorPickerTool *>(getTool("color_picker"));
     }
 } // namespace editor
 } // namespace spright

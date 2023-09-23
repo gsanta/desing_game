@@ -22,8 +22,6 @@ namespace editor
     {
         m_EventEmitter = std::make_unique<EmscriptenEventEmitter>();
 
-        m_EditorState = std::make_shared<EditorState>();
-
         m_Window = new GLWindow("Editor", 1200, 800);
         m_DocumentFactory = new DocumentFactory(m_Window, new GLRendererProvider());
 
@@ -41,8 +39,7 @@ namespace editor
 
         m_JsonExport = std::make_unique<JsonIO>(m_DocumentFactory);
 
-        m_toolHandler =
-            new ToolHandler(m_EditorState, m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
+        m_toolHandler = new ToolHandler(m_Window, getDocumentStore(), m_Services, m_ImageExport, m_DocumentFactory);
         m_toolHandler->addTool(new BrushTool());
         m_toolHandler->addTool(new RectangleTool());
         m_toolHandler->addTool(new EraserTool(3));
@@ -50,9 +47,10 @@ namespace editor
         m_toolHandler->addTool(new ZoomTool(getDocumentStore()));
         m_toolHandler->addTool(new PaintBucketTool());
         m_toolHandler->addTool(new SelectTool(m_DocumentStore));
-        m_toolHandler->addTool(new ColorPickerTool(m_toolHandler, m_EventEmitter.get()));
+        m_toolHandler->addTool(new ColorPickerTool(m_EventEmitter.get()));
         m_toolHandler->addTool(new LineTool());
         m_toolHandler->addTool(new CircleTool());
+        m_toolHandler->addTool(new ShearTool());
         m_toolHandler->addActiveTool("zoom");
         m_toolHandler->setSelectedTool("brush");
 
@@ -113,11 +111,6 @@ namespace editor
     FramePlayer &Editor::getFramePlayer()
     {
         return m_FramePlayer;
-    }
-
-    std::shared_ptr<EditorState> Editor::getState()
-    {
-        return m_EditorState;
     }
 } // namespace editor
 } // namespace spright

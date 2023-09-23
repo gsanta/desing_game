@@ -25,7 +25,7 @@ namespace editor
         }
 
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
-        int color = context.editorState->color;
+        int color = context.tool.selectedColor;
 
         TileUndo tileUndo = TileUndo::createForActiveTileLayer(*context.doc.document);
         if (m_IsFilled)
@@ -65,14 +65,14 @@ namespace editor
             m_TempRectDrawer.drawFilled(tileLayer,
                                         context.pointer.down,
                                         context.pointer.curr,
-                                        context.editorState->color);
+                                        context.tool.selectedColor);
         }
         else
         {
             m_TempRectDrawer.drawOutlined(tileLayer,
                                           context.pointer.down,
                                           context.pointer.curr,
-                                          context.editorState->color);
+                                          context.tool.selectedColor);
         }
     }
 

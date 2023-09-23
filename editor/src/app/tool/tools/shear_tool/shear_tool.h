@@ -1,17 +1,19 @@
 #pragma once
 
+#include "../../tool/tool.h"
 #include "../../tool_handler.h"
+#include "../../tool/tool_context.h"
 
 namespace spright
 {
 namespace editor
 {
-    class ShearTool
+    class ShearTool : public Tool
     {
     public:
-        // ShearTool(ToolHandler);
+        ShearTool();
 
-        void execute();
+        void execute(const ToolContext &toolContext);
     };
 } // namespace editor
 } // namespace spright

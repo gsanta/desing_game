@@ -92,7 +92,7 @@ namespace editor
             }
         }
 
-        m_SelectionBuffer->setTileIndexes(newTileIndexes);
+        m_SelectionBuffer->setTileIndexes(newTileIndexes, activeLayer);
 
         for (Rect2D *tile : tempLayer.getTiles())
         {
@@ -100,15 +100,9 @@ namespace editor
         }
     }
 
-    void SelectTool::setSelectedTiles(std::vector<int> indexes, TileLayer &tempLayer)
+    SelectionBuffer &SelectTool::getSelectionBuffer()
     {
-        m_SelectionBuffer->setTileIndexes(std::move(indexes));
-    }
-
-
-    std::shared_ptr<SelectionBuffer> SelectTool::getSelectionBuffer()
-    {
-        return m_SelectionBuffer;
+        return *m_SelectionBuffer;
     }
 } // namespace editor
 } // namespace spright

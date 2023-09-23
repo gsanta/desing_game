@@ -3,7 +3,7 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../document/document_store.h"
 #include "../../document/drawing.h"
-#include "../../document/selection_buffer.h"
+#include "./selection_buffer.h"
 #include "../common/rectangle_cursor/rectangle_cursor.h"
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
@@ -33,9 +33,7 @@ namespace editor
 
         void pointerMove(const ToolContext &) override;
 
-        void setSelectedTiles(std::vector<int> indexes, TileLayer &layer);
-
-        std::shared_ptr<SelectionBuffer> getSelectionBuffer();
+        SelectionBuffer &getSelectionBuffer();
 
     private:
         void recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer);

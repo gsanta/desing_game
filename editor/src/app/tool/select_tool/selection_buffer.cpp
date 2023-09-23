@@ -11,18 +11,15 @@ namespace editor
     void SelectionBuffer::add(int tileIndex, const TileLayer &layer)
     {
         m_TileIndexes.push_back(tileIndex);
-        m_IsBoundsDirty = true;
+
+
+        layer.getTilePos(tileIndex);
     }
 
     void SelectionBuffer::clear()
     {
         m_TileIndexes.clear();
-        int minX = std::numeric_limits<int>::max();
-        int minY = std::numeric_limits<int>::max();
-        int maxX = std::numeric_limits<int>::min();
-        int maxY = std::numeric_limits<int>::min();
-
-        m_SelectionTileBounds = BoundsInt();
+        m_TileBounds = BoundsInt();
     }
 
     const std::vector<int> &SelectionBuffer::getTileIndexes()
@@ -30,9 +27,13 @@ namespace editor
         return m_TileIndexes;
     }
 
-    void SelectionBuffer::setTileIndexes(std::vector<int> indexes)
+    void SelectionBuffer::setTileIndexes(std::vector<int> indexes, const TileLayer &layer)
     {
         m_TileIndexes = indexes;
+
+        for (int index : indexes) {
+            updateBounds(layer.getTilePos(index));
+        }
     }
 
     bool SelectionBuffer::containsIndex(int index)
@@ -42,6 +43,19 @@ namespace editor
             return true;
         }
         return false;
+    }
+
+    const BoundsInt &SelectionBuffer::getTileBounds() const {
+        return m_TileBounds;
+    }
+
+    void SelectionBuffer::updateBounds(const Vec2Int &vec2) {
+
+        if (m_TileBounds.isDefault()) {
+            m_TileBounds = BoundsInt(vec2, vec2);
+        } else {
+            m_TileBounds.expand(vec2);
+        }
     }
 } // namespace editor
 } // namespace spright

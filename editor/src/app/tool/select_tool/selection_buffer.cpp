@@ -34,7 +34,8 @@ namespace editor
 
         m_TileBounds = BoundsInt();
 
-        for (int index : indexes) {
+        for (int index : indexes)
+        {
             m_TileIndexes.push_back(index);
             updateBounds(layer.getTilePos(index));
         }
@@ -49,15 +50,20 @@ namespace editor
         return false;
     }
 
-    const BoundsInt &SelectionBuffer::getTileBounds() const {
+    const BoundsInt &SelectionBuffer::getTileBounds() const
+    {
         return m_TileBounds;
     }
 
-    void SelectionBuffer::updateBounds(const Vec2Int &vec2) {
+    void SelectionBuffer::updateBounds(const Vec2Int &vec2)
+    {
 
-        if (m_TileIndexes.size() == 1) {
+        if (m_TileIndexes.size() == 1)
+        {
             m_TileBounds = BoundsInt(vec2, vec2 + 1);
-        } else {
+        }
+        else
+        {
             m_TileBounds.expand(vec2);
         }
     }

@@ -15,7 +15,8 @@ namespace editor
     class DevKeyListener : public InputListener
     {
     public:
-        inline DevKeyListener(Editor *editor): m_Editor(editor) {
+        inline DevKeyListener(Editor *editor) : m_Editor(editor)
+        {
             editor->getWindow()->getInputHandler()->registerListener(this);
         }
 
@@ -24,7 +25,8 @@ namespace editor
             m_Editor->getWindow()->getInputHandler()->unRegisterListener(this);
         }
 
-        inline void onKeyChange(int key, bool isPressed) override {
+        inline void onKeyChange(int key, bool isPressed) override
+        {
             if (!isPressed)
             {
                 return;
@@ -117,8 +119,9 @@ namespace editor
                 m_Editor->getToolHandler()->execute();
             }
         }
+
     private:
         Editor *m_Editor;
     };
-}
-}
+} // namespace editor
+} // namespace spright

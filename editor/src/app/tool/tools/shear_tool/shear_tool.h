@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../tool/tool.h"
-#include "../../tool_handler.h"
-#include "../../tool/tool_context.h"
 #include "../../../algorithm/rotate.h"
+#include "../../tool/tool.h"
+#include "../../tool/tool_context.h"
+#include "../../tool_handler.h"
 // #include "../../../algorithm/shear_vertical.h"
 
 namespace spright

@@ -14,8 +14,8 @@ struct EqualsTileBoundsMatcher : Catch::Matchers::MatcherGenericBase
     inline bool match(const BoundsInt &other) const
     {
         m_Other = other;
-        return m_Bounds.minX == other.minX && m_Bounds.maxX == other.maxX &&
-               m_Bounds.minY == other.minY && m_Bounds.maxY == other.maxY;
+        return m_Bounds.minX == other.minX && m_Bounds.maxX == other.maxX && m_Bounds.minY == other.minY &&
+               m_Bounds.maxY == other.maxY;
     }
 
     inline std::string describe() const override

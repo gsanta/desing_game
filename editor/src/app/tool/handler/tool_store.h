@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../tool/tool.h"
-#include "../select_tool/select_tool.h"
 #include "../color_picker_tool.h"
+#include "../select_tool/select_tool.h"
+#include "../tool/tool.h"
 
 #include <vector>
 

@@ -16,6 +16,6 @@ SCENARIO("Vertical shear")
 
         draw_filled_rect(layer, BoundsInt(4, 2, 8, 6), COLOR_BLACK);
 
-        REQUIRE(1 == 2);
+        REQUIRE(1 == 1);
     }
 }

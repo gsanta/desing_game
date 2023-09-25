@@ -12,6 +12,7 @@ namespace editor
     {
         m_TileIndexes.push_back(tileIndex);
 
+        updateBounds(layer.getTilePos(tileIndex));
 
         layer.getTilePos(tileIndex);
     }
@@ -27,11 +28,14 @@ namespace editor
         return m_TileIndexes;
     }
 
-    void SelectionBuffer::setTileIndexes(std::vector<int> indexes, const TileLayer &layer)
+    void SelectionBuffer::setTileIndexes(const std::vector<int> &indexes, const TileLayer &layer)
     {
-        m_TileIndexes = indexes;
+        m_TileIndexes.clear();
+
+        m_TileBounds = BoundsInt();
 
         for (int index : indexes) {
+            m_TileIndexes.push_back(index);
             updateBounds(layer.getTilePos(index));
         }
     }
@@ -51,8 +55,8 @@ namespace editor
 
     void SelectionBuffer::updateBounds(const Vec2Int &vec2) {
 
-        if (m_TileBounds.isDefault()) {
-            m_TileBounds = BoundsInt(vec2, vec2);
+        if (m_TileIndexes.size() == 1) {
+            m_TileBounds = BoundsInt(vec2, vec2 + 1);
         } else {
             m_TileBounds.expand(vec2);
         }

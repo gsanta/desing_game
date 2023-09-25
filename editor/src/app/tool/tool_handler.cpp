@@ -12,6 +12,7 @@ namespace editor
     {
         window->getInputHandler()->registerListener(this);
         m_ActiveTools = new vector<Tool *>();
+        m_ToolContext.tools = &m_ToolStore;
     }
 
     ToolHandler::~ToolHandler()

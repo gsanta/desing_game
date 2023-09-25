@@ -8,7 +8,6 @@
 
 SCENARIO("Select tool")
 {
-
     GIVEN("A select tool")
     {
         std::shared_ptr<DocumentStore> documentStore = std::make_shared<DocumentStore>(

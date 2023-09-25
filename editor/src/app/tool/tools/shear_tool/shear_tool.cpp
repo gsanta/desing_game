@@ -8,7 +8,7 @@ namespace editor
     {
     }
 
-    void ShearTool::execute(const ToolContext &toolContext)
+    void ShearTool::execute(ToolContext &toolContext)
     {
         // SelectTool *selectTool = dynamic_cast<SelectTool *>(getTool("select"));
 
@@ -21,9 +21,7 @@ namespace editor
 
         toolContext.tool.selectionBuffer->setTileIndexes(newIndexes, toolContext.doc.activeDrawing->getActiveLayer());
 
-        // dynamic_cast<SelectTool *>(getTool("select"))
-        //     ->setSelectedTiles(std::move(newIndexes),
-        //                        m_DocumentStore->getActiveDocument().getActiveDrawing().getTempLayer());
+        toolContext.tools->getSelectTool().setSelection(newIndexes, *toolContext.doc.activeDrawing);
     }
 } // namespace editor
 } // namespace spright

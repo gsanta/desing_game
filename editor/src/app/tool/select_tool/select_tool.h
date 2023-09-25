@@ -3,12 +3,12 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../document/document_store.h"
 #include "../../document/drawing.h"
-#include "./selection_buffer.h"
 #include "../common/rectangle_cursor/rectangle_cursor.h"
 #include "../tool/tool.h"
 #include "../tool/tool_context.h"
 #include "./box_selector.h"
 #include "./rect_selector.h"
+#include "./selection_buffer.h"
 #include "./selection_mover.h"
 
 #include <limits>
@@ -32,6 +32,8 @@ namespace editor
         void pointerUp(const ToolContext &) override;
 
         void pointerMove(const ToolContext &) override;
+
+        void setSelection(const std::vector<int> &indexes, Drawing &drawing);
 
         SelectionBuffer &getSelectionBuffer();
 

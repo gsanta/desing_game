@@ -6,10 +6,12 @@
 
 #include <utility>
 
+
 namespace spright
 {
 namespace editor
 {
+    class ToolStore;
 
     struct ToolContext
     {
@@ -18,6 +20,8 @@ namespace editor
         DocumentInfo doc;
 
         ToolInfo tool;
+
+        ToolStore *tools;
     };
 } // namespace editor
 } // namespace spright

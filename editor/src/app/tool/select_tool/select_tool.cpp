@@ -78,6 +78,21 @@ namespace editor
         m_IsMove = false;
     }
 
+    void SelectTool::setSelection(const std::vector<int> &indexes, Drawing &drawing)
+    {
+        TileLayer &activeLayer = drawing.getActiveLayer();
+        TileLayer &tempLayer = drawing.getTempLayer();
+
+        const BoundsInt &bounds = m_SelectionBuffer->getTileBounds();
+
+        m_BoxSelector->select(activeLayer,
+                              tempLayer,
+                              tempLayer.getCenterPos(bounds.getBottomLeft()),
+                              tempLayer.getCenterPos(bounds.getTopRight() + -1));
+
+        m_SelectionBuffer->setTileIndexes(indexes, activeLayer);
+    }
+
     void SelectTool::recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer)
     {
         std::vector<int> currentTileIndexes = m_SelectionBuffer->getTileIndexes();

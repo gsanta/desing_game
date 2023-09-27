@@ -114,9 +114,7 @@ namespace editor
             }
             else if (key == GLFW_KEY_H)
             {
-                m_Editor->getToolHandler()->setSelectedTool("shear");
-
-                m_Editor->getToolHandler()->execute();
+                m_Editor->getToolHandler()->executeTool("shear");
             }
         }
 

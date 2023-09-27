@@ -5,9 +5,8 @@ namespace spright
 namespace editor
 {
 
-    SelectTool::SelectTool(std::shared_ptr<DocumentStore> documentStore)
-        : Tool("select", std::make_shared<RectangleCursor>(1)), m_DocumentStore(documentStore),
-          m_SelectionBuffer(std::make_shared<SelectionBuffer>())
+    SelectTool::SelectTool()
+        : Tool("select", std::make_shared<RectangleCursor>(1)), m_SelectionBuffer(std::make_shared<SelectionBuffer>())
     {
         m_BoxSelector = std::make_unique<BoxSelector>(m_SelectionBuffer);
         m_SelectionMover = std::make_unique<SelectionMover>();

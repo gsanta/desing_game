@@ -3,8 +3,6 @@
 #include "../../../algorithm/rotate.h"
 #include "../../tool/tool.h"
 #include "../../tool/tool_context.h"
-#include "../../tool_handler.h"
-// #include "../../../algorithm/shear_vertical.h"
 
 namespace spright
 {
@@ -16,6 +14,17 @@ namespace editor
         ShearTool();
 
         void execute(ToolContext &toolContext) override;
+
+        void setShearInRad(float rad);
+
+        void setShearDirectionAsVertical();
+
+        void setShearDirectionAsHorizontal();
+
+    private:
+        float m_ShearInRad = 0;
+
+        float m_IsHorizontal = true;
     };
 } // namespace editor
 } // namespace spright

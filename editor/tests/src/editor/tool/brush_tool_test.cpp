@@ -12,7 +12,7 @@ SCENARIO("Brush tool")
     {
         Document document = DocumentBuilder().build();
         BrushTool brushTool;
-        ToolContext toolContext = ToolContextBuilder().withDocument(document).build();
+        ToolContext toolContext = ToolContextBuilder().build(document);
 
         WHEN("drawing a sequence of pixels without releasing the mouse")
         {

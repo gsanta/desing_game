@@ -52,7 +52,7 @@ SCENARIO("Circle tool")
     GIVEN("a document and circle tool")
     {
         Document document = DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(0, 0, 7.0, 7.0))).build();
-        ToolContext toolContext = ToolContextBuilder().withDocument(document).build();
+        ToolContext toolContext = ToolContextBuilder().build(document);
 
         TileLayer &layer = document.getActiveLayer();
         CircleTool circleTool;

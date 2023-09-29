@@ -68,10 +68,12 @@ SCENARIO("Shear tool")
                     REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
                 }
 
-                WHEN("executing the shear again") {
+                WHEN("executing the shear again")
+                {
                     shearTool.execute(toolContext);
 
-                    THEN("the tiles get displaced one more tile to the left and right") {
+                    THEN("the tiles get displaced one more tile to the left and right")
+                    {
                         REQUIRE(activeLayer.getTiles().size() == 16);
 
                         // changed bottom row

@@ -4,10 +4,8 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-
 SCENARIO("Brush tool")
 {
-
     GIVEN("an empty canvas")
     {
         Document document = DocumentBuilder().build();

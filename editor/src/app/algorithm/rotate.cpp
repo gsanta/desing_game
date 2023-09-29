@@ -1,6 +1,4 @@
-// #include "./shear_vertical.h"
 #include "./rotate.h"
-
 
 namespace spright
 {
@@ -13,10 +11,10 @@ namespace editor
 
         TileView dest(source.getBounds(), source.getTileSize());
 
-        int minX = bounds.minX - (int) (bounds.getWidth()) < 0 ? 0 : bounds.minX - (int) (bounds.getWidth());
-        int minY = bounds.minY - (int) (bounds.getHeight()) < 0 ? 0 : bounds.minY - (int) (bounds.getHeight());
-        int maxX = bounds.maxX + (int) (bounds.getWidth());
-        int maxY = bounds.maxY + (int) (bounds.getHeight());
+        int minX = bounds.minX - (int)(bounds.getWidth()) < 0 ? 0 : bounds.minX - (int)(bounds.getWidth());
+        int minY = bounds.minY - (int)(bounds.getHeight()) < 0 ? 0 : bounds.minY - (int)(bounds.getHeight());
+        int maxX = bounds.maxX + (int)(bounds.getWidth());
+        int maxY = bounds.maxY + (int)(bounds.getHeight());
 
         int width = source.getTileBounds().getWidth();
         int height = source.getTileBounds().getHeight();
@@ -26,7 +24,7 @@ namespace editor
         Vec2Int center = bounds.getCenter();
 
         for (int i = minY; i < maxY; i++)
-        { /* scan over pixd */
+        {
             int yDiff = center.y - i;
             for (int j = minX; j < maxX; j++)
             {
@@ -53,30 +51,6 @@ namespace editor
 
         tile_operation_remove_area(source, bounds);
         tile_operation_copy_all(dest, source);
-        // lines = pixGetLinePtrs(pixs, NULL);
-
-        // TileLayer temp1 =
-        //     documentFactory->createUserLayer(source.getBounds(), "", source.getTileSize());
-
-        // TileLayer temp2 =
-        //     documentFactory->createUserLayer(source.getBounds(), "", source.getTileSize());
-
-        // TileLayer temp3 =
-        //     documentFactory->createUserLayer(source.getBounds(), "", source.getTileSize());
-
-        // float hangle = atan(sin(angle));
-
-        // shear_vertical(source, bounds, angle);
-        // shear_horizontal(source, bounds, angle);
-        // shear_vertical(source, bounds, angle);
-        // shear_vertical(temp2, temp3, bounds, angle / 2.0f);
-
-        // source.clear();
-
-        // for (Rect2D *tile : temp3.getTiles())
-        // {
-        //     source.add(*tile);
-        // }
     }
 } // namespace editor
 } // namespace spright

@@ -84,7 +84,6 @@ namespace editor
                               tempLayer,
                               tempLayer.getCenterPos(bounds.getBottomLeft()),
                               tempLayer.getCenterPos(bounds.getTopRight() + -1));
-
     }
 
     void SelectTool::recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer)

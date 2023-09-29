@@ -15,10 +15,6 @@ namespace editor
         rotate(toolContext.doc.activeDrawing->getActiveLayer(),
                BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
                1.5708f);
-
-        // toolContext.tool.selectionBuffer->setTileIndexes(newIndexes, toolContext.doc.activeDrawing->getActiveLayer());
-
-        // toolContext.tools->getSelectTool().setSelection(newIndexes, *toolContext.doc.activeDrawing);
     }
 } // namespace editor
 } // namespace spright

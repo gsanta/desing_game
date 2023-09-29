@@ -15,7 +15,8 @@ public:
 
     ContentBuilder &buildRect(const BoundsInt &bounds);
 
-    ContentBuilder &selectTiles(const std::vector<Rect2D*> &tiles);
+    ContentBuilder &selectTiles(const std::vector<Rect2D *> &tiles);
+
 private:
     Document &m_Document;
     ToolContext &m_Context;

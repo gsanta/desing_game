@@ -2,7 +2,8 @@
 
 extern class Editor *editor;
 
-void shear_horizontal_api(float shearInRad) {
+void shear_horizontal_api(float shearInRad)
+{
     editor->getToolHandler()->getToolStore().getShearTool().setShearInRad(shearInRad);
     editor->getToolHandler()->executeTool("shear");
 }

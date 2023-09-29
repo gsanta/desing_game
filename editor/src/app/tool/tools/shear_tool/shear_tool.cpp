@@ -1,4 +1,5 @@
 #include "./shear_tool.h"
+
 #include "../../select_tool/select_tool.h"
 
 namespace spright
@@ -13,7 +14,7 @@ namespace editor
     {
         const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
 
-                                               TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
         BoundsInt bounds = BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight());
 
         std::vector<int> newIndexes;
@@ -26,8 +27,6 @@ namespace editor
         {
             newIndexes = shear_vertical(activeLayer, bounds, m_ShearInRad);
         }
-
-        // toolContext.tools->getSelectTool().getSelectionBuffer().setTileIndexes(newIndexes, toolContext.doc.activeDrawing->getActiveLayer());
 
         toolContext.tools->getSelectTool().setSelection(newIndexes, *toolContext.doc.activeDrawing);
     }

@@ -114,6 +114,8 @@ namespace editor
             }
             else if (key == GLFW_KEY_H)
             {
+                m_Editor->getToolHandler()->getToolStore().getShearTool().setShearInRad(0.3926991f);
+                m_Editor->getToolHandler()->getToolStore().getShearTool().setShearDirectionAsHorizontal();
                 m_Editor->getToolHandler()->executeTool("shear");
             }
         }

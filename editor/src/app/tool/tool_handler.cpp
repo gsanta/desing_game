@@ -108,7 +108,7 @@ namespace editor
 
     void ToolHandler::executeTool(const string &toolName)
     {
-        // getToolStore().getTool(toolName)->execute(m_ToolContext);
+        getToolStore().getTool(toolName)->execute(m_ToolContext);
     }
 
     Tool *ToolHandler::getSelectedTool()

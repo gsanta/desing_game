@@ -38,10 +38,9 @@ namespace editor
 
                 Rect2D *tile = source.getAtTilePos(x, y);
 
-                Vec2Int newDestPos = Vec2Int(j, i);
-
-                if (tile != nullptr)
+                if (tile != nullptr && bounds.contains(x, y))
                 {
+                    Vec2Int newDestPos = Vec2Int(j, i);
                     Rect2D newTile(*tile);
                     newTile.setCenterPosition(source.getCenterPos(newDestPos));
                     dest.add(newTile, newDestPos);

@@ -96,6 +96,8 @@ interface Editor {
   shearHorizontal(angle: number): void;
 
   shearVertical(angle: number): void;
+
+  rotate(angle: number): void;
 }
 
 window.Module = new EditorRuntime();

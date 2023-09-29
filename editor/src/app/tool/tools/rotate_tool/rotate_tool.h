@@ -14,7 +14,11 @@ namespace editor
     public:
         RotateTool();
 
+        void setRotationInRad(float rad);
+
         void execute(ToolContext &toolContext) override;
+    private:
+        float m_RotateInRad = 0;
     };
 } // namespace editor
 } // namespace spright

@@ -4,8 +4,13 @@ namespace spright
 {
 namespace editor
 {
-    RotateTool::RotateTool() : Tool("shear")
+    RotateTool::RotateTool() : Tool("rotate")
     {
+    }
+
+    void RotateTool::setRotationInRad(float rad)
+    {
+        m_RotateInRad = rad;
     }
 
     void RotateTool::execute(ToolContext &toolContext)
@@ -14,7 +19,7 @@ namespace editor
 
         rotate(toolContext.doc.activeDrawing->getActiveLayer(),
                BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
-               1.5708f);
+               m_RotateInRad);
     }
 } // namespace editor
 } // namespace spright

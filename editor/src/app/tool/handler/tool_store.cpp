@@ -9,7 +9,7 @@ namespace spright
 {
 namespace editor
 {
-    Tool *ToolStore::getTool(string name) const
+    Tool *ToolStore::getTool(std::string name) const
     {
         auto it = find_if(this->m_Tools.begin(), this->m_Tools.end(), [&name](const Tool *tool) {
             return tool->getName() == name;

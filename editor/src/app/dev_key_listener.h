@@ -22,7 +22,10 @@ namespace editor
 
         inline ~DevKeyListener()
         {
-            m_Editor->getWindow()->getInputHandler()->unRegisterListener(this);
+            if (m_Editor->getWindow() != nullptr)
+            {
+                m_Editor->getWindow()->getInputHandler()->unRegisterListener(this);
+            }
         }
 
         inline void onKeyChange(int key, bool isPressed) override

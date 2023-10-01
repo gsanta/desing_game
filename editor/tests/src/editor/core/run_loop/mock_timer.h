@@ -7,11 +7,11 @@ using namespace spright::editor;
 
 class MockTimer : public Timer {
 public:
-	inline void start() override {
+	inline void reset() override {
 
 	}
 
-	inline float elapsed() override {
+	inline long elapsed() override {
 		return 0;
 	}
 };

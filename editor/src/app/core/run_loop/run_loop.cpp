@@ -3,7 +3,7 @@
 namespace spright { namespace editor {
 
 	RunLoop::RunLoop(Timer* timer) : m_Timer(timer) {
-		
+
 	}
 
 	void RunLoop::add(Timed& timed) {
@@ -35,6 +35,6 @@ namespace spright { namespace editor {
 	}
 
 	void RunLoop::start() {
-		m_Timer->start();
+		m_Timer->reset();
 	}
 }}

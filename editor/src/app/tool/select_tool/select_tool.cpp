@@ -1,4 +1,5 @@
 #include "select_tool.h"
+#include "../tools/rotate_tool/rotate_tool.h"
 
 namespace spright
 {
@@ -18,6 +19,10 @@ namespace editor
 
         int tileIndex = tempLayer.getTileIndex(context.pointer.curr);
         m_IsMove = tempLayer.getAtTileIndex(tileIndex) != nullptr;
+
+        if (m_IsMove) {
+            context.tools->getRotateTool().pointerDown(context);
+        }
     }
 
     void SelectTool::pointerMove(const ToolContext &context)
@@ -32,13 +37,17 @@ namespace editor
 
         if (m_IsMove)
         {
-            m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
+            if (m_IsMove)
+            {
+                context.tools->getRotateTool().pointerMove(context);
+            }
+            // m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
 
-            m_SelectionMover->move(activeLayer,
-                                   m_SelectionBuffer->getTileIndexes(),
-                                   context.pointer.curr,
-                                   context.pointer.prev,
-                                   context.pointer.down);
+            // m_SelectionMover->move(activeLayer,
+            //                        m_SelectionBuffer->getTileIndexes(),
+            //                        context.pointer.curr,
+            //                        context.pointer.prev,
+            //                        context.pointer.down);
         }
         else if (m_BoxSelector->isSelectionChanged(tempLayer,
                                                    context.pointer.curr,

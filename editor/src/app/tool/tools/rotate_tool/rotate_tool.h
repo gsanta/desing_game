@@ -2,10 +2,11 @@
 
 #include "../../../algorithm/rotate.h"
 #include "../../../algorithm/tile_operations.h"
+#include "../../../core/run_loop/timer.h"
 #include "../../tool/tool.h"
 #include "../../tool/tool_context.h"
 #include "../../tool_handler.h"
-#include "../../../core/run_loop/timer.h"
+#include "../../select_tool/select_tool.h"
 
 #include <cmath>
 
@@ -27,6 +28,15 @@ namespace editor
         void pointerUp(const ToolContext &toolContext) override;
 
         void execute(ToolContext &toolContext) override;
+
+    private:
+        void saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
+
+        void restoreImpactedArea(const ToolContext &toolContext);
+
+        void rotateSelction(const ToolContext &toolContext);
+
+        BoundsInt getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const;
 
     private:
         float m_RotateInRad = 0;

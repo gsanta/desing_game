@@ -11,17 +11,17 @@ namespace editor
 
         TileView dest(source.getBounds(), source.getTileSize());
 
-        int minX = bounds.minX;// - (int)(bounds.getWidth()) < 0 ? 0 : bounds.minX - (int)(bounds.getWidth());
-        int minY = bounds.minY;// - (int)(bounds.getHeight()) < 0 ? 0 : bounds.minY - (int)(bounds.getHeight());
-        int maxX = bounds.maxX;// + (int)(bounds.getWidth());
-        int maxY = bounds.maxY;// + (int)(bounds.getHeight());
+        int minX = bounds.minX;
+        int minY = bounds.minY;
+        int maxX = bounds.maxX;
+        int maxY = bounds.maxY;
 
         int width = source.getTileBounds().getWidth();
         int height = source.getTileBounds().getHeight();
         int widthMinus1 = width - 1;
         int heightMinus1 = height - 1;
 
-        Vec2Int center = bounds.getCenter();
+        Vec2Int center = bounds.getCenter() - Vec2Int(0, 0);
 
         for (int i = minX; i < maxX; i++)
         {
@@ -30,11 +30,7 @@ namespace editor
             {
                 int yDiff = center.y - j;
                 int x = center.x + (int)std::round(-xDiff * cosa - yDiff * sina);
-                // if (x < 0 || x > widthMinus1)
-                //     continue;
-                int y = center.y + (int)std::round(-yDiff * cosa + xDiff * sina);
-                // if (y < 0 || y > heightMinus1)
-                //     continue;
+                int y = center.y + (int)std::round(-yDiff * cosa + xDiff * sina) - 1;
 
                 Rect2D *tile = source.getAtTilePos(i, j);
 

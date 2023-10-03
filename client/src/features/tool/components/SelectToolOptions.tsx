@@ -1,6 +1,8 @@
 import { useAppSelector } from '@/hooks';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import SelectModeSwitch from './SelectModeSwitch';
+import Editor from '@/features/editor/Editor';
 
 const SelectToolOptions = () => {
   const editor = useAppSelector((state) => state.editor.editor);
@@ -20,8 +22,13 @@ const SelectToolOptions = () => {
     editor.rotate((Number(rotation) * Math.PI) / 180);
   };
 
+  const handleSelectionModeChange = (val: string) => {
+    editor.setSelectionMode(val as Parameters<Editor['setSelectionMode']>[0]);
+  };
+
   return (
     <Box padding="4" display="flex" flexWrap="wrap" gap="4">
+      <SelectModeSwitch onChange={handleSelectionModeChange} />
       <FormControl width="40">
         <FormLabel htmlFor="eraser-size-slider" fontSize="sm">
           Shear horizontal (°)

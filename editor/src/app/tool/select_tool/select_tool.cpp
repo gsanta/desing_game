@@ -1,10 +1,17 @@
 #include "select_tool.h"
+
 #include "../tools/rotate_tool/rotate_tool.h"
 
 namespace spright
 {
 namespace editor
 {
+
+    const int SelectTool::MODE_MOVE = 0;
+    const int SelectTool::MODE_ROTATE = 1;
+
+    const int SelectTool::PHASE_SELECTION = 0;
+    const int SelectTool::PHASE_MANIPULATION = 1;
 
     SelectTool::SelectTool()
         : Tool("select", std::make_shared<RectangleCursor>(1)), m_SelectionBuffer(std::make_shared<SelectionBuffer>())
@@ -18,10 +25,15 @@ namespace editor
         TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
 
         int tileIndex = tempLayer.getTileIndex(context.pointer.curr);
-        m_IsMove = tempLayer.getAtTileIndex(tileIndex) != nullptr;
 
-        if (m_IsMove) {
-            context.tools->getRotateTool().pointerDown(context);
+        if (tempLayer.getAtTileIndex(tileIndex) != nullptr) {
+            m_Phase = PHASE_MANIPULATION;
+
+            if (m_Mode == MODE_ROTATE) {
+                context.tools->getRotateTool().pointerDown(context);
+            }
+        } else {
+            m_Phase = PHASE_SELECTION;
         }
     }
 
@@ -35,27 +47,37 @@ namespace editor
         TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
 
-        if (m_IsMove)
+        if (m_Phase == PHASE_SELECTION)
         {
-            if (m_IsMove)
-            {
-                context.tools->getRotateTool().pointerMove(context);
-            }
-            // m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
-
-            // m_SelectionMover->move(activeLayer,
-            //                        m_SelectionBuffer->getTileIndexes(),
-            //                        context.pointer.curr,
-            //                        context.pointer.prev,
-            //                        context.pointer.down);
-        }
-        else if (m_BoxSelector->isSelectionChanged(tempLayer,
+            if (!m_BoxSelector->isSelectionChanged(tempLayer,
                                                    context.pointer.curr,
                                                    context.pointer.prev,
                                                    context.pointer.down))
-        {
+            {
+                return;
+            }
+
             tempLayer.clear();
             m_BoxSelector->select(activeLayer, tempLayer, context.pointer.curr, context.pointer.down);
+        }
+        else if (m_Phase == PHASE_MANIPULATION)
+        {
+            switch (m_Mode)
+            {
+            case MODE_ROTATE:
+                context.tools->getRotateTool().pointerMove(context);
+                break;
+
+            default:
+                m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
+
+                m_SelectionMover->move(activeLayer,
+                                       m_SelectionBuffer->getTileIndexes(),
+                                       context.pointer.curr,
+                                       context.pointer.prev,
+                                       context.pointer.down);
+                break;
+            }
         }
     }
 
@@ -66,7 +88,7 @@ namespace editor
 
         recalcTileIndexesAndBounds(activeLayer, tempLayer);
 
-        if (!m_IsMove)
+        if (m_Phase == PHASE_SELECTION)
         {
             if (context.pointer.downDelta().length() < m_NoMovementTolerance)
             {
@@ -75,9 +97,26 @@ namespace editor
                 tempLayer.clear();
                 m_SelectionBuffer->clear();
             }
+        } else if (m_Phase == PHASE_MANIPULATION) {
+            if (m_Mode == MODE_ROTATE) {
+                context.tools->getRotateTool().pointerUp(context);
+            }
         }
 
-        m_IsMove = false;
+        m_Phase = PHASE_SELECTION;
+    }
+
+    void SelectTool::setMode(int mode)
+    {
+        switch (mode)
+        {
+        case MODE_ROTATE:
+            m_Mode = mode;
+            break;
+        default:
+            m_Mode = MODE_MOVE;
+            break;
+        }
     }
 
     void SelectTool::setSelection(const std::vector<int> &indexes, Drawing &drawing)

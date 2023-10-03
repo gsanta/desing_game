@@ -2,6 +2,16 @@
 
 extern class Editor *editor;
 
+void set_selection_mode_api(std::string modeStr) {
+    int mode = SelectTool::MODE_MOVE;
+
+    if (modeStr == "rotate") {
+        mode = SelectTool::MODE_ROTATE;
+    }
+
+    editor->getToolHandler()->getToolStore().getSelectTool().setMode(mode);
+}
+
 void shear_horizontal_api(float shearInRad)
 {
     editor->getToolHandler()->getToolStore().getShearTool().setShearInRad(shearInRad);
@@ -253,6 +263,7 @@ EMSCRIPTEN_BINDINGS(spright)
     emscripten::function("shearHorizontal", &shear_horizontal_api);
     emscripten::function("shearVertical", &shear_vertical_api);
     emscripten::function("rotate", &rotate_api);
+    emscripten::function("setSelectionMode", &set_selection_mode_api);
 }
 
 #endif

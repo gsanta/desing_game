@@ -8,13 +8,19 @@
 #include "unix_timer.h"
 #endif
 
+#include "test_timer.h"
+
+extern bool SPRIGHT_IS_TEST;
+
 namespace spright
 {
 namespace editor
 {
     Timer *Timer::getTimer()
     {
-#ifdef SPARKY_EMSCRIPTEN
+#ifdef SPRIGHT_TEST
+        return TestTimer::getInstance();
+#elif SPARKY_EMSCRIPTEN
         return new EmsTimer();
 #elif _WIN32
         return new WinTimer();

@@ -63,8 +63,8 @@ SCENARIO("Rotate tool")
     {
         Document document = DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(0, 0, 12, 12))).build();
         ToolContext toolContext = ToolContextBuilder().build(document);
-        ContentBuilder &contentBuilder =
-            ContentBuilder(document, toolContext).buildRect(BoundsInt(4, 1, 5, 3)).buildTile(Vec2Int(4, 0));
+        ContentBuilder contentBuilder(document, toolContext);
+        contentBuilder.buildRect(BoundsInt(4, 1, 5, 3)).buildTile(Vec2Int(4, 0));
 
         Drawing &drawing = document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();

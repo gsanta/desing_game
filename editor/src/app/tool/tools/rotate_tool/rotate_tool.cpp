@@ -20,13 +20,14 @@ namespace editor
 
     void RotateTool::pointerMove(const ToolContext &toolContext)
     {
-            double angle = getRotationAngle(toolContext.pointer.curr);
+        double angle = getRotationAngle(toolContext.pointer.curr);
 
-            if (angle != m_PrevRotationAngle) {
-                restoreImpactedArea(toolContext);
-                rotateSelection(toolContext, angle);
-                m_PrevRotationAngle = angle;
-            }
+        if (angle != m_PrevRotationAngle)
+        {
+            restoreImpactedArea(toolContext);
+            rotateSelection(toolContext, angle);
+            m_PrevRotationAngle = angle;
+        }
     }
 
     void RotateTool::pointerUp(const ToolContext &toolContext)
@@ -121,11 +122,16 @@ namespace editor
 
         double normalizedAngle = 0;
 
-        if (angle > 0 && angle <= M_PI_2) {
+        if (angle > 0 && angle <= M_PI_2)
+        {
             normalizedAngle = M_PI_2 - angle;
-        } else if (angle > M_PI_2 && angle <= M_PI) {
+        }
+        else if (angle > M_PI_2 && angle <= M_PI)
+        {
             normalizedAngle = 3 * M_PI_2 + M_PI - angle;
-        } else {
+        }
+        else
+        {
             normalizedAngle = M_PI_2 - angle;
         }
 

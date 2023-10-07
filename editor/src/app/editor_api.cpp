@@ -2,10 +2,12 @@
 
 extern class Editor *editor;
 
-void set_selection_mode_api(std::string modeStr) {
+void set_selection_mode_api(std::string modeStr)
+{
     int mode = SelectTool::MODE_MOVE;
 
-    if (modeStr == "rotate") {
+    if (modeStr == "rotate")
+    {
         mode = SelectTool::MODE_ROTATE;
     }
 

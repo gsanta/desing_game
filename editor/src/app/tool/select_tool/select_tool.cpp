@@ -26,13 +26,17 @@ namespace editor
 
         int tileIndex = tempLayer.getTileIndex(context.pointer.curr);
 
-        if (tempLayer.getAtTileIndex(tileIndex) != nullptr) {
+        if (tempLayer.getAtTileIndex(tileIndex) != nullptr)
+        {
             m_Phase = PHASE_MANIPULATION;
 
-            if (m_Mode == MODE_ROTATE) {
+            if (m_Mode == MODE_ROTATE)
+            {
                 context.tools->getRotateTool().pointerDown(context);
             }
-        } else {
+        }
+        else
+        {
             m_Phase = PHASE_SELECTION;
         }
     }
@@ -97,8 +101,11 @@ namespace editor
                 tempLayer.clear();
                 m_SelectionBuffer->clear();
             }
-        } else if (m_Phase == PHASE_MANIPULATION) {
-            if (m_Mode == MODE_ROTATE) {
+        }
+        else if (m_Phase == PHASE_MANIPULATION)
+        {
+            if (m_Mode == MODE_ROTATE)
+            {
                 context.tools->getRotateTool().pointerUp(context);
             }
         }

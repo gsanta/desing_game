@@ -28,10 +28,6 @@ namespace editor
         int xOffset = 0;
         int yOffset = 0;
 
-        //  int yOffset = angle < 0 && angle > -M_PI ? 0 : -1;
-
-        //  int xOffset = bounds.getWidth() % 2 == 0 ? -1 : 0;
-
         for (int i = minX; i < maxX; i++)
         {
             int xDiff = center.x - i;

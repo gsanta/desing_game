@@ -23,14 +23,23 @@ namespace editor
 
         Vec2Int center = bounds.getCenter() - Vec2Int(0, 0);
 
+        double a = M_PI;
+
+        int xOffset = 0;
+        int yOffset = 0;
+
+        //  int yOffset = angle < 0 && angle > -M_PI ? 0 : -1;
+
+        //  int xOffset = bounds.getWidth() % 2 == 0 ? -1 : 0;
+
         for (int i = minX; i < maxX; i++)
         {
             int xDiff = center.x - i;
             for (int j = minY; j < maxY; j++)
             {
                 int yDiff = center.y - j;
-                int x = center.x + (int)std::round(-xDiff * cosa - yDiff * sina);
-                int y = center.y + (int)std::round(-yDiff * cosa + xDiff * sina) - 1;
+                int x = center.x + (int)std::round(-xDiff * cosa - yDiff * sina) + xOffset;
+                int y = center.y + (int)std::round(-yDiff * cosa + xDiff * sina) + yOffset;
 
                 Rect2D *tile = source.getAtTilePos(i, j);
 

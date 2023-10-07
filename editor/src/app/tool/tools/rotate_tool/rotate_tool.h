@@ -3,10 +3,10 @@
 #include "../../../algorithm/rotate.h"
 #include "../../../algorithm/tile_operations.h"
 #include "../../../core/run_loop/timer.h"
+#include "../../select_tool/select_tool.h"
 #include "../../tool/tool.h"
 #include "../../tool/tool_context.h"
 #include "../../tool_handler.h"
-#include "../../select_tool/select_tool.h"
 
 #include <cmath>
 
@@ -34,12 +34,16 @@ namespace editor
 
         void restoreImpactedArea(const ToolContext &toolContext);
 
-        void rotateSelction(const ToolContext &toolContext);
+        void rotateSelection(const ToolContext &toolContext, double angle);
 
         BoundsInt getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const;
 
+        double getRotationAngle(Vec2 cursorPos);
+
     private:
         float m_RotateInRad = 0;
+
+        double m_PrevRotationAngle = 0;
 
         Timer *m_Timer;
 
@@ -48,6 +52,15 @@ namespace editor
         std::vector<int> m_OrigIndexes;
 
         Vec2 m_RotationCenter;
+
+        std::vector<double> m_RotationPoints = {0,
+                                                M_PI - 3.0 * M_PI_4,
+                                                M_PI - 2.0 * M_PI_4,
+                                                M_PI - M_PI_4,
+                                                M_PI,
+                                                M_PI + M_PI_4,
+                                                M_PI + 2.0 * M_PI_4,
+                                                M_PI + 3.0 * M_PI_4};
     };
 } // namespace editor
 } // namespace spright

@@ -15,18 +15,18 @@ namespace editor
 
         TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
 
-        saveImpactedArea(activeLayer, *toolContext.tool.selectionBuffer);
+        saveImpactedArea(activeLayer, toolContext.tools->getSelectTool().getSelectionBuffer());
     }
 
     void RotateTool::pointerMove(const ToolContext &toolContext)
     {
-        if (m_Timer->elapsed() > 200)
-        {
-            m_Timer->reset();
+            double angle = getRotationAngle(toolContext.pointer.curr);
 
-            restoreImpactedArea(toolContext);
-            rotateSelction(toolContext);
-        }
+            if (angle != m_PrevRotationAngle) {
+                restoreImpactedArea(toolContext);
+                rotateSelection(toolContext, angle);
+                m_PrevRotationAngle = angle;
+            }
     }
 
     void RotateTool::pointerUp(const ToolContext &toolContext)
@@ -40,7 +40,7 @@ namespace editor
 
     void RotateTool::execute(ToolContext &toolContext)
     {
-        const BoundsInt &selectionBounds = toolContext.tool.selectionBuffer->getTileBounds();
+        const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
 
         std::vector<int> newIndexes = rotate(toolContext.doc.activeDrawing->getActiveLayer(),
                                              BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
@@ -85,12 +85,9 @@ namespace editor
         selectTool.setSelection(m_OrigIndexes, *toolContext.doc.activeDrawing);
     }
 
-    void RotateTool::rotateSelction(const ToolContext &toolContext)
+    void RotateTool::rotateSelection(const ToolContext &toolContext, double angle)
     {
-        const BoundsInt &selectionBounds = toolContext.tool.selectionBuffer->getTileBounds();
-
-        Vec2 dir = toolContext.pointer.curr - m_RotationCenter;
-        double angle = std::atan2(dir.y, dir.x) - 3.141 / 2.0;
+        const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
 
         std::vector<int> newIndexes = rotate(toolContext.doc.activeDrawing->getActiveLayer(),
                                              BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
@@ -115,6 +112,46 @@ namespace editor
         int topRightY = center.y + halfSize < maxBounds.maxY ? center.y + halfSize : maxBounds.maxY;
 
         return BoundsInt(bottomLeftX, bottomLeftY, topRightX, topRightY);
+    }
+
+    double RotateTool::getRotationAngle(Vec2 cursorPos)
+    {
+        Vec2 dir = cursorPos - m_RotationCenter;
+        double angle = std::atan2(dir.y, dir.x);
+
+        double normalizedAngle = 0;
+
+        if (angle > 0 && angle <= M_PI_2) {
+            normalizedAngle = M_PI_2 - angle;
+        } else if (angle > M_PI_2 && angle <= M_PI) {
+            normalizedAngle = 3 * M_PI_2 + M_PI - angle;
+        } else {
+            normalizedAngle = M_PI_2 - angle;
+        }
+
+        double finalAngle = 0;
+
+        for (int i = 0; i < m_RotationPoints.size() - 1; i++)
+        {
+            double prevAngle = m_RotationPoints[i];
+            double nextAngle = m_RotationPoints[i + 1];
+            if (normalizedAngle > prevAngle && normalizedAngle <= nextAngle)
+            {
+                double prevDiff = normalizedAngle - prevAngle;
+                double nextDiff = nextAngle - normalizedAngle;
+
+                if (prevDiff < nextDiff)
+                {
+                    finalAngle = prevAngle;
+                }
+                else
+                {
+                    finalAngle = nextAngle;
+                }
+            }
+        }
+
+        return finalAngle;
     }
 } // namespace editor
 } // namespace spright

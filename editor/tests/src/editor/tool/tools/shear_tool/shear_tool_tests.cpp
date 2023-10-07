@@ -18,7 +18,8 @@ SCENARIO("Shear tool")
     {
         Document document = DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(0, 0, 12, 12))).build();
         ToolContext toolContext = ToolContextBuilder().build(document);
-        ContentBuilder &contentBuilder = ContentBuilder(document, toolContext).buildRect(BoundsInt(2, 1, 5, 4));
+        ContentBuilder contentBuilder(document, toolContext);
+        contentBuilder.buildRect(BoundsInt(2, 1, 5, 4));
 
         Drawing &drawing = document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
@@ -186,7 +187,9 @@ SCENARIO("Shear tool")
     {
         Document document = DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(0, 0, 12, 12))).build();
         ToolContext toolContext = ToolContextBuilder().build(document);
-        ContentBuilder &contentBuilder = ContentBuilder(document, toolContext).buildRect(BoundsInt(0, 0, 3, 3));
+        ContentBuilder contentBuilder(document, toolContext);
+
+        contentBuilder.buildRect(BoundsInt(0, 0, 3, 3));
 
         Drawing &drawing = document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();

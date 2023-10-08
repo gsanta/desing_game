@@ -7,6 +7,7 @@
 #include "../../tool/tool.h"
 #include "../../tool/tool_context.h"
 #include "../../tool_handler.h"
+#include "../../common/restorable_area.h"
 
 #include <cmath>
 
@@ -30,28 +31,22 @@ namespace editor
         void execute(ToolContext &toolContext) override;
 
     private:
-        void saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
+        // void saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
 
-        void restoreImpactedArea(const ToolContext &toolContext);
+        // void restoreImpactedArea(const ToolContext &toolContext);
 
         void rotateSelection(const ToolContext &toolContext, double angle);
 
         BoundsInt getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const;
 
-        double getRotationAngle(Vec2 cursorPos);
+        double getRotationAngle(const Vec2 &cursorPos, const Vec2 &centerPos);
 
     private:
         float m_RotateInRad = 0;
 
         double m_PrevRotationAngle = 0;
 
-        Timer *m_Timer;
-
-        std::unique_ptr<TileView> m_OrigTiles;
-
-        std::vector<int> m_OrigIndexes;
-
-        Vec2 m_RotationCenter;
+        RestorableArea m_RestorableArea;
 
         std::vector<double> m_RotationPoints = {0,
                                                 M_PI - 3.0 * M_PI_4,

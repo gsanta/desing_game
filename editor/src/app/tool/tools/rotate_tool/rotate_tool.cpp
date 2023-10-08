@@ -6,25 +6,29 @@ namespace editor
 {
     RotateTool::RotateTool() : Tool("rotate")
     {
-        m_Timer = Timer::getTimer();
     }
 
     void RotateTool::pointerDown(const ToolContext &toolContext)
     {
-        m_Timer->reset();
-
         TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
 
-        saveImpactedArea(activeLayer, toolContext.tools->getSelectTool().getSelectionBuffer());
+        m_RestorableArea.saveArea(activeLayer, toolContext.tools->getSelectTool().getSelectionBuffer());
     }
 
     void RotateTool::pointerMove(const ToolContext &toolContext)
     {
-        double angle = getRotationAngle(toolContext.pointer.curr);
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
+        Vec2 center = activeLayer.getCenterPos(selectionBounds.getCenter());
+
+        double angle = getRotationAngle(toolContext.pointer.curr, center);
 
         if (angle != m_PrevRotationAngle)
         {
-            restoreImpactedArea(toolContext);
+            const std::vector<int> restoredIndexes =
+                m_RestorableArea.restoreArea(activeLayer, toolContext.tools->getSelectTool().getSelectionBuffer());
+            toolContext.tools->getSelectTool().setSelection(restoredIndexes, *toolContext.doc.activeDrawing);
+
             rotateSelection(toolContext, angle);
             m_PrevRotationAngle = angle;
         }
@@ -50,41 +54,41 @@ namespace editor
         toolContext.tools->getSelectTool().setSelection(newIndexes, *toolContext.doc.activeDrawing);
     }
 
-    void RotateTool::saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer)
-    {
-        m_OrigIndexes.clear();
-        m_OrigTiles.reset(new TileView(activeLayer.getBounds(), activeLayer.getTileSize()));
+    // void RotateTool::saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer)
+    // {
+    //     m_OrigIndexes.clear();
+    //     m_OrigTiles.reset(new TileView(activeLayer.getBounds(), activeLayer.getTileSize()));
 
-        const BoundsInt &selectionBounds = selectionBuffer.getTileBounds();
-        const BoundsInt impactBounds = getBoundsOfImpactedArea(selectionBounds, activeLayer.getTileBounds());
+    //     const BoundsInt &selectionBounds = selectionBuffer.getTileBounds();
+    //     const BoundsInt impactBounds = getBoundsOfImpactedArea(selectionBounds, activeLayer.getTileBounds());
 
-        Vec2Int center = selectionBounds.getCenter();
-        m_RotationCenter = activeLayer.getCenterPos(center);
+    //     Vec2Int center = selectionBounds.getCenter();
+    //     m_RotationCenter = activeLayer.getCenterPos(center);
 
-        tile_operation_copy_area(activeLayer, *m_OrigTiles, impactBounds, impactBounds.getBottomLeft());
+    //     tile_operation_copy_area(activeLayer, *m_OrigTiles, impactBounds, impactBounds.getBottomLeft());
 
-        for (Rect2D *tile : m_OrigTiles->getTiles())
-        {
-            m_OrigIndexes.push_back(m_OrigTiles->getTileIndex(*tile));
-        }
-    }
+    //     for (Rect2D *tile : m_OrigTiles->getTiles())
+    //     {
+    //         m_OrigIndexes.push_back(m_OrigTiles->getTileIndex(*tile));
+    //     }
+    // }
 
-    void RotateTool::restoreImpactedArea(const ToolContext &toolContext)
-    {
-        SelectTool &selectTool = toolContext.tools->getSelectTool();
-        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+    // void RotateTool::restoreImpactedArea(const ToolContext &toolContext)
+    // {
+    //     SelectTool &selectTool = toolContext.tools->getSelectTool();
+    //     TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
 
-        const std::vector<int> &oldIndexes = selectTool.getSelectionBuffer().getTileIndexes();
+    //     const std::vector<int> &oldIndexes = selectTool.getSelectionBuffer().getTileIndexes();
 
-        for (int index : oldIndexes)
-        {
-            activeLayer.removeAt(index);
-        }
+    //     for (int index : oldIndexes)
+    //     {
+    //         activeLayer.removeAt(index);
+    //     }
 
-        tile_operation_copy_all(*m_OrigTiles, activeLayer);
+    //     tile_operation_copy_all(*m_OrigTiles, activeLayer);
 
-        selectTool.setSelection(m_OrigIndexes, *toolContext.doc.activeDrawing);
-    }
+    //     selectTool.setSelection(m_OrigIndexes, *toolContext.doc.activeDrawing);
+    // }
 
     void RotateTool::rotateSelection(const ToolContext &toolContext, double angle)
     {
@@ -97,27 +101,9 @@ namespace editor
         toolContext.tools->getSelectTool().setSelection(newIndexes, *toolContext.doc.activeDrawing);
     }
 
-    /*
-    // Get the maximum area that can be impacted by the rotation, so original state can be restored
-    */
-    BoundsInt RotateTool::getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const
+    double RotateTool::getRotationAngle(const Vec2 &cursorPos, const Vec2 &centerPos)
     {
-        Vec2Int center = selectionBounds.getCenter();
-        int size = selectionBounds.getWidth() > selectionBounds.getHeight() ? selectionBounds.getWidth()
-                                                                            : selectionBounds.getHeight();
-        int halfSize = ((int)size / 2.0) + 1;
-
-        int bottomLeftX = center.x - halfSize > maxBounds.minX ? center.x - halfSize : maxBounds.minX;
-        int bottomLeftY = center.y - halfSize > maxBounds.minY ? center.y - halfSize : maxBounds.minY;
-        int topRightX = center.x + halfSize < maxBounds.maxX ? center.x + halfSize : maxBounds.maxX;
-        int topRightY = center.y + halfSize < maxBounds.maxY ? center.y + halfSize : maxBounds.maxY;
-
-        return BoundsInt(bottomLeftX, bottomLeftY, topRightX, topRightY);
-    }
-
-    double RotateTool::getRotationAngle(Vec2 cursorPos)
-    {
-        Vec2 dir = cursorPos - m_RotationCenter;
+        Vec2 dir = cursorPos - centerPos;
         double angle = std::atan2(dir.y, dir.x);
 
         double normalizedAngle = 0;

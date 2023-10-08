@@ -13,12 +13,17 @@ namespace editor
     public:
         ShearTool();
 
+
+
         void execute(ToolContext &toolContext) override;
 
+        // only relevant when using execute directly, without using pointer events
         void setShearInRad(float rad);
 
+        // only relevant when using execute directly, without using pointer events
         void setShearDirectionAsVertical();
 
+        // only relevant when using execute directly, without using pointer events
         void setShearDirectionAsHorizontal();
 
     private:

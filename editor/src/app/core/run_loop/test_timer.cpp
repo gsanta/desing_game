@@ -6,7 +6,7 @@ namespace editor
 {
     TestTimer *TestTimer::m_InstancePtr = nullptr;
 
-    TestTimer::TestTimer() {};
+    TestTimer::TestTimer(){};
 
     void TestTimer::reset()
     {

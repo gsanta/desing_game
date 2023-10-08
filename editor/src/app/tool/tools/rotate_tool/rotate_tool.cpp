@@ -122,11 +122,13 @@ namespace editor
 
         double normalizedAngle = 0;
 
+        double approx = 0.01;
+
         if (angle > 0 && angle <= M_PI_2)
         {
             normalizedAngle = M_PI_2 - angle;
         }
-        else if (angle > M_PI_2 && angle <= M_PI)
+        else if (angle > M_PI_2 && angle <= M_PI + approx)
         {
             normalizedAngle = 3 * M_PI_2 + M_PI - angle;
         }

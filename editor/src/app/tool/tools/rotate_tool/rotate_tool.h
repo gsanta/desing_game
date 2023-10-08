@@ -4,7 +4,7 @@
 #include "../../../algorithm/tile_operations.h"
 #include "../../../core/run_loop/timer.h"
 #include "../../common/restorable_area.h"
-#include "../../select_tool/select_tool.h"
+#include "../../tools/select_tool/select_tool.h"
 #include "../../tool/tool.h"
 #include "../../tool/tool_context.h"
 #include "../../tool_handler.h"

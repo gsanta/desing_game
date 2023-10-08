@@ -1,7 +1,7 @@
 #include "./tool_store.h"
 
-#include "../color_picker_tool.h"
-#include "../select_tool/select_tool.h"
+#include "../tools/color_picker_tool/color_picker_tool.h"
+#include "../tools/select_tool/select_tool.h"
 #include "../tool/tool.h"
 #include "../tools/rotate_tool/rotate_tool.h"
 #include "../tools/shear_tool/shear_tool.h"

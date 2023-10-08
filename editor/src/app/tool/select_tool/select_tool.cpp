@@ -1,14 +1,23 @@
 #include "select_tool.h"
 
 #include "../tools/rotate_tool/rotate_tool.h"
+#include "../tools/shear_tool/shear_tool.h"
 
 namespace spright
 {
 namespace editor
 {
 
+    // enum SelectToolMode
+    // {
+    //     move,
+    //     rotate,
+    //     shears
+    // };
+
     const int SelectTool::MODE_MOVE = 0;
     const int SelectTool::MODE_ROTATE = 1;
+    const int SelectTool::MODE_SHEAR = 2;
 
     const int SelectTool::PHASE_SELECTION = 0;
     const int SelectTool::PHASE_MANIPULATION = 1;
@@ -33,6 +42,8 @@ namespace editor
             if (m_Mode == MODE_ROTATE)
             {
                 context.tools->getRotateTool().pointerDown(context);
+            } else if (m_Mode == MODE_SHEAR) {
+                context.tools->getShearTool().pointerDown(context);
             }
         }
         else
@@ -71,6 +82,9 @@ namespace editor
             case MODE_ROTATE:
                 context.tools->getRotateTool().pointerMove(context);
                 break;
+            case MODE_SHEAR:
+                context.tools->getShearTool().pointerMove(context);
+                break;
 
             default:
                 m_SelectionMover->move(tempLayer, context.pointer.curr, context.pointer.prev, context.pointer.down);
@@ -107,6 +121,8 @@ namespace editor
             if (m_Mode == MODE_ROTATE)
             {
                 context.tools->getRotateTool().pointerUp(context);
+            } else if (m_Mode == MODE_SHEAR) {
+                context.tools->getShearTool().pointerUp(context);
             }
         }
 
@@ -115,15 +131,7 @@ namespace editor
 
     void SelectTool::setMode(int mode)
     {
-        switch (mode)
-        {
-        case MODE_ROTATE:
-            m_Mode = mode;
-            break;
-        default:
-            m_Mode = MODE_MOVE;
-            break;
-        }
+        m_Mode = mode;
     }
 
     void SelectTool::setSelection(const std::vector<int> &indexes, Drawing &drawing)
@@ -166,6 +174,25 @@ namespace editor
     SelectionBuffer &SelectTool::getSelectionBuffer()
     {
         return *m_SelectionBuffer;
+    }
+
+    /*
+    // Get the maximum area that can be impacted by the rotation, so original state can be restored
+    */
+    BoundsInt SelectTool::getBoundsOfImpactedArea(const BoundsInt &selectionBounds,
+                                                      const BoundsInt &maxBounds) const
+    {
+        Vec2Int center = selectionBounds.getCenter();
+        int size = selectionBounds.getWidth() > selectionBounds.getHeight() ? selectionBounds.getWidth()
+                                                                            : selectionBounds.getHeight();
+        int halfSize = ((int)size / 2.0) + 1 + size * 5;
+
+        int bottomLeftX = center.x - halfSize > maxBounds.minX ? center.x - halfSize : maxBounds.minX;
+        int bottomLeftY = center.y - halfSize > maxBounds.minY ? center.y - halfSize : maxBounds.minY;
+        int topRightX = center.x + halfSize < maxBounds.maxX ? center.x + halfSize : maxBounds.maxX;
+        int topRightY = center.y + halfSize < maxBounds.maxY ? center.y + halfSize : maxBounds.maxY;
+
+        return BoundsInt(bottomLeftX, bottomLeftY, topRightX, topRightY);
     }
 } // namespace editor
 } // namespace spright

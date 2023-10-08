@@ -1,4 +1,5 @@
 #include "line_tool.h"
+#include "../color_picker_tool.h"
 
 namespace spright
 {
@@ -20,7 +21,7 @@ namespace editor
 
         foregroundLayer.clear();
 
-        drawLine(context.pointer.down, context.pointer.curr, context.tool.selectedColor, activeLayer, foregroundLayer);
+        drawLine(context.pointer.down, context.pointer.curr, context.tools->getColorPickerTool().getColor(), activeLayer, foregroundLayer);
     }
 
     void LineTool::pointerUp(const ToolContext &context)
@@ -34,7 +35,7 @@ namespace editor
 
         drawLine(context.pointer.down,
                  context.pointer.curr,
-                 context.tool.selectedColor,
+                 context.tools->getColorPickerTool().getColor(),
                  activeLayer,
                  activeLayer,
                  &tileUndo);

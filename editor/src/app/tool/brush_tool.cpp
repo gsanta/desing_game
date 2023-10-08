@@ -1,4 +1,5 @@
 #include "brush_tool.h"
+#include "./color_picker_tool.h"
 
 namespace spright
 {
@@ -57,7 +58,7 @@ namespace editor
 
                     brush.paint(layer,
                                 tilePos,
-                                context.tool.selectedColor,
+                                context.tools->getColorPickerTool().getColor(),
                                 [&](std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next) {
                                     tileUndo->addTile(prev, next);
                                 });

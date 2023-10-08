@@ -1,4 +1,5 @@
 #include "rectangle_tool.h"
+#include "../color_picker_tool.h"
 
 namespace spright
 {
@@ -25,7 +26,7 @@ namespace editor
         }
 
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
-        int color = context.tool.selectedColor;
+        int color = context.tools->getColorPickerTool().getColor();
 
         TileUndo tileUndo = TileUndo::createForActiveTileLayer(*context.doc.document);
 
@@ -70,14 +71,14 @@ namespace editor
             m_TempRectDrawer.drawFilled(tileLayer,
                                         context.pointer.down,
                                         context.pointer.curr,
-                                        context.tool.selectedColor);
+                                        context.tools->getColorPickerTool().getColor());
         }
         else
         {
             m_TempRectDrawer.drawOutlined(tileLayer,
                                           context.pointer.down,
                                           context.pointer.curr,
-                                          context.tool.selectedColor);
+                                          context.tools->getColorPickerTool().getColor());
         }
     }
 

@@ -18,6 +18,8 @@ namespace maths
 
         Vec2Int operator-(const Vec2Int &right);
 
+        double distance(const Vec2Int &other);
+
         friend bool operator==(const Vec2Int &, const Vec2Int &);
 
         friend bool operator!=(const Vec2Int &, const Vec2Int &);

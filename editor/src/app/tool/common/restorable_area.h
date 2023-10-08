@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../algorithm/tile_operations.h"
 #include "../../../engine/graphics/layer/tileLayer.h"
 #include "../../../engine/graphics/layer/tile_view.h"
+#include "../../algorithm/tile_operations.h"
 #include "../select_tool/selection_buffer.h"
 #include "../tool/tool_context.h"
 
@@ -16,24 +16,23 @@ namespace editor
     using namespace engine;
 
     /*
-    // Can be used by tools that executes an action on the original shape multiple times on pointer move
-    */
+     * Can be used by tools that executes an action on the original shape multiple times on pointer move
+     */
     class RestorableArea
     {
     public:
-        void saveArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
+        void saveArea(const TileLayer &activeLayer, const std::vector<int> &originalSelectedIndexes, const BoundsInt &area);
 
-        const std::vector<int> &restoreArea(TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
+        void restoreArea(TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
+
+        const std::vector<int> &getOriginalSelectedIndexes() const;
 
     private:
-        BoundsInt getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const;
+        std::unique_ptr<TileView> m_ImpactedTiles;
 
-    private:
-        Vec2 m_AreaCenter;
+        std::vector<int> m_ImpactedIndexes;
 
-        std::unique_ptr<TileView> m_OrigTiles;
-
-        std::vector<int> m_OrigIndexes;
+        std::vector<int> m_OriginalSelectedIndexes;
     };
 } // namespace editor
 } // namespace spright

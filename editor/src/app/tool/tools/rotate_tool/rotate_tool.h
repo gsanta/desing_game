@@ -26,20 +26,20 @@ namespace editor
 
         void pointerMove(const ToolContext &toolContext) override;
 
-        void pointerUp(const ToolContext &toolContext) override;
-
-        void execute(ToolContext &toolContext) override;
+        void execute(const ToolContext &toolContext) override;
 
     private:
-        // void saveImpactedArea(const TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
-
-        // void restoreImpactedArea(const ToolContext &toolContext);
-
         void rotateSelection(const ToolContext &toolContext, double angle);
 
+        /*
+         * Get the maximum area that can be impacted by the rotation, so original state can be restored
+         */
         BoundsInt getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const;
 
-        double getRotationAngle(const Vec2 &cursorPos, const Vec2 &centerPos);
+        double getRotationAngle(const Vec2 &cursorPos, const Vec2 &centerPos) const;
+
+        /* angle between 0 to 2 Pi and zero is the up direction */
+        double getNormalizedAngle(double angle) const;
 
     private:
         float m_RotateInRad = 0;

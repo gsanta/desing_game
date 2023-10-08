@@ -1,4 +1,5 @@
 #include "paint_bucket_tool.h"
+
 #include "../color_picker_tool.h"
 
 namespace spright

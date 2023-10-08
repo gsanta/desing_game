@@ -9,7 +9,9 @@ void set_selection_mode_api(std::string modeStr)
     if (modeStr == "rotate")
     {
         mode = SelectTool::MODE_ROTATE;
-    } else if (modeStr == "shear") {
+    }
+    else if (modeStr == "shear")
+    {
         mode = SelectTool::MODE_SHEAR;
     }
 

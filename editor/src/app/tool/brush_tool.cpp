@@ -1,4 +1,5 @@
 #include "brush_tool.h"
+
 #include "./color_picker_tool.h"
 
 namespace spright

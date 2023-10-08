@@ -113,8 +113,7 @@ namespace editor
             }
             else if (key == GLFW_KEY_LEFT)
             {
-                m_Editor->getToolHandler()
-                    ->getToolStore().getSelectTool().setMode(SelectTool::MODE_MOVE);
+                m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(SelectTool::MODE_MOVE);
             }
             else if (key == GLFW_KEY_RIGHT)
             {

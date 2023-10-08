@@ -7,14 +7,6 @@ namespace spright
 {
 namespace editor
 {
-
-    // enum SelectToolMode
-    // {
-    //     move,
-    //     rotate,
-    //     shears
-    // };
-
     const int SelectTool::MODE_MOVE = 0;
     const int SelectTool::MODE_ROTATE = 1;
     const int SelectTool::MODE_SHEAR = 2;
@@ -42,7 +34,9 @@ namespace editor
             if (m_Mode == MODE_ROTATE)
             {
                 context.tools->getRotateTool().pointerDown(context);
-            } else if (m_Mode == MODE_SHEAR) {
+            }
+            else if (m_Mode == MODE_SHEAR)
+            {
                 context.tools->getShearTool().pointerDown(context);
             }
         }
@@ -121,7 +115,9 @@ namespace editor
             if (m_Mode == MODE_ROTATE)
             {
                 context.tools->getRotateTool().pointerUp(context);
-            } else if (m_Mode == MODE_SHEAR) {
+            }
+            else if (m_Mode == MODE_SHEAR)
+            {
                 context.tools->getShearTool().pointerUp(context);
             }
         }
@@ -179,8 +175,7 @@ namespace editor
     /*
     // Get the maximum area that can be impacted by the rotation, so original state can be restored
     */
-    BoundsInt SelectTool::getBoundsOfImpactedArea(const BoundsInt &selectionBounds,
-                                                      const BoundsInt &maxBounds) const
+    BoundsInt SelectTool::getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const
     {
         Vec2Int center = selectionBounds.getCenter();
         int size = selectionBounds.getWidth() > selectionBounds.getHeight() ? selectionBounds.getWidth()

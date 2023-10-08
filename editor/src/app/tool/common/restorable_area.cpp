@@ -37,5 +37,5 @@ namespace editor
     {
         return m_OriginalSelectedIndexes;
     }
-}
-}
+} // namespace editor
+} // namespace spright

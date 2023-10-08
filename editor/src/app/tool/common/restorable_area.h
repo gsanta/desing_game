@@ -21,7 +21,9 @@ namespace editor
     class RestorableArea
     {
     public:
-        void saveArea(const TileLayer &activeLayer, const std::vector<int> &originalSelectedIndexes, const BoundsInt &area);
+        void saveArea(const TileLayer &activeLayer,
+                      const std::vector<int> &originalSelectedIndexes,
+                      const BoundsInt &area);
 
         void restoreArea(TileLayer &activeLayer, const SelectionBuffer &selectionBuffer);
 

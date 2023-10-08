@@ -54,7 +54,8 @@ namespace editor
         return m_Color;
     }
 
-    void ColorPickerTool::setColor(unsigned int color) {
+    void ColorPickerTool::setColor(unsigned int color)
+    {
         m_Color = color;
     }
 
@@ -65,7 +66,8 @@ namespace editor
             {"tool", getName()},
         };
 
-        if (m_EventEmitter != nullptr) {
+        if (m_EventEmitter != nullptr)
+        {
             m_EventEmitter->emitChange("tool_data_changed", json);
         }
     }

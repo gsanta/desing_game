@@ -11,15 +11,15 @@
 #include "../editor_config.h"
 #include "../service/io/image_export.h"
 #include "../service/services.h"
-#include "tools/color_picker_tool/color_picker_tool.h"
-#include "tools/eraser_tool/eraser_tool.h"
-#include "tool_store.h"
-#include "tools/rectangle_tool/rectangle_tool.h"
-#include "tools/select_tool/select_tool.h"
 #include "context/document_info.h"
 #include "context/pointer_info.h"
-#include "tool.h"
 #include "context/tool_context.h"
+#include "tool.h"
+#include "tool_store.h"
+#include "tools/color_picker_tool/color_picker_tool.h"
+#include "tools/eraser_tool/eraser_tool.h"
+#include "tools/rectangle_tool/rectangle_tool.h"
+#include "tools/select_tool/select_tool.h"
 
 #include <algorithm>
 #include <iostream>

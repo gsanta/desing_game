@@ -6,10 +6,10 @@
 #include "../../../document/document_store.h"
 #include "../../../document/drawing.h"
 #include "../../../editor_config.h"
-#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
-#include "brush.h"
-#include "../../tool.h"
 #include "../../context/tool_context.h"
+#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
+#include "../../tool.h"
+#include "brush.h"
 
 #include <vector>
 

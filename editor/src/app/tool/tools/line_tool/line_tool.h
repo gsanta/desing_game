@@ -3,10 +3,10 @@
 #include "../../../core/history/document_history.h"
 #include "../../../core/history/tile_undo.h"
 #include "../../../utils/declarations.h"
-#include "../../tools/brush_tool/brush.h"
+#include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"
-#include "../../context/tool_context.h"
+#include "../../tools/brush_tool/brush.h"
 
 namespace spright
 {

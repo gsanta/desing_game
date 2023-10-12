@@ -3,8 +3,8 @@
 #include "../../../../engine/graphics/camera/camera.h"
 #include "../../../../engine/graphics/camera/ortho_projection_info.h"
 #include "../../../document/document_store.h"
-#include "../../tool.h"
 #include "../../context/tool_context.h"
+#include "../../tool.h"
 
 namespace spright
 {

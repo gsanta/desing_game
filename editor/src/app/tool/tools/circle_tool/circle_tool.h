@@ -1,10 +1,10 @@
 #pragma once
 #include "../../../core/history/document_history.h"
 #include "../../../core/history/tile_undo.h"
-#include "../brush_tool/brush.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
-#include "../paint_bucket_tool/queue_linear_flood_fill.h"
 #include "../../tool.h"
+#include "../brush_tool/brush.h"
+#include "../paint_bucket_tool/queue_linear_flood_fill.h"
 
 
 namespace spright

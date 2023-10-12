@@ -5,8 +5,8 @@
 #include "../../../core/history/tile_undo.h"
 #include "../../../document/document_store.h"
 #include "../../../service/services.h"
-#include "../../tool.h"
 #include "../../context/tool_context.h"
+#include "../../tool.h"
 #include "queue_linear_flood_fill.h"
 
 namespace spright

@@ -2,9 +2,9 @@
 #include "../../../core/history/document_history.h"
 #include "../../../core/history/tile_undo.h"
 #include "../brush_tool/brush.h"
-#include "../../common/rectangle_cursor/rectangle_cursor.h"
+#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../paint_bucket_tool/queue_linear_flood_fill.h"
-#include "../../tool/tool.h"
+#include "../../tool.h"
 
 
 namespace spright

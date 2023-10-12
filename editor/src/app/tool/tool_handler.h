@@ -13,13 +13,13 @@
 #include "../service/services.h"
 #include "tools/color_picker_tool/color_picker_tool.h"
 #include "tools/eraser_tool/eraser_tool.h"
-#include "handler/tool_store.h"
+#include "tool_store.h"
 #include "tools/rectangle_tool/rectangle_tool.h"
 #include "tools/select_tool/select_tool.h"
-#include "tool/document_info.h"
-#include "tool/pointer_info.h"
-#include "tool/tool.h"
-#include "tool/tool_context.h"
+#include "context/document_info.h"
+#include "context/pointer_info.h"
+#include "tool.h"
+#include "context/tool_context.h"
 
 #include <algorithm>
 #include <iostream>

@@ -4,9 +4,9 @@
 #include "../../../core/history/tile_undo.h"
 #include "../../../utils/declarations.h"
 #include "../../tools/brush_tool/brush.h"
-#include "../../common/rectangle_cursor/rectangle_cursor.h"
-#include "../../tool/tool.h"
-#include "../../tool/tool_context.h"
+#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
+#include "../../tool.h"
+#include "../../context/tool_context.h"
 
 namespace spright
 {

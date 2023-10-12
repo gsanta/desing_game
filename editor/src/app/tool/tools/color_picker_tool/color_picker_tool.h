@@ -4,8 +4,8 @@
 #include "../../../event/event_emitter.h"
 #include "../../../service/services.h"
 #include "../../tools/brush_tool/brush_tool.h"
-#include "../../tool/tool.h"
-#include "../../tool/tool_context.h"
+#include "../../tool.h"
+#include "../../context/tool_context.h"
 
 #include <iostream>
 #include <sstream>

@@ -6,9 +6,9 @@
 #include "../../../algorithm/draw_rect.h"
 #include "../../../core/history/document_history.h"
 #include "../../../core/history/tile_undo.h"
-#include "../../common/rectangle_cursor/rectangle_cursor.h"
-#include "../../tool/tool.h"
-#include "../../tool/tool_context.h"
+#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
+#include "../../tool.h"
+#include "../../context/tool_context.h"
 #include "temp_rect_drawer.h"
 
 namespace spright

@@ -1,8 +1,8 @@
 #pragma once
-#include "../cursor/cursor.h"
-#include "document_info.h"
-#include "pointer_info.h"
-#include "tool_context.h"
+#include "cursor/cursor.h"
+#include "context/document_info.h"
+#include "context/pointer_info.h"
+#include "context/tool_context.h"
 
 #include <string>
 

@@ -6,11 +6,10 @@
 #include "../../../document/document_store.h"
 #include "../../../document/drawing.h"
 #include "../../../editor_config.h"
-#include "../../common/rectangle_cursor/rectangle_cursor.h"
+#include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "brush.h"
-#include "../../colorable.h"
-#include "../../tool/tool.h"
-#include "../../tool/tool_context.h"
+#include "../../tool.h"
+#include "../../context/tool_context.h"
 
 #include <vector>
 
@@ -21,7 +20,7 @@ namespace editor
     using namespace ::spright::engine;
     using namespace spright::maths;
 
-    class BrushTool : public Tool, public Colorable
+    class BrushTool : public Tool
     {
     private:
         int m_Size = 1;

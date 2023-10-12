@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../../../../engine/graphics/camera/ortho_projection_info.h"
-#include "../../tool/tool.h"
-#include "../../tool/tool_context.h"
+#include "../../tool.h"
+#include "../../context/tool_context.h"
 
 namespace spright
 {

@@ -10,7 +10,7 @@
 #include "../src/app/document/factory/document_factory.h"
 #include "../src/app/tool/tools/brush_tool/brush.h"
 #include "../src/app/tool/tools/eraser_tool/eraser_tool.h"
-#include "../src/app/tool/tool/tool_context.h"
+#include "../src/app/tool/context/tool_context.h"
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
 #include "../src/engine/graphics/impl/headless/headless_shader.h"
 #include "../src/engine/graphics/layer/group.h"

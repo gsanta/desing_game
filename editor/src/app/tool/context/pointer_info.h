@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../../../maths/vec2.h"
 
 namespace spright

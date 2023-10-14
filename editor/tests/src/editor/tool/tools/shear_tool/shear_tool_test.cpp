@@ -102,7 +102,7 @@ SCENARIO("Shear tool")
 
         Drawing &drawing = document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
-        TileLayer &tempLayer = drawing.getTempLayer();
+        TileLayer &toolLayer = drawing.getToolLayer();
 
         ShearTool shearTool;
 
@@ -121,8 +121,8 @@ SCENARIO("Shear tool")
 
                 THEN("it updates the selection to cover the sheared area")
                 {
-                    REQUIRE(tempLayer.getTiles().size() == 24);
-                    REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
+                    REQUIRE(toolLayer.getTiles().size() == 24);
+                    REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
                 }
 
                 WHEN("moving the mouse in the same direction again")
@@ -145,8 +145,8 @@ SCENARIO("Shear tool")
 
                         THEN("it restores the previous selection")
                         {
-                            REQUIRE(tempLayer.getTiles().size() == 24);
-                            REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
+                            REQUIRE(toolLayer.getTiles().size() == 24);
+                            REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
                         }
 
                         WHEN("undo is called second time")
@@ -160,8 +160,8 @@ SCENARIO("Shear tool")
 
                             THEN("it restores the original selection")
                             {
-                                REQUIRE(tempLayer.getTiles().size() == 16);
-                                REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(2, 1, 5, 4)));
+                                REQUIRE(toolLayer.getTiles().size() == 16);
+                                REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(2, 1, 5, 4)));
                             }
 
                             WHEN("redo is called")
@@ -175,8 +175,8 @@ SCENARIO("Shear tool")
 
                                 THEN("it selects the tiles resulted from the first changes")
                                 {
-                                    REQUIRE(tempLayer.getTiles().size() == 24);
-                                    REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
+                                    REQUIRE(toolLayer.getTiles().size() == 24);
+                                    REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(1, 1, 6, 4)));
                                 }
                             }
                         }
@@ -259,8 +259,8 @@ SCENARIO("Shear tool")
 
                 THEN("it updates the selection to cover the sheared area")
                 {
-                    REQUIRE(tempLayer.getTiles().size() == 24);
-                    REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(2, 0, 5, 5)));
+                    REQUIRE(toolLayer.getTiles().size() == 24);
+                    REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(2, 0, 5, 5)));
                 }
             }
 
@@ -337,7 +337,7 @@ SCENARIO("Shear tool")
 
         Drawing &drawing = document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
-        TileLayer &tempLayer = drawing.getTempLayer();
+        TileLayer &toolLayer = drawing.getToolLayer();
 
         ShearTool shearTool;
 
@@ -382,8 +382,8 @@ SCENARIO("Shear tool")
 
                 THEN("it updates the selection to cover the sheared area")
                 {
-                    REQUIRE(tempLayer.getTiles().size() == 20);
-                    REQUIRE_THAT(tempLayer, HasTilesWithinArea(BoundsInt(0, 0, 4, 3)));
+                    REQUIRE(toolLayer.getTiles().size() == 20);
+                    REQUIRE_THAT(toolLayer, HasTilesWithinArea(BoundsInt(0, 0, 4, 3)));
                 }
             }
 

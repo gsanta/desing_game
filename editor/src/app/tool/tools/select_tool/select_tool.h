@@ -62,7 +62,7 @@ namespace editor
         SelectionBuffer &getSelectionBuffer();
 
     private:
-        void recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &tempLayer);
+        void recalcTileIndexesAndBounds(TileLayer &activeLayer, TileLayer &toolLayer);
 
         void startManipulation(const ToolContext &context);
 

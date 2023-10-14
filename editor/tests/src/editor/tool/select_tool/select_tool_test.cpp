@@ -236,12 +236,14 @@ SCENARIO("Select tool")
                     REQUIRE(tempLayer.getAtTilePos(2, 2) != nullptr);
                 }
 
-                WHEN("clicking on another color") {
+                WHEN("clicking on another color")
+                {
                     contentBuilder.setPrevCurrDown(Vec2Int(3, 2));
                     selectTool.pointerDown(toolContext);
                     selectTool.pointerUp(toolContext);
 
-                    THEN("deselects the previous tiles") {
+                    THEN("deselects the previous tiles")
+                    {
                         REQUIRE(selectTool.getSelectionBuffer().getTileIndexes().size() == 1);
                         REQUIRE(selectTool.getSelectionBuffer().containsIndex(activeLayer.getTileIndex(3, 2)) == true);
 
@@ -250,7 +252,8 @@ SCENARIO("Select tool")
                     }
                 }
 
-                WHEN("dragging with the mouse over the selection") {
+                WHEN("dragging with the mouse over the selection")
+                {
                     contentBuilder.setPrevCurrDown(Vec2Int(1, 1));
                     selectTool.pointerDown(toolContext);
 
@@ -259,7 +262,8 @@ SCENARIO("Select tool")
 
                     selectTool.pointerUp(toolContext);
 
-                    THEN("it moves the tiles to the given destination") {
+                    THEN("it moves the tiles to the given destination")
+                    {
                         REQUIRE(activeLayer.getTiles().size() == 6);
                         REQUIRE(activeLayer.getAtTilePos(1, 3)->getColor() == COLOR_RED);
                         REQUIRE(activeLayer.getAtTilePos(1, 2)->getColor() == COLOR_RED);

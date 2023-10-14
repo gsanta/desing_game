@@ -18,10 +18,12 @@ void set_selection_mode_api(std::string modeStr)
     editor->getToolHandler()->getToolStore().getSelectTool().setMode(mode);
 }
 
-void set_selection_type_api(std::string type) {
+void set_selection_type_api(std::string type)
+{
     SelectionType selectionType = rectangle;
 
-    if (type == "wand") {
+    if (type == "wand")
+    {
         selectionType = wand;
     }
 

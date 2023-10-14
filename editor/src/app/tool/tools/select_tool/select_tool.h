@@ -29,7 +29,8 @@ namespace editor
         manipulation
     };
 
-    enum SelectionManipulationMode {
+    enum SelectionManipulationMode
+    {
         manip_move,
         manip_rotate,
         manip_shear

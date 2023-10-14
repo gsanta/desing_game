@@ -4,16 +4,23 @@ namespace spright
 {
 namespace editor
 {
-    TileUndo::TileUndo(Document &document, std::shared_ptr<ToolStore> tools) : m_Tools(tools)
+    TileUndo::TileUndo(Document &document, std::shared_ptr<ToolStore> tools, bool isTempLayer)
+        : m_Tools(tools), m_IsTempLayer(isTempLayer)
     {
         m_DrawingPos = document.getActiveDrawingIndex();
-        m_FramePos = document.getActiveDrawing().getActiveFrameIndex();
-        m_TileLayerPos = document.getActiveDrawing().getActiveLayerIndex();
+
+        if (!m_IsTempLayer)
+        {
+            m_FramePos = document.getActiveDrawing().getActiveFrameIndex();
+            m_TileLayerPos = document.getActiveDrawing().getActiveLayerIndex();
+        }
     }
 
     void TileUndo::undo(Document &document) const
     {
-        TileLayer &tileLayer = document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
+        TileLayer &tileLayer = m_IsTempLayer ? document.getDrawings()[m_DrawingPos].getTempLayer() : document.getDrawings()[m_DrawingPos]
+                                                   .getFrames()[m_FramePos]
+                                                   .getLayers()[m_TileLayerPos];
 
         for (std::shared_ptr<Rect2D> rect : m_NewList)
         {
@@ -25,12 +32,14 @@ namespace editor
             tileLayer.add(*rect);
         }
 
-        m_Tools->getSelectTool().setSelection(m_PrevSelectedIndexes, document.getDrawings()[m_DrawingPos]);
+        m_Tools->getSelectTool().setSelection(m_PrevSelectedIndexes, document.getDrawings()[m_DrawingPos], tileLayer);
     }
 
     void TileUndo::redo(Document &document) const
     {
-        TileLayer &tileLayer = document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
+        TileLayer &tileLayer =
+            m_IsTempLayer ? document.getDrawings()[m_DrawingPos].getTempLayer()
+                          : document.getDrawings()[m_DrawingPos].getFrames()[m_FramePos].getLayers()[m_TileLayerPos];
 
         for (std::shared_ptr<Rect2D> rect : m_PrevList)
         {
@@ -42,7 +51,7 @@ namespace editor
             tileLayer.add(*rect);
         }
 
-        m_Tools->getSelectTool().setSelection(m_NewSelectedIndexes, document.getDrawings()[m_DrawingPos]);
+        m_Tools->getSelectTool().setSelection(m_NewSelectedIndexes, document.getDrawings()[m_DrawingPos], tileLayer);
     }
 
     void TileUndo::setSelection(const std::vector<int> &prevSelectedIndexes, const std::vector<int> &newSelectedIndexes)

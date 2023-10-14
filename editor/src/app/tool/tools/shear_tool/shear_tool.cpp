@@ -12,12 +12,12 @@ namespace editor
 
     void ShearTool::pointerDown(const ToolContext &toolContext)
     {
-        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getTempLayer();
         const SelectionBuffer &selectionBuffer = toolContext.tools->getSelectTool().getSelectionBuffer();
 
         m_ImpactedArea = getBoundsOfImpactedArea(selectionBuffer.getTileBounds(), activeLayer.getTileBounds());
 
-        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools));
+        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools, true));
         m_Undo->setPrevTiles(m_ImpactedArea, activeLayer);
         m_Undo->setPrevSelection(selectionBuffer.getTileIndexes());
         m_Undo->setNewTiles(m_ImpactedArea, activeLayer);
@@ -26,7 +26,7 @@ namespace editor
 
     void ShearTool::pointerMove(const ToolContext &toolContext)
     {
-        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getTempLayer();
         const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
         Vec2 center = activeLayer.getCenterPos(selectionBounds.getCenter());
 
@@ -54,7 +54,7 @@ namespace editor
 
     void ShearTool::shearSelection(const ToolContext &toolContext, double angle)
     {
-        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getTempLayer();
 
         const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
 
@@ -71,7 +71,7 @@ namespace editor
 
         const BoundsInt &selectionBounds = toolContext.tools->getSelectTool().getSelectionBuffer().getTileBounds();
 
-        TileLayer &activeLayer = toolContext.doc.activeDrawing->getActiveLayer();
+        TileLayer &activeLayer = toolContext.doc.activeDrawing->getTempLayer();
         BoundsInt bounds = BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight());
 
         std::vector<int> newIndexes;
@@ -85,7 +85,9 @@ namespace editor
             newIndexes = shear_vertical(activeLayer, bounds, m_ShearInRad);
         }
 
-        selectTool.setSelection(newIndexes, *toolContext.doc.activeDrawing);
+        selectTool.setSelection(newIndexes,
+                                *toolContext.doc.activeDrawing,
+                                toolContext.doc.activeDrawing->getActiveLayer());
     }
 
     void ShearTool::setShearInRad(float rad)

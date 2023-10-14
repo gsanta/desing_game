@@ -60,7 +60,7 @@ namespace editor
                          Group<Rect2D>(),
                          bounds,
                          tileSize,
-                         m_ToolLayerZPos,
+                         m_TileLayerZPos,
                          true);
     }
 

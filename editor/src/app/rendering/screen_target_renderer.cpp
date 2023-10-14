@@ -20,6 +20,8 @@ namespace editor
             layer.render(camera);
         }
 
+        drawing.getTempLayer().render(camera);
+
         drawing.getToolLayer().render(camera);
 
         drawing.getCursorLayer().render(camera);

@@ -53,7 +53,7 @@ namespace editor
 
         void pointerMove(const ToolContext &) override;
 
-        void setSelection(const std::vector<int> &indexes, Drawing &drawing);
+        void setSelection(const std::vector<int> &indexes, Drawing &drawing, TileLayer &layer);
 
         void setMode(SelectionManipulationMode mode);
 

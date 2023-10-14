@@ -130,8 +130,7 @@ namespace editor
             }
             else if (key == GLFW_KEY_H)
             {
-                m_Editor->getToolHandler()->getToolStore().getRotateTool().setRotationInRad(-M_PI - 0.1f);
-                m_Editor->getToolHandler()->executeTool("rotate");
+                m_Editor->getToolHandler()->getToolStore().getSelectTool().setSelectionType(wand);
             }
         }
 

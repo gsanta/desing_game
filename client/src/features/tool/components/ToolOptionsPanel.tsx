@@ -7,7 +7,6 @@ import { useAppSelector } from '@/hooks';
 import CircleToolOptions from './CircleToolOptions';
 import RectangleToolOptions from './RectangleToolOptions';
 import EraseToolOptions from './EraseToolOptions';
-import { Box } from '@chakra-ui/react';
 import SelectToolOptions from './SelectToolOptions';
 
 const ToolOptionsPanel = () => {
@@ -30,15 +29,7 @@ const ToolOptionsPanel = () => {
     }
   };
 
-  return (
-    <Panel>
-      <Box paddingInline="2" paddingBottom="4">
-        <ColorPicker />
-      </Box>
-      <Panel.Header title="Tool options" />
-      {getOptions()}
-    </Panel>
-  );
+  return <Panel header={<Panel.Header title="Tool options" />}>{getOptions()}</Panel>;
 };
 
 export default ToolOptionsPanel;

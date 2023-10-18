@@ -13,8 +13,6 @@ namespace editor
         m_TileIndexes.push_back(tileIndex);
 
         updateBounds(layer.getTilePos(tileIndex));
-
-        layer.getTilePos(tileIndex);
     }
 
     void SelectionBuffer::clear()

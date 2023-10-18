@@ -16,7 +16,7 @@ namespace editor
 
         m_ImpactedArea = getBoundsOfImpactedArea(selectionBuffer.getTileBounds(), activeLayer.getTileBounds());
 
-        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools, true));
+        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools));
         m_Undo->setPrevTiles(m_ImpactedArea, activeLayer);
         m_Undo->setPrevSelection(selectionBuffer.getTileIndexes());
         m_Undo->setNewTiles(m_ImpactedArea, activeLayer);
@@ -62,9 +62,7 @@ namespace editor
                                              BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
                                              m_RotateInRad);
 
-        toolContext.tools->getSelectTool().setSelection(newIndexes,
-                                                        *toolContext.doc.activeDrawing,
-                                                        toolContext.doc.activeDrawing->getTempLayer());
+        toolContext.tools->getSelectTool().syncSelection(*toolContext.doc.activeDrawing, newIndexes);
     }
 
     void RotateTool::rotateSelection(const ToolContext &toolContext, double angle)
@@ -75,9 +73,7 @@ namespace editor
                                              BoundsInt(selectionBounds.getBottomLeft(), selectionBounds.getTopRight()),
                                              angle);
 
-        toolContext.tools->getSelectTool().setSelection(newIndexes,
-                                                        *toolContext.doc.activeDrawing,
-                                                        toolContext.doc.activeDrawing->getTempLayer());
+        toolContext.tools->getSelectTool().syncSelection(*toolContext.doc.activeDrawing, newIndexes);
     }
 
     BoundsInt RotateTool::getBoundsOfImpactedArea(const BoundsInt &selectionBounds, const BoundsInt &maxBounds) const

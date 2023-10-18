@@ -17,7 +17,7 @@ namespace editor
 
         m_ImpactedArea = getBoundsOfImpactedArea(selectionBuffer.getTileBounds(), activeLayer.getTileBounds());
 
-        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools, true));
+        m_Undo.reset(new TileUndo(*toolContext.doc.document, toolContext.tools));
         m_Undo->setPrevTiles(m_ImpactedArea, activeLayer);
         m_Undo->setPrevSelection(selectionBuffer.getTileIndexes());
         m_Undo->setNewTiles(m_ImpactedArea, activeLayer);
@@ -85,9 +85,7 @@ namespace editor
             newIndexes = shear_vertical(activeLayer, bounds, m_ShearInRad);
         }
 
-        selectTool.setSelection(newIndexes,
-                                *toolContext.doc.activeDrawing,
-                                toolContext.doc.activeDrawing->getActiveLayer());
+        selectTool.syncSelection(*toolContext.doc.activeDrawing, newIndexes);
     }
 
     void ShearTool::setShearInRad(float rad)

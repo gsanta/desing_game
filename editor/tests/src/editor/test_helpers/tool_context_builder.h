@@ -5,6 +5,7 @@
 #include "../src/app/tool/tools/rotate_tool/rotate_tool.h"
 #include "../src/app/tool/tools/select_tool/select_tool.h"
 #include "../src/app/tool/tools/shear_tool/shear_tool.h"
+#include "../src/app/tool/tools/move_tool/move_tool.h"
 #include "pointer_info_builder.h"
 
 class ToolContextBuilder

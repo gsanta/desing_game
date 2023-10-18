@@ -26,6 +26,7 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
+#include "tool/tools/move_tool/move_tool.h"
 
 #include <vector>
 

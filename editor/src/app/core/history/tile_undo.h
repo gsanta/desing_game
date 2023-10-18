@@ -34,7 +34,7 @@ namespace editor
     class TileUndo : public Undoable
     {
     public:
-        TileUndo(Document &document, std::shared_ptr<ToolStore> tools, bool isTempLayer = false);
+        TileUndo(Document &document, std::shared_ptr<ToolStore> tools);
 
         static TileUndo createForActiveTileLayer(Document &document, std::shared_ptr<ToolStore> tools);
 
@@ -59,6 +59,10 @@ namespace editor
                       const TileLayer &activeLayer,
                       std::set<std::shared_ptr<Rect2D>, SharedPtrCompare> &set);
 
+        TileLayer &getUndoLayer(Document &document) const;
+
+        TileLayer &getRedoLayer(Document &document) const;
+
     private:
         std::set<std::shared_ptr<Rect2D>, SharedPtrCompare> m_PrevList;
 
@@ -67,8 +71,6 @@ namespace editor
         size_t m_TileLayerPos;
 
         size_t m_FramePos;
-
-        bool m_IsTempLayer = true;
 
         size_t m_DrawingPos;
 

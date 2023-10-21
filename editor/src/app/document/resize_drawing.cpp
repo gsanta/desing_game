@@ -26,7 +26,7 @@ namespace editor
         createDrawingProps.backgroundLayerTileSize = orig.getBackgroundLayer().getTileSize();
         Drawing newDrawing = documentFactory->createDrawing(createDrawingProps);
 
-        std::vector<const TileLayer> layers;
+        std::vector<TileLayer> layers;
 
         for (const Frame &frame : orig.getFrames())
         {

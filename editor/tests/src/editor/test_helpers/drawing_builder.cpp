@@ -120,7 +120,7 @@ Drawing DrawingBuilder::buildFromFrames()
 
     for (Frame &frame : frames)
     {
-        std::vector<const TileLayer> layers;
+        std::vector<TileLayer> layers;
 
         for (TileLayer &layer : frame.getLayers())
         {

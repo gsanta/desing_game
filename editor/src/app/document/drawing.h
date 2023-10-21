@@ -37,7 +37,7 @@ namespace editor
 
         void setActiveFrame(size_t index);
 
-        Frame &addFrame(const std::vector<const TileLayer> &layers);
+        Frame &addFrame(const std::vector<TileLayer> &layers);
 
         void removeFrame(size_t index);
 

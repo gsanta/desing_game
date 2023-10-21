@@ -70,7 +70,7 @@ namespace editor
         m_ActiveFrameIndex = index;
     }
 
-    Frame &Drawing::addFrame(const std::vector<const TileLayer> &layers)
+    Frame &Drawing::addFrame(const std::vector<TileLayer> &layers)
     {
         if (m_Frames.size() > 0 && m_Frames[0].getLayers().size() != layers.size())
         {

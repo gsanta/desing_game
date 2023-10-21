@@ -92,7 +92,7 @@ namespace editor
 
         Frame &activeFrame = document.getActiveFrame();
 
-        std::vector<const TileLayer> layers;
+        std::vector<TileLayer> layers;
 
         for (TileLayer &layer : activeFrame.getLayers())
         {
@@ -133,7 +133,7 @@ namespace editor
             frame.addLayer(initialLayer);
             frames.push_back(frame);
 
-            const std::vector<const TileLayer> layers{initialLayer};
+            const std::vector<TileLayer> layers{initialLayer};
 
             drawing.addFrame(layers);
         }

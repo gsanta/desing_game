@@ -1,8 +1,8 @@
 #include "select_tool.h"
 
+#include "../move_tool/move_tool.h"
 #include "../rotate_tool/rotate_tool.h"
 #include "../shear_tool/shear_tool.h"
-#include "../move_tool/move_tool.h"
 
 namespace spright
 {

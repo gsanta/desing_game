@@ -81,7 +81,7 @@ Drawing DrawingBuilder::build()
 Drawing DrawingBuilder::buildFromLayers()
 {
 
-     TileLayer initialLayer = m_TileLayers.empty()
+    TileLayer initialLayer = m_TileLayers.empty()
                                  ? TileLayerBuilder().withTileSize(m_TileSize).withBounds(m_Bounds).build()
                                  : m_TileLayers[0].withBounds(m_Bounds).withTileSize(m_TileSize).build();
 

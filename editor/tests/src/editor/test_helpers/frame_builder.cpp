@@ -24,7 +24,8 @@ Frame FrameBuilder::build()
         frame.addLayer(layerBuilder.build());
     }
 
-    if (m_TileLayers.size() == 0) {
+    if (m_TileLayers.size() == 0)
+    {
         frame.addLayer(TileLayerBuilder().build());
     }
 

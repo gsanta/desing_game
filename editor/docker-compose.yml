@@ -9,8 +9,9 @@ services:
       - .:/src
     working_dir: /src
     command: >
-      sh -c "cd editor
-            cmake . -DCOMPILE_APP=OFF && cmake --build . && cd tests && ./unit_tests --success --reporter JUnit::out=unit_test_result.xml"
+      sh -c "mkdir -p build/unit-test-ci &&
+            cd build/unit-test-ci &&
+            cmake ../.. -DCOMPILE_APP=OFF && cmake --build . && cd tests && ./unit_tests --success --reporter JUnit::out=unit_test_result.xml"
   compile-emscripten:
     build:
       context: .
@@ -18,10 +19,9 @@ services:
     volumes:
       - .:/src
     command: >
-      sh -c   "cd editor/emscripten &&
-              mkdir build &&
-              cd build &&
-              emcmake cmake .. &&
+      sh -c   "mkdir -p build/emscripten-ci &&
+              cd build/emscripten-ci &&
+              emcmake cmake ../../emscripten &&
               cmake --build ."
   clang-format:
     build:

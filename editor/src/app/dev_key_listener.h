@@ -75,9 +75,9 @@ namespace editor
             }
             else if (key == GLFW_KEY_L)
             {
-                m_Editor->getDocumentStore()->getActiveDocument().getCamera().zoomToFit(
-                    m_Editor->getDocumentStore()->getActiveDocument().getActiveDrawing().getBounds());
-                // setSelectedTool("line");
+                // m_Editor->getDocumentStore()->getActiveDocument().getCamera().zoomToFit(
+                //     m_Editor->getDocumentStore()->getActiveDocument().getActiveDrawing().getBounds());
+                m_Editor->getToolHandler()->setSelectedTool("line");
             }
             else if (key == GLFW_KEY_F)
             {

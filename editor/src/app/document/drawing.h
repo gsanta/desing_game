@@ -57,9 +57,13 @@ namespace editor
 
         const TileLayer &getBackgroundLayer() const;
 
-        TileLayer &getTempLayer();
+        TileLayer &getTempLayer(size_t index);
 
-        const TileLayer &getTempLayer() const;
+        const TileLayer &getTempLayer(size_t index) const;
+
+        TileLayer &getTempLayerOfActiveLayer();
+
+        size_t getTempLayerCount() const;
 
         TileLayer &getToolLayer();
 

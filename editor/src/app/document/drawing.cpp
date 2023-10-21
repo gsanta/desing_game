@@ -179,14 +179,24 @@ namespace editor
     }
 
 
-    TileLayer &Drawing::getTempLayer()
+    TileLayer &Drawing::getTempLayer(size_t index)
     {
-        return m_TempLayers[0];
+        return m_TempLayers[index];
     }
 
-    const TileLayer &Drawing::getTempLayer() const
+    const TileLayer &Drawing::getTempLayer(size_t index) const
     {
-        return *m_TempLayer;
+        return m_TempLayers[index];
+    }
+
+    TileLayer &Drawing::getTempLayerOfActiveLayer()
+    {
+        return m_TempLayers[getActiveLayerIndex()];
+    }
+
+    size_t Drawing::getTempLayerCount() const
+    {
+        return m_TempLayers.size();
     }
 
     TileLayer &Drawing::getToolLayer()

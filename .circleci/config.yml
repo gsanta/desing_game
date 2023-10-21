@@ -15,7 +15,7 @@ jobs:
             cd editor
             make compile-emscripten-docker
       - persist_to_workspace:
-          root: editor/emscripten/build
+          root: editor/build/emscripten-ci
           paths:
             - spright.js
             - spright.wasm

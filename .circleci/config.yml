@@ -46,7 +46,8 @@ jobs:
           name: Lints the cpp files for the editor
           command: |
             set -x
-            docker-compose run --rm clang-format; echo $?
+            cd editor
+            make lint-docker
   client_lint:
     docker:
       - image: cimg/node:18.16.0
@@ -110,9 +111,9 @@ workflows:
       - assemble_frontend:
           requires:
             - editor_web_build
-            - client_build
             - editor_unit_test
             - editor_lint
+            - client_build
             - client_lint
       - deploy:
           requires:

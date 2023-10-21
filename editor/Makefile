@@ -4,11 +4,13 @@ help: ## Displays the available commands (this help)
 .DEFAULT_GOAL := help
 
 configure-target-emscripten: ## configures the cmake emscripten target
-	cd emscripten/build && \
-	emcmake cmake ..
+	mkdir -p build/emscripten && \
+	cd build/emscripten && \
+	emcmake cmake ../../emscripten
 
 build-target-emscripten: ## builds the cmake emscripten target
-	cd emscripten/build && \
+	mkdir -p build/emscripten && \
+	cd build/emscripten && \
 	cmake --build .
 
 unit-test-docker: ## runs unit tests in a docker container (mainly used by ci)

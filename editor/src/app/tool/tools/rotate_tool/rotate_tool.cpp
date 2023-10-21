@@ -44,9 +44,14 @@ namespace editor
         }
     }
 
-    void RotateTool::pointerUp(const ToolContext &toolContext)
+    void RotateTool::pointerUp(const ToolContext &context)
     {
-        toolContext.doc.document->getHistory()->add(std::make_shared<TileUndo>(*m_Undo.get()));
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
+        TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
+
+        SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
+
+        context.doc.document->getHistory()->add(std::make_shared<TileUndo>(*m_Undo.get()));
     }
 
     void RotateTool::setRotationInRad(float rad)

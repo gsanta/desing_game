@@ -1,3 +1,4 @@
+#pragma once
 
 #include "../../../core/history/tile_undo.h"
 #include "../../context/tool_context.h"

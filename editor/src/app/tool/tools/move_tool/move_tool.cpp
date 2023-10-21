@@ -17,7 +17,10 @@ namespace editor
         const SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
 
         for (int index : selectionBuffer.getTileIndexes()) {
-            m_Undo->addTile(std::make_shared<Rect2D>(*tempLayer.getAtTileIndex(index)), nullptr);
+            Rect2D* tile = tempLayer.getAtTileIndex(index);
+            if (tile != nullptr) {
+                m_Undo->addTile(std::make_shared<Rect2D>(*tile), nullptr);
+            }
         }
 
         m_Undo->setPrevSelection(selectionBuffer.getTileIndexes());
@@ -35,13 +38,20 @@ namespace editor
 
     void MoveTool::pointerUp(const ToolContext &context)
     {
-        const TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
+        TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
 
-        const SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
+        SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
+
+        selectionBuffer.recalcTileIndexesAndBounds(tempLayer, toolLayer);
 
         for (int index : selectionBuffer.getTileIndexes())
         {
-            m_Undo->addTile(nullptr, std::make_shared<Rect2D>(*tempLayer.getAtTileIndex(index)));
+            Rect2D *tile = tempLayer.getAtTileIndex(index);
+            if (tile != nullptr)
+            {
+                m_Undo->addTile(nullptr, std::make_shared<Rect2D>(*tile));
+            }
         }
 
         m_Undo->setNewSelection(selectionBuffer.getTileIndexes());

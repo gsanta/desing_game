@@ -102,11 +102,6 @@ namespace editor
 
     void SelectTool::endManipulation(const ToolContext &context)
     {
-        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
-        TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
-
-        recalcTileIndexesAndBounds(tempLayer, toolLayer);
-
         switch (m_Mode)
         {
         case manip_rotate:
@@ -170,7 +165,7 @@ namespace editor
             m_WandSelector.select(activeLayer, toolLayer, context.pointer.curr, context.pointer.down);
         }
 
-        recalcTileIndexesAndBounds(activeLayer, toolLayer);
+        m_SelectionBuffer.recalcTileIndexesAndBounds(activeLayer, toolLayer);
 
         tile_operation_copy_indexes(activeLayer, tempLayer, m_SelectionBuffer.getTileIndexes());
         tile_operation_remove_indexes(activeLayer, m_SelectionBuffer.getTileIndexes());
@@ -218,28 +213,6 @@ namespace editor
 
         tile_operation_copy_indexes(activeLayer, tempLayer, m_SelectionBuffer.getTileIndexes());
         tile_operation_remove_indexes(activeLayer, m_SelectionBuffer.getTileIndexes());
-    }
-
-    void SelectTool::recalcTileIndexesAndBounds(TileLayer &layer, TileLayer &toolLayer)
-    {
-        std::vector<int> currentTileIndexes = m_SelectionBuffer.getTileIndexes();
-        std::vector<int> newTileIndexes;
-
-        for (int tileIndex : m_SelectionBuffer.getTileIndexes())
-        {
-            Rect2D *tile = layer.getAtTileIndex(tileIndex);
-            if (tile != nullptr)
-            {
-                newTileIndexes.push_back(layer.updateTileIndex(tile));
-            }
-        }
-
-        m_SelectionBuffer.setTileIndexes(newTileIndexes, layer);
-
-        for (Rect2D *tile : toolLayer.getTiles())
-        {
-            toolLayer.updateTileIndex(tile);
-        }
     }
 
     SelectionBuffer &SelectTool::getSelectionBuffer()

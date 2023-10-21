@@ -36,10 +36,14 @@ namespace editor
 
     void tile_operation_copy_indexes(const TileView &source, TileView &dest, const std::vector<int> &indexes)
     {
-        for (int index : indexes) {
+        for (int index : indexes)
+        {
             Rect2D *tile = source.getAtTileIndex(index);
 
-            dest.add(*tile, source.getTilePos(index));
+            if (tile != nullptr)
+            {
+                dest.add(*tile, source.getTilePos(index));
+            }
         }
     }
 

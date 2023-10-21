@@ -46,9 +46,14 @@ namespace editor
         }
     }
 
-    void ShearTool::pointerUp(const ToolContext &toolContext)
+    void ShearTool::pointerUp(const ToolContext &context)
     {
-        toolContext.doc.document->getHistory()->add(std::make_shared<TileUndo>(*m_Undo.get()));
+        TileLayer &tempLayer = context.doc.activeDrawing->getTempLayer();
+        TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
+
+        SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
+
+        context.doc.document->getHistory()->add(std::make_shared<TileUndo>(*m_Undo.get()));
         m_PrevShearAngle = 0;
     }
 

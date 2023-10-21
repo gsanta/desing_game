@@ -53,6 +53,24 @@ namespace editor
         return m_TileBounds;
     }
 
+    void SelectionBuffer::recalcTileIndexesAndBounds(TileLayer &layer, TileLayer &toolLayer)
+    {
+        std::vector<int> newTileIndexes;
+
+        for (int tileIndex : m_TileIndexes)
+        {
+            Rect2D *tile = toolLayer.getAtTileIndex(tileIndex);
+            newTileIndexes.push_back(toolLayer.updateTileIndex(tile));
+        }
+
+        setTileIndexes(newTileIndexes, layer);
+
+        for (Rect2D *tile : toolLayer.getTiles())
+        {
+            toolLayer.updateTileIndex(tile);
+        }
+    }
+
     void SelectionBuffer::updateBounds(const Vec2Int &vec2)
     {
 

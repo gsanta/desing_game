@@ -16,9 +16,11 @@ namespace editor
 
         const SelectionBuffer &selectionBuffer = context.tools->getSelectTool().getSelectionBuffer();
 
-        for (int index : selectionBuffer.getTileIndexes()) {
-            Rect2D* tile = tempLayer.getAtTileIndex(index);
-            if (tile != nullptr) {
+        for (int index : selectionBuffer.getTileIndexes())
+        {
+            Rect2D *tile = tempLayer.getAtTileIndex(index);
+            if (tile != nullptr)
+            {
                 m_Undo->addTile(std::make_shared<Rect2D>(*tile), nullptr);
             }
         }

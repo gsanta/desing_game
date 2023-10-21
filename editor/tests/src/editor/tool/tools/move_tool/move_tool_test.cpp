@@ -67,9 +67,10 @@ SCENARIO("Move tool")
                 {
                     SelectionBuffer &buffer = toolContext.tools->getSelectTool().getSelectionBuffer();
 
-                    REQUIRE(buffer.getTileIndexes().size() == 3);
+                    REQUIRE(buffer.getTileIndexes().size() == 4);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(3, 3)) == true);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 3)) == true);
+                    REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(3, 4)) == true);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 4)) == true);
                 }
 
@@ -116,23 +117,33 @@ SCENARIO("Move tool")
                     moveTool.pointerMove(toolContext);
                     moveTool.pointerUp(toolContext);
 
-                    THEN("it moves the selected tiles")
-                    {
-                        SelectionBuffer &buffer = toolContext.tools->getSelectTool().getSelectionBuffer();
-
-                        REQUIRE(buffer.getTileIndexes().size() == 3);
-                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(3, 5)) == true);
-                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 5)) == true);
-                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 6)) == true);
-                    }
-
-                    THEN("it moves the selection on temp layer")
+                    THEN("the selection highlight on the tool layer is moved")
                     {
                         REQUIRE(toolLayer.getTiles().size() == 4);
                         REQUIRE(toolLayer.getAtTilePos(3, 5) != nullptr);
                         REQUIRE(toolLayer.getAtTilePos(4, 5) != nullptr);
                         REQUIRE(toolLayer.getAtTilePos(3, 6) != nullptr);
                         REQUIRE(toolLayer.getAtTilePos(4, 6) != nullptr);
+                    }
+
+
+                    THEN("the selected tiles on the temp layer are moved")
+                    {
+                        REQUIRE(tempLayer.getTiles().size() == 3);
+                        REQUIRE(tempLayer.getAtTilePos(3, 5) != nullptr);
+                        REQUIRE(tempLayer.getAtTilePos(4, 5) != nullptr);
+                        REQUIRE(tempLayer.getAtTilePos(4, 6) != nullptr);
+                    }
+
+                    THEN("the selection buffer has the updated tile indexes")
+                    {
+                        SelectionBuffer &buffer = toolContext.tools->getSelectTool().getSelectionBuffer();
+
+                        REQUIRE(buffer.getTileIndexes().size() == 4);
+                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(3, 5)) == true);
+                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 5)) == true);
+                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(3, 6)) == true);
+                        REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(4, 6)) == true);
                     }
                 }
             }
@@ -149,13 +160,32 @@ SCENARIO("Move tool")
                 moveTool.pointerMove(toolContext);
                 moveTool.pointerUp(toolContext);
 
-                THEN("it moves the selected tiles")
+                THEN("the selection highlight on the tool layer is moved")
+                {
+                    REQUIRE(toolLayer.getTiles().size() == 4);
+                    REQUIRE(toolLayer.getAtTilePos(5, 3) != nullptr);
+                    REQUIRE(toolLayer.getAtTilePos(6, 3) != nullptr);
+                    REQUIRE(toolLayer.getAtTilePos(5, 4) != nullptr);
+                    REQUIRE(toolLayer.getAtTilePos(6, 4) != nullptr);
+                }
+
+
+                THEN("the selected tiles on the temp layer are moved")
+                {
+                    REQUIRE(tempLayer.getTiles().size() == 3);
+                    REQUIRE(tempLayer.getAtTilePos(5, 3) != nullptr);
+                    REQUIRE(tempLayer.getAtTilePos(6, 3) != nullptr);
+                    REQUIRE(tempLayer.getAtTilePos(6, 4) != nullptr);
+                }
+
+                THEN("the selection buffer has the updated tile indexes")
                 {
                     SelectionBuffer &buffer = toolContext.tools->getSelectTool().getSelectionBuffer();
 
-                    REQUIRE(buffer.getTileIndexes().size() == 3);
+                    REQUIRE(buffer.getTileIndexes().size() == 4);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(5, 3)) == true);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(6, 3)) == true);
+                    REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(5, 4)) == true);
                     REQUIRE(buffer.containsIndex(activeLayer.getTileIndex(6, 4)) == true);
                 }
             }

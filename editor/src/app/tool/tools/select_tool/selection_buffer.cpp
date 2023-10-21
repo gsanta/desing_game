@@ -59,16 +59,19 @@ namespace editor
 
         for (int tileIndex : m_TileIndexes)
         {
-            Rect2D *tile = toolLayer.getAtTileIndex(tileIndex);
+            Rect2D *tile = layer.getAtTileIndex(tileIndex);
+            if (tile != nullptr)
+            {
+                layer.updateTileIndex(tile);
+            }
+        }
+
+        for (Rect2D *tile : toolLayer.getTiles())
+        {
             newTileIndexes.push_back(toolLayer.updateTileIndex(tile));
         }
 
         setTileIndexes(newTileIndexes, layer);
-
-        for (Rect2D *tile : toolLayer.getTiles())
-        {
-            toolLayer.updateTileIndex(tile);
-        }
     }
 
     void SelectionBuffer::updateBounds(const Vec2Int &vec2)

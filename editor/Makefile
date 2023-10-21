@@ -3,12 +3,12 @@ help: ## Displays the available commands (this help)
 
 .DEFAULT_GOAL := help
 
-configure-target-emscripten: ## configures the cmake emscripten target
+configure-emscripten: ## configures the cmake emscripten target
 	mkdir -p build/emscripten && \
 	cd build/emscripten && \
 	emcmake cmake ../../emscripten
 
-build-target-emscripten: ## builds the cmake emscripten target
+compile-emscripten: ## builds the cmake emscripten target
 	mkdir -p build/emscripten && \
 	cd build/emscripten && \
 	cmake --build .

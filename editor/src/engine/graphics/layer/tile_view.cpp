@@ -98,9 +98,9 @@ namespace engine
     {
         Vec2 adjustedPos(pos.x - m_Bounds.minX, pos.y - m_Bounds.minY);
         float tileSize = m_TileSize;
-        int tileX = (int)(adjustedPos.x / tileSize);
+        int tileX = floor(adjustedPos.x / tileSize);
 
-        int tileY = (int)(adjustedPos.y / tileSize);
+        int tileY = floor(adjustedPos.y / tileSize);
 
         return Vec2Int(tileX, tileY);
     }

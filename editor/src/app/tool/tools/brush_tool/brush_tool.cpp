@@ -13,6 +13,7 @@ namespace editor
 
     void BrushTool::setSize(int size)
     {
+        dynamic_cast<RectangleCursor*>(getCursor().get())->setSize(size);
         m_Size = size;
     }
 
@@ -49,11 +50,14 @@ namespace editor
 
         TileUndo *tileUndo = dynamic_cast<TileUndo *>(context.doc.document->getHistory()->peek());
 
-        for (int i = 0; i < m_Size; i++)
+        int half = m_Size / 2;
+        int end = (m_Size - half);
+
+        for (int i = -half; i < end; i++)
         {
-            for (int j = 0; j < m_Size; j++)
+            for (int j = -half; j < end; j++)
             {
-                Vec2Int tilePos = layer.getTilePos(context.pointer.curr);
+                Vec2Int tilePos = layer.getTilePos(context.pointer.curr) + Vec2Int(i, j);
 
                 brush.paint(
                     layer,
@@ -63,7 +67,8 @@ namespace editor
             }
         }
 
-        if (tileUndo->isEmpty()) {
+        if (tileUndo->isEmpty())
+        {
             context.doc.document->getHistory()->pop();
         }
     }

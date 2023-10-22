@@ -44,6 +44,13 @@ void CommonToolFuncs::setPrevCurrDown(const Vec2Int &pos)
     m_Context.pointer.isDown = true;
 }
 
+void CommonToolFuncs::setPrevCurrDown(const Vec2 &pos)
+{
+    m_Context.pointer.curr = m_Context.pointer.prev = m_Context.pointer.down = pos;
+
+    m_Context.pointer.isDown = true;
+}
+
 void CommonToolFuncs::setCurr(const Vec2Int &pos)
 {
     m_Context.pointer.curr = m_Context.doc.activeDrawing->getActiveLayer().getCenterPos(pos);
@@ -82,7 +89,15 @@ void CommonToolFuncs::selectRect(const BoundsInt &bounds)
     selectTool.execPointerUp(m_Context);
 }
 
-void CommonToolFuncs::clickAt(const Vec2Int &pos, Tool &tool) {
+void CommonToolFuncs::clickAtTilePos(const Vec2Int &pos, Tool &tool)
+{
+    setPrevCurrDown(pos);
+    tool.execPointerDown(m_Context);
+    tool.execPointerUp(m_Context);
+}
+
+void CommonToolFuncs::clickAtPos(const Vec2 &pos, Tool &tool)
+{
     setPrevCurrDown(pos);
     tool.execPointerDown(m_Context);
     tool.execPointerUp(m_Context);

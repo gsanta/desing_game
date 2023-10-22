@@ -20,13 +20,17 @@ public:
 
     void setPrevCurrDown(const Vec2Int &pos);
 
+    void setPrevCurrDown(const Vec2 &pos);
+
     void setCurr(const Vec2Int &pos);
 
     void selectTiles(const std::vector<Rect2D *> &tiles);
 
     void selectRect(const BoundsInt &bounds);
 
-    void clickAt(const Vec2Int &pos, Tool &tool);
+    void clickAtTilePos(const Vec2Int &pos, Tool &tool);
+
+    void clickAtPos(const Vec2 &pos, Tool &tool);
 
 private:
     Document &m_Document;

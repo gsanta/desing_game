@@ -8,19 +8,68 @@
 
 SCENARIO("Brush tool")
 {
-    GIVEN("an empty canvas")
+    GIVEN("a brush tool with size 1")
     {
+        float minX = -3.0;
+        float minY = -4.0;
+        float maxX = 3.0;
+        float maxY = 2.0;
+
         Document document =
-            DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(-3.0, -3.0, 3.0, 3.0))).build();
+            DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(minX, minY, maxX, maxY))).build();
         BrushTool brushTool;
         ToolContext toolContext = ToolContextBuilder().build(document);
 
         CommonToolFuncs commonToolFuncs(document, toolContext);
         TileLayer &layer = document.getActiveLayer();
+        TileLayer &cursorLayer = document.getActiveDrawing().getCursorLayer();
+
+        WHEN("clicking inside of the drawing's bounds")
+        {
+            float offset = 0.1;
+            commonToolFuncs.clickAtPos(Vec2(maxX - offset, 0), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(minX + offset, 0), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(0, maxY - offset), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(0, minY + offset), brushTool);
+
+            THEN("adds the tile to the layer")
+            {
+                REQUIRE(layer.getTiles().size() == 4);
+
+                REQUIRE(layer.getAtTilePos(5, 4) != nullptr);
+                REQUIRE(layer.getAtTilePos(0, 4) != nullptr);
+                REQUIRE(layer.getAtTilePos(3, 5) != nullptr);
+                REQUIRE(layer.getAtTilePos(3, 0) != nullptr);
+            }
+        }
+
+        WHEN("clicking outside of the drawing's bounds")
+        {
+            float offset = 0.1;
+            commonToolFuncs.clickAtPos(Vec2(maxX + offset, 0), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(minX - offset, 0), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(0, maxY + offset), brushTool);
+
+            commonToolFuncs.clickAtPos(Vec2(0, minY - offset), brushTool);
+
+            THEN("does not add the tile to the layer")
+            {
+                REQUIRE(layer.getTiles().size() == 0);
+            }
+
+            THEN("does not create an undo action")
+            {
+                REQUIRE(document.getHistory()->undoSize() == 0);
+            }
+        }
 
         WHEN("drawing a sequence of pixels without releasing the mouse")
         {
-
             toolContext.pointer.curr = layer.getCenterPos(Vec2Int(1, 1));
             toolContext.pointer.down = toolContext.pointer.curr;
 
@@ -60,17 +109,32 @@ SCENARIO("Brush tool")
             }
         }
 
-        WHEN("drawing outside of the drawing's bounds")
+        WHEN("brush tool size is 3")
         {
-            commonToolFuncs.setPrevCurrDown(Vec2Int(7, 0));
+            brushTool.setSize(3);
+
+            commonToolFuncs.setPrevCurrDown(Vec2Int(0, 0));
             brushTool.execPointerDown(toolContext);
-            brushTool.execPointerUp(toolContext);
+            brushTool.execPointerMove(toolContext);
 
-            commonToolFuncs.setPrevCurrDown(Vec2Int(7, 0));
-
-            THEN("does not add the tile to the layer")
+            THEN("the cursor size is changed")
             {
-                REQUIRE(layer.getTiles().size() == 0);
+                REQUIRE(cursorLayer.getTiles().size() == 1);
+            }
+
+            WHEN("clicking inside of the drawing's bounds")
+            {
+                commonToolFuncs.clickAtPos(Vec2(0, 0), brushTool);
+
+                THEN("adds the tile to the layer")
+                {
+                    // REQUIRE(layer.getTiles().size() == 9);
+
+                    // REQUIRE(layer.getAtTilePos(5, 4) != nullptr);
+                    // REQUIRE(layer.getAtTilePos(0, 4) != nullptr);
+                    // REQUIRE(layer.getAtTilePos(3, 5) != nullptr);
+                    // REQUIRE(layer.getAtTilePos(3, 0) != nullptr);
+                }
             }
         }
     }

@@ -31,6 +31,7 @@ namespace editor
         {
             m_Cursor->update(context);
         }
+
         pointerMove(context);
     }
 

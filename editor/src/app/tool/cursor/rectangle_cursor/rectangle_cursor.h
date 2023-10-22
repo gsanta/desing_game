@@ -16,6 +16,8 @@ namespace editor
 
         virtual void destroy(ToolContext &context) override;
 
+        void setSize(int size);
+
     private:
         void setPosition(ToolContext &context);
 

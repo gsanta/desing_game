@@ -42,6 +42,7 @@ namespace editor
             else if (key == GLFW_KEY_B)
             {
                 m_Editor->getToolHandler()->setSelectedTool("brush");
+                m_Editor->getToolHandler()->getToolStore().getBrushTool().setSize(3);
             }
             else if (key == GLFW_KEY_P)
             {

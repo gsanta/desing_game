@@ -15,7 +15,6 @@ namespace editor
         delete m_Rendering;
         delete m_Window;
         delete m_DocumentFactory;
-        delete m_Services;
     }
 
     void Editor::init()
@@ -29,11 +28,7 @@ namespace editor
 
         m_DocumentStore->addDocument(m_DocumentFactory->createDocument());
 
-        std::vector<Drawing> &drawings = m_DocumentStore->getActiveDocument().getDrawings();
-
         m_Rendering = new Rendering(m_Window, getDocumentStore());
-
-        m_Services = new spright::Services();
 
         m_ImageExport = new ImageExport(m_Window, m_Rendering);
 

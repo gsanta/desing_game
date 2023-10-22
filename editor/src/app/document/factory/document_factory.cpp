@@ -172,8 +172,14 @@ namespace editor
 
         Document document = createEmptyDocument();
 
-        document.addDrawing(createDrawing(
-            CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f))));
+        Drawing drawing = createDrawing(
+            CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
+
+        document.addDrawing(std::make_shared<Drawing>(drawing));
+
+        Drawing drawing2 = createDrawing(CreateDrawingProps(Bounds::createWithPositions(18.0, -16.0, 50.0, 16.0)));
+
+        document.addDrawing(std::make_shared<Drawing>(drawing2));
 
         return document;
     }

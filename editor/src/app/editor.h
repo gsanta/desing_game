@@ -5,7 +5,6 @@
 #include "./rendering/rendering.h"
 #include "./service/io/image_export.h"
 #include "./service/io/json/json_io.h"
-#include "./service/services.h"
 #include "api/emscripten_event_emitter.h"
 #include "core/canvas/canvas_listener_handler.h"
 #include "core/run_loop/run_loop.h"
@@ -79,8 +78,6 @@ namespace editor
         std::shared_ptr<DocumentStore> m_DocumentStore;
 
         Rendering *m_Rendering;
-
-        spright::Services *m_Services;
 
         ImageExport *m_ImageExport;
 

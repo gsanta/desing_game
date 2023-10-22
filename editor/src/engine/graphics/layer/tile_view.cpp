@@ -64,7 +64,9 @@ namespace engine
 
     Vec2 TileView::getCenterPos(const Vec2Int &tilePos) const
     {
-        return getCenterPos(getTileIndex(tilePos.x, tilePos.y));
+        int x = tilePos.x;
+        int y = tilePos.y;
+        return Vec2(x * m_TileSize + m_Bounds.minX + m_TileSize / 2, y * m_TileSize + m_Bounds.minY + m_TileSize / 2);
     }
 
 

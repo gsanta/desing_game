@@ -9,24 +9,27 @@
 
 using namespace ::spright::editor;
 
-class ContentBuilder
+class CommonToolFuncs
 {
 public:
-    ContentBuilder(Document &document, ToolContext &context);
+    CommonToolFuncs(Document &document, ToolContext &context);
 
-    ContentBuilder &buildRect(const BoundsInt &bounds);
+    void buildRect(const BoundsInt &bounds);
 
-    ContentBuilder &buildTile(const Vec2Int &pos);
+    void buildTile(const Vec2Int &pos);
 
-    ContentBuilder &setPrevCurrDown(const Vec2Int &pos);
+    void setPrevCurrDown(const Vec2Int &pos);
 
-    ContentBuilder &setCurr(const Vec2Int &pos);
+    void setCurr(const Vec2Int &pos);
 
-    ContentBuilder &selectTiles(const std::vector<Rect2D *> &tiles);
+    void selectTiles(const std::vector<Rect2D *> &tiles);
 
-    ContentBuilder &selectRect(const BoundsInt &bounds);
+    void selectRect(const BoundsInt &bounds);
+
+    void clickAt(const Vec2Int &pos, Tool &tool);
 
 private:
     Document &m_Document;
+
     ToolContext &m_Context;
 };

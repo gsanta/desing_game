@@ -113,8 +113,8 @@ SCENARIO("Brush tool")
         {
             brushTool.setSize(3);
 
-            commonToolFuncs.setPrevCurrDown(Vec2Int(0, 0));
-            brushTool.execPointerDown(toolContext);
+            commonToolFuncs.setPrevCurrDown(Vec2(1.5, 0));
+            // brushTool.execPointerDown(toolContext);
             brushTool.execPointerMove(toolContext);
 
             THEN("the cursor size is changed")
@@ -124,16 +124,38 @@ SCENARIO("Brush tool")
 
             WHEN("clicking inside of the drawing's bounds")
             {
-                commonToolFuncs.clickAtPos(Vec2(0, 0), brushTool);
+                brushTool.execPointerDown(toolContext);
+                brushTool.execPointerUp(toolContext);
 
                 THEN("adds the tile to the layer")
                 {
-                    // REQUIRE(layer.getTiles().size() == 9);
+                    REQUIRE(layer.getTiles().size() == 9);
 
-                    // REQUIRE(layer.getAtTilePos(5, 4) != nullptr);
-                    // REQUIRE(layer.getAtTilePos(0, 4) != nullptr);
-                    // REQUIRE(layer.getAtTilePos(3, 5) != nullptr);
-                    // REQUIRE(layer.getAtTilePos(3, 0) != nullptr);
+                    for (float x = 0; x < 3; x++) {
+                        for (float y = -1; y < 2; y++) {
+                            REQUIRE(layer.getAtWorldPos(Vec2(x, y)) != nullptr);
+                        }
+                    }
+                }
+            }
+
+            WHEN("clicking near the edge of the drawing's bounds")
+            {
+                commonToolFuncs.setPrevCurrDown(Vec2(2.5, 0));
+                brushTool.execPointerDown(toolContext);
+                brushTool.execPointerUp(toolContext);
+
+                THEN("adds only those tiles that are within the layer")
+                {
+                    REQUIRE(layer.getTiles().size() == 6);
+
+                    for (float x = 1; x < 3; x++)
+                    {
+                        for (float y = -1; y < 2; y++)
+                        {
+                            REQUIRE(layer.getAtWorldPos(Vec2(x, y)) != nullptr);
+                        }
+                    }
                 }
             }
         }

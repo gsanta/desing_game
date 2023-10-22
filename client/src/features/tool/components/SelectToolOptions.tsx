@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks';
-import { Box, FormControl, FormLabel, Text, Tooltip } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Tooltip } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import React from 'react';
 import Editor from '@/features/editor/Editor';

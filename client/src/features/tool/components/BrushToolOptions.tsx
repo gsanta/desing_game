@@ -3,7 +3,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-  Input,
   Slider,
   SliderFilledTrack,
   SliderMark,

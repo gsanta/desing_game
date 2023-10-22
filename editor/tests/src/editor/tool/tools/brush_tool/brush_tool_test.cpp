@@ -1,6 +1,6 @@
-#include "../../../test_helpers/document_builder.h"
-#include "../../../test_helpers/drawing_builder.h"
-#include "../../../test_helpers/tool_context_builder.h"
+#include "../../../test_helpers/builders/document_builder.h"
+#include "../../../test_helpers/builders/drawing_builder.h"
+#include "../../../test_helpers/builders/tool_context_builder.h"
 #include "../../../test_helpers/common_tool_funcs.h"
 #include "../src/app/tool/tools/brush_tool/brush_tool.h"
 

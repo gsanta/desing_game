@@ -1,7 +1,7 @@
 #include "../../../test_helpers/common_tool_funcs.h"
-#include "../../../test_helpers/document_builder.h"
-#include "../../../test_helpers/pointer_info_builder.h"
-#include "../../../test_helpers/tool_context_builder.h"
+#include "../../../test_helpers/builders/document_builder.h"
+#include "../../../test_helpers/builders/pointer_info_builder.h"
+#include "../../../test_helpers/builders/tool_context_builder.h"
 #include "../src/app/tool/tools/select_tool/select_tool.h"
 
 #include <catch2/catch_test_macros.hpp>

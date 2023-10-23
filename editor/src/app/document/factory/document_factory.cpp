@@ -25,7 +25,7 @@ namespace editor
         return TileLayer(name, *m_RendererProvider->createRenderer2D(), Group<Rect2D>(), bounds, tileSize);
     }
 
-    TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize)
+    TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize) const
     {
         TileLayer tileLayer("",
                             *m_RendererProvider->createRenderer2D(),
@@ -123,7 +123,7 @@ namespace editor
                                    *m_RendererProvider->createRenderer2D(),
                                    Group<Rect2D>(),
                                    bounds,
-                                   0.5f,
+                                   tileSize,
                                    m_TileLayerZPos);
 
             std::vector<Frame> frames;
@@ -176,10 +176,6 @@ namespace editor
             CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
         document.addDrawing(std::make_shared<Drawing>(drawing));
-
-        Drawing drawing2 = createDrawing(CreateDrawingProps(Bounds::createWithPositions(18.0, -16.0, 50.0, 16.0)));
-
-        document.addDrawing(std::make_shared<Drawing>(drawing2));
 
         return document;
     }

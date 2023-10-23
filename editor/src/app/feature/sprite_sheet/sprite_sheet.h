@@ -1,4 +1,10 @@
+#pragma once
 #include "../../document/drawing.h"
+#include "../../algorithm/tile_operations.h"
+#include "../../document/document.h"
+#include "../../document/factory/document_factory.h"
+
+#include <memory.h>
 
 namespace spright
 {
@@ -11,10 +17,14 @@ namespace editor
     */
     class SpriteSheet {
     public:
-        SpriteSheet(DocumentFactory documentFactory);
+        SpriteSheet(std::shared_ptr<DocumentFactory> documentFactory, Document *document);
 
-        void createSpriteSheet(Drawing &drawing);
+        void generateSpriteSheet(Drawing &drawing);
 
+    private:
+        std::shared_ptr<DocumentFactory> m_DocumentFactory;
+
+        Document *m_Document;
     };
 }
 }

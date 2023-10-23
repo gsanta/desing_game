@@ -26,6 +26,7 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
+#include "feature/sprite_sheet/sprite_sheet.h"
 
 #include <vector>
 
@@ -47,6 +48,8 @@ namespace editor
         Window *getWindow() const;
 
         DocumentStore *getDocumentStore();
+
+        SpriteSheet &getSpriteSheet();
 
         std::shared_ptr<DocumentFactory> getDocumentFactory();
 
@@ -76,6 +79,8 @@ namespace editor
         std::shared_ptr<DocumentFactory> m_DocumentFactory;
 
         std::shared_ptr<DocumentStore> m_DocumentStore;
+
+        std::unique_ptr<SpriteSheet> m_SpriteSheet;
 
         Rendering *m_Rendering;
 

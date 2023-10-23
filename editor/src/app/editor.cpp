@@ -27,6 +27,8 @@ namespace editor
 
         m_DocumentStore->addDocument(m_DocumentFactory->createDocument());
 
+        m_SpriteSheet = std::make_unique<SpriteSheet>(m_DocumentFactory, &m_DocumentStore->getActiveDocument());
+
         m_Rendering = new Rendering(m_Window, getDocumentStore());
 
         m_ImageExport = new ImageExport(m_Window, m_Rendering);
@@ -77,6 +79,11 @@ namespace editor
     DocumentStore *Editor::getDocumentStore()
     {
         return m_DocumentStore.get();
+    }
+
+    SpriteSheet &Editor::getSpriteSheet()
+    {
+        return *m_SpriteSheet;
     }
 
     ToolHandler *Editor::getToolHandler()

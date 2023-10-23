@@ -35,7 +35,7 @@ SCENARIO("Resize drawing")
                 {
                     drawing = resize_drawing(drawing,
                                              Bounds::createWithPositions(-1.0f, -2.0f, 1.0f, 2.0f),
-                                             &documentFactory);
+                                             documentFactory);
 
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles().size() == 2);
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles()[0]->getPosition2d() == Vec2(-1, -2));
@@ -49,7 +49,7 @@ SCENARIO("Resize drawing")
                 {
                     drawing = resize_drawing(drawing,
                                              Bounds::createWithPositions(-1.0f, -1.0f, 1.0f, 1.0f),
-                                             &documentFactory);
+                                             documentFactory);
 
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles().size() == 1);
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles()[0]->getPosition2d() == Vec2(-1, -1));
@@ -67,7 +67,7 @@ SCENARIO("Resize drawing")
                                       .build();
 
                 drawing =
-                    resize_drawing(drawing, Bounds::createWithPositions(-2.0f, -2.0f, 1.0f, 1.0f), &documentFactory);
+                    resize_drawing(drawing, Bounds::createWithPositions(-2.0f, -2.0f, 1.0f, 1.0f), documentFactory);
 
                 REQUIRE(drawing.getBackgroundLayer().getTiles().size() == 9);
                 REQUIRE(drawing.getBackgroundLayer().getAtTileIndex(0)->getColor() == COLOR_DARK_GREY);

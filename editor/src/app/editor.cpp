@@ -14,7 +14,6 @@ namespace editor
 
         delete m_Rendering;
         delete m_Window;
-        delete m_DocumentFactory;
     }
 
     void Editor::init()
@@ -22,7 +21,7 @@ namespace editor
         m_EventEmitter = std::make_unique<EmscriptenEventEmitter>();
 
         m_Window = new GLWindow("Editor", 1200, 800);
-        m_DocumentFactory = new DocumentFactory(m_Window, new GLRendererProvider());
+        m_DocumentFactory = std::make_shared<DocumentFactory>(m_Window, new GLRendererProvider());
 
         m_DocumentStore = std::make_shared<DocumentStore>();
 
@@ -70,7 +69,7 @@ namespace editor
         return m_Window;
     }
 
-    DocumentFactory *Editor::getDocumentFactory()
+    std::shared_ptr<DocumentFactory> Editor::getDocumentFactory()
     {
         return m_DocumentFactory;
     }

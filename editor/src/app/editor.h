@@ -48,7 +48,7 @@ namespace editor
 
         DocumentStore *getDocumentStore();
 
-        DocumentFactory *getDocumentFactory();
+        std::shared_ptr<DocumentFactory> getDocumentFactory();
 
         Document &getActiveDocument();
 
@@ -73,7 +73,7 @@ namespace editor
 
         CanvasListenerHandler *m_CanvasListenerHandler;
 
-        DocumentFactory *m_DocumentFactory;
+        std::shared_ptr<DocumentFactory> m_DocumentFactory;
 
         std::shared_ptr<DocumentStore> m_DocumentStore;
 

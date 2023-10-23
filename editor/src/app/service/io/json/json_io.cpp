@@ -5,7 +5,7 @@ namespace spright
 namespace editor
 {
 
-    JsonIO::JsonIO(DocumentFactory *documentFactory) : m_DocumentFactory(documentFactory)
+    JsonIO::JsonIO(std::shared_ptr<DocumentFactory> documentFactory) : m_DocumentFactory(documentFactory)
     {
         m_TileLayerExport = new TileLayerExport(documentFactory);
     }

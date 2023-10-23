@@ -28,7 +28,7 @@ SCENARIO("TileLayerExport")
             DocumentFactory documentFactory = TestDocumentFactory::createDocumentFactory(window);
 
 
-            TileLayerExport exporter(&documentFactory);
+            TileLayerExport exporter(std::make_shared<DocumentFactory>(documentFactory));
 
 
             nlohmann::json json = exporter.exportLayer(tileLayer);
@@ -61,7 +61,7 @@ SCENARIO("TileLayerExport")
                 DocumentFactory documentFactory = TestDocumentFactory::createDocumentFactory(window);
 
 
-                TileLayerExport exporter(&documentFactory);
+                TileLayerExport exporter(std::make_shared<DocumentFactory>(documentFactory));
 
 
                 TileLayer tileLayer = exporter.importLayer(json);

@@ -52,7 +52,7 @@ namespace editor
         }
     }
 
-    void SelectTool::pointerUp( ToolContext &context)
+    void SelectTool::pointerUp(ToolContext &context)
     {
         if (m_Phase == selection)
         {
@@ -190,11 +190,12 @@ namespace editor
 
         const BoundsInt &bounds = m_SelectionBuffer.getTileBounds();
 
-        if (!bounds.isDefault()) {
+        if (!bounds.isDefault())
+        {
             m_BoxSelector.select(tempLayer,
-                                toolLayer,
-                                toolLayer.getCenterPos(bounds.getBottomLeft()),
-                                toolLayer.getCenterPos(bounds.getTopRight() + -1));
+                                 toolLayer,
+                                 toolLayer.getCenterPos(bounds.getBottomLeft()),
+                                 toolLayer.getCenterPos(bounds.getTopRight() + -1));
         }
     }
 

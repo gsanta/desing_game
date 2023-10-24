@@ -47,7 +47,7 @@ jobs:
           command: |
             set -x
             cd editor
-            make lint-docker
+            make lint-docker || (echo "mycommand failed $$?"; exit 1)
   client_lint:
     docker:
       - image: cimg/node:18.16.0

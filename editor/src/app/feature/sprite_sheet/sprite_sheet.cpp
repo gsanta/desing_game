@@ -19,7 +19,10 @@ namespace editor
         float startY = drawing.getBounds().minY + drawing.getBounds().getHeight() / 2.0;
         float endY = drawing.getBounds().maxY;
 
+        size_t layerCount = drawing.getFrame(0).getLayers().size();
+
         CreateDrawingProps spriteSheetProps(Bounds(startX, startY, endX, endY));
+        spriteSheetProps.layerCount = layerCount;
         spriteSheetProps.tileSize = drawing.getActiveLayer().getTileSize() / 2.0f;
         spriteSheetProps.backgroundLayerTileSize = drawing.getBackgroundLayer().getTileSize() / 2.0f;
 
@@ -27,20 +30,16 @@ namespace editor
 
         float layerWidth = drawing.getActiveLayer().getTileBounds().getWidth();
 
-        for (int i = 0; i < drawing.getFrames().size(); i++)
+        for (int frameIndex = 0; frameIndex < drawing.getFrames().size(); frameIndex++)
         {
-            TileLayer &layer = drawing.getFrames()[i].getLayer(0);
-            tile_operation_copy_area(layer,
-                                     spriteSheet.getActiveLayer(),
-                                     layer.getTileBounds(),
-                                     Vec2Int(i * layerWidth, 0));
+            for (int layerIndex = 0; layerIndex < layerCount; layerIndex++)
+            {
+                TileLayer &sourceLayer = drawing.getFrames()[frameIndex].getLayer(layerIndex);
+                TileLayer &destLayer = spriteSheet.getFrame(0).getLayer(layerIndex);
+                BoundsInt bounds = sourceLayer.getTileBounds();
+                tile_operation_copy_area(sourceLayer, destLayer, bounds, Vec2Int(frameIndex * layerWidth, 0));
+            }
         }
-
-        // tile_operation_copy_area(drawing.getActiveLayer(),
-        //                          spriteSheet.getActiveLayer(),
-        //                          drawing.getActiveLayer().getTileBounds(),
-        //                          Vec2Int(drawing.getActiveLayer().getTileBounds().getWidth(), 0));
-
 
         m_Document->addDrawing(std::make_shared<Drawing>(spriteSheet));
     }

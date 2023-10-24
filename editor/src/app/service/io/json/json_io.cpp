@@ -62,7 +62,7 @@ namespace editor
         }
 
         CreateDrawingProps createDrawingProps(frames[0][0].getBounds());
-        createDrawingProps.hasInitialLayer = false;
+        createDrawingProps.layerCount = 0;
 
         Drawing drawing = m_DocumentFactory->createDrawing(createDrawingProps);
 

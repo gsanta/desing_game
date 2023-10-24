@@ -22,7 +22,7 @@ namespace editor
     Drawing resize_drawing(const Drawing &orig, const Bounds &bounds, const DocumentFactory &documentFactory)
     {
         CreateDrawingProps createDrawingProps(bounds);
-        createDrawingProps.hasInitialLayer = false;
+        createDrawingProps.layerCount = 0;
         createDrawingProps.backgroundLayerTileSize = orig.getBackgroundLayer().getTileSize();
         Drawing newDrawing = documentFactory.createDrawing(createDrawingProps);
 

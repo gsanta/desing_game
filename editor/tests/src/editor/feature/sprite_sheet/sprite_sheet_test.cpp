@@ -36,14 +36,14 @@ SCENARIO("Sprite sheet")
             Drawing &spriteSheetDrawing = document.getDrawing(1);
             TileLayer &spriteSheetLayer = spriteSheetDrawing.getFrames()[0].getLayer(0);
 
-            THEN("it creates a new drawing on the right side of the original with half the size")
+            THEN("it creates a new drawing on the right side of the original drawing with half the size")
             {
                 REQUIRE(document.getDrawings().size() == 2);
 
                 REQUIRE_THAT(spriteSheetDrawing.getBounds(), EqualsBounds(Bounds(14, 6, 20, 12)));
             }
 
-            THEN("it copies the layer's tiles")
+            THEN("it copies the tiles")
             {
                 REQUIRE(spriteSheetLayer.getTiles().size() == origLayer.getTiles().size());
 
@@ -65,18 +65,43 @@ SCENARIO("Sprite sheet")
                                     FrameBuilder().withTileLayer(tileLayerBuilder).withTileLayer(tileLayerBuilder),
                                     2))
                                 .build();
+        ToolContext toolContext = ToolContextBuilder().build(document);
+        CommonToolFuncs commonToolFuncs(document, toolContext);
 
         HeadlessWindow window(4, 4);
         DocumentFactory documentFactory = TestDocumentFactory::createDocumentFactory(window);
 
+        Drawing &drawing = document.getActiveDrawing();
+
+        TileLayer &tile1OnFrame1 = drawing.getFrame(0).getLayer(0);
+        TileLayer &tile2OnFrame1 = drawing.getFrame(0).getLayer(1);
+        TileLayer &tile1OnFrame2 = drawing.getFrame(1).getLayer(0);
+        TileLayer &tile2OnFrame2 = drawing.getFrame(1).getLayer(1);
+
+        commonToolFuncs.createTile(Vec2Int(1, 1), 0, 0);
+        commonToolFuncs.createTile(Vec2Int(2, 1), 1, 0);
+        commonToolFuncs.createTile(Vec2Int(3, 1), 0, 1);
+        commonToolFuncs.createTile(Vec2Int(4, 1), 1, 1);
+
         SpriteSheet spriteSheet(std::make_shared<DocumentFactory>(documentFactory), &document);
 
-        WHEN("generating a sprite sheet") {
+        WHEN("generating a sprite sheet")
+        {
             spriteSheet.generateSpriteSheet(document.getActiveDrawing());
             Drawing &spriteSheetDrawing = document.getDrawing(1);
 
-            THEN("it creates a new drawing on the right side of the original to fit all frames horizontally") {
+            THEN(
+                "it creates a new drawing on the right side of the original drawing and places all frames horizontally")
+            {
                 REQUIRE_THAT(spriteSheetDrawing.getBounds(), EqualsBounds(Bounds(14, 4, 26, 8)));
+                REQUIRE(spriteSheetDrawing.getFrames().size() == 1);
+                REQUIRE(spriteSheetDrawing.getFrame(0).getLayers().size() == 2);
+            }
+
+            THEN("it copies the tiles")
+            {
+                REQUIRE(spriteSheetDrawing.getFrame(0).getLayer(0).getTiles().size() == 2);
+                REQUIRE(spriteSheetDrawing.getFrame(0).getLayer(1).getTiles().size() == 2);
             }
         }
     }

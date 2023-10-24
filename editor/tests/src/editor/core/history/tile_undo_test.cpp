@@ -1,6 +1,6 @@
-#include "../../test_helpers/builders/tile_builder.h"
 #include "../../test_helpers/builders/document_builder.h"
 #include "../../test_helpers/builders/drawing_builder.h"
+#include "../../test_helpers/builders/tile_builder.h"
 #include "../../test_helpers/builders/tile_layer_builder.h"
 #include "../../test_helpers/builders/tool_context_builder.h"
 #include "../src/app/core/colors.h"
@@ -70,6 +70,5 @@ SCENARIO("TileUndo")
                 }
             }
         }
-
     }
 }

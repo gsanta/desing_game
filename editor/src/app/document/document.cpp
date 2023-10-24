@@ -41,7 +41,8 @@ namespace editor
         m_Drawings.push_back(drawing);
     }
 
-    Drawing &Document::getDrawing(int id) {
+    Drawing &Document::getDrawing(int id)
+    {
         return *m_Drawings[id];
     }
 

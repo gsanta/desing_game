@@ -1,7 +1,7 @@
 #pragma once
-#include "../../document/drawing.h"
 #include "../../algorithm/tile_operations.h"
 #include "../../document/document.h"
+#include "../../document/drawing.h"
 #include "../../document/factory/document_factory.h"
 
 #include <memory.h>
@@ -15,7 +15,8 @@ namespace editor
      * A sprite sheet can be exported from a regular drawing with multiple frames and unfolds all of the frames
      * onto a single-frame drawing.
     */
-    class SpriteSheet {
+    class SpriteSheet
+    {
     public:
         SpriteSheet(std::shared_ptr<DocumentFactory> documentFactory, Document *document);
 
@@ -26,5 +27,5 @@ namespace editor
 
         Document *m_Document;
     };
-}
-}
+} // namespace editor
+} // namespace spright

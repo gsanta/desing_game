@@ -33,9 +33,8 @@ SCENARIO("Resize drawing")
             {
                 THEN("removes pixels beyond the new bounds")
                 {
-                    drawing = resize_drawing(drawing,
-                                             Bounds::createWithPositions(-1.0f, -2.0f, 1.0f, 2.0f),
-                                             documentFactory);
+                    drawing =
+                        resize_drawing(drawing, Bounds::createWithPositions(-1.0f, -2.0f, 1.0f, 2.0f), documentFactory);
 
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles().size() == 2);
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles()[0]->getPosition2d() == Vec2(-1, -2));
@@ -47,9 +46,8 @@ SCENARIO("Resize drawing")
             {
                 THEN("removes pixels beyond the new bounds")
                 {
-                    drawing = resize_drawing(drawing,
-                                             Bounds::createWithPositions(-1.0f, -1.0f, 1.0f, 1.0f),
-                                             documentFactory);
+                    drawing =
+                        resize_drawing(drawing, Bounds::createWithPositions(-1.0f, -1.0f, 1.0f, 1.0f), documentFactory);
 
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles().size() == 1);
                     REQUIRE(drawing.getFrame(0).getLayers()[0].getTiles()[0]->getPosition2d() == Vec2(-1, -1));

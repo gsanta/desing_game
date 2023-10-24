@@ -251,7 +251,8 @@ void shear_vertical_api(float angle)
     shear_vertical(currentLayer, BoundsInt(bottomLeftTile, topRightTile), angle);
 }
 
-void generate_spritesheet() {
+void generate_spritesheet()
+{
     editor->getSpriteSheet().generateSpriteSheet(editor->getActiveDocument().getActiveDrawing());
 }
 

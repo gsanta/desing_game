@@ -14,7 +14,8 @@ namespace editor
             {
                 Rect2D *tile = source.getAtTilePos(area.minX + i, area.minY + j);
 
-                if (tile == nullptr) {
+                if (tile == nullptr)
+                {
                     continue;
                 }
 

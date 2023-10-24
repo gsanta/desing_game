@@ -20,7 +20,7 @@ namespace editor
     public:
         PaintBucketTool();
 
-        void pointerUp( ToolContext &) override;
+        void pointerUp(ToolContext &) override;
 
     private:
         QueueLinearFloodFill m_FloodFill;

@@ -14,6 +14,7 @@
 #include "editor_config.h"
 #include "event/event_emitter.h"
 #include "feature/frame/frame_player.h"
+#include "feature/sprite_sheet/sprite_sheet.h"
 #include "tool/tool_handler.h"
 #include "tool/tools/circle_tool/circle_tool.h"
 #include "tool/tools/color_picker_tool/color_picker_tool.h"
@@ -26,7 +27,6 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
-#include "feature/sprite_sheet/sprite_sheet.h"
 
 #include <vector>
 

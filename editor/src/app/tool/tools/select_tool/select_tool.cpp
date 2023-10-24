@@ -190,10 +190,12 @@ namespace editor
 
         const BoundsInt &bounds = m_SelectionBuffer.getTileBounds();
 
-        m_BoxSelector.select(tempLayer,
-                             toolLayer,
-                             toolLayer.getCenterPos(bounds.getBottomLeft()),
-                             toolLayer.getCenterPos(bounds.getTopRight() + -1));
+        if (!bounds.isDefault()) {
+            m_BoxSelector.select(tempLayer,
+                                toolLayer,
+                                toolLayer.getCenterPos(bounds.getBottomLeft()),
+                                toolLayer.getCenterPos(bounds.getTopRight() + -1));
+        }
     }
 
     void SelectTool::setSelection(const std::vector<int> &indexes, Drawing &drawing, TileLayer &layer)

@@ -6,7 +6,7 @@ namespace editor
 {
 
     Document::Document(Bounds bounds, Camera camera, Drawing canvas, std::shared_ptr<DocumentHistory> history)
-        : Container(bounds), m_Camera(camera), m_Canvas(canvas), m_History(history), m_ActiveDrawing(0)
+        : Canvas(bounds), m_Camera(camera), m_Canvas(canvas), m_History(history), m_ActiveDrawing(0)
     {
     }
 

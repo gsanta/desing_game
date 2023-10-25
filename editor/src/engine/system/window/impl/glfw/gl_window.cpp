@@ -81,6 +81,7 @@ namespace engine
     void GLWindow::setSize(int width, int height)
     {
         glfwSetWindowSize(m_Window, width, height);
+        Window::setSize(width, height);
     }
 
     bool GLWindow::isKeyPressed(unsigned int keycode) const

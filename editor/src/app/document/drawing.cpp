@@ -12,7 +12,7 @@ namespace editor
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer)
-        : Container(bounds)
+        : Canvas(bounds)
     {
         m_BackgroundLayer = std::make_shared<TileLayer>(backgroundLayer);
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
@@ -25,7 +25,7 @@ namespace editor
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer)
-        : Container(initialLayer.getBounds())
+        : Canvas(initialLayer.getBounds())
     {
         Frame frame(0);
         frame.addLayer(initialLayer);

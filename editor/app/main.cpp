@@ -17,7 +17,7 @@
 #include "../src/engine/graphics/buffer/buffer.h"
 #include "../src/engine/graphics/buffer/indexBuffer.h"
 #include "../src/engine/graphics/buffer/vertexArray.h"
-#include "../src/engine/graphics/layer/tileLayer.h"
+#include "../src/engine/graphics/layer/tile_layer.h"
 #include "../src/engine/graphics/renderable/rect2d.h"
 #include "../src/engine/graphics/renderable/renderable2d.h"
 #include "../src/engine/graphics/renderer/renderer2d.h"

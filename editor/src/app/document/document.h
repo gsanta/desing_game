@@ -3,9 +3,9 @@
 #include "../../engine/graphics/camera/camera.h"
 #include "../../engine/graphics/camera/ortho_projection_info.h"
 #include "../../engine/graphics/layer/group.h"
-#include "../../engine/graphics/layer/tileLayer.h"
+#include "../../engine/graphics/layer/tile_layer.h"
 #include "../../engine/graphics/renderable/bounds.h"
-#include "../../engine/layout/container.h"
+#include "../../engine/layout/canvas.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
@@ -23,7 +23,7 @@ namespace editor
 
     using namespace ::spright::engine;
 
-    class Document : public Container
+    class Document : public Canvas
     {
     public:
         Document(Bounds bounds, Camera m_Camera, Drawing canvas, std::shared_ptr<DocumentHistory> history);

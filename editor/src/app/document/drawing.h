@@ -12,7 +12,7 @@ namespace editor
 {
     using namespace ::spright::engine;
 
-    class Drawing : public Container
+    class Drawing : public Canvas
     {
     public:
         Drawing(const Bounds &bounds,

@@ -6,14 +6,12 @@ namespace spright
 namespace engine
 {
 
-    class Container
+    class Canvas
     {
     public:
-        Container(Bounds bounds);
+        Canvas(Bounds bounds);
 
         const Bounds &getBounds() const;
-
-        void setSize(int width, int height);
 
     private:
         Bounds m_Bounds;

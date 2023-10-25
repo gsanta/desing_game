@@ -20,7 +20,7 @@ SCENARIO("Move tool")
                                                                                 .withTile(Vec2Int(3, 3))
                                                                                 .withTile(Vec2Int(4, 3))))
                                 .build();
-        Drawing &activeDrawing = document.getActiveDrawing();
+        Drawing &activeDrawing = *document.getActiveDrawing();
 
         ToolContext toolContext = ToolContextBuilder().build(document);
 

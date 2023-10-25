@@ -100,7 +100,7 @@ SCENARIO("Shear tool")
         CommonToolFuncs commonToolFuncs(document, toolContext);
         commonToolFuncs.buildRect(BoundsInt(2, 1, 5, 4));
 
-        Drawing &drawing = document.getActiveDrawing();
+        Drawing &drawing = *document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
         TileLayer &tempLayer = drawing.getTempLayerOfActiveLayer();
         TileLayer &toolLayer = drawing.getToolLayer();
@@ -336,7 +336,7 @@ SCENARIO("Shear tool")
 
         commonToolFuncs.buildRect(BoundsInt(0, 0, 3, 3));
 
-        Drawing &drawing = document.getActiveDrawing();
+        Drawing &drawing = *document.getActiveDrawing();
         TileLayer &activeLayer = drawing.getActiveLayer();
         TileLayer &tempLayer = drawing.getTempLayerOfActiveLayer();
         TileLayer &toolLayer = drawing.getToolLayer();

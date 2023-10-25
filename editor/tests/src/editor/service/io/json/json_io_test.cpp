@@ -118,7 +118,7 @@ SCENARIO("JsonIO")
 
             Document document = jsonIO.importDocument(jsonStr);
 
-            Drawing &drawing = document.getActiveDrawing();
+            Drawing &drawing = *document.getActiveDrawing();
 
             REQUIRE(drawing.getFrames().size() == 2);
 

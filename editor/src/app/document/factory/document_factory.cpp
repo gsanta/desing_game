@@ -90,7 +90,7 @@ namespace editor
     {
         Frame frame(0);
 
-        Frame &activeFrame = document.getActiveFrame();
+        Frame &activeFrame = document.getActiveDrawing()->getFrame(0);
 
         std::vector<TileLayer> layers;
 
@@ -99,7 +99,7 @@ namespace editor
             layers.push_back(layer);
         }
 
-        document.getActiveDrawing().addFrame(layers);
+        document.getActiveDrawing()->addFrame(layers);
     }
 
 
@@ -151,14 +151,7 @@ namespace editor
 
         Camera camera(m_Window, -1.0f, 1.0f);
 
-        CreateDrawingProps createDrawingProps(drawingBounds);
-        createDrawingProps.hasCheckerBoard = false;
-        createDrawingProps.layerCount = 0;
-
-        Document document(drawingBounds,
-                          camera,
-                          createDrawing(createDrawingProps),
-                          std::make_shared<DocumentHistory>());
+        Document document(drawingBounds, camera, std::make_shared<DocumentHistory>());
 
         return document;
     }

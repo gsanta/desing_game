@@ -5,7 +5,8 @@
 #include "../../engine/graphics/layer/group.h"
 #include "../../engine/graphics/layer/tile_layer.h"
 #include "../../engine/graphics/renderable/bounds.h"
-#include "../../engine/layout/canvas.h"
+#include "../../engine/structure/canvas/canvas.h"
+#include "../../engine/structure/canvas/background_canvas.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
@@ -26,13 +27,13 @@ namespace editor
     class Document : public Canvas
     {
     public:
-        Document(Bounds bounds, Camera m_Camera, Drawing canvas, std::shared_ptr<DocumentHistory> history);
+        Document(Bounds bounds, Camera m_Camera, std::shared_ptr<DocumentHistory> history);
 
-        Frame &getActiveFrame();
+        Document(const Document &other);
 
-        TileLayer &getActiveLayer();
-
-        Drawing &getActiveDrawing();
+        //! Represents the Drawing() over which the pointer resides or over which a drag action started
+        //! @return The active Drawing() or nullptr
+        Drawing *getActiveDrawing();
 
         Drawing &getDrawing(size_t index);
 
@@ -50,18 +51,16 @@ namespace editor
 
         void empty();
 
-        Drawing &getCanvas();
+        BackgroundCanvas &getCanvas();
 
         Camera &getCamera();
 
         void setCamera(const Camera &camera);
 
-        std::string getJson();
-
     private:
         std::vector<std::shared_ptr<Drawing>> m_Drawings;
 
-        Drawing m_Canvas;
+        std::unique_ptr<BackgroundCanvas> m_Canvas;
 
         size_t m_ActiveDrawing;
 

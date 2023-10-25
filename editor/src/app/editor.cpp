@@ -25,7 +25,7 @@ namespace editor
 
         m_DocumentStore = std::make_shared<DocumentStore>();
 
-        m_DocumentStore->addDocument(m_DocumentFactory->createDocument());
+        m_DocumentStore->setDocument(m_DocumentFactory->createDocument());
 
         m_SpriteSheet = std::make_unique<SpriteSheet>(m_DocumentFactory, &m_DocumentStore->getActiveDocument());
 
@@ -58,12 +58,6 @@ namespace editor
     Document &Editor::getActiveDocument()
     {
         return m_DocumentStore->getActiveDocument();
-    }
-
-    void Editor::setDocument(const Document &document)
-    {
-        m_DocumentStore->setDocument(document);
-        m_DocumentStore->setActiveDocument(0);
     }
 
     Window *Editor::getWindow() const

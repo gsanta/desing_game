@@ -1,15 +1,14 @@
 #pragma once
-#include "../graphics/renderable/bounds.h"
+#include "../../graphics/renderable/bounds.h"
 
 namespace spright
 {
 namespace engine
 {
-
     class Canvas
     {
     public:
-        Canvas(Bounds bounds);
+        Canvas(const Bounds &bounds);
 
         const Bounds &getBounds() const;
 

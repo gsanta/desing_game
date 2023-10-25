@@ -38,10 +38,7 @@ DocumentStore DocumentStoreBuilder::build()
 {
     Camera camera(&m_Window);
 
-    Document document(m_DocumentBounds,
-                      camera,
-                      DrawingBuilder().withBounds(m_DocumentBounds).build(),
-                      std::make_shared<DocumentHistory>());
+    Document document(m_DocumentBounds, camera, std::make_shared<DocumentHistory>());
 
     if (m_Drawings.size() == 0)
     {
@@ -54,7 +51,7 @@ DocumentStore DocumentStoreBuilder::build()
     }
 
     DocumentStore documentStore;
-    documentStore.addDocument(document);
+    documentStore.setDocument(document);
 
     return documentStore;
 }

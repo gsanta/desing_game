@@ -70,7 +70,7 @@ namespace editor
     void ToolHandler::onMouseMove(double x, double y)
     {
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
-        Drawing *activeDrawing = &m_DocumentStore->getActiveDocument().getActiveDrawing();
+        Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
 
         m_ToolContext.doc.prevDrawing = activeDrawing;
         m_ToolContext.doc.activeDrawing = activeDrawing;

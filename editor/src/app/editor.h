@@ -55,8 +55,6 @@ namespace editor
 
         Document &getActiveDocument();
 
-        void setDocument(const Document &document);
-
         ToolHandler *getToolHandler();
 
         Rendering *getRendering();

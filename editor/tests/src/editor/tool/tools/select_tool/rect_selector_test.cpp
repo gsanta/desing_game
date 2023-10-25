@@ -27,7 +27,7 @@ TEST_CASE("RectSelector", "[rect-selector]")
                                                                                .withTile(Vec2Int(4, 1))))
             .build();
 
-    TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing().getActiveLayer();
+    TileLayer &layer = documentStore.getActiveDocument().getActiveDrawing()->getActiveLayer();
 
     RectSelector rectSelector(&layer);
 

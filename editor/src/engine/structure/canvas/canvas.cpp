@@ -4,7 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    Canvas::Canvas(Bounds bounds) : m_Bounds(bounds)
+    Canvas::Canvas(const Bounds &bounds) : m_Bounds(bounds)
     {
     }
 

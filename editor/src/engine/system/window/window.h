@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../layout/canvas.h"
+#include "../../structure/canvas/canvas.h"
 #include "input_handler.h"
 
 #include <GL/glew.h>

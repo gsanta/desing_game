@@ -21,8 +21,8 @@ SCENARIO("Brush tool")
         ToolContext toolContext = ToolContextBuilder().build(document);
 
         CommonToolFuncs commonToolFuncs(document, toolContext);
-        TileLayer &layer = document.getActiveLayer();
-        TileLayer &cursorLayer = document.getActiveDrawing().getCursorLayer();
+        TileLayer &layer = document.getActiveDrawing()->getActiveLayer();
+        TileLayer &cursorLayer = document.getActiveDrawing()->getCursorLayer();
 
         WHEN("clicking inside of the drawing's bounds")
         {

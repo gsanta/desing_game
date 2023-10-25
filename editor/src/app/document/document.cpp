@@ -4,26 +4,25 @@ namespace spright
 {
 namespace editor
 {
-
-    Document::Document(Bounds bounds, Camera camera, Drawing canvas, std::shared_ptr<DocumentHistory> history)
-        : Canvas(bounds), m_Camera(camera), m_Canvas(canvas), m_History(history), m_ActiveDrawing(0)
+    Document::Document(Bounds bounds, Camera camera, std::shared_ptr<DocumentHistory> history)
+        : Canvas(bounds), m_Camera(camera), m_History(history), m_ActiveDrawing(0)
     {
     }
 
-    Frame &Document::getActiveFrame()
+    Document::Document(const Document &other) : Canvas(other.getBounds()), m_Camera(other.m_Camera)
     {
-        return m_Drawings[m_ActiveDrawing]->getActiveFrame();
+        m_Drawings = other.m_Drawings;
+        if (other.m_Canvas)
+        {
+            m_Canvas = std::unique_ptr<BackgroundCanvas>(new BackgroundCanvas(*other.m_Canvas));
+        }
+        m_ActiveDrawing = other.m_ActiveDrawing;
+        m_History = other.m_History;
     }
 
-
-    TileLayer &Document::getActiveLayer()
+    Drawing *Document::getActiveDrawing()
     {
-        return m_Drawings[m_ActiveDrawing]->getActiveLayer();
-    }
-
-    Drawing &Document::getActiveDrawing()
-    {
-        return *m_Drawings[m_ActiveDrawing];
+        return m_Drawings[m_ActiveDrawing].get();
     }
 
     size_t Document::getActiveDrawingIndex() const
@@ -66,9 +65,9 @@ namespace editor
         m_Drawings.clear();
     }
 
-    Drawing &Document::getCanvas()
+    BackgroundCanvas &Document::getCanvas()
     {
-        return m_Canvas;
+        return *m_Canvas;
     }
 
     Camera &Document::getCamera()
@@ -79,13 +78,6 @@ namespace editor
     void Document::setCamera(const Camera &camera)
     {
         m_Camera = camera;
-    }
-
-    std::string Document::getJson()
-    {
-        nlohmann::json json = getActiveLayer().getJson();
-
-        return json.dump();
     }
 } // namespace editor
 } // namespace spright

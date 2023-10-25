@@ -20,7 +20,7 @@ SCENARIO("Rectangle cursor")
         DocumentBuilder()
             .withDrawing(DrawingBuilder().withBounds(Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f)))
             .build();
-    Drawing &activeDrawing = document.getActiveDrawing();
+    Drawing &activeDrawing = *document.getActiveDrawing();
 
     ToolContext toolContext = ToolContextBuilder().build(document);
 

@@ -38,9 +38,7 @@ namespace editor
 
         float zoom = camera.getZoom();
 
-        Drawing &drawing = context.doc.document->getActiveDrawing();
-
-        TileLayer &layer = drawing.getActiveLayer();
+        TileLayer &layer = context.doc.document->getActiveDrawing()->getActiveLayer();
 
         if (!isPointerMove)
         {

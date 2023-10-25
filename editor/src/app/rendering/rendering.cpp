@@ -23,7 +23,11 @@ void Rendering::render()
     }
     else
     {
-        m_ImageTargetRenderer.render(m_DocumentStore->getActiveDocument().getActiveDrawing());
+        Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
+        if (activeDrawing != nullptr)
+        {
+            m_ImageTargetRenderer.render(*activeDrawing);
+        }
     }
 
     m_Window->afterRender();

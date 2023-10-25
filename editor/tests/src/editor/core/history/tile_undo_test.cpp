@@ -22,7 +22,7 @@ SCENARIO("TileUndo")
 
     document.addDrawing(std::make_shared<Drawing>(drawing));
 
-    TileLayer &layer = document.getActiveDrawing().getActiveLayer();
+    TileLayer &layer = document.getActiveDrawing()->getActiveLayer();
 
     TileBuilder tileBuilder(layer);
 

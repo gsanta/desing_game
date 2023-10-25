@@ -20,7 +20,7 @@ namespace editor
 
         nlohmann::json framesJson = {{"frames", {}}};
 
-        for (Frame &frame : document.getActiveDrawing().getFrames())
+        for (Frame &frame : document.getActiveDrawing()->getFrames())
         {
 
             nlohmann::json layersJson = {{"layers", {}}};

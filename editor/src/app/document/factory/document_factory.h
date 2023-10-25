@@ -7,7 +7,7 @@
 #include "../../../engine/graphics/renderable/line_shape.h"
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../../engine/graphics/shader/shader.h"
-#include "../../../engine/layout/canvas.h"
+#include "../../../engine/structure/canvas/canvas.h"
 #include "../../../engine/system/window/window.h"
 #include "../../core/history/document_history.h"
 #include "../checkerboard.h"

@@ -21,10 +21,7 @@ Document DocumentBuilder::build()
 {
     Camera camera(&m_Window, -1.0f, 1.0f);
 
-    Document document(m_DocumentBounds,
-                      camera,
-                      DrawingBuilder().withBounds(m_DocumentBounds).build(),
-                      std::make_shared<DocumentHistory>());
+    Document document(m_DocumentBounds, camera, std::make_shared<DocumentHistory>());
 
     if (m_Drawings.size() > 0)
     {

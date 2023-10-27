@@ -38,7 +38,7 @@ SCENARIO("JsonIO")
 
             Document document = DocumentBuilder().withEmptyDocument().build();
 
-            document.addDrawing(std::make_shared<Drawing>(drawing));
+            document.addDrawing(drawing);
 
             JsonIO jsonIO(std::make_shared<DocumentFactory>(documentFactory));
 

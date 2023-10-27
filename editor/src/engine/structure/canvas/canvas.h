@@ -12,6 +12,8 @@ namespace engine
 
         const Bounds &getBounds() const;
 
+        // Layer &getDecorationLayer();
+
     private:
         Bounds m_Bounds;
     };

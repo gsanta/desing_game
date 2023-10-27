@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../../structure/canvas/canvas.h"
 #include "input_handler.h"
 
 #include <GL/glew.h>
@@ -12,8 +11,6 @@ namespace spright
 {
 namespace engine
 {
-    class InputHandler;
-
     class Window
     {
     public:

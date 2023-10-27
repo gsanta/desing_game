@@ -28,7 +28,7 @@ namespace engine
         using TileView::getBottomLeftPos;
 
         TileLayer(std::string name,
-                  const Renderer2D &renderer,
+                  std::shared_ptr<Renderer2D> renderer,
                   Group<Rect2D> group,
                   Bounds bounds,
                   float tileSize = TileLayer::defaultTileSize,

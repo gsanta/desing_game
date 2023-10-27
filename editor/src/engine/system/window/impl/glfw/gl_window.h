@@ -16,8 +16,6 @@ namespace engine
 #define MAX_KEYS 1024
 #define MAX_BUTTONS 3
 
-    class InputHandler;
-
     class GLWindow : public Window
     {
     public:

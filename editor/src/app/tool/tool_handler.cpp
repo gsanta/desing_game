@@ -7,10 +7,8 @@ namespace spright
 {
 namespace editor
 {
-    ToolHandler::ToolHandler(Window *window, DocumentStore *documentStore)
-        : m_Window(window), m_DocumentStore(documentStore)
+    ToolHandler::ToolHandler(DocumentStore *documentStore) : m_DocumentStore(documentStore)
     {
-        window->getInputHandler()->registerListener(this);
         m_ActiveTools = new vector<Tool *>();
         m_ToolStore = std::make_shared<ToolStore>();
         m_ToolContext.tools = m_ToolStore;
@@ -22,11 +20,8 @@ namespace editor
 
     ToolHandler &ToolHandler::operator=(const ToolHandler &toolHandler)
     {
-        m_Window = toolHandler.m_Window;
         m_ActiveTools = toolHandler.m_ActiveTools;
         m_SelectedTool = toolHandler.m_SelectedTool;
-
-        m_Window->getInputHandler()->registerListener(this);
 
         return *this;
     }
@@ -69,7 +64,22 @@ namespace editor
 
     void ToolHandler::onMouseMove(double x, double y)
     {
+        Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToWorldPos(x, y);
+
+        Document &document = m_DocumentStore->getActiveDocument();
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
+
+        if (!m_ToolContext.pointer.isDown) {
+            document.setActiveDrawing(-1);
+
+            for (size_t i = 0; i < document.getDrawings().size(); i++) {
+                if (document.getDrawings()[i].getBounds().contains(pos.x, pos.y)) {
+                    document.setActiveDrawing(i);
+                    break;
+                }
+            }
+        }
+
         Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
 
         m_ToolContext.doc.prevDrawing = activeDrawing;
@@ -77,7 +87,6 @@ namespace editor
 
         x_tmp = x;
         y_tmp = y;
-        Vec2 pos = m_DocumentStore->getActiveDocument().getCamera().screenToWorldPos(x, y);
         m_ToolContext.pointer.prev = m_ToolContext.pointer.curr;
         m_ToolContext.pointer.curr = pos;
 

@@ -50,6 +50,8 @@ namespace engine
 
         virtual void submit(Renderer2D &renderer) const override;
 
+        virtual Rect2D *clone() const override;
+
     private:
         void updateBounds();
 

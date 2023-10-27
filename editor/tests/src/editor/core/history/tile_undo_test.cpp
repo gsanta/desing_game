@@ -20,7 +20,7 @@ SCENARIO("TileUndo")
 
     ToolContext context = ToolContextBuilder().build(document);
 
-    document.addDrawing(std::make_shared<Drawing>(drawing));
+    document.addDrawing(drawing);
 
     TileLayer &layer = document.getActiveDrawing()->getActiveLayer();
 

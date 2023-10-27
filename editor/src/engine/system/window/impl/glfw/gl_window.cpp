@@ -17,7 +17,7 @@ namespace engine
             glfwTerminate();
         }
 
-        m_InputHandler = new InputHandler(this);
+        m_InputHandler = new InputHandler();
 
         for (int i = 0; i < MAX_KEYS; i++)
         {

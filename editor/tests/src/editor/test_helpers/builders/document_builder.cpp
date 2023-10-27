@@ -27,12 +27,12 @@ Document DocumentBuilder::build()
     {
         for (DrawingBuilder builder : m_Drawings)
         {
-            document.addDrawing(std::make_shared<Drawing>(builder.build()));
+            document.addDrawing(builder.build());
         }
     }
     else if (!m_IsEmptyDocument)
     {
-        document.addDrawing(std::make_shared<Drawing>(DrawingBuilder().build()));
+        document.addDrawing(DrawingBuilder().build());
     }
 
     return document;

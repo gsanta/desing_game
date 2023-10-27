@@ -73,6 +73,8 @@ namespace engine
 
         static std::shared_ptr<Renderable2D> create(double width, double height);
 
+        virtual Renderable2D *clone() const = 0;
+
     protected:
         Renderable2D()
         {

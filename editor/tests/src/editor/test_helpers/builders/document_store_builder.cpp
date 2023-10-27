@@ -47,7 +47,7 @@ DocumentStore DocumentStoreBuilder::build()
 
     for (DrawingBuilder builder : m_Drawings)
     {
-        document.addDrawing(std::make_shared<Drawing>(builder.build()));
+        document.addDrawing(builder.build());
     }
 
     DocumentStore documentStore;

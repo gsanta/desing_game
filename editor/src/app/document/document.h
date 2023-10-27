@@ -24,7 +24,7 @@ namespace editor
 
     using namespace ::spright::engine;
 
-    class Document : public Canvas
+    class Document
     {
     public:
         Document(Bounds bounds, Camera m_Camera, std::shared_ptr<DocumentHistory> history);
@@ -35,17 +35,20 @@ namespace editor
         //! @return The active Drawing() or nullptr
         Drawing *getActiveDrawing();
 
+        //! Sets the nth drawing as active, -1 sets it to nullptr
+        void setActiveDrawing(int index);
+
         Drawing &getDrawing(size_t index);
 
         size_t getActiveDrawingIndex() const;
 
-        void addDrawing(std::shared_ptr<Drawing> drawing);
+        void addDrawing(const Drawing &drawing);
 
         void removeActiveDrawing();
 
         Drawing &getDrawing(int id);
 
-        std::vector<std::shared_ptr<Drawing>> &getDrawings();
+        std::vector<Drawing> &getDrawings();
 
         std::shared_ptr<DocumentHistory> getHistory();
 
@@ -58,11 +61,11 @@ namespace editor
         void setCamera(const Camera &camera);
 
     private:
-        std::vector<std::shared_ptr<Drawing>> m_Drawings;
+        std::vector<Drawing> m_Drawings;
 
         std::unique_ptr<BackgroundCanvas> m_Canvas;
 
-        size_t m_ActiveDrawing;
+        int m_ActiveDrawingIndex;
 
         Camera m_Camera;
 

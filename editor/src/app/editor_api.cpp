@@ -202,7 +202,7 @@ void set_canvas_size(int width, int height)
                        *editor->getDocumentFactory());
 
     editor->getActiveDocument().removeActiveDrawing();
-    editor->getActiveDocument().addDrawing(std::make_shared<Drawing>(newDrawing));
+    editor->getActiveDocument().addDrawing(newDrawing);
 }
 
 void set_eraser_size(int size)

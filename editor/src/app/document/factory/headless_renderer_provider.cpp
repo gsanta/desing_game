@@ -1,11 +1,12 @@
 #include "headless_renderer_provider.h"
 
 namespace spright { namespace editor {
-	HeadlessRenderer2D* HeadlessRendererProvider::createRenderer2D() const {
-		return new HeadlessRenderer2D();
-	}
+    std::shared_ptr<Renderer2D> HeadlessRendererProvider::createRenderer2D() const
+    {
+        return std::make_shared<HeadlessRenderer2D>();
+    }
 
-	HeadlessRendererProvider* HeadlessRendererProvider::clone() const {
+    HeadlessRendererProvider* HeadlessRendererProvider::clone() const {
 		return new HeadlessRendererProvider();
 	}
 }}

@@ -12,5 +12,10 @@ namespace engine
     {
         return m_Bounds;
     }
+
+    // Layer &Canvas::getDecorationLayer()
+    // {
+    //     return m_DecorationLayer;
+    // }
 } // namespace engine
 } // namespace spright

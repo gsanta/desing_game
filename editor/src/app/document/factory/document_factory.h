@@ -3,6 +3,7 @@
 #include "../../../engine/graphics/impl/gl/gl_shader.h"
 #include "../../../engine/graphics/layer/group.h"
 #include "../../../engine/graphics/layer/tile_layer.h"
+#include "../../../engine/graphics/layer/layer.h"
 #include "../../../engine/graphics/renderable/bounds.h"
 #include "../../../engine/graphics/renderable/line_shape.h"
 #include "../../../engine/graphics/renderable/rect2d.h"

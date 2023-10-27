@@ -12,8 +12,6 @@ namespace spright
 {
 namespace engine
 {
-
-
     class HeadlessWindow : public Window
     {
     public:

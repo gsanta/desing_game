@@ -35,7 +35,10 @@ namespace editor
 
         m_JsonExport = std::make_unique<JsonIO>(m_DocumentFactory);
 
-        m_toolHandler = new ToolHandler(m_Window, getDocumentStore());
+        m_toolHandler = new ToolHandler(getDocumentStore());
+
+        m_Window->getInputHandler()->registerListener(m_toolHandler);
+
         m_toolHandler->getToolStore().addTool(new BrushTool());
         m_toolHandler->getToolStore().addTool(new RectangleTool());
         m_toolHandler->getToolStore().addTool(new EraserTool(3));

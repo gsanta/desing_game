@@ -71,7 +71,7 @@ namespace editor
             drawing.addFrame(layers);
         }
 
-        document.addDrawing(std::make_shared<Drawing>(drawing));
+        document.addDrawing(drawing);
 
         return document;
     }

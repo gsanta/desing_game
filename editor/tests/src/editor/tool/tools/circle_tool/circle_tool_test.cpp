@@ -48,7 +48,6 @@ void REQUIRE_CIRCLE(TileLayer &layer)
 
 SCENARIO("Circle tool")
 {
-
     GIVEN("a document and circle tool")
     {
         Document document = DocumentBuilder().withDrawing(DrawingBuilder().withBounds(Bounds(0, 0, 7.0, 7.0))).build();

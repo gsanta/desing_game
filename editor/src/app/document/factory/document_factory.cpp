@@ -152,7 +152,10 @@ namespace editor
 
         Camera camera(m_Window, -1.0f, 1.0f);
 
-        Document document(drawingBounds, camera, std::make_shared<DocumentHistory>());
+        Document document(drawingBounds,
+                          Canvas(drawingBounds, Layer(m_RendererProvider->createRenderer2D())),
+                          camera,
+                          std::make_shared<DocumentHistory>());
 
         return document;
     }

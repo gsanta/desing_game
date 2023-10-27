@@ -69,17 +69,6 @@ namespace editor
         Document &document = m_DocumentStore->getActiveDocument();
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
 
-        if (!m_ToolContext.pointer.isDown) {
-            document.setActiveDrawing(-1);
-
-            for (size_t i = 0; i < document.getDrawings().size(); i++) {
-                if (document.getDrawings()[i].getBounds().contains(pos.x, pos.y)) {
-                    document.setActiveDrawing(i);
-                    break;
-                }
-            }
-        }
-
         Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
 
         m_ToolContext.doc.prevDrawing = activeDrawing;

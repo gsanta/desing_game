@@ -86,7 +86,7 @@ namespace engine
     {
         for (T *item : group.m_Renderables)
         {
-            m_Renderables.push_back(new T(*item));
+            m_Renderables.push_back(item->clone());
         }
     }
 
@@ -112,7 +112,7 @@ namespace engine
 
             for (T *item : that.m_Renderables)
             {
-                m_Renderables.push_back(new T(*item));
+                m_Renderables.push_back(item->clone());
             }
         }
 

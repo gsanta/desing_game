@@ -19,5 +19,10 @@ namespace engine
 
         return newRenderable;
     }
+
+    void Layer::clear()
+    {
+        m_Group.clear();
+    }
 } // namespace engine
 } // namespace spright

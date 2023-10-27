@@ -4,18 +4,14 @@ namespace spright
 {
 namespace editor
 {
-    Document::Document(Bounds bounds, Camera camera, std::shared_ptr<DocumentHistory> history)
-        : m_Camera(camera), m_History(history), m_ActiveDrawingIndex(0)
+    Document::Document(const Bounds &bounds, const Canvas &canvas, const Camera &camera, std::shared_ptr<DocumentHistory> history)
+        : m_Canvas(canvas), m_Camera(camera), m_History(history), m_ActiveDrawingIndex(0)
     {
     }
 
-    Document::Document(const Document &other) : m_Camera(other.m_Camera)
+    Document::Document(const Document &other) : m_Camera(other.m_Camera), m_Canvas(other.m_Canvas)
     {
         m_Drawings = other.m_Drawings;
-        if (other.m_Canvas)
-        {
-            m_Canvas = std::unique_ptr<BackgroundCanvas>(new BackgroundCanvas(*other.m_Canvas));
-        }
         m_ActiveDrawingIndex = other.m_ActiveDrawingIndex;
         m_History = other.m_History;
     }
@@ -73,9 +69,9 @@ namespace editor
         m_Drawings.clear();
     }
 
-    BackgroundCanvas &Document::getCanvas()
+    Canvas &Document::getCanvas()
     {
-        return *m_Canvas;
+        return m_Canvas;
     }
 
     Camera &Document::getCamera()

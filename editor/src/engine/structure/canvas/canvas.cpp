@@ -4,7 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    Canvas::Canvas(const Bounds &bounds) : m_Bounds(bounds)
+    Canvas::Canvas(const Bounds &bounds, const Layer &decorationLayer) : m_Bounds(bounds), m_DecorationLayer(decorationLayer)
     {
     }
 
@@ -13,9 +13,9 @@ namespace engine
         return m_Bounds;
     }
 
-    // Layer &Canvas::getDecorationLayer()
-    // {
-    //     return m_DecorationLayer;
-    // }
+    Layer &Canvas::getDecorationLayer()
+    {
+        return m_DecorationLayer;
+    }
 } // namespace engine
 } // namespace spright

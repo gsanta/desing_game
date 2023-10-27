@@ -4,29 +4,33 @@ namespace spright
 {
 namespace editor
 {
-    void pointerDown(const ToolContext &context)
+    CanvasSelectionTool::CanvasSelectionTool() : Tool("canvas_selection")
     {
-        // Document &document = context.doc.document;
+    }
 
-        // for (size_t i = 0; i < document.getDrawings().size(); i++)
-        // {
-        //     if (document.getDrawings()[i].getBounds().contains(pos.x, pos.y))
-        //     {
-        //         document.setActiveDrawing(i);
-        //         break;
-        //     }
-        // }
+    void CanvasSelectionTool::pointerDown(const ToolContext &context)
+    {
+        Document *document = context.doc.document;
 
-        // Drawing *activeDrawing = document.getActiveDrawing();
-        // if (activeDrawing)
-        // {
-        //     activeDrawing->getDecorationLayer().clear();
+        for (size_t i = 0; i < document->getDrawings().size(); i++)
+        {
+            if (document->getDrawings()[i].getBounds().contains(context.pointer.curr.x, context.pointer.curr.y))
+            {
+                document->setActiveDrawing(i);
+                break;
+            }
+        }
 
-        //     Bounds bounds = activeDrawing->getBounds();
+        Drawing *activeDrawing = document->getActiveDrawing();
+        if (activeDrawing)
+        {
+            activeDrawing->getDecorationLayer().clear();
 
-        //     Rect2D rect(bounds.getBottomLeft().x - 0.5, bounds.getBottomLeft().y, 0.5, bounds.getHeight());
-        //     activeDrawing->getDecorationLayer().add(rect);
-        // }
+            Bounds bounds = activeDrawing->getBounds();
+
+            Rect2D rect(bounds.getBottomLeft().x - 0.5, bounds.getBottomLeft().y, 0.5, bounds.getHeight(), COLOR_BLUE);
+            activeDrawing->getDecorationLayer().add(rect);
+        }
     }
 } // namespace editor
 } // namespace spright

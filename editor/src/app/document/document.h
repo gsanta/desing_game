@@ -6,7 +6,6 @@
 #include "../../engine/graphics/layer/tile_layer.h"
 #include "../../engine/graphics/renderable/bounds.h"
 #include "../../engine/structure/canvas/canvas.h"
-#include "../../engine/structure/canvas/background_canvas.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
@@ -27,7 +26,10 @@ namespace editor
     class Document
     {
     public:
-        Document(Bounds bounds, Camera m_Camera, std::shared_ptr<DocumentHistory> history);
+        Document(const Bounds &bounds,
+                 const Canvas &canvas,
+                 const Camera &camera,
+                 std::shared_ptr<DocumentHistory> history);
 
         Document(const Document &other);
 
@@ -54,7 +56,7 @@ namespace editor
 
         void empty();
 
-        BackgroundCanvas &getCanvas();
+        Canvas &getCanvas();
 
         Camera &getCamera();
 
@@ -63,7 +65,7 @@ namespace editor
     private:
         std::vector<Drawing> m_Drawings;
 
-        std::unique_ptr<BackgroundCanvas> m_Canvas;
+        Canvas m_Canvas;
 
         int m_ActiveDrawingIndex;
 

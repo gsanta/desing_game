@@ -20,6 +20,8 @@ namespace engine
 
         Renderable2D &add(const Renderable2D &rect);
 
+        void clear();
+
     private:
         std::shared_ptr<Renderer2D> m_Renderer;
 

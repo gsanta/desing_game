@@ -13,7 +13,7 @@ namespace editor
 
     void BrushTool::setSize(int size)
     {
-        dynamic_cast<RectangleCursor*>(getCursor().get())->setSize(size);
+        dynamic_cast<RectangleCursor *>(getCursor().get())->setSize(size);
         m_Size = size;
     }
 

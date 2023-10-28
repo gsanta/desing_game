@@ -90,7 +90,8 @@ size_t createLayer(std::string name)
 {
     Drawing *drawing = editor->getDocumentStore()->getActiveDocument().getActiveDrawing();
 
-    if (!drawing) {
+    if (!drawing)
+    {
         throw std::logic_error("No active drawing available");
     }
 

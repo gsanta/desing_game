@@ -1,7 +1,7 @@
 #pragma once
 #include "../../../../engine/graphics/renderable/rect2d.h"
-#include "../../../document/drawing.h"
 #include "../../../core/colors.h"
+#include "../../../document/drawing.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"
 

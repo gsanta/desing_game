@@ -131,8 +131,10 @@ SCENARIO("Brush tool")
                 {
                     REQUIRE(layer.getTiles().size() == 9);
 
-                    for (float x = 0; x < 3; x++) {
-                        for (float y = -1; y < 2; y++) {
+                    for (float x = 0; x < 3; x++)
+                    {
+                        for (float y = -1; y < 2; y++)
+                        {
                             REQUIRE(layer.getAtWorldPos(Vec2(x, y)) != nullptr);
                         }
                     }

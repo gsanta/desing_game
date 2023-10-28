@@ -4,7 +4,10 @@ namespace spright
 {
 namespace editor
 {
-    Document::Document(const Bounds &bounds, const Canvas &canvas, const Camera &camera, std::shared_ptr<DocumentHistory> history)
+    Document::Document(const Bounds &bounds,
+                       const Canvas &canvas,
+                       const Camera &camera,
+                       std::shared_ptr<DocumentHistory> history)
         : m_Canvas(canvas), m_Camera(camera), m_History(history), m_ActiveDrawingIndex(0)
     {
     }
@@ -21,8 +24,10 @@ namespace editor
         return m_ActiveDrawingIndex == -1 ? nullptr : &m_Drawings[m_ActiveDrawingIndex];
     }
 
-    void Document::setActiveDrawing(int index) {
-        if (index < -1 || index >= (int) m_Drawings.size()) {
+    void Document::setActiveDrawing(int index)
+    {
+        if (index < -1 || index >= (int)m_Drawings.size())
+        {
             throw std::invalid_argument("Index out of range");
         }
 

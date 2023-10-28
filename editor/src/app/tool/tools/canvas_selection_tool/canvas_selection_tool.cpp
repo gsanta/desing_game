@@ -12,7 +12,8 @@ namespace editor
     {
         Document *document = context.doc.document;
 
-        if (document->getActiveDrawing()) {
+        if (document->getActiveDrawing())
+        {
             document->getActiveDrawing()->getDecorationLayer().clear();
         }
 

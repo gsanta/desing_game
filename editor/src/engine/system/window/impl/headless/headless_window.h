@@ -23,16 +23,16 @@ namespace engine
         {
         }
 
-		inline float beforeRender()
+        inline float beforeRender()
         {
             return 0;
         }
 
-		inline void afterRender()
+        inline void afterRender()
         {
         }
 
-		inline bool closed() const
+        inline bool closed() const
         {
             return false;
         }
@@ -48,16 +48,16 @@ namespace engine
             return false;
         }
 
-		bool isMouseButtonPressed(unsigned int button) const
+        bool isMouseButtonPressed(unsigned int button) const
         {
             return false;
         }
 
-		void getMousePosition(double &x, double &y) const
+        void getMousePosition(double &x, double &y) const
         {
         }
 
-		float getRatio()
+        float getRatio()
         {
             return m_Width / m_Height;
         }

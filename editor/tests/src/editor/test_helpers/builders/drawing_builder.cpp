@@ -120,7 +120,12 @@ Drawing DrawingBuilder::buildFromFrames()
         frames.push_back(frameBuilder.build());
     }
 
-    Drawing drawing(frames[0].getLayers()[0].getBounds(), backgroundLayer, tempLayer, toolLayer, cursorLayer, Layer(renderer));
+    Drawing drawing(frames[0].getLayers()[0].getBounds(),
+                    backgroundLayer,
+                    tempLayer,
+                    toolLayer,
+                    cursorLayer,
+                    Layer(renderer));
 
     for (Frame &frame : frames)
     {

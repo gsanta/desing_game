@@ -279,7 +279,8 @@ void generate_spritesheet()
 {
     Drawing *drawing = editor->getActiveDocument().getActiveDrawing();
 
-    if (!drawing) {
+    if (!drawing)
+    {
         return;
     }
 

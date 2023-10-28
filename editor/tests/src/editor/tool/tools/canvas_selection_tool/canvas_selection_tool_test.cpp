@@ -59,11 +59,14 @@ SCENARIO("Tool handler")
                     Layer &decorationLayer = document.getDrawings()[1].getDecorationLayer();
 
                     REQUIRE(decorationLayer.getRenderables().size() == 4);
-                    REQUIRE_THAT(decorationLayer.getRenderables()[0]->getBounds(), EqualsBounds(Bounds(5.0, 4.0, 7.0, 4.2))); // top
-                    REQUIRE_THAT(decorationLayer.getRenderables()[1]->getBounds(), EqualsBounds(Bounds(7.0, -2.0, 7.2, 4.0))); // right
+                    REQUIRE_THAT(decorationLayer.getRenderables()[0]->getBounds(),
+                                 EqualsBounds(Bounds(5.0, 4.0, 7.0, 4.2))); // top
+                    REQUIRE_THAT(decorationLayer.getRenderables()[1]->getBounds(),
+                                 EqualsBounds(Bounds(7.0, -2.0, 7.2, 4.0))); // right
                     REQUIRE_THAT(decorationLayer.getRenderables()[2]->getBounds(),
                                  EqualsBounds(Bounds(5.0, -2.2, 7.0, -2.0))); // bottom
-                    REQUIRE_THAT(decorationLayer.getRenderables()[3]->getBounds(), EqualsBounds(Bounds(4.8, -2.0, 5.0, 4.0))); // left
+                    REQUIRE_THAT(decorationLayer.getRenderables()[3]->getBounds(),
+                                 EqualsBounds(Bounds(4.8, -2.0, 5.0, 4.0))); // left
                 }
 
                 THEN("removes the highlight from the prev active layer")

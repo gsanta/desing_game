@@ -5,11 +5,13 @@ namespace spright
 namespace engine
 {
 
-    int Window::getWidth() const {
+    int Window::getWidth() const
+    {
         return m_Width;
     }
 
-    int Window::getHeight() const {
+    int Window::getHeight() const
+    {
         return m_Height;
     }
 
@@ -18,5 +20,5 @@ namespace engine
         m_Width = width;
         m_Height = height;
     }
-}
-}
+} // namespace engine
+} // namespace spright

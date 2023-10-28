@@ -1,6 +1,6 @@
 #pragma once
-#include "../../graphics/renderable/bounds.h"
 #include "../../graphics/layer/layer.h"
+#include "../../graphics/renderable/bounds.h"
 
 namespace spright
 {

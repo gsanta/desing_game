@@ -14,7 +14,7 @@ namespace engine
     class Window
     {
     public:
-        inline Window(int width, int height): m_Width(width), m_Height(height)
+        inline Window(int width, int height) : m_Width(width), m_Height(height)
         {
         }
 

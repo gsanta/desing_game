@@ -134,7 +134,8 @@ namespace engine
         renderer.setIndexCount(renderer.getIndexCount() + 6);
     }
 
-    Rect2D *Rect2D::clone() const {
+    Rect2D *Rect2D::clone() const
+    {
         return new Rect2D(*this);
     }
 

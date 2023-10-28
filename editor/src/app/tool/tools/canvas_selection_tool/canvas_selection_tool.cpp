@@ -12,6 +12,10 @@ namespace editor
     {
         Document *document = context.doc.document;
 
+        if (document->getActiveDrawing()) {
+            document->getActiveDrawing()->getDecorationLayer().clear();
+        }
+
         for (size_t i = 0; i < document->getDrawings().size(); i++)
         {
             if (document->getDrawings()[i].getBounds().contains(context.pointer.curr.x, context.pointer.curr.y))
@@ -24,12 +28,24 @@ namespace editor
         Drawing *activeDrawing = document->getActiveDrawing();
         if (activeDrawing)
         {
-            activeDrawing->getDecorationLayer().clear();
-
             Bounds bounds = activeDrawing->getBounds();
 
-            Rect2D rect(bounds.getBottomLeft().x - 0.5, bounds.getBottomLeft().y, 0.5, bounds.getHeight(), COLOR_BLUE);
-            activeDrawing->getDecorationLayer().add(rect);
+            float minX = bounds.minX;
+            float minY = bounds.minY;
+            float maxX = bounds.maxX;
+            float maxY = bounds.maxY;
+
+            activeDrawing->getDecorationLayer().clear();
+
+            Rect2D top(minX, maxY, maxX - minX, 0.2, COLOR_BLUE);
+            Rect2D right(maxX, minY, 0.2, maxY - minY, COLOR_BLUE);
+            Rect2D bottom(minX, minY - 0.2, maxX - minX, 0.2, COLOR_BLUE);
+            Rect2D left(minX - 0.2, minY, 0.2, maxY - minY, COLOR_BLUE);
+
+            activeDrawing->getDecorationLayer().add(top);
+            activeDrawing->getDecorationLayer().add(right);
+            activeDrawing->getDecorationLayer().add(bottom);
+            activeDrawing->getDecorationLayer().add(left);
         }
     }
 } // namespace editor

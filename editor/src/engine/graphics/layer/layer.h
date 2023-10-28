@@ -20,6 +20,8 @@ namespace engine
 
         Renderable2D &add(const Renderable2D &rect);
 
+        std::vector<Renderable2D *> &getRenderables();
+
         void clear();
 
     private:

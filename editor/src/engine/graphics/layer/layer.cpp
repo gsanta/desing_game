@@ -20,6 +20,11 @@ namespace engine
         return newRenderable;
     }
 
+    std::vector<Renderable2D *> &Layer::getRenderables()
+    {
+        return m_Group.getRenderables();
+    }
+
     void Layer::clear()
     {
         m_Group.clear();

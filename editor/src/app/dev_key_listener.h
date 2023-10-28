@@ -54,7 +54,7 @@ namespace editor
             }
             else if (key == GLFW_KEY_C)
             {
-                m_Editor->getToolHandler()->setSelectedTool("circle");
+                m_Editor->getToolHandler()->setSelectedTool("canvas_selection");
 
                 // m_DocumentFactory->createFrame(m_DocumentStore->getActiveDocument());
                 // m_DocumentStore->getActiveDocument().getActiveDrawing()->setActiveFrame(

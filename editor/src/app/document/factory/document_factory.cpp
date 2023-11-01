@@ -104,7 +104,10 @@ namespace editor
 
     Drawing3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
     {
-        return Drawing3d(UuidGenerator::generate(), bounds, Layer(m_RendererProvider->createRenderer2D()), m_RendererProvider->createRenderer2D());
+        return Drawing3d(UuidGenerator::generate(),
+                         bounds,
+                         Layer(m_RendererProvider->createRenderer2D()),
+                         m_RendererProvider->createRenderer2D());
     }
 
 

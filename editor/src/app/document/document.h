@@ -54,7 +54,7 @@ namespace editor
 
         std::vector<std::unique_ptr<Canvas>> &getCanvases();
 
-        Canvas& getCanvas(std::string uuid);
+        Canvas &getCanvas(std::string uuid);
 
         std::shared_ptr<DocumentHistory> getHistory();
 

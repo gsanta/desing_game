@@ -9,7 +9,8 @@ namespace engine
     class Canvas
     {
     public:
-        enum RenderTarget {
+        enum RenderTarget
+        {
             Screen,
             Image
         };

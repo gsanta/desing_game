@@ -51,8 +51,7 @@ SCENARIO("Tool handler")
                 THEN("it sets it as the active drawing")
                 {
                     REQUIRE(document.getActiveDrawing() != nullptr);
-                    REQUIRE(document.getActiveDrawing() ==
-                            &document.getDrawing(document.getCanvases()[1]->getUuid()));
+                    REQUIRE(document.getActiveDrawing() == &document.getDrawing(document.getCanvases()[1]->getUuid()));
                 }
 
                 THEN("highlights the active drawing")

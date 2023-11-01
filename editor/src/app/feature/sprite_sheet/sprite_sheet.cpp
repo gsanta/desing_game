@@ -10,7 +10,7 @@ namespace editor
     {
     }
 
-    Drawing& SpriteSheet::generateSpriteSheet(Drawing &drawing)
+    Drawing &SpriteSheet::generateSpriteSheet(Drawing &drawing)
     {
         int frameCount = drawing.getFrames().size();
 

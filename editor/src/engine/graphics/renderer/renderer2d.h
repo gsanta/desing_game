@@ -29,23 +29,23 @@ namespace engine
 
         Renderer2D(const Renderer2D &);
 
-		virtual ~Renderer2D();
+        virtual ~Renderer2D();
 
         virtual Renderer2D &operator=(Renderer2D &);
 
-		friend bool operator==(const Renderer2D &, const Renderer2D &);
+        friend bool operator==(const Renderer2D &, const Renderer2D &);
 
-		friend bool operator!=(const Renderer2D &, const Renderer2D &);
+        friend bool operator!=(const Renderer2D &, const Renderer2D &);
 
         virtual bool isEqual(const Renderer2D &rhs) const;
 
-		virtual Renderer2D *clone() const = 0;
+        virtual Renderer2D *clone() const = 0;
 
         void push(const Mat4 &matrix, bool override = false);
 
-		void pop();
+        void pop();
 
-		const spright::maths::Mat4 *getTransformation();
+        const spright::maths::Mat4 *getTransformation();
 
         inline GLsizei getIndexCount()
         {
@@ -59,11 +59,11 @@ namespace engine
 
         virtual void flush() = 0;
 
-		virtual void begin() = 0;
+        virtual void begin() = 0;
 
-		virtual void end() = 0;
+        virtual void end() = 0;
 
-		virtual VertexData *&getBuffer() = 0;
+        virtual VertexData *&getBuffer() = 0;
 
         virtual Shader &getShader() = 0;
     };

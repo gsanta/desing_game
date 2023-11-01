@@ -14,7 +14,8 @@ namespace engine
         return m_Bounds;
     }
 
-    const std::string Canvas::getUuid() const {
+    const std::string Canvas::getUuid() const
+    {
         return m_Uuid;
     }
 

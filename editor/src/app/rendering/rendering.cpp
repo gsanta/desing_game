@@ -20,6 +20,11 @@ void Rendering::render()
         {
             m_ScreenTargetRenderer.render(drawing);
         }
+
+        for (Drawing3d &drawing : m_DocumentStore->getActiveDocument().getDrawing3ds())
+        {
+            m_ScreenTargetRenderer.render3d(drawing);
+        }
     }
     else
     {

@@ -6,7 +6,7 @@ namespace editor
 {
     TileUndo::TileUndo(Document &document, std::shared_ptr<ToolStore> tools) : m_Tools(tools)
     {
-        m_DrawingIndex = document.getActiveDrawingIndex();
+        m_DrawingIndex = document.getActiveCanvasIndex();
 
         m_FrameIndex = document.getActiveDrawing()->getActiveFrameIndex();
         m_TileLayerIndex = document.getActiveDrawing()->getActiveLayerIndex();

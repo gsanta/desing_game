@@ -16,14 +16,16 @@ namespace editor
     class Drawing : public Canvas
     {
     public:
-        Drawing(const Bounds &bounds,
+        Drawing(const std::string &uuid,
+                const Bounds &bounds,
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,
                 const TileLayer &cursorLayer,
                 const Layer &decorationLayer);
 
-        Drawing(const TileLayer &initialLayer,
+        Drawing(const std::string &uuid,
+                const TileLayer &initialLayer,
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,

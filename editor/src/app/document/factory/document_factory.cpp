@@ -102,6 +102,11 @@ namespace editor
         document.getActiveDrawing()->addFrame(layers);
     }
 
+    Drawing3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
+    {
+        return Drawing3d(UuidGenerator::generate(), bounds, Layer(m_RendererProvider->createRenderer2D()), m_RendererProvider->createRenderer2D());
+    }
+
 
     Drawing DocumentFactory::createDrawing(const CreateDrawingProps &props) const
     {
@@ -111,7 +116,8 @@ namespace editor
         size_t layerCount = props.layerCount;
         bool hasCheckerBoard = props.hasCheckerBoard;
 
-        Drawing drawing(bounds,
+        Drawing drawing(UuidGenerator::generate(),
+                        bounds,
                         createBackgroundLayer(bounds, backgroundLayerTileSize),
                         createTempLayer(bounds, tileSize),
                         createToolLayer(bounds, tileSize),
@@ -152,10 +158,11 @@ namespace editor
 
         Camera camera(m_Window, -1.0f, 1.0f);
 
-        Document document(drawingBounds,
-                          Canvas(drawingBounds, Layer(m_RendererProvider->createRenderer2D())),
-                          camera,
-                          std::make_shared<DocumentHistory>());
+        Document document(
+            drawingBounds,
+            Canvas(UuidGenerator::generate(), drawingBounds, Layer(m_RendererProvider->createRenderer2D())),
+            camera,
+            std::make_shared<DocumentHistory>());
 
         return document;
     }
@@ -170,6 +177,10 @@ namespace editor
             CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
         document.addDrawing(drawing);
+
+        Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+
+        document.addDrawing3d(drawing3d);
 
         return document;
     }

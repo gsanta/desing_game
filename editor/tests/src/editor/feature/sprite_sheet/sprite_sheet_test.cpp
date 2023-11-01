@@ -87,8 +87,7 @@ SCENARIO("Sprite sheet")
 
         WHEN("generating a sprite sheet")
         {
-            spriteSheet.generateSpriteSheet(*document.getActiveDrawing());
-            Drawing &spriteSheetDrawing = document.getDrawing("");
+            Drawing &spriteSheetDrawing = spriteSheet.generateSpriteSheet(*document.getActiveDrawing());
 
             THEN(
                 "it creates a new drawing on the right side of the original drawing and places all frames horizontally")

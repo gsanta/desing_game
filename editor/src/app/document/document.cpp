@@ -39,7 +39,7 @@ namespace editor
         return m_ActiveCanvasIndex;
     }
 
-    Drawing& Document::addDrawing(const Drawing &drawing)
+    Drawing &Document::addDrawing(const Drawing &drawing)
     {
         m_AllCanvases.push_back(std::unique_ptr<Drawing>(new Drawing(drawing)));
 
@@ -48,7 +48,7 @@ namespace editor
             m_ActiveCanvasIndex = 0;
         }
 
-        return *dynamic_cast<Drawing*>(m_AllCanvases.back().get());
+        return *dynamic_cast<Drawing *>(m_AllCanvases.back().get());
     }
 
     Drawing &Document::getDrawing(std::string uuid)
@@ -97,8 +97,10 @@ namespace editor
         {
             m_ActiveCanvasIndex = it - m_AllCanvases.begin();
         }
-
-        m_ActiveCanvasIndex = -1;
+        else
+        {
+            m_ActiveCanvasIndex = -1;
+        }
     }
 
     std::vector<std::unique_ptr<Canvas>> &Document::getCanvases()

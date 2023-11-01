@@ -74,7 +74,7 @@ SCENARIO("Tool handler")
                 THEN("removes the highlight from the prev active layer")
                 {
                     Layer &decorationLayer =
-                        document.getDrawing(document.getCanvases()[1]->getUuid()).getDecorationLayer();
+                        document.getDrawing(document.getCanvases()[0]->getUuid()).getDecorationLayer();
                     REQUIRE(decorationLayer.getRenderables().size() == 0);
                 }
             }

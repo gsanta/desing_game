@@ -18,6 +18,15 @@ namespace engine
         return m_Uuid;
     }
 
+    Canvas *Canvas::clone() const
+    {
+        return new Canvas(m_Uuid, m_Bounds, m_DecorationLayer);
+    }
+
+    void Canvas::render(const Camera &camera, Canvas::RenderTarget target)
+    {
+    }
+
     Layer &Canvas::getDecorationLayer()
     {
         return m_DecorationLayer;

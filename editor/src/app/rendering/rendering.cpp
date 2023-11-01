@@ -16,14 +16,9 @@ void Rendering::render()
 
     if (m_RenderingTarget == Rendering::Target::SCREEN)
     {
-        for (Drawing &drawing : m_DocumentStore->getActiveDocument().getDrawings())
+        for (std::unique_ptr<Canvas> &canvas : m_DocumentStore->getActiveDocument().getCanvases())
         {
-            m_ScreenTargetRenderer.render(drawing);
-        }
-
-        for (Drawing3d &drawing : m_DocumentStore->getActiveDocument().getDrawing3ds())
-        {
-            m_ScreenTargetRenderer.render3d(drawing);
+            canvas->render(m_DocumentStore->getActiveDocument().getCamera(), Canvas::Screen);
         }
     }
     else
@@ -31,7 +26,7 @@ void Rendering::render()
         Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
         if (activeDrawing != nullptr)
         {
-            m_ImageTargetRenderer.render(*activeDrawing);
+            activeDrawing->render(m_DocumentStore->getActiveDocument().getCamera(), Canvas::Image);
         }
     }
 

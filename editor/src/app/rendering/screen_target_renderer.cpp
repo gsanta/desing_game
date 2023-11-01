@@ -38,7 +38,7 @@ namespace editor
 
         drawing.getDecorationLayer().render(camera);
 
-        drawing.render(camera);
+        // drawing.render(camera);
     }
 
 } // namespace editor

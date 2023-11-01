@@ -78,6 +78,10 @@ namespace editor
 
         void addBackgroundLayer(const TileLayer &tileLayer);
 
+        Drawing *clone() const override;
+
+        void render(const Camera &camera, Canvas::RenderTarget target) override;
+
         std::string getJson();
 
         DrawingState &getState();

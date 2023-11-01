@@ -223,6 +223,34 @@ namespace editor
         m_BackgroundLayer = std::make_shared<TileLayer>(tileLayer);
     }
 
+    Drawing *Drawing::clone() const {
+        return new Drawing(*this);
+    }
+
+    void Drawing::render(const Camera &camera, Canvas::RenderTarget target)
+    {
+        for (TileLayer &layer : getActiveFrame().getLayers())
+        {
+            layer.render(camera);
+        }
+
+        if (target == Screen)
+        {
+            for (size_t i = 0; i < getTempLayerCount(); i++)
+            {
+                getTempLayer(i).render(camera);
+            }
+
+            getBackgroundLayer().render(camera);
+
+            getDecorationLayer().render(camera);
+
+            getToolLayer().render(camera);
+
+            getCursorLayer().render(camera);
+        }
+    }
+
     std::string Drawing::getJson()
     {
         nlohmann::json json = getActiveFrame().getLayer(m_ActiveLayerIndex).getJson();

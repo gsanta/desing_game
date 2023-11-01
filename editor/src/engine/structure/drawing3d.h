@@ -18,7 +18,9 @@ namespace engine
 
         Renderable3d &add(const Renderable3d &rect);
 
-        void render(const Camera &camera);
+        Drawing3d *clone() const override;
+
+        void render(const Camera &camera, Canvas::RenderTarget target) override;
 
     private:
         Group<Renderable3d> m_Group;

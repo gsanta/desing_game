@@ -9,16 +9,20 @@ namespace engine
     class Canvas
     {
     public:
-        enum Type {
-            Drawing,
-            Drawing3d
+        enum RenderTarget {
+            Screen,
+            Image
         };
 
         Canvas(const std::string &uuid, const Bounds &bounds, const Layer &decorationLayer);
 
-        virtual const Bounds &getBounds() const;
+        const Bounds &getBounds() const;
 
         const std::string getUuid() const;
+
+        virtual Canvas *clone() const;
+
+        virtual void render(const Camera &camera, Canvas::RenderTarget target);
 
         Layer &getDecorationLayer();
 

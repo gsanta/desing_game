@@ -21,7 +21,7 @@ namespace editor
         {
             if (document->getCanvases()[i]->getBounds().contains(context.pointer.curr.x, context.pointer.curr.y))
             {
-                document->setActiveCanvas(document->getCanvases()[i]);
+                document->setActiveCanvas(document->getCanvases()[i]->getUuid());
                 break;
             }
         }

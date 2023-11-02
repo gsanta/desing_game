@@ -92,7 +92,7 @@ Drawing DrawingBuilder::buildFromLayers()
     const TileLayer toolLayer("", renderer, Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
     const TileLayer cursorLayer("", renderer, Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
 
-    Drawing drawing(UuidGenerator::generate(),
+    Drawing drawing(UuidGenerator::getInstance().generate(),
                     initialLayer,
                     backgroundLayer,
                     tempLayer,
@@ -126,7 +126,7 @@ Drawing DrawingBuilder::buildFromFrames()
         frames.push_back(frameBuilder.build());
     }
 
-    Drawing drawing(UuidGenerator::generate(),
+    Drawing drawing(UuidGenerator::getInstance().generate(),
                     frames[0].getLayers()[0].getBounds(),
                     backgroundLayer,
                     tempLayer,

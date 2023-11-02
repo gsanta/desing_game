@@ -223,7 +223,8 @@ namespace editor
         m_BackgroundLayer = std::make_shared<TileLayer>(tileLayer);
     }
 
-    Drawing *Drawing::clone() const {
+    Drawing *Drawing::clone() const
+    {
         return new Drawing(*this);
     }
 

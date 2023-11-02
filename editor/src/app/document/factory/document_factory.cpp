@@ -104,7 +104,7 @@ namespace editor
 
     Drawing3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
     {
-        return Drawing3d(UuidGenerator::generate(),
+        return Drawing3d(UuidGenerator::getInstance().generate(),
                          bounds,
                          Layer(m_RendererProvider->createRenderer2D()),
                          m_RendererProvider->createRenderer2D());
@@ -119,7 +119,7 @@ namespace editor
         size_t layerCount = props.layerCount;
         bool hasCheckerBoard = props.hasCheckerBoard;
 
-        Drawing drawing(UuidGenerator::generate(),
+        Drawing drawing(UuidGenerator::getInstance().generate(),
                         bounds,
                         createBackgroundLayer(bounds, backgroundLayerTileSize),
                         createTempLayer(bounds, tileSize),
@@ -163,7 +163,7 @@ namespace editor
 
         Document document(
             drawingBounds,
-            Canvas(UuidGenerator::generate(), drawingBounds, Layer(m_RendererProvider->createRenderer2D())),
+            Canvas(UuidGenerator::getInstance().generate(), drawingBounds, Layer(m_RendererProvider->createRenderer2D())),
             camera,
             std::make_shared<DocumentHistory>());
 

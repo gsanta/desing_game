@@ -5,13 +5,15 @@ namespace spright
 namespace engine
 {
 
-    UuidGenerator &UuidGenerator::getInstance() {
+    UuidGenerator &UuidGenerator::getInstance()
+    {
         static UuidGenerator instance;
 
         return instance;
     }
 
-    UuidGenerator::UuidGenerator() {
+    UuidGenerator::UuidGenerator()
+    {
         auto seed_data = std::array<int, 6>{};
         std::generate(std::begin(seed_data), std::end(seed_data), std::ref(m_RandomDevice));
         std::seed_seq seq(std::begin(seed_data), std::end(seed_data));

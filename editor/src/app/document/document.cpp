@@ -65,7 +65,7 @@ namespace editor
         return dynamic_cast<Drawing &>(*(*it));
     }
 
-    void Document::removeCanvas(std::string &uuid)
+    void Document::removeCanvas(const std::string &uuid)
     {
         auto it = std::find_if(m_AllCanvases.begin(),
                                m_AllCanvases.end(),

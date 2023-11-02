@@ -44,7 +44,7 @@ namespace editor
 
         Drawing &getDrawing(std::string uuid);
 
-        void removeCanvas(std::string &uuid);
+        void removeCanvas(const std::string &uuid);
 
         void addDrawing3d(const Drawing3d &drawing);
 

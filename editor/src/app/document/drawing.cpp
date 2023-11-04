@@ -9,14 +9,13 @@ namespace editor
 
     Drawing::Drawing(const std::string &uuid,
                      const Bounds &bounds,
-                     const Camera &camera,
-                     std::shared_ptr<Renderer2D> renderer,
+                     const Renderer2D &renderer,
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer,
                      const Layer &decorationLayer)
-        : Canvas(uuid, bounds, camera, renderer, decorationLayer)
+        : Canvas(uuid, bounds, renderer, decorationLayer)
     {
         m_BackgroundLayer = std::make_shared<TileLayer>(backgroundLayer);
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
@@ -25,15 +24,14 @@ namespace editor
     }
 
     Drawing::Drawing(const std::string &uuid,
-                     const Camera &camera,
-                     std::shared_ptr<Renderer2D> renderer,
+                     const Renderer2D &renderer,
                      const TileLayer &initialLayer,
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer,
                      const Layer &decorationLayer)
-        : Canvas(uuid, initialLayer.getBounds(), camera, renderer, decorationLayer)
+        : Canvas(uuid, initialLayer.getBounds(), renderer, decorationLayer)
     {
         Frame frame(0);
         frame.addLayer(initialLayer);
@@ -46,6 +44,33 @@ namespace editor
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
         m_ToolLayer = std::make_shared<TileLayer>(toolLayer);
         m_CursorLayer = std::make_shared<TileLayer>(cursorLayer);
+    }
+
+    Drawing::Drawing(const Drawing &other)
+        : Canvas(other), m_BackgroundLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_BackgroundLayer))),
+          m_TempLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_TempLayer))),
+          m_ToolLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_ToolLayer))),
+          m_CursorLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_CursorLayer))),
+          m_TempLayers(other.m_TempLayers), m_Frames(other.m_Frames), m_ActiveFrameIndex(other.m_ActiveFrameIndex),
+          m_ActiveLayerIndex(other.m_ActiveLayerIndex), m_DrawingState(other.m_DrawingState)
+    {
+    }
+
+    Drawing &Drawing::operator=(const Drawing &other)
+    {
+        Canvas::operator=(other);
+        m_BackgroundLayer.reset(new TileLayer(*other.m_BackgroundLayer));
+
+        m_TempLayer.reset(new TileLayer(*other.m_TempLayer));
+        m_ToolLayer.reset(new TileLayer(*other.m_ToolLayer));
+        m_CursorLayer.reset(new TileLayer(*other.m_CursorLayer));
+        m_TempLayers = other.m_TempLayers;
+        m_Frames = other.m_Frames;
+        m_ActiveFrameIndex = other.m_ActiveFrameIndex;
+        m_ActiveLayerIndex = other.m_ActiveLayerIndex;
+        m_DrawingState = other.m_DrawingState;
+
+        return *this;
     }
 
     std::vector<Frame> &Drawing::getFrames()
@@ -236,23 +261,23 @@ namespace editor
     {
         for (TileLayer &layer : getActiveFrame().getLayers())
         {
-            layer.render(camera);
+            layer.render(camera, getRenderer());
         }
 
         if (target == Screen)
         {
             for (size_t i = 0; i < getTempLayerCount(); i++)
             {
-                getTempLayer(i).render(camera);
+                getTempLayer(i).render(camera, getRenderer());
             }
 
-            getBackgroundLayer().render(camera);
+            getBackgroundLayer().render(camera, getRenderer());
 
-            getDecorationLayer().render(camera);
+            getDecorationLayer().render(camera, getRenderer());
 
-            getToolLayer().render(camera);
+            getToolLayer().render(camera, getRenderer());
 
-            getCursorLayer().render(camera);
+            getCursorLayer().render(camera, getRenderer());
         }
     }
 

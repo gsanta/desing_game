@@ -17,9 +17,12 @@ namespace engine
 
         Canvas(const std::string &uuid,
                const Bounds &bounds,
-               const Camera &camera,
-               std::shared_ptr<Renderer2D> renderer,
+               const Renderer2D &renderer,
                const Layer &decorationLayer);
+
+        Canvas(const Canvas &other);
+
+        Canvas& operator=(const Canvas &other);
 
         const Bounds &getBounds() const;
 
@@ -33,8 +36,10 @@ namespace engine
 
         Layer &getDecorationLayer();
 
+        void setCamera(const Camera &camera);
+
     private:
-        Camera m_Camera;
+        std::unique_ptr<Camera> m_Camera;
 
         Bounds m_Bounds;
 
@@ -42,7 +47,7 @@ namespace engine
 
         std::string m_Uuid;
 
-        std::shared_ptr<Renderer2D> m_Renderer;
+        std::unique_ptr<Renderer2D> m_Renderer;
     };
 } // namespace engine
 } // namespace spright

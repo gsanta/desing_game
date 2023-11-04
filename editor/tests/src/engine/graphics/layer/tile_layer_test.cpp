@@ -16,21 +16,18 @@ SCENARIO("TileLayer")
 {
     GIVEN("a tile layer")
     {
-
-        std::shared_ptr<Renderer2D> renderer = std::make_shared<HeadlessRenderer2D>();
         WHEN("copying it")
         {
             THEN("the copy equals to the original")
             {
                 Rect2D rect(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
                 Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
-                TileLayer layer1("layer", renderer, Group<Rect2D>(), bounds);
+                TileLayer layer1("layer", Group<Rect2D>(), bounds);
 
                 layer1.add(rect);
 
                 TileLayer layer2("layer2",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
 
                 layer2 = layer1;
@@ -45,12 +42,10 @@ SCENARIO("TileLayer")
             THEN("the two equals")
             {
                 TileLayer layer1("layer",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer2("layer",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
                 Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
@@ -70,24 +65,19 @@ SCENARIO("TileLayer")
             THEN("the two do not equal")
             {
                 TileLayer layer1("layer",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer2("layer_2",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer3("layer_3",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 TileLayer layer4("layer_4",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
                 TileLayer layer5("layer_5",
-                                 renderer,
-                                 Group<Rect2D>(),
+                                  Group<Rect2D>(),
                                  Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
                 layer5.add(Rect2D(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF));
 
@@ -103,7 +93,6 @@ SCENARIO("TileLayer")
             THEN("it will contain the new tile")
             {
                 TileLayer layer("layer",
-                                renderer,
                                 Group<Rect2D>(),
                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 
@@ -127,7 +116,6 @@ SCENARIO("TileLayer")
             {
 
                 TileLayer layer("layer",
-                                renderer,
                                 Group<Rect2D>(),
                                 Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
 

@@ -18,8 +18,7 @@ namespace editor
     public:
         Drawing(const std::string &uuid,
                 const Bounds &bounds,
-                const Camera &camera,
-                std::shared_ptr<Renderer2D> renderer,
+                const Renderer2D &renderer,
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,
@@ -27,14 +26,17 @@ namespace editor
                 const Layer &decorationLayer);
 
         Drawing(const std::string &uuid,
-                const Camera &camera,
-                std::shared_ptr<Renderer2D> renderer,
+                const Renderer2D &renderer,
                 const TileLayer &initialLayer,
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,
                 const TileLayer &cursorLayer,
                 const Layer &decorationLayer);
+
+        Drawing(const Drawing& other);
+
+        Drawing& operator=(const Drawing& other);
 
         std::vector<Frame> &getFrames();
 

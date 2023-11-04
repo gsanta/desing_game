@@ -90,10 +90,6 @@ namespace engine
     {
         float w = (float)m_Window->getWidth() / getScaleFactor();
         float h = (float)m_Window->getHeight() / getScaleFactor();
-        if ((x / getScaleFactor()) - w / 2.0f > -16.5f)
-        {
-            float a = 1;
-        }
 
         const Mat4 scaleMatrix =
             spright::maths::Mat4::scale(Vec3(1.0f / getScaleFactor(), 1.0f / getScaleFactor(), 1.0f));

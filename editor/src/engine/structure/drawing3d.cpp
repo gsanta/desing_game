@@ -6,11 +6,18 @@ namespace engine
 {
     Drawing3d::Drawing3d(const std::string &uuid,
                          const Bounds &bounds,
-                         const Camera &camera,
                          const Layer &decorationLayer,
-                         std::shared_ptr<Renderer2D> renderer)
-        : Canvas(uuid, bounds, camera, renderer, decorationLayer)
+                         const Renderer2D &renderer)
+        : Canvas(uuid, bounds, renderer, decorationLayer)
     {
+    }
+
+    Drawing3d &Drawing3d::operator=(const Drawing3d &other)
+    {
+        Canvas::operator=(other);
+
+        m_Group = other.m_Group;
+        return *this;
     }
 
     Renderable &Drawing3d::add(const Renderable &renderable)
@@ -34,7 +41,7 @@ namespace engine
 
         if (target == Screen)
         {
-            getDecorationLayer().render(camera);
+            getDecorationLayer().render(camera, getRenderer());
         }
     }
 

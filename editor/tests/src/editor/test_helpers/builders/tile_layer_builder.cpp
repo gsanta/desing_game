@@ -56,7 +56,6 @@ TileLayer TileLayerBuilder::build()
     }
 
     TileLayer layer("layer_" + std::to_string(m_Index),
-                    std::make_shared<HeadlessRenderer2D>(),
                     Group<Rect2D>(),
                     m_Bounds,
                     m_TileSize);

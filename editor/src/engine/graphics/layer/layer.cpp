@@ -4,13 +4,9 @@ namespace spright
 {
 namespace engine
 {
-    Layer::Layer(std::shared_ptr<Renderer2D> renderer) : m_Renderer(renderer)
+    void Layer::render(const Camera &camera, Renderer2D& renderer)
     {
-    }
-
-    void Layer::render(const Camera &camera)
-    {
-        m_Group.render(camera, *m_Renderer.get());
+        m_Group.render(camera, renderer);
     }
 
     Renderable2D &Layer::add(const Renderable2D &renderable)

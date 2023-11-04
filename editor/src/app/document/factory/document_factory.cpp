@@ -22,13 +22,12 @@ namespace editor
 
     TileLayer DocumentFactory::createUserLayer(const Bounds &bounds, std::string name, float tileSize) const
     {
-        return TileLayer(name, m_RendererProvider->createRenderer2D(), Group<Rect2D>(), bounds, tileSize);
+        return TileLayer(name, Group<Rect2D>(), bounds, tileSize);
     }
 
     TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize) const
     {
         TileLayer tileLayer("",
-                            m_RendererProvider->createRenderer2D(),
                             Group<Rect2D>(),
                             bounds,
                             tileSize,
@@ -41,7 +40,6 @@ namespace editor
     TileLayer DocumentFactory::createBackgroundLayer(const Bounds &bounds, float tileSize) const
     {
         TileLayer backgroundLayer("",
-                                  m_RendererProvider->createRenderer2D(),
                                   Group<Rect2D>(),
                                   bounds,
                                   tileSize,
@@ -56,7 +54,6 @@ namespace editor
     TileLayer DocumentFactory::createTempLayer(const Bounds &bounds, float tileSize) const
     {
         return TileLayer("",
-                         m_RendererProvider->createRenderer2D(),
                          Group<Rect2D>(),
                          bounds,
                          tileSize,
@@ -67,7 +64,6 @@ namespace editor
     TileLayer DocumentFactory::createToolLayer(const Bounds &bounds, float tileSize) const
     {
         return TileLayer("",
-                         m_RendererProvider->createRenderer2D(),
                          Group<Rect2D>(),
                          bounds,
                          tileSize,
@@ -78,7 +74,6 @@ namespace editor
     TileLayer DocumentFactory::createCursorLayer(const Bounds &bounds, float tileSize) const
     {
         return TileLayer("",
-                         m_RendererProvider->createRenderer2D(),
                          Group<Rect2D>(),
                          bounds,
                          tileSize,
@@ -106,9 +101,8 @@ namespace editor
     {
         Drawing3d drawing = Drawing3d(UuidGenerator::getInstance().generate(),
                                       bounds,
-                                      Camera(m_Window, -1.0f, 1.0f),
-                                      Layer(m_RendererProvider->createRenderer2D()),
-                                      m_RendererProvider->createRenderer2D());
+                                      Layer(),
+                                      *m_RendererProvider->createRenderer2D());
 
         drawing.add(Rect2D(bounds.getBottomLeft().x,
                            bounds.getBottomLeft().y,
@@ -132,13 +126,12 @@ namespace editor
 
         Drawing drawing(UuidGenerator::getInstance().generate(),
                         bounds,
-                        Camera(m_Window, -1.0f, 1.0f),
-                        m_RendererProvider->createRenderer2D(),
+                        *m_RendererProvider->createRenderer2D(),
                         createBackgroundLayer(bounds, backgroundLayerTileSize),
                         createTempLayer(bounds, tileSize),
                         createToolLayer(bounds, tileSize),
                         createCursorLayer(bounds, tileSize),
-                        Layer(m_RendererProvider->createRenderer2D()));
+                        Layer());
 
         if (layerCount > 0)
         {
@@ -147,7 +140,6 @@ namespace editor
             for (size_t i = 0; i < layerCount; i++)
             {
                 TileLayer layer("layer" + std::to_string(i + 1),
-                                m_RendererProvider->createRenderer2D(),
                                 Group<Rect2D>(),
                                 bounds,
                                 tileSize,
@@ -177,9 +169,8 @@ namespace editor
         Document document(drawingBounds,
                           Canvas(UuidGenerator::getInstance().generate(),
                                  drawingBounds,
-                                 camera,
-                                 m_RendererProvider->createRenderer2D(),
-                                 Layer(m_RendererProvider->createRenderer2D())),
+                                 *m_RendererProvider->createRenderer2D(),
+                                 Layer()),
                           camera,
                           std::make_shared<DocumentHistory>());
 

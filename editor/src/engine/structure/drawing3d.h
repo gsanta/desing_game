@@ -13,9 +13,10 @@ namespace engine
     public:
         Drawing3d(const std::string &uuid,
                   const Bounds &bounds,
-                  const Camera &camera,
                   const Layer &decorationLayer,
-                  std::shared_ptr<Renderer2D> renderer);
+                  const Renderer2D &renderer);
+
+        Drawing3d& operator=(const Drawing3d &other);
 
         Renderable &add(const Renderable &rect);
 

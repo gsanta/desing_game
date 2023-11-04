@@ -12,12 +12,12 @@ namespace editor
 
     void ImageTargetRenderer::render(Drawing &drawing)
     {
-        Camera &camera = m_DocumentStore->getActiveDocument().getCamera();
+        // Camera &camera = m_DocumentStore->getActiveDocument().getCamera();
 
-        for (TileLayer &layer : drawing.getActiveFrame().getLayers())
-        {
-            layer.render(camera);
-        }
+        // for (TileLayer &layer : drawing.getActiveFrame().getLayers())
+        // {
+        //     layer.render(camera);
+        // }
     }
 } // namespace editor
 } // namespace spright

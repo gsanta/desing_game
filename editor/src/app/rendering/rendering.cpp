@@ -16,12 +16,6 @@ void Rendering::render()
 
     Document &document = m_DocumentStore->getActiveDocument();
 
-    renderer.begin();
-
-    renderer.getShader().setUniformMat4("pr_matrix", document.getCamera().getProjectionMatrix());
-
-    renderer.push(document.getCamera().getViewMatrix());
-
     if (m_RenderingTarget == Rendering::Target::SCREEN)
     {
         for (std::unique_ptr<Canvas> &canvas : document.getCanvases())

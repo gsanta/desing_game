@@ -9,12 +9,14 @@ namespace editor
 
     Drawing::Drawing(const std::string &uuid,
                      const Bounds &bounds,
+                     const Camera &camera,
+                     std::shared_ptr<Renderer2D> renderer,
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer,
                      const Layer &decorationLayer)
-        : Canvas(uuid, bounds, decorationLayer)
+        : Canvas(uuid, bounds, camera, renderer, decorationLayer)
     {
         m_BackgroundLayer = std::make_shared<TileLayer>(backgroundLayer);
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
@@ -23,13 +25,15 @@ namespace editor
     }
 
     Drawing::Drawing(const std::string &uuid,
+                     const Camera &camera,
+                     std::shared_ptr<Renderer2D> renderer,
                      const TileLayer &initialLayer,
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
                      const TileLayer &cursorLayer,
                      const Layer &decorationLayer)
-        : Canvas(uuid, initialLayer.getBounds(), decorationLayer)
+        : Canvas(uuid, initialLayer.getBounds(), camera, renderer, decorationLayer)
     {
         Frame frame(0);
         frame.addLayer(initialLayer);

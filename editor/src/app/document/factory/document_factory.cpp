@@ -104,10 +104,21 @@ namespace editor
 
     Drawing3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
     {
-        return Drawing3d(UuidGenerator::getInstance().generate(),
-                         bounds,
-                         Layer(m_RendererProvider->createRenderer2D()),
-                         m_RendererProvider->createRenderer2D());
+        Drawing3d drawing = Drawing3d(UuidGenerator::getInstance().generate(),
+                                      bounds,
+                                      Camera(m_Window, -1.0f, 1.0f),
+                                      Layer(m_RendererProvider->createRenderer2D()),
+                                      m_RendererProvider->createRenderer2D());
+
+        drawing.add(Rect2D(bounds.getBottomLeft().x,
+                           bounds.getBottomLeft().y,
+                           bounds.getWidth(),
+                           bounds.getHeight(),
+                           COLOR_WHITE));
+
+        drawing.add(Box(Vec3(0, 0, 0.2), 1, 1, 1, COLOR_RED));
+
+        return drawing;
     }
 
 
@@ -121,6 +132,8 @@ namespace editor
 
         Drawing drawing(UuidGenerator::getInstance().generate(),
                         bounds,
+                        Camera(m_Window, -1.0f, 1.0f),
+                        m_RendererProvider->createRenderer2D(),
                         createBackgroundLayer(bounds, backgroundLayerTileSize),
                         createTempLayer(bounds, tileSize),
                         createToolLayer(bounds, tileSize),
@@ -164,6 +177,8 @@ namespace editor
         Document document(drawingBounds,
                           Canvas(UuidGenerator::getInstance().generate(),
                                  drawingBounds,
+                                 camera,
+                                 m_RendererProvider->createRenderer2D(),
                                  Layer(m_RendererProvider->createRenderer2D())),
                           camera,
                           std::make_shared<DocumentHistory>());

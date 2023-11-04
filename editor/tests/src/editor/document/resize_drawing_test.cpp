@@ -1,4 +1,4 @@
-#include "../src/app/core/colors.h"
+#include "../src/engine/graphics/colors.h"
 #include "../src/app/document/drawing.h"
 #include "../src/app/document/factory/document_factory.h"
 #include "../src/app/document/resize_drawing.h"

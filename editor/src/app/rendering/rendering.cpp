@@ -14,19 +14,27 @@ void Rendering::render()
 {
     m_Window->beforeRender();
 
+    Document &document = m_DocumentStore->getActiveDocument();
+
+    renderer.begin();
+
+    renderer.getShader().setUniformMat4("pr_matrix", document.getCamera().getProjectionMatrix());
+
+    renderer.push(document.getCamera().getViewMatrix());
+
     if (m_RenderingTarget == Rendering::Target::SCREEN)
     {
-        for (std::unique_ptr<Canvas> &canvas : m_DocumentStore->getActiveDocument().getCanvases())
+        for (std::unique_ptr<Canvas> &canvas : document.getCanvases())
         {
-            canvas->render(m_DocumentStore->getActiveDocument().getCamera(), Canvas::Screen);
+            canvas->render(document.getCamera(), Canvas::Screen);
         }
     }
     else
     {
-        Drawing *activeDrawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
+        Drawing *activeDrawing = document.getActiveDrawing();
         if (activeDrawing != nullptr)
         {
-            activeDrawing->render(m_DocumentStore->getActiveDocument().getCamera(), Canvas::Image);
+            activeDrawing->render(document.getCamera(), Canvas::Image);
         }
     }
 

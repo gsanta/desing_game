@@ -6,15 +6,19 @@ namespace engine
 {
     Drawing3d::Drawing3d(const std::string &uuid,
                          const Bounds &bounds,
+                         const Camera &camera,
                          const Layer &decorationLayer,
                          std::shared_ptr<Renderer2D> renderer)
-        : Canvas(uuid, bounds, decorationLayer), m_Renderer(renderer)
+        : Canvas(uuid, bounds, camera, renderer, decorationLayer)
     {
     }
 
-    Renderable3d &Drawing3d::add(const Renderable3d &renderable)
+    Renderable &Drawing3d::add(const Renderable &renderable)
     {
-        Renderable3d &newRenderable = m_Group.add(renderable);
+        Renderable &newRenderable = m_Group.add(renderable);
+
+        Vec3 center = getBounds().getCenter();
+        newRenderable.setPosition(newRenderable.getPosition() + Vec3(center.x, center.y, 0));
 
         return newRenderable;
     }
@@ -26,7 +30,7 @@ namespace engine
 
     void Drawing3d::render(const Camera &camera, Canvas::RenderTarget target)
     {
-        m_Group.render(camera, *m_Renderer);
+        m_Group.render(camera, getRenderer());
 
         if (target == Screen)
         {

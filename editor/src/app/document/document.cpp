@@ -34,6 +34,11 @@ namespace editor
         return dynamic_cast<Drawing *>(m_AllCanvases[m_ActiveCanvasIndex].get());
     }
 
+    Canvas *Document::getActiveCanvas()
+    {
+        return m_AllCanvases[m_ActiveCanvasIndex].get();
+    }
+
     int Document::getActiveCanvasIndex() const
     {
         return m_ActiveCanvasIndex;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../colors.h"
+#include "../../../engine/graphics/colors.h"
 #include "../../../engine/graphics/shader/shader.h"
 #include "../../../maths/vec2.h"
 #include "../../../maths/vec3.h"
@@ -10,6 +12,7 @@
 #include "../renderer/renderer2d.h"
 #include "../renderer/vertex_data.h"
 #include "bounds.h"
+#include "renderable.h"
 
 #include <nlohmann/json.hpp>
 #include <string.h>
@@ -17,7 +20,7 @@ namespace spright
 {
 namespace engine
 {
-    class Renderable2D
+    class Renderable2D : public Renderable
     {
     public:
         Renderable2D(const Bounds &bounds, unsigned int color);
@@ -77,10 +80,7 @@ namespace engine
         virtual Renderable2D *clone() const = 0;
 
     protected:
-        Renderable2D()
-        {
-            setUVDefaults();
-        }
+        Renderable2D();
 
         int m_VertexCount;
 

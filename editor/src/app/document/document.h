@@ -38,6 +38,8 @@ namespace editor
         //! @return The active Drawing() or nullptr
         Drawing *getActiveDrawing();
 
+        Canvas *getActiveCanvas();
+
         int getActiveCanvasIndex() const;
 
         Drawing &addDrawing(const Drawing &drawing);

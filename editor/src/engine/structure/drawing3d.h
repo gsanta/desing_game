@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../graphics/layer/group.h"
-#include "../graphics/renderable/renderable3d.h"
+#include "../graphics/renderable/renderable.h"
 #include "canvas.h"
 
 namespace spright
@@ -13,19 +13,18 @@ namespace engine
     public:
         Drawing3d(const std::string &uuid,
                   const Bounds &bounds,
+                  const Camera &camera,
                   const Layer &decorationLayer,
                   std::shared_ptr<Renderer2D> renderer);
 
-        Renderable3d &add(const Renderable3d &rect);
+        Renderable &add(const Renderable &rect);
 
         Drawing3d *clone() const override;
 
         void render(const Camera &camera, Canvas::RenderTarget target) override;
 
     private:
-        Group<Renderable3d> m_Group;
-
-        std::shared_ptr<Renderer2D> m_Renderer;
+        Group<Renderable> m_Group;
     };
 } // namespace engine
 } // namespace spright

@@ -68,6 +68,8 @@ namespace editor
 
         void setCamera(const Camera &camera);
 
+        Canvas &getBackgroundCanvas();
+
     private:
         std::vector<std::unique_ptr<Canvas>> m_AllCanvases;
 

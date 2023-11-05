@@ -11,12 +11,9 @@ namespace engine
     class Drawing3d : public Canvas
     {
     public:
-        Drawing3d(const std::string &uuid,
-                  const Bounds &bounds,
-                  const Layer &decorationLayer,
-                  const Renderer2D &renderer);
+        Drawing3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer);
 
-        Drawing3d& operator=(const Drawing3d &other);
+        Drawing3d &operator=(const Drawing3d &other);
 
         Renderable &add(const Renderable &rect);
 

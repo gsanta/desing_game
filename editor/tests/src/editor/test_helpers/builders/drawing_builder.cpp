@@ -96,8 +96,7 @@ Drawing DrawingBuilder::buildFromLayers()
                     backgroundLayer,
                     tempLayer,
                     toolLayer,
-                    cursorLayer,
-                    Layer());
+                    cursorLayer);
 
     for (size_t i = 1; i < m_TileLayers.size(); i++)
     {
@@ -131,8 +130,7 @@ Drawing DrawingBuilder::buildFromFrames()
                     backgroundLayer,
                     tempLayer,
                     toolLayer,
-                    cursorLayer,
-                    Layer());
+                    cursorLayer);
 
     for (Frame &frame : frames)
     {

@@ -4,11 +4,8 @@ namespace spright
 {
 namespace engine
 {
-    Drawing3d::Drawing3d(const std::string &uuid,
-                         const Bounds &bounds,
-                         const Layer &decorationLayer,
-                         const Renderer2D &renderer)
-        : Canvas(uuid, bounds, renderer, decorationLayer)
+    Drawing3d::Drawing3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
+        : Canvas(uuid, bounds, renderer)
     {
     }
 

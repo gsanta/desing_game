@@ -22,8 +22,7 @@ namespace editor
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,
-                const TileLayer &cursorLayer,
-                const Layer &decorationLayer);
+                const TileLayer &cursorLayer);
 
         Drawing(const std::string &uuid,
                 const Renderer2D &renderer,
@@ -31,8 +30,7 @@ namespace editor
                 const TileLayer &backgroundLayer,
                 const TileLayer &tempLayer,
                 const TileLayer &toolLayer,
-                const TileLayer &cursorLayer,
-                const Layer &decorationLayer);
+                const TileLayer &cursorLayer);
 
         Drawing(const Drawing& other);
 

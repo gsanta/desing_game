@@ -13,9 +13,8 @@ namespace editor
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
-                     const TileLayer &cursorLayer,
-                     const Layer &decorationLayer)
-        : Canvas(uuid, bounds, renderer, decorationLayer)
+                     const TileLayer &cursorLayer)
+        : Canvas(uuid, bounds, renderer)
     {
         m_BackgroundLayer = std::make_shared<TileLayer>(backgroundLayer);
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
@@ -29,9 +28,8 @@ namespace editor
                      const TileLayer &backgroundLayer,
                      const TileLayer &tempLayer,
                      const TileLayer &toolLayer,
-                     const TileLayer &cursorLayer,
-                     const Layer &decorationLayer)
-        : Canvas(uuid, initialLayer.getBounds(), renderer, decorationLayer)
+                     const TileLayer &cursorLayer)
+        : Canvas(uuid, initialLayer.getBounds(), renderer)
     {
         Frame frame(0);
         frame.addLayer(initialLayer);

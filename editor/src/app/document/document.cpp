@@ -151,5 +151,10 @@ namespace editor
     {
         m_Camera = camera;
     }
+
+    Canvas &Document::getBackgroundCanvas()
+    {
+        return m_Canvas;
+    }
 } // namespace editor
 } // namespace spright

@@ -5,8 +5,8 @@ namespace spright
 namespace engine
 {
 
-    Camera::Camera(const Window *window, float near, float far, int zoomFactor)
-        : m_Window(window), m_Near(near), m_Far(far), m_ZoomFactor(zoomFactor)
+    Camera::Camera(const BoundsInt &screenBounds, float near, float far, int zoomFactor)
+        : m_ScreenBounds(screenBounds), m_Near(near), m_Far(far), m_ZoomFactor(zoomFactor)
     {
         m_View = Mat4::lookAt(Vec3(0, 0, m_Z), Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
@@ -41,19 +41,19 @@ namespace engine
 
     void Camera::zoomToFit(const Bounds &bounds)
     {
-        float windowRatio = m_Window->getWidth() / m_Window->getHeight();
+        float windowRatio = m_ScreenBounds.getWidth() / m_ScreenBounds.getHeight();
 
         float zoom = m_Zoom;
 
         if (bounds.getWidth() / windowRatio > bounds.getHeight())
         {
             float width = bounds.getWidth();
-            zoom = m_Window->getWidth() / width / m_ZoomFactor;
+            zoom = m_ScreenBounds.getWidth() / width / m_ZoomFactor;
         }
         else
         {
             float height = bounds.getHeight();
-            zoom = m_Window->getHeight() / height / m_ZoomFactor;
+            zoom = m_ScreenBounds.getHeight() / height / m_ZoomFactor;
         }
 
         setZoom(zoom);
@@ -68,10 +68,10 @@ namespace engine
     const Mat4 Camera::getProjectionMatrix() const
     {
         int twiceScaleFactor = getScaleFactor() * 2.0f;
-        return Mat4::otrthographic(-m_Window->getWidth() / (twiceScaleFactor + 0.4f),
-                                   m_Window->getWidth() / (twiceScaleFactor + 0.4f),
-                                   -m_Window->getHeight() / (twiceScaleFactor + 0.4f),
-                                   m_Window->getHeight() / (twiceScaleFactor + 0.4f),
+        return Mat4::otrthographic(-m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
+                                   m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
+                                   -m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
+                                   m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
                                    m_Near,
                                    m_Far);
     }
@@ -88,8 +88,8 @@ namespace engine
 
     Vec2 Camera::screenToWorldPos(float x, float y) const
     {
-        float w = (float)m_Window->getWidth() / getScaleFactor();
-        float h = (float)m_Window->getHeight() / getScaleFactor();
+        float w = (float)m_ScreenBounds.getWidth() / getScaleFactor();
+        float h = (float)m_ScreenBounds.getHeight() / getScaleFactor();
 
         const Mat4 scaleMatrix =
             spright::maths::Mat4::scale(Vec3(1.0f / getScaleFactor(), 1.0f / getScaleFactor(), 1.0f));
@@ -105,8 +105,8 @@ namespace engine
 
     Vec2Int Camera::worldToScreenPos(float x, float y) const
     {
-        float scaleX = m_Window->getWidth() / getScaleFactor();
-        float scaleY = m_Window->getHeight() / getScaleFactor();
+        float scaleX = m_ScreenBounds.getWidth() / getScaleFactor();
+        float scaleY = m_ScreenBounds.getHeight() / getScaleFactor();
 
         const Mat4 translateMatrix = spright::maths::Mat4::translation(
             Vec3(-m_Translate.x + scaleX / 2.0f, -m_Translate.y - scaleY / 2.0f, 0.0f));
@@ -116,6 +116,11 @@ namespace engine
         Vec4 result = scaleMatrix * translateMatrix * Vec4(x, y, 0.0f, 1.0f);
 
         return {(int)result.x, (int)-result.y};
+    }
+
+    void Camera::setScreenBounds(const BoundsInt &screenBounds)
+    {
+        m_ScreenBounds = screenBounds;
     }
 
     float Camera::getScaleFactor() const

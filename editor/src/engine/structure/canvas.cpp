@@ -4,34 +4,32 @@ namespace spright
 {
 namespace engine
 {
-    Canvas::Canvas(const std::string &uuid,
-                   const Bounds &bounds,
-                   const Renderer2D &renderer,
-                   const Layer &decorationLayer)
-        : m_Uuid(uuid), m_Bounds(bounds), m_Renderer(std::unique_ptr<Renderer2D>(renderer.clone())),
-          m_DecorationLayer(decorationLayer)
+    Canvas::Canvas(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
+        : m_Uuid(uuid), m_Bounds(bounds), m_Renderer(std::unique_ptr<Renderer2D>(renderer.clone()))
     {
     }
 
     Canvas::Canvas(const Canvas &other)
-        : m_Bounds(other.m_Bounds), m_DecorationLayer(other.m_DecorationLayer),
-          m_Uuid(other.m_Uuid)
+        : m_Bounds(other.m_Bounds), m_DecorationLayer(other.m_DecorationLayer), m_Uuid(other.m_Uuid)
     {
         m_Renderer.reset(other.m_Renderer->clone());
 
-        if (other.m_Camera) {
+        if (other.m_Camera)
+        {
             m_Camera.reset(new Camera(*other.m_Camera));
         }
     }
 
-    Canvas &Canvas::operator=(const Canvas &other) {
+    Canvas &Canvas::operator=(const Canvas &other)
+    {
         m_Bounds = other.m_Bounds;
         m_DecorationLayer = other.m_DecorationLayer;
         m_Uuid = other.m_Uuid;
 
         m_Renderer.reset(other.m_Renderer->clone());
 
-        if (other.m_Camera) {
+        if (other.m_Camera)
+        {
             m_Camera.reset(new Camera(*other.m_Camera));
         }
 
@@ -50,7 +48,7 @@ namespace engine
 
     Canvas *Canvas::clone() const
     {
-        return new Canvas(m_Uuid, m_Bounds, *m_Renderer, m_DecorationLayer);
+        return new Canvas(m_Uuid, m_Bounds, *m_Renderer);
     }
 
     void Canvas::render(const Camera &camera, Canvas::RenderTarget target)
@@ -67,8 +65,13 @@ namespace engine
         return m_DecorationLayer;
     }
 
-    void Canvas::setCamera(const Camera &camera) {
+    void Canvas::setCamera(const Camera &camera)
+    {
         m_Camera.reset(new Camera(camera));
+    }
+
+    Camera *Canvas::getCamera() {
+        return m_Camera.get();
     }
 } // namespace engine
 } // namespace spright

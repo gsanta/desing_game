@@ -19,12 +19,14 @@ DocumentBuilder &DocumentBuilder::withDrawing(const DrawingBuilder &drawing)
 
 Document DocumentBuilder::build()
 {
-    Camera camera(&m_Window, -1.0f, 1.0f);
+    Camera camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()), -1.0f, 1.0f);
 
-    Document document(m_DocumentBounds,
-                      Canvas(UuidGenerator::getInstance().generate(), m_DocumentBounds, *std::make_unique<HeadlessRenderer2D>(), Layer()),
-                      camera,
-                      std::make_shared<DocumentHistory>());
+    Canvas documentCanvas(UuidGenerator::getInstance().generate(),
+                          m_DocumentBounds,
+                          *std::make_unique<HeadlessRenderer2D>());
+    documentCanvas.setCamera(camera);
+
+    Document document(m_DocumentBounds, documentCanvas, camera, std::make_shared<DocumentHistory>());
 
     if (m_Drawings.size() > 0)
     {

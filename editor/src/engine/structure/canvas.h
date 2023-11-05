@@ -15,14 +15,11 @@ namespace engine
             Image
         };
 
-        Canvas(const std::string &uuid,
-               const Bounds &bounds,
-               const Renderer2D &renderer,
-               const Layer &decorationLayer);
+        Canvas(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer);
 
         Canvas(const Canvas &other);
 
-        Canvas& operator=(const Canvas &other);
+        Canvas &operator=(const Canvas &other);
 
         const Bounds &getBounds() const;
 
@@ -37,6 +34,8 @@ namespace engine
         Layer &getDecorationLayer();
 
         void setCamera(const Camera &camera);
+
+        Camera *getCamera();
 
     private:
         std::unique_ptr<Camera> m_Camera;

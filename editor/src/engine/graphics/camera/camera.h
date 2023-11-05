@@ -7,6 +7,7 @@
 #include "../../../maths/vec3.h"
 #include "../../system/window/window.h"
 #include "../renderable/bounds.h"
+#include "../renderable/bounds_int.h"
 #include "./ortho_projection_info.h"
 
 namespace spright
@@ -18,7 +19,7 @@ namespace engine
     class Camera
     {
     public:
-        Camera(const Window *window, float near = -1.0f, float far = 1.0f, int zoomFactor = 17);
+        Camera(const BoundsInt &screenBounds, float near = -1.0f, float far = 1.0f, int zoomFactor = 17);
 
         void translate2D(Vec2 delta);
 
@@ -44,6 +45,8 @@ namespace engine
 
         Vec2Int worldToScreenPos(float x, float y) const;
 
+        void setScreenBounds(const BoundsInt &screenBounds);
+
     private:
         float getScaleFactor() const;
 
@@ -64,7 +67,7 @@ namespace engine
 
         int m_ZoomFactor = 1;
 
-        const Window *m_Window;
+        BoundsInt m_ScreenBounds;
     };
 } // namespace engine
 } // namespace spright

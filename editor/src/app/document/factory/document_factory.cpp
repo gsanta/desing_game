@@ -10,7 +10,7 @@ namespace editor
     {
     }
 
-    DocumentFactory::DocumentFactory(const DocumentFactory &other): m_Window(other.m_Window)
+    DocumentFactory::DocumentFactory(const DocumentFactory &other) : m_Window(other.m_Window)
     {
         m_RendererProvider = other.m_RendererProvider->clone();
     }
@@ -142,7 +142,7 @@ namespace editor
 
         documentCanvas.setCamera(camera);
 
-        Document document(drawingBounds, documentCanvas, camera, std::make_shared<DocumentHistory>());
+        Document document(drawingBounds, documentCanvas, std::make_shared<DocumentHistory>());
 
         return document;
     }
@@ -156,8 +156,10 @@ namespace editor
         Drawing drawing = createDrawing(
             CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
-        Vec2Int minWindow = document.getCamera().worldToScreenPos(drawing.getBounds().minX, drawing.getBounds().minY);
-        Vec2Int maxWindow = document.getCamera().worldToScreenPos(drawing.getBounds().maxX, drawing.getBounds().maxY);
+        Vec2Int minWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().minX,
+                                                                                        drawing.getBounds().minY);
+        Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
+                                                                                        drawing.getBounds().maxY);
 
         drawing.setCamera(BoundsInt(minWindow, maxWindow));
 

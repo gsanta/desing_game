@@ -12,7 +12,7 @@ namespace editor
     {
         if (context.pointer.isDown)
         {
-            m_DocumentStore->getActiveDocument().getCamera().translate2D(context.pointer.prev - context.pointer.curr);
+            m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->translate2D(context.pointer.prev - context.pointer.curr);
         }
     }
 } // namespace editor

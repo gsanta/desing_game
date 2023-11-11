@@ -118,7 +118,7 @@ namespace editor
             }
             else if (key == GLFW_KEY_RIGHT)
             {
-                m_Editor->getActiveDocument().getCamera().translate2D(Vec2(-1.0, 0));
+                m_Editor->getActiveDocument().getBackgroundCanvas().getCamera()->translate2D(Vec2(-1.0, 0));
 
                 // m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_shear);
                 // m_Editor->getToolHandler()->getToolStore().getRotateTool().setRotationInRad(1.5708f);

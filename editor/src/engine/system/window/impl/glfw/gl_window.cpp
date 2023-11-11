@@ -197,6 +197,10 @@ namespace engine
         GLWindow *win = (GLWindow *)glfwGetWindowUserPointer(window);
         win->m_Width = width;
         win->m_Height = height;
+
+        for (WindowResizedListener *listener : win->m_Listeners) {
+            listener->onWindowSizeChanged(width, height);
+        }
     }
 } // namespace engine
 } // namespace spright

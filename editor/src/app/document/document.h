@@ -29,7 +29,6 @@ namespace editor
     public:
         Document(const Bounds &bounds,
                  const Canvas &canvas,
-                 const Camera &camera,
                  std::shared_ptr<DocumentHistory> history);
 
         Document(const Document &other);
@@ -64,8 +63,6 @@ namespace editor
 
         Canvas &getCanvas();
 
-        Camera &getCamera();
-
         void setCamera(const Camera &camera);
 
         Canvas &getBackgroundCanvas();
@@ -76,8 +73,6 @@ namespace editor
         int m_ActiveCanvasIndex = -1;
 
         Canvas m_Canvas;
-
-        Camera m_Camera;
 
         std::shared_ptr<DocumentHistory> m_History;
     };

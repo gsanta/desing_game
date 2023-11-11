@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <functional>
 #include <iostream>
+#include  "window_resized_listener.h"
 
 namespace spright
 {
@@ -46,10 +47,16 @@ namespace engine
 
         virtual InputHandler *getInputHandler() const = 0;
 
+        void addWindowResizedListener(WindowResizedListener *listener);
+
+        void removeWindowResizedListener(WindowResizedListener *listener);
+
     protected:
         int m_Width;
 
         int m_Height;
+
+        std::vector<WindowResizedListener*> m_Listeners;
     };
 } // namespace engine
 } // namespace spright

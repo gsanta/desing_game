@@ -6,13 +6,12 @@ namespace editor
 {
     Document::Document(const Bounds &bounds,
                        const Canvas &canvas,
-                       const Camera &camera,
                        std::shared_ptr<DocumentHistory> history)
-        : m_Canvas(canvas), m_Camera(camera), m_History(history)
+        : m_Canvas(canvas), m_History(history)
     {
     }
 
-    Document::Document(const Document &other) : m_Camera(other.m_Camera), m_Canvas(other.m_Canvas)
+    Document::Document(const Document &other): m_Canvas(other.m_Canvas)
     {
         m_History = other.m_History;
 
@@ -140,16 +139,6 @@ namespace editor
     Canvas &Document::getCanvas()
     {
         return m_Canvas;
-    }
-
-    Camera &Document::getCamera()
-    {
-        return m_Camera;
-    }
-
-    void Document::setCamera(const Camera &camera)
-    {
-        m_Camera = camera;
     }
 
     Canvas &Document::getBackgroundCanvas()

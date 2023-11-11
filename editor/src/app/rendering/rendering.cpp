@@ -20,7 +20,7 @@ void Rendering::render()
     {
         for (std::unique_ptr<Canvas> &canvas : document.getCanvases())
         {
-            canvas->render(document.getCamera(), Canvas::Screen);
+            canvas->render(*document.getBackgroundCanvas().getCamera(), Canvas::Screen);
         }
     }
     else
@@ -28,7 +28,7 @@ void Rendering::render()
         Drawing *activeDrawing = document.getActiveDrawing();
         if (activeDrawing != nullptr)
         {
-            activeDrawing->render(document.getCamera(), Canvas::Image);
+            activeDrawing->render(*document.getBackgroundCanvas().getCamera(), Canvas::Image);
         }
     }
 

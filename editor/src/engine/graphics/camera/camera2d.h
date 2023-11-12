@@ -25,12 +25,6 @@ namespace engine
 
         Vec2 getCenter2D();
 
-        Vec2 screenToWorldPos(float x, float y) const override;
-
-        Vec2Int worldToScreenPos(float x, float y) const override;
-
-        // Arc rotate camera
-
         void front();
 
         void back();

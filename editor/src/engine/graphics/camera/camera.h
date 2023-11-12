@@ -35,9 +35,9 @@ namespace engine
 
         const Mat4 &getViewMatrix() const;
 
-        virtual Vec2 screenToWorldPos(float x, float y) const = 0;
+        virtual Vec2 screenToWorldPos(float x, float y) const;
 
-        virtual Vec2Int worldToScreenPos(float x, float y) const = 0;
+        virtual Vec2Int worldToScreenPos(float x, float y) const;
 
         void setScreenBounds(const BoundsInt &screenBounds);
 

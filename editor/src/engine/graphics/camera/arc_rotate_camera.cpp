@@ -16,14 +16,37 @@ namespace engine
         m_View = Mat4::lookAt(pos, Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
 
-    Vec2 ArcRotateCamera::screenToWorldPos(float x, float y) const
+
+    void ArcRotateCamera::setYaw(float yaw)
     {
-        return {0, 0};
+        m_Yaw = yaw;
+        updateDirection();
     }
 
-    Vec2Int ArcRotateCamera::worldToScreenPos(float x, float y) const
+    float ArcRotateCamera::getYaw() const
     {
-        return {0, 0};
+        return m_Yaw;
+    }
+
+    void ArcRotateCamera::setPitch(float pitch)
+    {
+        if (pitch > M_PI_2)
+        {
+            m_Pitch = 89.0f;
+        }
+        else if (pitch < -M_PI_2)
+        {
+            m_Pitch = -89.0f;
+        } else {
+            m_Pitch = pitch;
+        }
+
+        updateDirection();
+    }
+
+    float ArcRotateCamera::getPitch() const
+    {
+        return m_Pitch;
     }
 
     Camera *ArcRotateCamera::clone() const
@@ -41,6 +64,16 @@ namespace engine
                                     m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
                                     m_Near,
                                     m_Far);
+    }
+
+    void ArcRotateCamera::updateDirection() {
+        Vec3 direction;
+        direction.x = cos(m_Yaw) * cos(m_Pitch);
+        direction.y = sin(m_Pitch);
+        direction.z = sin(m_Yaw) * cos(m_Pitch);
+        direction.normalize();
+
+        m_View = Mat4::lookAt(direction, Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
 } // namespace engine
 } // namespace spright

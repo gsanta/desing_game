@@ -43,7 +43,7 @@ namespace editor
         m_toolHandler->getToolStore().addTool(new BrushTool());
         m_toolHandler->getToolStore().addTool(new RectangleTool());
         m_toolHandler->getToolStore().addTool(new EraserTool(3));
-        m_toolHandler->getToolStore().addTool(new PanTool(getDocumentStore()));
+        m_toolHandler->getToolStore().addTool(new PanTool);
         m_toolHandler->getToolStore().addTool(new ZoomTool(getDocumentStore()));
         m_toolHandler->getToolStore().addTool(new PaintBucketTool());
         m_toolHandler->getToolStore().addTool(new SelectTool());
@@ -54,8 +54,9 @@ namespace editor
         m_toolHandler->getToolStore().addTool(new RotateTool());
         m_toolHandler->getToolStore().addTool(new MoveTool());
         m_toolHandler->getToolStore().addTool(new CanvasSelectionTool());
+        m_toolHandler->getToolStore().addTool(new CameraRotationTool());
         m_toolHandler->addActiveTool("zoom");
-        m_toolHandler->setSelectedTool("pan");
+        m_toolHandler->setSelectedTool("camera_rotation");
 
         m_RunLoop.add(m_FramePlayer);
     }

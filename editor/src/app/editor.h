@@ -11,11 +11,13 @@
 #include "document/document_store.h"
 #include "document/factory/document_factory.h"
 #include "document/factory/gl_renderer_provider.h"
+#include "document/update_screen_bounds.h"
 #include "editor_config.h"
 #include "event/event_emitter.h"
 #include "feature/frame/frame_player.h"
 #include "feature/sprite_sheet/sprite_sheet.h"
 #include "tool/tool_handler.h"
+#include "tool/tools/camera_rotation_tool/camera_rotation_tool.h"
 #include "tool/tools/canvas_selection_tool/canvas_selection_tool.h"
 #include "tool/tools/circle_tool/circle_tool.h"
 #include "tool/tools/color_picker_tool/color_picker_tool.h"
@@ -28,7 +30,6 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
-#include "document/update_screen_bounds.h"
 
 #include <vector>
 

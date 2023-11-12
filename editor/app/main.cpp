@@ -245,8 +245,6 @@ int main()
         float camX = sin(glfwGetTime()) * radius;
         float camZ = cos(glfwGetTime()) * radius;
 
-        std::cout << camZ << std::endl;
-
         // editor->getDocumentStore()->getActiveDocument().getBackgroundCanvas().getCamera()->bottom();
         // editor->getDocumentStore()->getActiveDocument().getBackgroundCanvas().getCamera()->lookAt(Vec3(camX, camZ, 0));
 

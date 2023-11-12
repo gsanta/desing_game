@@ -21,7 +21,9 @@ namespace editor
         const Bounds bounds = document.getActiveDrawing()->getBounds();
 
         Camera *camera = document.getBackgroundCanvas().getCamera();
-        camera->zoomToFit(document.getActiveDrawing()->getBounds());
+        Camera2d *camera2d = dynamic_cast<Camera2d *>(camera);
+
+        camera2d->zoomToFit(document.getActiveDrawing()->getBounds());
 
         Vec2Int bottomLeft = camera->worldToScreenPos(bounds.minX, bounds.minY);
         Vec2Int topRight = camera->worldToScreenPos(bounds.maxX, bounds.maxY);

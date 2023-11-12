@@ -9,6 +9,8 @@
 #include "../../../engine/graphics/renderable/line_shape.h"
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../../engine/graphics/shader/shader.h"
+#include "../../../engine/graphics/camera/camera.h"
+#include "../../../engine/graphics/camera/camera2d.h"
 #include "../../../engine/structure/canvas.h"
 #include "../../../engine/system/utils/uuid_generator.h"
 #include "../../../engine/system/window/window.h"

@@ -34,7 +34,9 @@ namespace editor
     {
         Camera *camera = context.doc.document->getBackgroundCanvas().getCamera();
 
-        Vec2 center2D = camera->getCenter2D();
+        Camera2d *camera2d = dynamic_cast<Camera2d *>(camera);
+
+        Vec2 center2D = camera2d->getCenter2D();
 
         float zoom = camera->getZoom();
 

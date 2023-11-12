@@ -29,6 +29,8 @@ namespace engine
 
         Vec3 m_Corners[8];
 
+        int m_Indexes[24];
+
         Vec3 m_FrontTopRight;
 
         Vec3 m_FrontBottomRight;

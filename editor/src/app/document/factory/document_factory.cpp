@@ -85,7 +85,7 @@ namespace editor
                            bounds.getHeight(),
                            COLOR_WHITE));
 
-        drawing.add(Box(Vec3(0, 0, 0.2), 1, 1, 1, COLOR_RED));
+        drawing.add(Box(Vec3(0, 0, 0.2), 2, 2, 2, COLOR_RED));
 
         return drawing;
     }
@@ -134,7 +134,7 @@ namespace editor
         float pixelCount = 32.0f;
         Bounds drawingBounds(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
-        Camera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()), -1.0f, 1.0f);
+        Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
 
         Canvas documentCanvas(UuidGenerator::getInstance().generate(),
                               drawingBounds,
@@ -163,7 +163,7 @@ namespace editor
 
         // drawing.setCamera(BoundsInt(minWindow, maxWindow));
 
-        document.addDrawing(drawing);
+        // document.addDrawing(drawing);
 
         Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
 

@@ -16,7 +16,7 @@ namespace engine
 
         if (other.m_Camera)
         {
-            m_Camera.reset(new Camera(*other.m_Camera));
+            m_Camera.reset(other.m_Camera->clone());
         }
     }
 
@@ -30,7 +30,7 @@ namespace engine
 
         if (other.m_Camera)
         {
-            m_Camera.reset(new Camera(*other.m_Camera));
+            m_Camera.reset(other.m_Camera->clone());
         }
 
         return *this;
@@ -67,7 +67,7 @@ namespace engine
 
     void Canvas::setCamera(const Camera &camera)
     {
-        m_Camera.reset(new Camera(camera));
+        m_Camera.reset(camera.clone());
     }
 
     Camera *Canvas::getCamera() {

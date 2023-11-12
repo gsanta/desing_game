@@ -7,7 +7,7 @@
 using namespace spright::maths;
 
 
-TEST_CASE("Mat4 orthographic", "[vec2]")
+TEST_CASE("Mat4 orthographic", "[mat4]")
 {
     SECTION("it converts screen cordinates to normalized device coordinates") {
         Mat4 proj = Mat4::orthographic(-10, 10, -5, 5, 1, -1);
@@ -30,5 +30,32 @@ TEST_CASE("Mat4 orthographic", "[vec2]")
 
         REQUIRE(result.x == 0);
         REQUIRE(result.y == 0);
+    }
+}
+
+TEST_CASE("Mat4 lookAt", "[mat4]")
+{
+    SECTION("from top")
+    {
+        Mat4 lookAt = Mat4::lookAt(Vec3(0, 5, 0), Vec3(0, 0, 0), Vec3(0, 1, 0));
+
+        Vec3 pos(3, 3, 0);
+
+        Vec3 result = lookAt * pos;
+
+        REQUIRE(result.x == -1);
+        REQUIRE(result.y == -1);
+
+        // pos = Vec3(10, 5, 1);
+        // result = lookAt * pos;
+
+        // REQUIRE(result.x == 1);
+        // REQUIRE(result.y == 1);
+
+        // pos = Vec3(0, 0, 1);
+        // result = lookAt * pos;
+
+        // REQUIRE(result.x == 0);
+        // REQUIRE(result.y == 0);
     }
 }

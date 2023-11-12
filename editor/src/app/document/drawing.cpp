@@ -257,25 +257,29 @@ namespace editor
 
     void Drawing::render(const Camera &camera, Canvas::RenderTarget target)
     {
+        const Camera *actualCamera = getCamera() != nullptr ? getCamera() : &camera;
+        const Mat4 &proj = actualCamera->getProjectionMatrix();
+        const Mat4 &view = actualCamera->getViewMatrix();
+
         for (TileLayer &layer : getActiveFrame().getLayers())
         {
-            layer.render(camera, getRenderer());
+            layer.render(proj, view, getRenderer());
         }
 
         if (target == Screen)
         {
             for (size_t i = 0; i < getTempLayerCount(); i++)
             {
-                getTempLayer(i).render(camera, getRenderer());
+                getTempLayer(i).render(proj, view, getRenderer());
             }
 
-            getBackgroundLayer().render(camera, getRenderer());
+            getBackgroundLayer().render(proj, view, getRenderer());
 
-            getDecorationLayer().render(camera, getRenderer());
+            getDecorationLayer().render(proj, view, getRenderer());
 
-            getToolLayer().render(camera, getRenderer());
+            getToolLayer().render(proj, view, getRenderer());
 
-            getCursorLayer().render(camera, getRenderer());
+            getCursorLayer().render(proj, view, getRenderer());
         }
     }
 

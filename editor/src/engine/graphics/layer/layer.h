@@ -14,7 +14,7 @@ namespace engine
     class Layer
     {
     public:
-        void render(const Camera &camera, Renderer2D &renderer);
+        void render(const Mat4 &proj, const Mat4 &view, Renderer2D &renderer);
 
         Renderable2D &add(const Renderable2D &rect);
 

@@ -161,7 +161,7 @@ namespace editor
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
                                                                                         drawing.getBounds().maxY);
 
-        drawing.setCamera(BoundsInt(minWindow, maxWindow));
+        // drawing.setCamera(BoundsInt(minWindow, maxWindow));
 
         document.addDrawing(drawing);
 

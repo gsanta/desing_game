@@ -35,7 +35,7 @@ namespace engine
 
         float getZoom();
 
-        const Mat4 getProjectionMatrix() const;
+        const Mat4 &getProjectionMatrix() const;
 
         const Mat4 &getViewMatrix() const;
 
@@ -54,6 +54,8 @@ namespace engine
         Mat4 m_ProjectionMatrix;
 
         Mat4 m_View;
+
+        mutable Mat4 m_Proj;
 
         Vec2 m_Translate;
 

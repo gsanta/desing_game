@@ -126,11 +126,11 @@ namespace engine
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
 
-    void TileLayer::render(const Camera &camera, Renderer2D &renderer)
+    void TileLayer::render(const Mat4 &proj, const Mat4 &view, Renderer2D &renderer)
     {
         if (m_IsEnabled)
         {
-            m_Group.render(camera, renderer);
+            m_Group.render(proj, view, renderer);
         }
     }
 

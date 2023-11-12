@@ -60,7 +60,7 @@ namespace engine
 
         void clear();
 
-        void render(const Camera &camera, Renderer2D &renderer);
+        void render(const Mat4 &proj, const Mat4 &view, Renderer2D &renderer);
 
         void translateTile(Rect2D *tile, const Vec2 &delta);
 

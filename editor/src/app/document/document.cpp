@@ -81,7 +81,7 @@ namespace editor
         }
     }
 
-    void Document::addDrawing3d(const Drawing3d &drawing)
+    Drawing3d &Document::addDrawing3d(const Drawing3d &drawing)
     {
         m_AllCanvases.push_back(std::unique_ptr<Drawing3d>(new Drawing3d(drawing)));
 
@@ -89,6 +89,8 @@ namespace editor
         {
             m_ActiveCanvasIndex = 0;
         }
+
+        return *dynamic_cast<Drawing3d *>(m_AllCanvases.back().get());
     }
 
     void Document::setActiveCanvas(const std::string &uuid)

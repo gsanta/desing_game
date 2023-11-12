@@ -22,7 +22,7 @@ namespace engine
         Renderable &newRenderable = m_Group.add(renderable);
 
         Vec3 center = getBounds().getCenter();
-        newRenderable.setPosition(newRenderable.getPosition() + Vec3(center.x, center.y, 0));
+        // newRenderable.setPosition(newRenderable.getPosition() + Vec3(center.x, center.y, 0));
 
         return newRenderable;
     }
@@ -34,13 +34,16 @@ namespace engine
 
     void Drawing3d::render(const Camera &camera, Canvas::RenderTarget target)
     {
-        m_Group.render(camera, getRenderer());
+        const Camera *actualCamera = getCamera() != nullptr ? getCamera() : &camera;
+        const Mat4 &proj = actualCamera->getProjectionMatrix();
+        const Mat4 &view = actualCamera->getViewMatrix();
+
+        m_Group.render(proj, view, getRenderer());
 
         if (target == Screen)
         {
-            getDecorationLayer().render(camera, getRenderer());
+            getDecorationLayer().render(proj, view, getRenderer());
         }
     }
-
 } // namespace engine
 } // namespace spright

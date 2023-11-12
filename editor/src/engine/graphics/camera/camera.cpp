@@ -65,15 +65,17 @@ namespace engine
         return m_Zoom;
     }
 
-    const Mat4 Camera::getProjectionMatrix() const
+    const Mat4 &Camera::getProjectionMatrix() const
     {
         int twiceScaleFactor = getScaleFactor() * 2.0f;
-        return Mat4::otrthographic(-m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
+        m_Proj = Mat4::orthographic(-m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
                                    m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
                                    -m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
                                    m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
                                    m_Near,
                                    m_Far);
+
+        return m_Proj;
     }
 
     const Mat4 &Camera::getViewMatrix() const

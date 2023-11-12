@@ -56,7 +56,7 @@ namespace editor
         m_toolHandler->getToolStore().addTool(new CanvasSelectionTool());
         m_toolHandler->getToolStore().addTool(new CameraRotationTool());
         m_toolHandler->addActiveTool("zoom");
-        m_toolHandler->setSelectedTool("camera_rotation");
+        m_toolHandler->setSelectedTool("brush");
 
         m_RunLoop.add(m_FramePlayer);
     }

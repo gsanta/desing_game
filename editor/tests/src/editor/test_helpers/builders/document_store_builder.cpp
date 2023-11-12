@@ -36,7 +36,7 @@ DocumentStoreBuilder &DocumentStoreBuilder::withDrawing()
 
 DocumentStore DocumentStoreBuilder::build()
 {
-    Camera camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()));
+    Camera2d camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()));
 
     Canvas documentCanvas(UuidGenerator::getInstance().generate(), m_DocumentBounds, *std::make_unique<HeadlessRenderer2D>());
     documentCanvas.setCamera(camera);

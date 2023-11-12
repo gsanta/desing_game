@@ -134,7 +134,7 @@ namespace editor
         float pixelCount = 32.0f;
         Bounds drawingBounds(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
-        Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
+        ArcRotateCamera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
 
         Canvas documentCanvas(UuidGenerator::getInstance().generate(),
                               drawingBounds,

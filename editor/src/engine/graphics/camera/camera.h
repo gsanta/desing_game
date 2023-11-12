@@ -46,6 +46,7 @@ namespace engine
     protected:
         float getScaleFactor() const;
 
+    private:
         virtual void updateProjectionMatrix() const = 0;
 
     protected:

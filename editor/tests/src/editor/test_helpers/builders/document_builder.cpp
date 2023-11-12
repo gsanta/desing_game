@@ -19,7 +19,7 @@ DocumentBuilder &DocumentBuilder::withDrawing(const DrawingBuilder &drawing)
 
 Document DocumentBuilder::build()
 {
-    Camera camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()), -1.0f, 1.0f);
+    Camera2d camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()), -1.0f, 1.0f);
 
     Canvas documentCanvas(UuidGenerator::getInstance().generate(),
                           m_DocumentBounds,

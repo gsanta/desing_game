@@ -45,7 +45,7 @@ namespace engine
 
         Camera *clone() const override;
 
-    protected:
+    private:
         void updateProjectionMatrix() const override;
 
     private:

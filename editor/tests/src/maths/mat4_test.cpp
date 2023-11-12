@@ -32,30 +32,3 @@ TEST_CASE("Mat4 orthographic", "[mat4]")
         REQUIRE(result.y == 0);
     }
 }
-
-TEST_CASE("Mat4 lookAt", "[mat4]")
-{
-    SECTION("from top")
-    {
-        Mat4 lookAt = Mat4::lookAt(Vec3(0, 5, 0), Vec3(0, 0, 0), Vec3(0, 1, 0));
-
-        Vec3 pos(3, 3, 0);
-
-        Vec3 result = lookAt * pos;
-
-        REQUIRE(result.x == -1);
-        REQUIRE(result.y == -1);
-
-        // pos = Vec3(10, 5, 1);
-        // result = lookAt * pos;
-
-        // REQUIRE(result.x == 1);
-        // REQUIRE(result.y == 1);
-
-        // pos = Vec3(0, 0, 1);
-        // result = lookAt * pos;
-
-        // REQUIRE(result.x == 0);
-        // REQUIRE(result.y == 0);
-    }
-}

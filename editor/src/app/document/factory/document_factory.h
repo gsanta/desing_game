@@ -1,4 +1,7 @@
 #pragma once
+#include "../../../engine/graphics/camera/arc_rotate_camera.h"
+#include "../../../engine/graphics/camera/camera.h"
+#include "../../../engine/graphics/camera/camera2d.h"
 #include "../../../engine/graphics/impl/gl/gl_renderer2d.h"
 #include "../../../engine/graphics/impl/gl/gl_shader.h"
 #include "../../../engine/graphics/layer/group.h"
@@ -9,9 +12,6 @@
 #include "../../../engine/graphics/renderable/line_shape.h"
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../../engine/graphics/shader/shader.h"
-#include "../../../engine/graphics/camera/camera.h"
-#include "../../../engine/graphics/camera/camera2d.h"
-#include "../../../engine/graphics/camera/arc_rotate_camera.h"
 #include "../../../engine/structure/canvas.h"
 #include "../../../engine/system/utils/uuid_generator.h"
 #include "../../../engine/system/window/window.h"

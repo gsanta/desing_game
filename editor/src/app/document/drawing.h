@@ -32,9 +32,9 @@ namespace editor
                 const TileLayer &toolLayer,
                 const TileLayer &cursorLayer);
 
-        Drawing(const Drawing& other);
+        Drawing(const Drawing &other);
 
-        Drawing& operator=(const Drawing& other);
+        Drawing &operator=(const Drawing &other);
 
         std::vector<Frame> &getFrames();
 

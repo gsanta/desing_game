@@ -4,7 +4,7 @@ namespace spright
 {
 namespace editor
 {
-    PanTool::PanTool(): Tool("pan")
+    PanTool::PanTool() : Tool("pan")
     {
     }
 

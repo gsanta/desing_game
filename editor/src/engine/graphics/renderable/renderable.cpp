@@ -14,7 +14,8 @@ namespace engine
         return m_Position;
     }
 
-    void Renderable::setPosition(const Vec3 &pos) {
+    void Renderable::setPosition(const Vec3 &pos)
+    {
         m_Position = pos;
     }
 } // namespace engine

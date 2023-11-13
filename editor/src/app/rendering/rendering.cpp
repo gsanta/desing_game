@@ -4,10 +4,6 @@ namespace spright
 {
 Rendering::Rendering(Window *window, DocumentStore *documentStore) : m_Window(window), m_DocumentStore(documentStore)
 {
-    m_ScreenTargetRenderer = ScreenTargetRenderer(documentStore);
-    m_ImageTargetRenderer = ImageTargetRenderer(documentStore, window);
-
-    m_ScreenTargetRenderer.enable();
 }
 
 void Rendering::render()

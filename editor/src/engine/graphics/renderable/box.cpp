@@ -31,7 +31,8 @@ namespace engine
         return new Box(*this);
     }
 
-    void Box::setPosition(const Vec3 &pos) {
+    void Box::setPosition(const Vec3 &pos)
+    {
         Renderable::setPosition(pos);
         updatePosition();
     }

@@ -2,8 +2,6 @@
 
 #include "../../engine/system/window/window.h"
 #include "../document/document_store.h"
-#include "./image_target_renderer.h"
-#include "./screen_target_renderer.h"
 
 namespace spright
 {
@@ -32,10 +30,6 @@ private:
     Window *m_Window;
 
     DocumentStore *m_DocumentStore;
-
-    ImageTargetRenderer m_ImageTargetRenderer;
-
-    ScreenTargetRenderer m_ScreenTargetRenderer;
 
     Target m_RenderingTarget = Rendering::Target::SCREEN;
 };

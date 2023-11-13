@@ -9,7 +9,8 @@ using namespace spright::maths;
 
 TEST_CASE("Mat4 orthographic", "[mat4]")
 {
-    SECTION("it converts screen cordinates to normalized device coordinates") {
+    SECTION("it converts screen cordinates to normalized device coordinates")
+    {
         Mat4 proj = Mat4::orthographic(-10, 10, -5, 5, 1, -1);
 
         Vec3 pos(-10, -5, 0);

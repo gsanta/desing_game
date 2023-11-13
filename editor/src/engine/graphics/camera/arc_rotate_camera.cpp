@@ -37,7 +37,9 @@ namespace engine
         else if (pitch < -M_PI_2)
         {
             m_Pitch = -89.0f;
-        } else {
+        }
+        else
+        {
             m_Pitch = pitch;
         }
 
@@ -66,7 +68,8 @@ namespace engine
                                     m_Far);
     }
 
-    void ArcRotateCamera::updateDirection() {
+    void ArcRotateCamera::updateDirection()
+    {
         Vec3 direction;
         direction.x = cos(m_Yaw) * cos(m_Pitch);
         direction.y = sin(m_Pitch);

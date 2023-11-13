@@ -157,9 +157,9 @@ namespace editor
             CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
         Vec2Int minWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().minX,
-                                                                                        drawing.getBounds().minY);
+                                                                                         drawing.getBounds().minY);
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
-                                                                                        drawing.getBounds().maxY);
+                                                                                         drawing.getBounds().maxY);
 
         document.addDrawing(drawing);
 

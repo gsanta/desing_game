@@ -45,7 +45,8 @@ namespace editor
 
     void ToolHandler::onMouseDown(bool buttons[3])
     {
-        Vec2 pos = m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->screenToWorldPos(x_tmp, y_tmp);
+        Vec2 pos =
+            m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->screenToWorldPos(x_tmp, y_tmp);
 
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
 

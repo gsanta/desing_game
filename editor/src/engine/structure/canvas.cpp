@@ -70,7 +70,8 @@ namespace engine
         m_Camera.reset(camera.clone());
     }
 
-    Camera *Canvas::getCamera() {
+    Camera *Canvas::getCamera()
+    {
         return m_Camera.get();
     }
 } // namespace engine

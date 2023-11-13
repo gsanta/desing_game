@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../colors.h"
 #include "../../../engine/graphics/colors.h"
 #include "../../../engine/graphics/shader/shader.h"
 #include "../../../maths/vec2.h"
@@ -9,6 +8,7 @@
 #include "../buffer/buffer.h"
 #include "../buffer/indexBuffer.h"
 #include "../buffer/vertexArray.h"
+#include "../colors.h"
 #include "../renderer/renderer2d.h"
 #include "../renderer/vertex_data.h"
 #include "bounds.h"

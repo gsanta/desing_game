@@ -4,12 +4,15 @@ namespace spright
 {
 namespace editor
 {
-    UpdateScreenBounds::UpdateScreenBounds(std::shared_ptr<DocumentStore> documentStore) : m_DocumentStore(documentStore)
+    UpdateScreenBounds::UpdateScreenBounds(std::shared_ptr<DocumentStore> documentStore)
+        : m_DocumentStore(documentStore)
     {
     }
 
-    void UpdateScreenBounds::onWindowSizeChanged(int newWidth, int newHeight) {
-        m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->setScreenBounds(BoundsInt(0, 0, newWidth, newHeight));
+    void UpdateScreenBounds::onWindowSizeChanged(int newWidth, int newHeight)
+    {
+        m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->setScreenBounds(
+            BoundsInt(0, 0, newWidth, newHeight));
     }
-}
-}
+} // namespace editor
+} // namespace spright

@@ -1,12 +1,12 @@
 #pragma once
 
 #include "input_handler.h"
+#include "window_resized_listener.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <functional>
 #include <iostream>
-#include  "window_resized_listener.h"
 
 namespace spright
 {
@@ -56,7 +56,7 @@ namespace engine
 
         int m_Height;
 
-        std::vector<WindowResizedListener*> m_Listeners;
+        std::vector<WindowResizedListener *> m_Listeners;
     };
 } // namespace engine
 } // namespace spright

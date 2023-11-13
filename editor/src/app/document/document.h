@@ -27,9 +27,7 @@ namespace editor
     class Document
     {
     public:
-        Document(const Bounds &bounds,
-                 const Canvas &canvas,
-                 std::shared_ptr<DocumentHistory> history);
+        Document(const Bounds &bounds, const Canvas &canvas, std::shared_ptr<DocumentHistory> history);
 
         Document(const Document &other);
 

@@ -4,7 +4,8 @@ namespace spright
 {
 namespace engine
 {
-    Camera2d::Camera2d(const BoundsInt &screenBounds, float near, float far, int zoomFactor) : Camera(screenBounds, near, far, zoomFactor)
+    Camera2d::Camera2d(const BoundsInt &screenBounds, float near, float far, int zoomFactor)
+        : Camera(screenBounds, near, far, zoomFactor)
     {
         m_View = Mat4::lookAt(Vec3(0, 0, m_Z), Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
@@ -58,11 +59,11 @@ namespace engine
     {
         int twiceScaleFactor = getScaleFactor() * 2.0f;
         m_Proj = Mat4::orthographic(-m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
-                                   m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
-                                   -m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
-                                   m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
-                                   m_Near,
-                                   m_Far);
+                                    m_ScreenBounds.getWidth() / (twiceScaleFactor + 0.4f),
+                                    -m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
+                                    m_ScreenBounds.getHeight() / (twiceScaleFactor + 0.4f),
+                                    m_Near,
+                                    m_Far);
     }
 
     Vec2 Camera2d::getCenter2D()
@@ -70,7 +71,8 @@ namespace engine
         return m_Translate;
     }
 
-    void Camera2d::front() {
+    void Camera2d::front()
+    {
 
         lookAt(Vec3(0, 0, m_Radius));
     }
@@ -100,7 +102,8 @@ namespace engine
         lookAt(Vec3(0, -m_Radius, 0));
     }
 
-    Camera *Camera2d::clone() const {
+    Camera *Camera2d::clone() const
+    {
         return new Camera2d(*this);
     }
 } // namespace engine

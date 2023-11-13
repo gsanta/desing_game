@@ -82,5 +82,5 @@ namespace engine
 
         return {(int)result.x, (int)-result.y};
     }
-}
-}
+} // namespace engine
+} // namespace spright

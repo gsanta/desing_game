@@ -2,8 +2,11 @@
 
 namespace spright
 {
-Rendering::Rendering(Window *window, DocumentStore *documentStore) : m_Window(window), m_DocumentStore(documentStore)
+Rendering::Rendering(Window *window, DocumentStore *documentStore)
+    : m_Window(window), m_DocumentStore(documentStore), m_ScreenRenderTarget(std::make_unique<DefaultRenderTarget>()),
+      m_ImageRenderTarget(std::make_unique<ImageRenderTarget>(window))
 {
+    m_ScreenRenderTarget->enable();
 }
 
 void Rendering::render()
@@ -35,8 +38,8 @@ void Rendering::enableImageTarget()
 {
     if (m_RenderingTarget != Rendering::Target::IMAGE)
     {
-        m_ScreenTargetRenderer.disable();
-        m_ImageTargetRenderer.enable();
+        m_ScreenRenderTarget->disable();
+        m_ImageRenderTarget->enable();
         m_RenderingTarget = Rendering::Target::IMAGE;
     }
 }
@@ -45,8 +48,8 @@ void Rendering::enableScreenTarget()
 {
     if (m_RenderingTarget != Rendering::Target::SCREEN)
     {
-        m_ImageTargetRenderer.disable();
-        m_ScreenTargetRenderer.enable();
+        m_ImageRenderTarget->disable();
+        m_ScreenRenderTarget->enable();
         m_RenderingTarget = Rendering::Target::SCREEN;
     }
 }

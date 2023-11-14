@@ -19,7 +19,7 @@ namespace engine
     class Camera
     {
     public:
-        Camera(const BoundsInt &screenBounds, float near = -10.0f, float far = 10.0f, int zoomFactor = 17);
+        Camera(const BoundsInt &screenBounds, float near, float far, int zoomFactor = 17);
 
         virtual ~Camera() = default;
 

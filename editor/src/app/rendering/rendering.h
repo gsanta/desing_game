@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../../engine/graphics/renderer/render_target.h"
+#include "../../engine/graphics/renderer/default_render_target.h"
+#include "../../engine/graphics/renderer/image_render_target.h"
 #include "../../engine/system/window/window.h"
 #include "../document/document_store.h"
 
@@ -10,7 +13,6 @@ using namespace ::spright::editor;
 
 class Rendering
 {
-
 public:
     Rendering(Window *window, DocumentStore *documentStore);
 
@@ -32,5 +34,9 @@ private:
     DocumentStore *m_DocumentStore;
 
     Target m_RenderingTarget = Rendering::Target::SCREEN;
+
+    std::unique_ptr<RenderTarget> m_ImageRenderTarget;
+
+    std::unique_ptr<RenderTarget> m_ScreenRenderTarget;
 };
 } // namespace spright

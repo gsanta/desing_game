@@ -11,7 +11,7 @@ namespace engine
     class Camera2d : public Camera
     {
     public:
-        Camera2d(const BoundsInt &screenBounds, float near = -10.0f, float far = 10.0f, int zoomFactor = 17);
+        Camera2d(const BoundsInt &screenBounds, float near = -1.0f, float far = 1.0f, int zoomFactor = 17);
 
         void lookAt(const Vec3 &from);
 

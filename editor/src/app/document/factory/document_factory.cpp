@@ -136,8 +136,11 @@ namespace editor
         float pixelCount = 32.0f;
         Bounds drawingBounds(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
+#ifdef INIT_WITH_3D_CANVAS
         ArcRotateCamera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
-
+#else
+        Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
+#endif
         Canvas documentCanvas(UuidGenerator::getInstance().generate(),
                               drawingBounds,
                               *m_RendererProvider->createRenderer2D());
@@ -162,12 +165,13 @@ namespace editor
                                                                                          drawing.getBounds().minY);
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
                                                                                          drawing.getBounds().maxY);
-
+#ifdef INIT_WITH_3D_CANVAS
+        Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+        document.addDrawing3d(drawing3d);
+#else
         document.addDrawing(drawing);
+#endif
 
-        // Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
-
-        // document.addDrawing3d(drawing3d);
 
         return document;
     }

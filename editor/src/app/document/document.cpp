@@ -91,6 +91,11 @@ namespace editor
         return *dynamic_cast<Drawing3d *>(m_AllCanvases.back().get());
     }
 
+    // std::vector<Drawing3d> &Document::getDrawing3ds()
+    // {
+    //     return m_Draw
+    // }
+
     void Document::setActiveCanvas(const std::string &uuid)
     {
         auto it = std::find_if(m_AllCanvases.begin(),

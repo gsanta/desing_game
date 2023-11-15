@@ -109,25 +109,49 @@ namespace editor
             }
             else if (key == GLFW_KEY_U)
             {
-                m_Editor->getDocumentStore()->getActiveDocument().getHistory()->undo(
-                    m_Editor->getDocumentStore()->getActiveDocument());
+                // m_Editor->getDocumentStore()->getActiveDocument().getHistory()->undo(
+                //     m_Editor->getDocumentStore()->getActiveDocument());
+
+                if (m_Editor->getToolHandler()->getSelectedTool()->getName() == "camera_rotation") {
+                    m_Editor->getToolHandler()->setSelectedTool("ray_casting_debug");
+                } else {
+                    m_Editor->getToolHandler()->setSelectedTool("camera_rotation");
+                }
             }
             else if (key == GLFW_KEY_LEFT)
             {
-                m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_move);
+                Camera *camera = m_Editor->getActiveDocument().getBackgroundCanvas().getCamera();
+                ArcRotateCamera *camera3d = dynamic_cast<ArcRotateCamera *>(camera);
+                camera3d->left();
+
+                // m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_move);
             }
             else if (key == GLFW_KEY_RIGHT)
             {
                 Camera *camera = m_Editor->getActiveDocument().getBackgroundCanvas().getCamera();
-                Camera2d *camera2d = dynamic_cast<Camera2d *>(camera);
-                camera2d->translate2D(Vec2(-1.0, 0));
+                ArcRotateCamera *camera3d = dynamic_cast<ArcRotateCamera *>(camera);
+                camera3d->right();
+
+                // Camera *camera = m_Editor->getActiveDocument().getBackgroundCanvas().getCamera();
+                // Camera2d *camera2d = dynamic_cast<Camera2d *>(camera);
+                // camera2d->translate2D(Vec2(-1.0, 0));
 
                 // m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_shear);
                 // m_Editor->getToolHandler()->getToolStore().getRotateTool().setRotationInRad(1.5708f);
                 // m_Editor->getToolHandler()->executeTool("rotate");
             }
+            else if (key == GLFW_KEY_DOWN)
+            {
+                Camera *camera = m_Editor->getActiveDocument().getBackgroundCanvas().getCamera();
+                ArcRotateCamera *camera3d = dynamic_cast<ArcRotateCamera *>(camera);
+                camera3d->back();
+            }
             else if (key == GLFW_KEY_UP)
             {
+                Camera *camera = m_Editor->getActiveDocument().getBackgroundCanvas().getCamera();
+                ArcRotateCamera *camera3d = dynamic_cast<ArcRotateCamera *>(camera);
+                camera3d->front();
+
                 m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_rotate);
 
                 // m_Editor->getToolHandler()->getToolStore().getRotateTool().setRotationInRad(M_PI + 0.1f);

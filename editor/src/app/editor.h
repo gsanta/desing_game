@@ -26,6 +26,7 @@
 #include "tool/tools/move_tool/move_tool.h"
 #include "tool/tools/paint_bucket_tool/paint_bucket_tool.h"
 #include "tool/tools/pan_tool/pan_tool.h"
+#include "tool/tools/ray_casting_debug_tool/ray_casting_debug_tool.h"
 #include "tool/tools/rotate_tool/rotate_tool.h"
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"

@@ -85,7 +85,9 @@ namespace editor
                            bounds.getHeight(),
                            COLOR_WHITE));
 
-        drawing.add(Box(Vec3(0, 0, 0.2), 2, 2, 2, COLOR_RED));
+        drawing.add(Box(Vec3(0, 0, 0), 2, 2, 2, COLOR_RED));
+        drawing.add(Box(Vec3(0, 0, 2.5), 60, 50, 3, COLOR_BLUE));
+        drawing.add(Line3d(Vec3(0, 0, 0), Vec3(100, 0, 0), 1.0, COLOR_BLUE));
 
         return drawing;
     }
@@ -134,7 +136,7 @@ namespace editor
         float pixelCount = 32.0f;
         Bounds drawingBounds(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
-        Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
+        ArcRotateCamera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
 
         Canvas documentCanvas(UuidGenerator::getInstance().generate(),
                               drawingBounds,
@@ -161,11 +163,11 @@ namespace editor
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
                                                                                          drawing.getBounds().maxY);
 
-        document.addDrawing(drawing);
+        // document.addDrawing(drawing);
 
-        // Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+        Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
 
-        // document.addDrawing3d(drawing3d);
+        document.addDrawing3d(drawing3d);
 
         return document;
     }

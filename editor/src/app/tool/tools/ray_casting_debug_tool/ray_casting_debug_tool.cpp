@@ -30,7 +30,7 @@ namespace editor
         Drawing3d *drawing = dynamic_cast<Drawing3d *>(canvases[0].get());
 
         for (Renderable *line : m_Lines) {
-            // drawing.rem
+            drawing->remove(*line);
         }
     }
 }

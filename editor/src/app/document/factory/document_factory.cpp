@@ -163,11 +163,11 @@ namespace editor
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
                                                                                          drawing.getBounds().maxY);
 
-        // document.addDrawing(drawing);
+        document.addDrawing(drawing);
 
-        Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+        // Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
 
-        document.addDrawing3d(drawing3d);
+        // document.addDrawing3d(drawing3d);
 
         return document;
     }

@@ -57,8 +57,8 @@ namespace editor
         m_toolHandler->getToolStore().addTool(new CameraRotationTool());
         m_toolHandler->getToolStore().addTool(new RayCastingDebugTool());
         m_toolHandler->addActiveTool("zoom");
-        // m_toolHandler->setSelectedTool("brush");
-        m_toolHandler->setSelectedTool("camera_rotation");
+        m_toolHandler->setSelectedTool("brush");
+        // m_toolHandler->setSelectedTool("camera_rotation");
 
         m_RunLoop.add(m_FramePlayer);
     }

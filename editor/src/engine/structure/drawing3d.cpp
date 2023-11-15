@@ -29,7 +29,7 @@ namespace engine
 
     void Drawing3d::remove(const Renderable &renderable)
     {
-        // m_Group.remove(renderable);
+        m_Group.remove(renderable);
     }
 
     std::vector<Renderable *> &Drawing3d::getRenderables() {

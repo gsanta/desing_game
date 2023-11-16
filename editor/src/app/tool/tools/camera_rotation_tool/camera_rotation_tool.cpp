@@ -15,12 +15,6 @@ namespace editor
 
         m_StartYaw = camera3d->getYaw();
         m_StartPitch = camera3d->getPitch();
-
-        Vec3 pos = camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, 0);
-
-        std::vector<std::unique_ptr<Canvas>> &canvases = context.doc.document->getCanvases();
-        Drawing3d* drawing = dynamic_cast<Drawing3d*>(canvases[0].get());
-        drawing->getRenderables()[1]->setPosition(pos);
     }
 
 

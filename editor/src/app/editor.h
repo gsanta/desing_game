@@ -31,6 +31,7 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
+#include "tool/tools/mesh_creation_tool/mesh_creation_tool.h"
 
 #include <vector>
 

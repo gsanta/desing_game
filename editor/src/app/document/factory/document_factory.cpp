@@ -85,10 +85,6 @@ namespace editor
                            bounds.getHeight(),
                            COLOR_WHITE));
 
-        drawing.add(Box(Vec3(0, 0, 0), 2, 2, 2, COLOR_RED));
-        drawing.add(Box(Vec3(0, 0, 2.5), 60, 50, 3, COLOR_BLUE));
-        drawing.add(Line3d(Vec3(0, 0, 0), Vec3(100, 0, 0), 1.0, COLOR_BLUE));
-
         return drawing;
     }
 

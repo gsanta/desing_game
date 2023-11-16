@@ -92,30 +92,30 @@ namespace editor
                     flip_horizontal(drawing.getActiveFrame().getLayers(), drawing.getState().getBounds());
                 }
             }
-            else if (key == GLFW_KEY_R)
-            {
-                // float pixelCount = 16.0f;
-                // Bounds drawingBounds = Bounds::createWithPositions(-pixelCount / 2.0f,
-                //                                                    -pixelCount / 2.0f,
-                //                                                    pixelCount / 2.0f,
-                //                                                    pixelCount / 2.0f);
-                // Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
-                // Drawing newDrawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
-                // m_DocumentStore->getActiveDocument().removeActiveDrawing();
-                // m_DocumentStore->getActiveDocument().addDrawing(newDrawing);
-                m_Editor->getToolHandler()->setSelectedTool("rectangle");
-                dynamic_cast<RectangleTool *>(m_Editor->getToolHandler()->getToolStore().getTool("rectangle"))
-                    ->setFilled(true);
-            }
+            // else if (key == GLFW_KEY_R)
+            // {
+            //     // float pixelCount = 16.0f;
+            //     // Bounds drawingBounds = Bounds::createWithPositions(-pixelCount / 2.0f,
+            //     //                                                    -pixelCount / 2.0f,
+            //     //                                                    pixelCount / 2.0f,
+            //     //                                                    pixelCount / 2.0f);
+            //     // Drawing &drawing = m_DocumentStore->getActiveDocument().getActiveDrawing();
+            //     // Drawing newDrawing = resize_drawing(drawing, drawingBounds, m_DocumentFactory);
+            //     // m_DocumentStore->getActiveDocument().removeActiveDrawing();
+            //     // m_DocumentStore->getActiveDocument().addDrawing(newDrawing);
+            //     m_Editor->getToolHandler()->setSelectedTool("rectangle");
+            //     dynamic_cast<RectangleTool *>(m_Editor->getToolHandler()->getToolStore().getTool("rectangle"))
+            //         ->setFilled(true);
+            // }
             else if (key == GLFW_KEY_U)
             {
                 // m_Editor->getDocumentStore()->getActiveDocument().getHistory()->undo(
                 //     m_Editor->getDocumentStore()->getActiveDocument());
 
-                if (m_Editor->getToolHandler()->getSelectedTool()->getName() == "camera_rotation") {
-                    m_Editor->getToolHandler()->setSelectedTool("ray_casting_debug");
-                } else {
+                if (m_Editor->getToolHandler()->getSelectedTool()->getName() != "camera_rotation") {
                     m_Editor->getToolHandler()->setSelectedTool("camera_rotation");
+                } else {
+                    m_Editor->getToolHandler()->setSelectedTool("mesh_creation");
                 }
             }
             else if (key == GLFW_KEY_LEFT)
@@ -125,6 +125,17 @@ namespace editor
                 camera3d->left();
 
                 // m_Editor->getToolHandler()->getToolStore().getSelectTool().setMode(manip_move);
+            }
+            else if (key == GLFW_KEY_R)
+            {
+                if (m_Editor->getToolHandler()->isActiveTool("ray_casting_debug"))
+                {
+                    m_Editor->getToolHandler()->removeActiveTool("ray_casting_debug");
+                }
+                else
+                {
+                    m_Editor->getToolHandler()->addActiveTool("ray_casting_debug");
+                }
             }
             else if (key == GLFW_KEY_RIGHT)
             {

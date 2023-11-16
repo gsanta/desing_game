@@ -112,9 +112,12 @@ namespace editor
                 // m_Editor->getDocumentStore()->getActiveDocument().getHistory()->undo(
                 //     m_Editor->getDocumentStore()->getActiveDocument());
 
-                if (m_Editor->getToolHandler()->getSelectedTool()->getName() != "camera_rotation") {
+                if (m_Editor->getToolHandler()->getSelectedTool()->getName() != "camera_rotation")
+                {
                     m_Editor->getToolHandler()->setSelectedTool("camera_rotation");
-                } else {
+                }
+                else
+                {
                     m_Editor->getToolHandler()->setSelectedTool("mesh_creation");
                 }
             }

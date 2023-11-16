@@ -116,7 +116,6 @@ namespace engine
 
         m_Group.remove(*getAtTileIndex(index));
         m_TileIndexes[index] = nullptr;
-
     }
 
     void TileLayer::clear()

@@ -29,7 +29,9 @@ namespace editor
 
             camera3d->setYaw(m_StartYaw + offset.x);
             camera3d->setPitch(m_StartPitch + offset.y);
-        } else {
+        }
+        else
+        {
             Camera *camera = context.doc.document->getBackgroundCanvas().getCamera();
             ArcRotateCamera *camera3d = dynamic_cast<ArcRotateCamera *>(camera);
             camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, 0);

@@ -33,7 +33,8 @@ TEST_CASE("Mat4 orthographic", "[mat4]")
         REQUIRE(result.y == 0);
     }
 
-    SECTION("transpose") {
+    SECTION("transpose")
+    {
         Mat4 mat4(Vec4(1), Vec4(2), Vec4(3), Vec4(4));
 
         Mat4 transposed = mat4.transpose();

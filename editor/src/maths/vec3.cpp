@@ -124,7 +124,8 @@ namespace maths
         return subtract(other);
     }
 
-    Vec3 Vec3::operator*(const float right) {
+    Vec3 Vec3::operator*(const float right)
+    {
         return Vec3(x * right, y * right, z * right);
     }
 

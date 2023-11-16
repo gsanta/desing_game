@@ -134,7 +134,8 @@ namespace maths
             }
         }
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 16; i++)
+        {
             elements[i] = newElements[i];
         }
 

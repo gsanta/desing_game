@@ -13,7 +13,7 @@ namespace maths
         w = 0.0f;
     }
 
-    Vec4::Vec4(float n): x(n), y(n), z(n), w(n)
+    Vec4::Vec4(float n) : x(n), y(n), z(n), w(n)
     {
     }
 

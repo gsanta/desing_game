@@ -25,7 +25,7 @@ namespace editor
     private:
         float m_LineThickness = 0.1f;
 
-        std::vector<Renderable*> m_Lines;
+        std::vector<Renderable *> m_Lines;
     };
 } // namespace editor
 } // namespace spright

@@ -23,6 +23,7 @@
 #include "tool/tools/color_picker_tool/color_picker_tool.h"
 #include "tool/tools/eraser_tool/eraser_tool.h"
 #include "tool/tools/line_tool/line_tool.h"
+#include "tool/tools/mesh_creation_tool/mesh_creation_tool.h"
 #include "tool/tools/move_tool/move_tool.h"
 #include "tool/tools/paint_bucket_tool/paint_bucket_tool.h"
 #include "tool/tools/pan_tool/pan_tool.h"
@@ -31,7 +32,6 @@
 #include "tool/tools/select_tool/select_tool.h"
 #include "tool/tools/shear_tool/shear_tool.h"
 #include "tool/tools/zoom_tool/zoom_tool.h"
-#include "tool/tools/mesh_creation_tool/mesh_creation_tool.h"
 
 #include <vector>
 

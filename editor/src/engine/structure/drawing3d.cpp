@@ -32,7 +32,8 @@ namespace engine
         m_Group.remove(renderable);
     }
 
-    std::vector<Renderable *> &Drawing3d::getRenderables() {
+    std::vector<Renderable *> &Drawing3d::getRenderables()
+    {
         return m_Group.getRenderables();
     }
 

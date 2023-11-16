@@ -30,7 +30,8 @@ TEST_CASE("Frame", "[frame]")
         frame2 = frame1;
 
         REQUIRE(frame1.getLayers().size() == frame2.getLayers().size());
-        for (int i = 0; i < frame1.getLayers().size(); i++) {
+        for (int i = 0; i < frame1.getLayers().size(); i++)
+        {
             REQUIRE(frame1.getLayers()[i] == frame2.getLayers()[i]);
         }
     }

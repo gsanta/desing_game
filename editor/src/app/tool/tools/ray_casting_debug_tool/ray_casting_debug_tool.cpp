@@ -19,7 +19,7 @@ namespace editor
         std::vector<std::unique_ptr<Canvas>> &canvases = context.doc.document->getCanvases();
         Drawing3d *drawing = dynamic_cast<Drawing3d *>(canvases[0].get());
 
-        Renderable& line = drawing->add(Line3d(pos, pos2, m_LineThickness, COLOR_GREEN));
+        Renderable &line = drawing->add(Line3d(pos, pos2, m_LineThickness, COLOR_GREEN));
 
         m_Lines.push_back(&line);
     }
@@ -29,9 +29,10 @@ namespace editor
         std::vector<std::unique_ptr<Canvas>> &canvases = context.doc.document->getCanvases();
         Drawing3d *drawing = dynamic_cast<Drawing3d *>(canvases[0].get());
 
-        for (Renderable *line : m_Lines) {
+        for (Renderable *line : m_Lines)
+        {
             drawing->remove(*line);
         }
     }
-}
-}
+} // namespace editor
+} // namespace spright

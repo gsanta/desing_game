@@ -9,17 +9,18 @@ namespace engine
     {
     }
 
-    Drawing3d &Drawing3d::operator=(const Drawing3d &other)
-    {
-        Canvas::operator=(other);
+    // Drawing3d &Drawing3d::operator=(const Drawing3d &other)
+    // {
+    //     Canvas::operator=(other);
 
-        m_Group = other.m_Group;
-        return *this;
-    }
+    //     m_Group = other.m_Group;
+    //     m_GizmoGroup = other.m_GizmoGroup;
+    //     return *this;
+    // }
 
-    Renderable &Drawing3d::add(const Renderable &renderable)
+    Mesh &Drawing3d::add(const Mesh &renderable)
     {
-        Renderable &newRenderable = m_Group.add(renderable);
+        Mesh &newRenderable = m_Group.add(renderable);
 
         Vec3 center = getBounds().getCenter();
         // newRenderable.setPosition(newRenderable.getPosition() + Vec3(center.x, center.y, 0));
@@ -27,14 +28,13 @@ namespace engine
         return newRenderable;
     }
 
-    void Drawing3d::remove(const Renderable &renderable)
-    {
-        m_Group.remove(renderable);
+    Group<Mesh> &Drawing3d::getGroup() {
+        return m_Group;
     }
 
-    std::vector<Renderable *> &Drawing3d::getRenderables()
+    Group<Mesh> &Drawing3d::getGizmoGroup()
     {
-        return m_Group.getRenderables();
+        return m_GizmoGroup;
     }
 
     Drawing3d *Drawing3d::clone() const

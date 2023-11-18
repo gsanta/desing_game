@@ -1,51 +1,25 @@
 #pragma once
 
-#include "renderable.h"
+#include "../colors.h"
+#include "../mesh/meshes/mesh.h"
 
 namespace spright
 {
 namespace engine
 {
-    class Box : public Renderable
+    class Box : public Mesh
     {
     public:
         Box(const Vec3 &pos, float width, float height, float depth, unsigned int color);
+
+        Box(const Box& other) = default;
 
         void submit(Renderer2D &renderer) const override;
 
         Box *clone() const override;
 
-        void setPosition(const Vec3 &pos) override;
-
     private:
-        void updatePosition();
-
-    private:
-        float m_Width;
-
-        float m_Height;
-
-        float m_Depth;
-
-        Vec3 m_Corners[8];
-
-        int m_Indexes[24];
-
-        Vec3 m_FrontTopRight;
-
-        Vec3 m_FrontBottomRight;
-
-        Vec3 m_FrontBottomLeft;
-
-        Vec3 m_FrontTopLeft;
-
-        Vec3 m_BackTopRight;
-
-        Vec3 m_BackBottomRight;
-
-        Vec3 m_BackBottomLeft;
-
-        Vec3 m_BackTopLeft;
+        void calcPositions(const Vec3 &pos, float width, float height, float depth);
     };
 } // namespace engine
 } // namespace spright

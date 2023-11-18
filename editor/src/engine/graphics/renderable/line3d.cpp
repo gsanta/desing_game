@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
     Line3d::Line3d(const Vec3 &start, const Vec3 &end, float thickness, unsigned int color)
-        : Renderable(Vec3(0, 0, 0), color), m_Start(start), m_End(end), m_Thickness(thickness)
+        : Mesh(Vec3(0, 0, 0), color), m_Start(start), m_End(end), m_Thickness(thickness)
     {
 
         Vec3 vec = m_End - m_Start;

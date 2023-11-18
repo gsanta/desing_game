@@ -79,11 +79,13 @@ namespace editor
         Drawing3d drawing =
             Drawing3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
 
-        drawing.add(Rect2D(bounds.getBottomLeft().x,
+        drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
                            bounds.getBottomLeft().y,
                            bounds.getWidth(),
                            bounds.getHeight(),
-                           COLOR_WHITE));
+                           COLOR_RED));
+
+        // drawing.getGroup().add(Box(Vec3(5, 0, 0), 5,5,5, COLOR_GREEN));
 
         return drawing;
     }

@@ -85,7 +85,7 @@ namespace editor
                            bounds.getHeight(),
                            COLOR_RED));
 
-        // drawing.getGroup().add(Box(Vec3(5, 0, 0), 5,5,5, COLOR_GREEN));
+        drawing.getGroup().add(CylinderBuilder().setHeight(10).setDiameterTop(4).setDiameterBottom(8).setTessellation(9).setColor(COLOR_RED).build());
 
         return drawing;
     }

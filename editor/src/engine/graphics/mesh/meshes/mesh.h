@@ -1,7 +1,10 @@
 #pragma once
 
 #include "../../../../maths/vec3.h"
+#include "../../colors.h"
 #include "../../renderer/renderer2d.h"
+
+#include <algorithm>
 
 namespace spright
 {
@@ -16,9 +19,15 @@ namespace engine
 
         Mesh(int positionCount, unsigned int color);
 
+        Mesh(const Vec3 *positions, int positionCount);
+
         Mesh(const Mesh &other);
 
+        virtual Mesh &operator=(const Mesh &other);
+
         virtual ~Mesh();
+
+        const Vec3 *getPositions() const;
 
         const Vec3 &getPosition() const;
 
@@ -31,13 +40,11 @@ namespace engine
             return false;
         }
 
-        virtual Mesh &operator=(const Mesh &rhs);
-
         virtual bool operator==(const Mesh &rhs);
 
         virtual bool operator!=(const Mesh &rhs);
 
-        virtual Mesh *clone() const = 0;
+        virtual Mesh *clone() const;
 
     protected:
         Vec3 m_Position;

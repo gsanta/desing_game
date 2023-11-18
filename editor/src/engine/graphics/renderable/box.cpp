@@ -10,23 +10,6 @@ namespace engine
         calcPositions(pos, width, height, depth);
     }
 
-    void Box::submit(Renderer2D &renderer) const
-    {
-        VertexData *&buffer = renderer.getBuffer();
-        const Mat4 *transformation = renderer.getTransformation();
-
-
-        for (int i = 0; i < m_PositionsCount; i++)
-        {
-            buffer->vertex = *transformation * m_Positions[i];
-            buffer->tid = 0.0f;
-            buffer->color = COLOR_RED;
-            buffer++;
-        }
-
-        renderer.setIndexCount(renderer.getIndexCount() + 36);
-    }
-
     Box *Box::clone() const
     {
         return new Box(*this);

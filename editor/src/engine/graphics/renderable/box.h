@@ -14,8 +14,6 @@ namespace engine
 
         Box(const Box& other) = default;
 
-        void submit(Renderer2D &renderer) const override;
-
         Box *clone() const override;
 
     private:

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../../../maths/vec3.h"
+#include "../mesh/meshes/mesh.h"
 #include "../renderer/renderer2d.h"
-#include "renderable.h"
 
 #include <cmath>
 
@@ -12,7 +12,7 @@ namespace engine
 {
     using namespace spright::maths;
 
-    class Line3d : public Renderable
+    class Line3d : public Mesh
     {
     public:
         Line3d(const Vec3 &start, const Vec3 &end, float thickness, unsigned int color);

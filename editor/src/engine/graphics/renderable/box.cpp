@@ -5,9 +5,9 @@ namespace spright
 namespace engine
 {
     Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color)
-        : Renderable(pos, color), m_Width(width), m_Height(height), m_Depth(depth)
+        : Mesh(24, color)
     {
-        updatePosition();
+        calcPositions(pos, width, height, depth);
     }
 
     void Box::submit(Renderer2D &renderer) const
@@ -15,11 +15,12 @@ namespace engine
         VertexData *&buffer = renderer.getBuffer();
         const Mat4 *transformation = renderer.getTransformation();
 
-        for (int i : m_Indexes)
+
+        for (int i = 0; i < m_PositionsCount; i++)
         {
-            buffer->vertex = *transformation * m_Corners[i];
+            buffer->vertex = *transformation * m_Positions[i];
             buffer->tid = 0.0f;
-            buffer->color = m_Color;
+            buffer->color = COLOR_RED;
             buffer++;
         }
 
@@ -31,58 +32,51 @@ namespace engine
         return new Box(*this);
     }
 
-    void Box::setPosition(const Vec3 &pos)
+    void Box::calcPositions(const Vec3 &pos, float width, float height, float depth)
     {
-        Renderable::setPosition(pos);
-        updatePosition();
-    }
+        float halfWidth = width / 2.0;
+        float halfHeight = height / 2.0;
+        float halfDepth = depth / 2.0;
 
-    void Box::updatePosition()
-    {
-        float halfWidth = m_Width / 2.0;
-        float halfHeight = m_Height / 2.0;
-        float halfDepth = m_Depth / 2.0;
+        Vec3 corners[8];
+        corners[0] = Vec3(pos.x - halfWidth, pos.y - halfHeight, pos.z + halfDepth); // bottom left front
+        corners[1] = Vec3(pos.x - halfWidth, pos.y + halfHeight, pos.z + halfDepth); // top left front
+        corners[2] = Vec3(pos.x + halfWidth, pos.y + halfHeight, pos.z + halfDepth); // top right front
+        corners[3] = Vec3(pos.x + halfWidth, pos.y - halfHeight, pos.z + halfDepth); // bottom right front
+        corners[4] = Vec3(pos.x - halfWidth, pos.y - halfHeight, pos.z - halfDepth); // bottom left back
+        corners[5] = Vec3(pos.x - halfWidth, pos.y + halfHeight, pos.z - halfDepth); // top left back
+        corners[6] = Vec3(pos.x + halfWidth, pos.y + halfHeight, pos.z - halfDepth); // top right back
+        corners[7] = Vec3(pos.x + halfWidth, pos.y - halfHeight, pos.z - halfDepth); // bottom right back
 
-        Vec3 pos = getPosition();
+        m_Positions[0] = corners[0]; // front
+        m_Positions[1] = corners[1];
+        m_Positions[2] = corners[2];
+        m_Positions[3] = corners[3];
 
-        m_Corners[0] = Vec3(pos.x - halfWidth, pos.y - halfHeight, pos.z + halfDepth); // bottom left front
-        m_Corners[1] = Vec3(pos.x - halfWidth, pos.y + halfHeight, pos.z + halfDepth); // top left front
-        m_Corners[2] = Vec3(pos.x + halfWidth, pos.y + halfHeight, pos.z + halfDepth); // top right front
-        m_Corners[3] = Vec3(pos.x + halfWidth, pos.y - halfHeight, pos.z + halfDepth); // bottom right front
-        m_Corners[4] = Vec3(pos.x - halfWidth, pos.y - halfHeight, pos.z - halfDepth); // bottom left back
-        m_Corners[5] = Vec3(pos.x - halfWidth, pos.y + halfHeight, pos.z - halfDepth); // top left back
-        m_Corners[6] = Vec3(pos.x + halfWidth, pos.y + halfHeight, pos.z - halfDepth); // top right back
-        m_Corners[7] = Vec3(pos.x + halfWidth, pos.y - halfHeight, pos.z - halfDepth); // bottom right back
+        m_Positions[4] = corners[7]; // back
+        m_Positions[5] = corners[6];
+        m_Positions[6] = corners[5];
+        m_Positions[7] = corners[4];
 
-        m_Indexes[0] = 0; // front
-        m_Indexes[1] = 1;
-        m_Indexes[2] = 2;
-        m_Indexes[3] = 3;
+        m_Positions[8] = corners[3]; // right
+        m_Positions[9] = corners[2];
+        m_Positions[10] = corners[6];
+        m_Positions[11] = corners[7];
 
-        m_Indexes[4] = 7; // back
-        m_Indexes[5] = 6;
-        m_Indexes[6] = 5;
-        m_Indexes[7] = 4;
+        m_Positions[12] = corners[4]; // left
+        m_Positions[13] = corners[5];
+        m_Positions[14] = corners[1];
+        m_Positions[15] = corners[0];
 
-        m_Indexes[8] = 3; // right
-        m_Indexes[9] = 2;
-        m_Indexes[10] = 6;
-        m_Indexes[11] = 7;
+        m_Positions[16] = corners[1]; // top
+        m_Positions[17] = corners[5];
+        m_Positions[18] = corners[6];
+        m_Positions[19] = corners[2];
 
-        m_Indexes[12] = 4; // left
-        m_Indexes[13] = 5;
-        m_Indexes[14] = 1;
-        m_Indexes[15] = 0;
-
-        m_Indexes[16] = 1; // top
-        m_Indexes[17] = 5;
-        m_Indexes[18] = 6;
-        m_Indexes[19] = 2;
-
-        m_Indexes[20] = 7; // bottom
-        m_Indexes[21] = 4;
-        m_Indexes[22] = 0;
-        m_Indexes[23] = 3;
+        m_Positions[20] = corners[7]; // bottom
+        m_Positions[21] = corners[4];
+        m_Positions[22] = corners[0];
+        m_Positions[23] = corners[3];
     }
 } // namespace engine
 } // namespace spright

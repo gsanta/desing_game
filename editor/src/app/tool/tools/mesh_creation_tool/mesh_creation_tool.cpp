@@ -19,7 +19,7 @@ namespace editor
 
         Drawing3d *drawing = context.doc.document->getActiveDrawing3d();
 
-        drawing->add(m_BoxBuilder.build(pos));
+        drawing->getGroup().add(m_BoxBuilder.build(pos));
     }
 } // namespace editor
 } // namespace spright

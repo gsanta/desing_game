@@ -9,6 +9,7 @@
 #include "../../../engine/graphics/layer/tile_layer.h"
 #include "../../../engine/graphics/renderable/bounds.h"
 #include "../../../engine/graphics/renderable/box.h"
+#include "../../../engine/graphics/mesh/builders/cylinder_builder.h"
 #include "../../../engine/graphics/renderable/line3d.h"
 #include "../../../engine/graphics/renderable/line_shape.h"
 #include "../../../engine/graphics/renderable/rect2d.h"

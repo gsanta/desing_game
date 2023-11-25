@@ -4,8 +4,15 @@ namespace spright
 {
 namespace engine
 {
-    Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color)
-        : Mesh(24, color)
+    Box::Box(int vertexCount, const Vec3 *positions) : Mesh(vertexCount, positions)
+    {
+    }
+
+    Box::Box(int vertexCount, const Vec3 *positions, const unsigned int *colors) : Mesh(vertexCount, positions, colors)
+    {
+    }
+
+    Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color) : Mesh(36, color)
     {
         calcPositions(pos, width, height, depth);
     }
@@ -31,35 +38,49 @@ namespace engine
         corners[6] = Vec3(pos.x + halfWidth, pos.y + halfHeight, pos.z - halfDepth); // top right back
         corners[7] = Vec3(pos.x + halfWidth, pos.y - halfHeight, pos.z - halfDepth); // bottom right back
 
-        m_Positions[0] = corners[0]; // front
-        m_Positions[1] = corners[1];
-        m_Positions[2] = corners[2];
-        m_Positions[3] = corners[3];
+        Vec3 vertices[Box::NUM_VERTICES];
 
-        m_Positions[4] = corners[7]; // back
-        m_Positions[5] = corners[6];
-        m_Positions[6] = corners[5];
-        m_Positions[7] = corners[4];
+        vertices[0] = corners[0]; // front
+        vertices[1] = corners[1];
+        vertices[2] = corners[2];
+        vertices[3] = corners[0];
+        vertices[4] = corners[2];
+        vertices[5] = corners[3];
 
-        m_Positions[8] = corners[3]; // right
-        m_Positions[9] = corners[2];
-        m_Positions[10] = corners[6];
-        m_Positions[11] = corners[7];
+        vertices[6] = corners[7]; // back
+        vertices[7] = corners[6];
+        vertices[8] = corners[5];
+        vertices[9] = corners[7];
+        vertices[10] = corners[5];
+        vertices[11] = corners[4];
 
-        m_Positions[12] = corners[4]; // left
-        m_Positions[13] = corners[5];
-        m_Positions[14] = corners[1];
-        m_Positions[15] = corners[0];
+        vertices[12] = corners[3]; // right
+        vertices[13] = corners[2];
+        vertices[14] = corners[6];
+        vertices[15] = corners[3];
+        vertices[16] = corners[6];
+        vertices[17] = corners[7];
 
-        m_Positions[16] = corners[1]; // top
-        m_Positions[17] = corners[5];
-        m_Positions[18] = corners[6];
-        m_Positions[19] = corners[2];
+        vertices[18] = corners[4]; // left
+        vertices[19] = corners[5];
+        vertices[20] = corners[1];
+        vertices[21] = corners[4];
+        vertices[22] = corners[1];
+        vertices[23] = corners[0];
 
-        m_Positions[20] = corners[7]; // bottom
-        m_Positions[21] = corners[4];
-        m_Positions[22] = corners[0];
-        m_Positions[23] = corners[3];
+        vertices[24] = corners[1]; // top
+        vertices[25] = corners[5];
+        vertices[26] = corners[6];
+        vertices[27] = corners[1];
+        vertices[28] = corners[6];
+        vertices[29] = corners[2];
+
+        vertices[30] = corners[7]; // bottom
+        vertices[31] = corners[4];
+        vertices[32] = corners[0];
+        vertices[33] = corners[7];
+        vertices[34] = corners[0];
+        vertices[35] = corners[3];
     }
 } // namespace engine
 } // namespace spright

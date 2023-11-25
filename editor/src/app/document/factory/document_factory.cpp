@@ -87,6 +87,15 @@ namespace editor
 
         drawing.getGroup().add(CylinderBuilder().setHeight(10).setDiameterTop(4).setDiameterBottom(8).setTessellation(9).setColor(COLOR_RED).build());
 
+        drawing.getGroup().add(BoxBuilder()
+                                   .setWidth(10)
+                                   .setHeight(5)
+                                   .setDepth(5)
+                                   .setColor(COLOR_BLUE)
+                                   .setFaceColor(Box::Face::top, COLOR_GREEN)
+                                   .setFaceColor(Box::Face::left, COLOR_RED)
+                                   .build());
+
         return drawing;
     }
 

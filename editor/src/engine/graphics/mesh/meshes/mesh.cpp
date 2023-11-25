@@ -9,47 +9,65 @@ namespace engine
         m_Position = pos;
     }
 
-    Mesh::Mesh(int positionCount, unsigned int color)
+    Mesh::Mesh(int vertexCount, unsigned int color)
     {
-        m_PositionsCount = positionCount;
-
-        m_Positions = new Vec3[m_PositionsCount];
+        m_VertexCount = vertexCount;
+        createArrays(vertexCount);
     }
 
-    Mesh::Mesh(const Vec3 *positions, int positionCount): m_PositionsCount(positionCount) {
-        m_Positions = new Vec3[positionCount];
+    Mesh::Mesh(int vertexCount, const Vec3 *positions) : m_VertexCount(vertexCount)
+    {
+        createArrays(vertexCount);
+        std::copy_n(positions, vertexCount, m_Positions);
+    }
 
-        std::copy_n(positions, positionCount, m_Positions);
+    Mesh::Mesh(int vertexCount, const Vec3 *positions, const unsigned int *colors)
+    {
+        m_VertexCount = vertexCount;
+        createArrays(vertexCount);
+
+        std::copy_n(positions, vertexCount, m_Positions);
+        std::copy_n(colors, vertexCount, m_Colors);
     }
 
     Mesh::Mesh(const Mesh &other)
-        : m_Color(other.m_Color), m_Position(other.m_Position), m_PositionsCount(other.m_PositionsCount)
+        : m_Color(other.m_Color), m_Position(other.m_Position), m_VertexCount(other.m_VertexCount)
     {
-        m_Positions = new Vec3[m_PositionsCount];
-        std::copy_n(other.m_Positions, m_PositionsCount, m_Positions);
+        createArrays(other.m_VertexCount);
+        std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
+        std::copy_n(other.m_Normals, m_VertexCount, m_Normals);
+        std::copy_n(other.m_Colors, m_VertexCount, m_Colors);
     }
 
-    Mesh &Mesh::operator=(const Mesh &other) {
-        if (this == &other) {
+    Mesh &Mesh::operator=(const Mesh &other)
+    {
+        if (this == &other)
+        {
             return *this;
         }
 
         delete[] m_Positions;
+        delete[] m_Normals;
+        delete[] m_Colors;
 
-        m_Positions = new Vec3[other.m_PositionsCount];
-        m_PositionsCount = other.m_PositionsCount;
+        createArrays(other.m_VertexCount);
         m_Color = other.m_Color;
-        std::copy_n(other.m_Positions, m_PositionsCount, m_Positions);
 
+        std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
+        std::copy_n(other.m_Normals, m_VertexCount, m_Normals);
+        std::copy_n(other.m_Colors, m_VertexCount, m_Colors);
         return *this;
     }
 
     Mesh::~Mesh()
     {
         delete[] m_Positions;
+        delete[] m_Normals;
+        delete[] m_Colors;
     }
 
-    const Vec3 *Mesh::getPositions() const {
+    const Vec3 *Mesh::getPositions() const
+    {
         return m_Positions;
     }
 
@@ -68,18 +86,17 @@ namespace engine
         VertexData *&buffer = renderer.getBuffer();
         const Mat4 *transformation = renderer.getTransformation();
 
-        for (int i = 0; i < m_PositionsCount; i++)
+        for (int i = 0; i < m_VertexCount; i++)
         {
             buffer->vertex = *transformation * m_Positions[i];
             buffer->tid = 0.0f;
-            buffer->color = COLOR_RED;
+            buffer->color = m_Colors[i];
             buffer++;
         }
 
-        // every four positions creates two triangles, reusing two positions
-        int indexCount = m_PositionsCount + m_PositionsCount / 2;
+        int indexCount = m_VertexCount + m_VertexCount / 2;
 
-        renderer.setIndexCount(renderer.getIndexCount() + indexCount);
+        renderer.setIndexCount(renderer.getIndexCount() + m_VertexCount);
     }
 
     bool Mesh::operator==(const Mesh &rhs)
@@ -92,8 +109,29 @@ namespace engine
         return !(*this == rhs);
     }
 
-    Mesh *Mesh::clone() const {
+    Mesh *Mesh::clone() const
+    {
         return new Mesh(*this);
+    }
+
+    void Mesh::calcNormals()
+    {
+        for (int i = 0; i < m_VertexCount; i += 3)
+        {
+            Vec3 normal = (m_Positions[i] - m_Positions[i + 1]).cross(m_Positions[i] - m_Positions[i + 2]);
+
+            m_Normals[i] = normal;
+            m_Normals[i + 1] = normal;
+            m_Normals[i + 2] = normal;
+        }
+    }
+
+    void Mesh::createArrays(int positionsCount)
+    {
+        m_VertexCount = positionsCount;
+        m_Positions = new Vec3[positionsCount];
+        m_Normals = new Vec3[positionsCount];
+        m_Colors = new int[positionsCount];
     }
 } // namespace engine
 } // namespace spright

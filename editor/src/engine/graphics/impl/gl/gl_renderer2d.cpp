@@ -63,7 +63,7 @@ namespace spright { namespace engine {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//glDepthMask(GL_FALSE);
-		
+
 		glEnableVertexAttribArray(SHADER_VERTEX_INDEX);
 		glEnableVertexAttribArray(SHADER_UV_INDEX);
 		glEnableVertexAttribArray(SHADER_TID_INDEX);
@@ -78,26 +78,26 @@ namespace spright { namespace engine {
 		GLuint* indices = new GLuint[RENDERER_INDICES_SIZE];
 
 		int offset = 0;
-		for (int i = 0; i < RENDERER_INDICES_SIZE; i+=6) {
+		for (int i = 0; i < RENDERER_INDICES_SIZE; i+=3) {
 			indices[  i  ] = offset + 0;
 			indices[i + 1] = offset + 2;
 			indices[i + 2] = offset + 1;
-			indices[i + 3] = offset + 2;
-			indices[i + 4] = offset + 0;
-			indices[i + 5] = offset + 3;
+			// indices[i + 3] = offset + 2;
+			// indices[i + 4] = offset + 0;
+			// indices[i + 5] = offset + 3;
 
-			offset += 4;
+			offset += 3;
 		}
 
 		m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
-		
+
 		glBindVertexArray(0);
 
 		m_BufferBase = new VertexData[RENDERER_MAX_SPRITES * 4];
 	}
 
 	void GLRenderer2D::begin()
-	{	
+	{
 		getShader().enable();
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 

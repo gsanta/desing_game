@@ -3,6 +3,9 @@
 #include "../../renderable/box.h"
 #include "mesh_builder.h"
 
+#include <map>
+#include <algorithm>
+
 namespace spright
 {
 namespace engine
@@ -14,11 +17,20 @@ namespace engine
 
         Box build(const Vec3 &pos) const;
 
-        void setWidth(float width);
+        BoxBuilder &setWidth(float width);
 
-        void setHeight(float height);
+        BoxBuilder &setHeight(float height);
 
-        void setDepth(float depth);
+        BoxBuilder &setDepth(float depth);
+
+        BoxBuilder &setColor(int color);
+
+        BoxBuilder &setFaceColor(Box::Face face, unsigned int color);
+
+    private:
+        void calcPositions(const Vec3 &pos, float width, float height, float depth, Vec3 *positions) const;
+
+        void calcColors(unsigned int *colors) const;
 
     private:
         float m_Width = 1.0;
@@ -26,6 +38,8 @@ namespace engine
         float m_Height = 1.0;
 
         float m_Depth = 1.0;
+
+        std::map<Box::Face, unsigned int> m_FaceColors;
     };
 } // namespace engine
 } // namespace spright

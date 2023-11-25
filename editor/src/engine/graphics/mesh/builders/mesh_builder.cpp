@@ -4,14 +4,18 @@ namespace spright
 {
 namespace engine
 {
-    void MeshBuilder::setColor(int color)
+    MeshBuilder &MeshBuilder::setColor(int color)
     {
         m_Color = color;
+
+        return *this;
     }
 
-    void MeshBuilder::setPos(const Vec3 &pos)
+    MeshBuilder &MeshBuilder::setPos(const Vec3 &pos)
     {
         m_Pos = pos;
+
+        return *this;
     }
 } // namespace engine
 } // namespace spright

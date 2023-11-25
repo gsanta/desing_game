@@ -47,8 +47,8 @@ namespace engine
             }
         }
 
-        int positionsCount = tessellation * 4;
-        Vec3 positions[positionsCount];
+        int vertexCount = tessellation * 6;
+        Vec3 positions[vertexCount];
 
         int counter = 0;
         for (int i = 0; i < tessellation; i++)
@@ -58,10 +58,12 @@ namespace engine
             positions[counter++] = bottomPositions[i];
             positions[counter++] = topPositions[i];
             positions[counter++] = topPositions[iPlus1];
+            positions[counter++] = bottomPositions[i];
+            positions[counter++] = topPositions[iPlus1];
             positions[counter++] = bottomPositions[iPlus1];
         }
 
-        return Mesh(positions, positionsCount);
+        return Mesh(vertexCount, positions);
     }
 
     CylinderBuilder &CylinderBuilder::setHeight(float height)

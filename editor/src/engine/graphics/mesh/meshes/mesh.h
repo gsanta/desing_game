@@ -17,9 +17,11 @@ namespace engine
     public:
         Mesh(const Vec3 &pos, unsigned int color);
 
-        Mesh(int positionCount, unsigned int color);
+        Mesh(int vertexCount, unsigned int color);
 
-        Mesh(const Vec3 *positions, int positionCount);
+        Mesh(int vertexCount, const Vec3 *positions);
+
+        Mesh(int vertexCount, const Vec3 *positions, const unsigned int *colors);
 
         Mesh(const Mesh &other);
 
@@ -46,12 +48,21 @@ namespace engine
 
         virtual Mesh *clone() const;
 
+    private:
+        void calcNormals();
+
+        void createArrays(int positionCount);
+
     protected:
         Vec3 m_Position;
 
         Vec3 *m_Positions = nullptr;
 
-        int m_PositionsCount = 0;
+        Vec3 *m_Normals = nullptr;
+
+        int *m_Colors = nullptr;
+
+        int m_VertexCount = 0;
 
         unsigned int m_Color;
     };

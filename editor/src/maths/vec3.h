@@ -66,6 +66,8 @@ namespace maths
         Vec3 &operator*=(const Vec3 &other);
 
         Vec3 &operator/=(const Vec3 &other);
+
+        float &operator[](int index);
     };
 } // namespace maths
 } // namespace spright

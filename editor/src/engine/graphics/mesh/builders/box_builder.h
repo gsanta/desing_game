@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../renderable/box.h"
+#include "../meshes/box.h"
 #include "mesh_builder.h"
 
 #include <map>

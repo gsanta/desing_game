@@ -164,5 +164,13 @@ namespace maths
         stream << "vec3: {" << vec.x << ", " << vec.y << ", " << vec.z << "}";
         return stream;
     }
+
+    float &Vec3::operator[](int index) {
+        if (index > 3 || index < 0) {
+            throw std::invalid_argument("Valid indexes for Vec3 are 0, 1 and 2, got: " + index);
+        }
+
+        return *(&x + index);
+    }
 } // namespace maths
 } // namespace spright

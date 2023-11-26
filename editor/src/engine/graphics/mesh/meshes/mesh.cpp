@@ -15,10 +15,8 @@ namespace engine
         createArrays(vertexCount);
     }
 
-    Mesh::Mesh(int vertexCount, const Vec3 *positions) : m_VertexCount(vertexCount)
+    Mesh::Mesh(int vertexCount, const Vec3 *positions) : Mesh(vertexCount, positions, nullptr)
     {
-        createArrays(vertexCount);
-        std::copy_n(positions, vertexCount, m_Positions);
     }
 
     Mesh::Mesh(int vertexCount, const Vec3 *positions, const unsigned int *colors)
@@ -27,7 +25,11 @@ namespace engine
         createArrays(vertexCount);
 
         std::copy_n(positions, vertexCount, m_Positions);
-        std::copy_n(colors, vertexCount, m_Colors);
+        if (colors != nullptr) {
+            std::copy_n(colors, vertexCount, m_Colors);
+        }
+
+        calcBounds();
     }
 
     Mesh::Mesh(const Mesh &other)
@@ -81,6 +83,11 @@ namespace engine
         m_Position = pos;
     }
 
+    const Bounds &Mesh::getBounds()
+    {
+        return m_Bounds;
+    }
+
     void Mesh::submit(Renderer2D &renderer) const
     {
         VertexData *&buffer = renderer.getBuffer();
@@ -123,6 +130,23 @@ namespace engine
             m_Normals[i] = normal;
             m_Normals[i + 1] = normal;
             m_Normals[i + 2] = normal;
+        }
+    }
+
+    void Mesh::calcBounds() {
+        Vec3 min = m_Positions[0];
+        Vec3 max = m_Positions[0];
+
+        for (int i = 1; i < m_VertexCount; i++)
+        {
+            for (int xyz = 0; xyz < 3; xyz++) {
+                if (min[xyz] > m_Positions[i][xyz]) {
+                    min[xyz] = m_Positions[i][xyz];
+                }
+                else if (min[xyz] < m_Positions[i][xyz]) {
+                    max[xyz] = m_Positions[i][xyz];
+                }
+            }
         }
     }
 

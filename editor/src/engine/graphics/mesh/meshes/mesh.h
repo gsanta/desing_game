@@ -3,6 +3,7 @@
 #include "../../../../maths/vec3.h"
 #include "../../colors.h"
 #include "../../renderer/renderer2d.h"
+#include "../../renderable/bounds.h"
 
 #include <algorithm>
 
@@ -35,6 +36,8 @@ namespace engine
 
         virtual void setPosition(const Vec3 &pos);
 
+        const Bounds &getBounds();
+
         virtual void submit(Renderer2D &renderer) const;
 
         virtual inline bool isEqual(const Mesh &obj) const
@@ -51,6 +54,8 @@ namespace engine
     private:
         void calcNormals();
 
+        void calcBounds();
+
         void createArrays(int positionCount);
 
     protected:
@@ -65,6 +70,8 @@ namespace engine
         int m_VertexCount = 0;
 
         unsigned int m_Color;
+
+        Bounds m_Bounds;
     };
 } // namespace engine
 } // namespace spright

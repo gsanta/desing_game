@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../colors.h"
-#include "../mesh/meshes/mesh.h"
+#include "../../colors.h"
+#include "./mesh.h"
 
 namespace spright
 {

@@ -3,8 +3,8 @@
 #include "../meshes/box.h"
 #include "mesh_builder.h"
 
-#include <map>
 #include <algorithm>
+#include <map>
 
 namespace spright
 {

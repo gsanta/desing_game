@@ -1,6 +1,6 @@
 #include "../../editor/test_helpers/builders/drawing3d_builder.h"
-#include "../src/engine/graphics/renderable/box.h"
 #include "../src/engine/graphics/camera/camera2d.h"
+#include "../src/engine/graphics/renderable/box.h"
 
 #include <catch2/catch_test_macros.hpp>
 
@@ -34,7 +34,8 @@ SCENARIO("Drawing3d")
             REQUIRE(*drawing2.getCamera() == *drawing.getCamera());
         }
 
-        THEN("an other instance can be copy constructed") {
+        THEN("an other instance can be copy constructed")
+        {
             Drawing3d drawing2 = drawing;
 
             REQUIRE(drawing2.getGroup().getRenderables().size() == 1);

@@ -9,15 +9,6 @@ namespace engine
     {
     }
 
-    // Drawing3d &Drawing3d::operator=(const Drawing3d &other)
-    // {
-    //     Canvas::operator=(other);
-
-    //     m_Group = other.m_Group;
-    //     m_GizmoGroup = other.m_GizmoGroup;
-    //     return *this;
-    // }
-
     Mesh &Drawing3d::add(const Mesh &renderable)
     {
         Mesh &newRenderable = m_Group.add(renderable);
@@ -28,7 +19,8 @@ namespace engine
         return newRenderable;
     }
 
-    Group<Mesh> &Drawing3d::getGroup() {
+    Group<Mesh> &Drawing3d::getGroup()
+    {
         return m_Group;
     }
 

@@ -25,7 +25,8 @@ namespace engine
         createArrays(vertexCount);
 
         std::copy_n(positions, vertexCount, m_Positions);
-        if (colors != nullptr) {
+        if (colors != nullptr)
+        {
             std::copy_n(colors, vertexCount, m_Colors);
         }
 
@@ -133,17 +134,21 @@ namespace engine
         }
     }
 
-    void Mesh::calcBounds() {
+    void Mesh::calcBounds()
+    {
         Vec3 min = m_Positions[0];
         Vec3 max = m_Positions[0];
 
         for (int i = 1; i < m_VertexCount; i++)
         {
-            for (int xyz = 0; xyz < 3; xyz++) {
-                if (min[xyz] > m_Positions[i][xyz]) {
+            for (int xyz = 0; xyz < 3; xyz++)
+            {
+                if (min[xyz] > m_Positions[i][xyz])
+                {
                     min[xyz] = m_Positions[i][xyz];
                 }
-                else if (min[xyz] < m_Positions[i][xyz]) {
+                else if (min[xyz] < m_Positions[i][xyz])
+                {
                     max[xyz] = m_Positions[i][xyz];
                 }
             }

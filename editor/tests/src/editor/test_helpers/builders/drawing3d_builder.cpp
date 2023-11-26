@@ -7,6 +7,7 @@ Drawing3dBuilder &Drawing3dBuilder::withBounds(const Bounds &bounds)
     return *this;
 }
 
-Drawing3d Drawing3dBuilder::build() {
+Drawing3d Drawing3dBuilder::build()
+{
     return Drawing3d(UuidGenerator::getInstance().generate(), m_Bounds, HeadlessRenderer2D());
 }

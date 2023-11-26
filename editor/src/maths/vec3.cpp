@@ -165,8 +165,10 @@ namespace maths
         return stream;
     }
 
-    float &Vec3::operator[](int index) {
-        if (index > 3 || index < 0) {
+    float &Vec3::operator[](int index)
+    {
+        if (index > 3 || index < 0)
+        {
             throw std::invalid_argument("Valid indexes for Vec3 are 0, 1 and 2, got: " + index);
         }
 

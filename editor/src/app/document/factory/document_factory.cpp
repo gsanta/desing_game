@@ -80,12 +80,18 @@ namespace editor
             Drawing3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
 
         drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
-                           bounds.getBottomLeft().y,
-                           bounds.getWidth(),
-                           bounds.getHeight(),
-                           COLOR_RED));
+                                      bounds.getBottomLeft().y,
+                                      bounds.getWidth(),
+                                      bounds.getHeight(),
+                                      COLOR_RED));
 
-        drawing.getGroup().add(CylinderBuilder().setHeight(10).setDiameterTop(4).setDiameterBottom(8).setTessellation(9).setColor(COLOR_RED).build());
+        drawing.getGroup().add(CylinderBuilder()
+                                   .setHeight(10)
+                                   .setDiameterTop(4)
+                                   .setDiameterBottom(8)
+                                   .setTessellation(9)
+                                   .setColor(COLOR_RED)
+                                   .build());
 
         drawing.getGroup().add(BoxBuilder()
                                    .setWidth(10)

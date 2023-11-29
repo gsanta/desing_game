@@ -6,6 +6,7 @@
 #include "../../engine/graphics/layer/tile_layer.h"
 #include "../../engine/graphics/renderable/bounds.h"
 #include "../../engine/structure/canvas.h"
+#include "../../engine/structure/canvas2d.h"
 #include "../../engine/structure/drawing3d.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
@@ -27,7 +28,7 @@ namespace editor
     class Document
     {
     public:
-        Document(const Bounds &bounds, const Canvas &canvas, std::shared_ptr<DocumentHistory> history);
+        Document(const Bounds &bounds, const Canvas2d &canvas, std::shared_ptr<DocumentHistory> history);
 
         Document(const Document &other);
 
@@ -72,7 +73,7 @@ namespace editor
 
         int m_ActiveCanvasIndex = -1;
 
-        Canvas m_Canvas;
+        Canvas2d m_Canvas;
 
         std::shared_ptr<DocumentHistory> m_History;
     };

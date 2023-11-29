@@ -98,7 +98,7 @@ namespace engine
         m_View = Mat4::lookAt(Vec3(0, -m_Radius, 0), Vec3(0, 0, 0), Vec3(0, 1, 0));
     }
 
-    Camera *ArcRotateCamera::clone() const
+    ArcRotateCamera *ArcRotateCamera::clone() const
     {
         return new ArcRotateCamera(*this);
     }

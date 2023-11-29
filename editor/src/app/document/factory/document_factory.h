@@ -16,6 +16,7 @@
 #include "../../../engine/graphics/renderable/rect2d.h"
 #include "../../../engine/graphics/shader/shader.h"
 #include "../../../engine/structure/canvas.h"
+#include "../../../engine/structure/canvas2d.h"
 #include "../../../engine/system/utils/uuid_generator.h"
 #include "../../../engine/system/window/window.h"
 #include "../../core/history/document_history.h"

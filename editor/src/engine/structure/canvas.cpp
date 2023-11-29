@@ -14,10 +14,10 @@ namespace engine
     {
         m_Renderer.reset(other.m_Renderer->clone());
 
-        if (other.m_Camera)
-        {
-            m_Camera.reset(other.m_Camera->clone());
-        }
+        // if (other.m_Camera)
+        // {
+        //     m_Camera.reset(other.m_Camera->clone());
+        // }
     }
 
     Canvas &Canvas::operator=(const Canvas &other)
@@ -27,11 +27,6 @@ namespace engine
         m_Uuid = other.m_Uuid;
 
         m_Renderer.reset(other.m_Renderer->clone());
-
-        if (other.m_Camera)
-        {
-            m_Camera.reset(other.m_Camera->clone());
-        }
 
         return *this;
     }
@@ -46,10 +41,10 @@ namespace engine
         return m_Uuid;
     }
 
-    Canvas *Canvas::clone() const
-    {
-        return new Canvas(m_Uuid, m_Bounds, *m_Renderer);
-    }
+    // Canvas *Canvas::clone() const
+    // {
+    //     return new Canvas(m_Uuid, m_Bounds, *m_Renderer);
+    // }
 
     void Canvas::render(const Camera &camera, Canvas::RenderTarget target)
     {
@@ -63,16 +58,6 @@ namespace engine
     Layer &Canvas::getDecorationLayer()
     {
         return m_DecorationLayer;
-    }
-
-    void Canvas::setCamera(const Camera &camera)
-    {
-        m_Camera.reset(camera.clone());
-    }
-
-    Camera *Canvas::getCamera()
-    {
-        return m_Camera.get();
     }
 } // namespace engine
 } // namespace spright

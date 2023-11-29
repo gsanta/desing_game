@@ -4,7 +4,7 @@ namespace spright
 {
 namespace editor
 {
-    Document::Document(const Bounds &bounds, const Canvas &canvas, std::shared_ptr<DocumentHistory> history)
+    Document::Document(const Bounds &bounds, const Canvas2d &canvas, std::shared_ptr<DocumentHistory> history)
         : m_Canvas(canvas), m_History(history)
     {
     }

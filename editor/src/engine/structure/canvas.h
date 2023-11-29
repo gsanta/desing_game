@@ -15,6 +15,8 @@ namespace engine
             Image
         };
 
+        virtual ~Canvas() = default;
+
         Canvas(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer);
 
         Canvas(const Canvas &other);
@@ -25,21 +27,17 @@ namespace engine
 
         const std::string getUuid() const;
 
-        virtual Canvas *clone() const;
-
         virtual void render(const Camera &camera, Canvas::RenderTarget target);
 
         Renderer2D &getRenderer();
 
         Layer &getDecorationLayer();
 
-        void setCamera(const Camera &camera);
+        virtual Canvas *clone() const = 0;
 
-        Camera *getCamera();
+        virtual Camera *getCamera() = 0;
 
-    private:
-        std::unique_ptr<Camera> m_Camera;
-
+    protected:
         Bounds m_Bounds;
 
         Layer m_DecorationLayer;

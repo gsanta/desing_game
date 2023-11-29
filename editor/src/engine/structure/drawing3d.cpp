@@ -9,6 +9,26 @@ namespace engine
     {
     }
 
+    Drawing3d::Drawing3d(const Drawing3d &drawing): Canvas(drawing), m_Group(drawing.m_Group), m_GizmoGroup(drawing.m_GizmoGroup) {
+        if (drawing.m_Camera) {
+            m_Camera.reset(drawing.m_Camera->clone());
+        }
+    }
+
+    Drawing3d &Drawing3d::operator=(const Drawing3d &other) {
+        Canvas::operator=(other);
+
+        if (other.m_Camera)
+        {
+            m_Camera.reset(other.m_Camera->clone());
+        }
+
+        m_Group = other.m_Group;
+        m_GizmoGroup = other.m_GizmoGroup;
+
+        return *this;
+    }
+
     Mesh &Drawing3d::add(const Mesh &renderable)
     {
         Mesh &newRenderable = m_Group.add(renderable);
@@ -46,6 +66,14 @@ namespace engine
         {
             getDecorationLayer().render(proj, view, getRenderer());
         }
+    }
+
+    void Drawing3d::setCamera(const ArcRotateCamera &camera) {
+        m_Camera.reset(camera.clone());
+    }
+
+    ArcRotateCamera *Drawing3d::getCamera() {
+        return m_Camera.get();
     }
 } // namespace engine
 } // namespace spright

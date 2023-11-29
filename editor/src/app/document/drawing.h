@@ -90,7 +90,13 @@ namespace editor
 
         DrawingState &getState();
 
+        void setCamera(const Camera &camera);
+
+        Camera *getCamera() override;
+
     private:
+        std::unique_ptr<Camera> m_Camera;
+
         std::shared_ptr<TileLayer> m_BackgroundLayer;
 
         std::shared_ptr<TileLayer> m_TempLayer;

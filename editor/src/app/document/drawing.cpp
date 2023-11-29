@@ -295,6 +295,14 @@ namespace editor
         return m_DrawingState;
     }
 
+    void Drawing::setCamera(const Camera &camera)
+    {
+        m_Camera.reset(camera.clone());
+    }
+
+    Camera *Drawing::getCamera() {
+        return m_Camera.get();
+    }
 
 } // namespace editor
 } // namespace spright

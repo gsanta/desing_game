@@ -37,7 +37,7 @@ namespace engine
 
         void bottom();
 
-        Camera *clone() const override;
+        ArcRotateCamera *clone() const override;
 
     private:
         void updateProjectionMatrix() const override;

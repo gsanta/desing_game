@@ -17,7 +17,7 @@ namespace editor
 
         Vec3 pos = camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, 0);
 
-        Drawing3d *drawing = context.doc.document->getActiveDrawing3d();
+        Canvas3d *drawing = context.doc.document->getActiveDrawing3d();
 
         drawing->getGroup().add(m_BoxBuilder.build(pos));
     }

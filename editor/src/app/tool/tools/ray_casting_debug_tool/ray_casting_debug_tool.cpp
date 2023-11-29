@@ -17,7 +17,7 @@ namespace editor
         Vec3 pos2 = camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, -100);
 
         std::vector<std::unique_ptr<Canvas>> &canvases = context.doc.document->getCanvases();
-        Drawing3d *drawing = dynamic_cast<Drawing3d *>(canvases[0].get());
+        Canvas3d *drawing = dynamic_cast<Canvas3d *>(canvases[0].get());
 
         Mesh &line = drawing->getGroup().add(Line3d(pos, pos2, m_LineThickness, COLOR_GREEN));
 
@@ -27,7 +27,7 @@ namespace editor
     void RayCastingDebugTool::deactivate(const ToolContext &context)
     {
         std::vector<std::unique_ptr<Canvas>> &canvases = context.doc.document->getCanvases();
-        Drawing3d *drawing = dynamic_cast<Drawing3d *>(canvases[0].get());
+        Canvas3d *drawing = dynamic_cast<Canvas3d *>(canvases[0].get());
 
         for (Mesh *line : m_Lines)
         {

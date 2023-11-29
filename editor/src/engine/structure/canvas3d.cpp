@@ -1,21 +1,21 @@
-#include "drawing3d.h"
+#include "canvas3d.h"
 
 namespace spright
 {
 namespace engine
 {
-    Drawing3d::Drawing3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
+    Canvas3d::Canvas3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
         : Canvas(uuid, bounds, renderer)
     {
     }
 
-    Drawing3d::Drawing3d(const Drawing3d &drawing): Canvas(drawing), m_Group(drawing.m_Group), m_GizmoGroup(drawing.m_GizmoGroup) {
+    Canvas3d::Canvas3d(const Canvas3d &drawing): Canvas(drawing), m_Group(drawing.m_Group), m_GizmoGroup(drawing.m_GizmoGroup) {
         if (drawing.m_Camera) {
             m_Camera.reset(drawing.m_Camera->clone());
         }
     }
 
-    Drawing3d &Drawing3d::operator=(const Drawing3d &other) {
+    Canvas3d &Canvas3d::operator=(const Canvas3d &other) {
         Canvas::operator=(other);
 
         if (other.m_Camera)
@@ -29,7 +29,7 @@ namespace engine
         return *this;
     }
 
-    Mesh &Drawing3d::add(const Mesh &renderable)
+    Mesh &Canvas3d::add(const Mesh &renderable)
     {
         Mesh &newRenderable = m_Group.add(renderable);
 
@@ -39,22 +39,22 @@ namespace engine
         return newRenderable;
     }
 
-    Group<Mesh> &Drawing3d::getGroup()
+    Group<Mesh> &Canvas3d::getGroup()
     {
         return m_Group;
     }
 
-    Group<Mesh> &Drawing3d::getGizmoGroup()
+    Group<Mesh> &Canvas3d::getGizmoGroup()
     {
         return m_GizmoGroup;
     }
 
-    Drawing3d *Drawing3d::clone() const
+    Canvas3d *Canvas3d::clone() const
     {
-        return new Drawing3d(*this);
+        return new Canvas3d(*this);
     }
 
-    void Drawing3d::render(const Camera &camera, Canvas::RenderTarget target)
+    void Canvas3d::render(const Camera &camera, Canvas::RenderTarget target)
     {
         const Camera *actualCamera = getCamera() != nullptr ? getCamera() : &camera;
         const Mat4 &proj = actualCamera->getProjectionMatrix();
@@ -68,11 +68,11 @@ namespace engine
         }
     }
 
-    void Drawing3d::setCamera(const ArcRotateCamera &camera) {
+    void Canvas3d::setCamera(const ArcRotateCamera &camera) {
         m_Camera.reset(camera.clone());
     }
 
-    ArcRotateCamera *Drawing3d::getCamera() {
+    ArcRotateCamera *Canvas3d::getCamera() {
         return m_Camera.get();
     }
 } // namespace engine

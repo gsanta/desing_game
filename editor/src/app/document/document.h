@@ -7,7 +7,7 @@
 #include "../../engine/graphics/renderable/bounds.h"
 #include "../../engine/structure/canvas.h"
 #include "../../engine/structure/canvas2d.h"
-#include "../../engine/structure/drawing3d.h"
+#include "../../engine/structure/canvas3d.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
 #include "drawing.h"
@@ -36,7 +36,7 @@ namespace editor
         //! @return The active Drawing() or nullptr
         Drawing *getActiveDrawing();
 
-        Drawing3d *getActiveDrawing3d();
+        Canvas3d *getActiveDrawing3d();
 
         Canvas *getActiveCanvas();
 
@@ -48,9 +48,9 @@ namespace editor
 
         void removeCanvas(const std::string &uuid);
 
-        Drawing3d &addDrawing3d(const Drawing3d &drawing);
+        Canvas3d &addDrawing3d(const Canvas3d &drawing);
 
-        std::vector<Drawing3d> &getDrawing3ds();
+        std::vector<Canvas3d> &getDrawing3ds();
 
         void setActiveCanvas(const std::string &uuid);
 

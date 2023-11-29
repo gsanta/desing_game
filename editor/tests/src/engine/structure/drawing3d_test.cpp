@@ -6,11 +6,11 @@
 
 using namespace spright::engine;
 
-SCENARIO("Drawing3d")
+SCENARIO("Canvas3d")
 {
-    GIVEN("an instance of Drawing3d")
+    GIVEN("an instance of Canvas3d")
     {
-        Drawing3d drawing = Drawing3dBuilder().withBounds(Bounds(Vec2(2, 2), Vec2(10, 4))).build();
+        Canvas3d drawing = Drawing3dBuilder().withBounds(Bounds(Vec2(2, 2), Vec2(10, 4))).build();
 
         Box box1(Vec3(1, 1, 2), 1, 2, 3, COLOR_BLUE);
         drawing.getGroup().add(box1);
@@ -25,7 +25,7 @@ SCENARIO("Drawing3d")
 
         THEN("it can be copied")
         {
-            Drawing3d drawing2 = Drawing3dBuilder().build();
+            Canvas3d drawing2 = Drawing3dBuilder().build();
             drawing2 = drawing;
 
             REQUIRE(drawing2.getGroup().getRenderables().size() == 1);
@@ -36,7 +36,7 @@ SCENARIO("Drawing3d")
 
         THEN("an other instance can be copy constructed")
         {
-            Drawing3d drawing2 = drawing;
+            Canvas3d drawing2 = drawing;
 
             REQUIRE(drawing2.getGroup().getRenderables().size() == 1);
             REQUIRE(drawing2.getGizmoGroup().getRenderables().size() == 1);

@@ -74,10 +74,10 @@ namespace editor
         document.getActiveDrawing()->addFrame(layers);
     }
 
-    Drawing3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
+    Canvas3d DocumentFactory::createDrawing3d(const Bounds &bounds) const
     {
-        Drawing3d drawing =
-            Drawing3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
+        Canvas3d drawing =
+            Canvas3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
 
         drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
                                       bounds.getBottomLeft().y,
@@ -179,7 +179,7 @@ namespace editor
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(drawing.getBounds().maxX,
                                                                                          drawing.getBounds().maxY);
 #ifdef INIT_WITH_3D_CANVAS
-        Drawing3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+        Canvas3d drawing3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
         document.addDrawing3d(drawing3d);
 #else
         document.addDrawing(drawing);

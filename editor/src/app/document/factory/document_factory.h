@@ -50,7 +50,7 @@ namespace editor
 
         Document createEmptyDocument() const;
 
-        Drawing3d createDrawing3d(const Bounds &bounds) const;
+        Canvas3d createDrawing3d(const Bounds &bounds) const;
 
         Drawing createDrawing(const CreateDrawingProps &props) const;
 

@@ -4,7 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    PickedMeshInfo MeshPicker::pickWithScreenPos(Drawing3d drawing, Vec2 screenPos)
+    PickedMeshInfo MeshPicker::pickWithScreenPos(Canvas3d drawing, Vec2 screenPos)
     {
         // Camera3
 

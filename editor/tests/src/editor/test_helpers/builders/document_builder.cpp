@@ -22,8 +22,8 @@ Document DocumentBuilder::build()
     Camera2d camera(BoundsInt(0, 0, m_Window.getWidth(), m_Window.getHeight()), -1.0f, 1.0f);
 
     Canvas2d documentCanvas(UuidGenerator::getInstance().generate(),
-                          m_DocumentBounds,
-                          *std::make_unique<HeadlessRenderer2D>());
+                            m_DocumentBounds,
+                            *std::make_unique<HeadlessRenderer2D>());
     documentCanvas.setCamera(camera);
 
     Document document(m_DocumentBounds, documentCanvas, std::make_shared<DocumentHistory>());

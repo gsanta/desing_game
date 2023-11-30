@@ -294,7 +294,8 @@ namespace editor
         m_Camera.reset(camera.clone());
     }
 
-    Camera *Drawing::getCamera() {
+    Camera *Drawing::getCamera()
+    {
         return m_Camera.get();
     }
 

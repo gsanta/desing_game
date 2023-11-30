@@ -1,12 +1,12 @@
 #pragma once
 
+#include "../../../maths/data/bounds.h"
+#include "../../../maths/data/bounds_int.h"
 #include "../../../maths/mat4.h"
 #include "../../../maths/mathFuncs.h"
 #include "../../../maths/vec2.h"
 #include "../../../maths/vec2_int.h"
 #include "../../../maths/vec3.h"
-#include "../../../maths/data/bounds.h"
-#include "../../../maths/data/bounds_int.h"
 #include "../../system/window/window.h"
 #include "./ortho_projection_info.h"
 

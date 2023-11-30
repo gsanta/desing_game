@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../document/document_store.h"
 #include "../../../../engine/scene/canvas/tile_canvas.h"
+#include "../../../document/document_store.h"
 #include "../../../event/event_emitter.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"

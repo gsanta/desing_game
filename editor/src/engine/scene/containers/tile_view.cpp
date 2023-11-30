@@ -123,7 +123,8 @@ namespace engine
 
     int TileView::getTileIndex(int tileX, int tileY) const
     {
-        if (tileX < 0 || tileY < 0 || tileX >= m_TileBounds.getWidth() || tileY >= m_TileBounds.getHeight()) {
+        if (tileX < 0 || tileY < 0 || tileX >= m_TileBounds.getWidth() || tileY >= m_TileBounds.getHeight())
+        {
             return -1;
         }
 

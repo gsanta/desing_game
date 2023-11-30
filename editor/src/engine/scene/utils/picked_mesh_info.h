@@ -8,7 +8,7 @@ namespace engine
 {
     struct PickedMeshInfo
     {
-        Mesh* mesh;
+        Mesh *mesh;
     };
 } // namespace engine
 } // namespace spright

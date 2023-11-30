@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../containers/layer.h"
 #include "../../../maths/data/bounds.h"
+#include "../containers/layer.h"
 
 namespace spright
 {

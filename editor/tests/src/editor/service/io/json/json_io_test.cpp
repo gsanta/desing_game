@@ -1,8 +1,8 @@
 #include "../../../test_helpers/builders/document_builder.h"
 #include "../../../test_helpers/builders/drawing_builder.h"
-#include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../src/app/service/io/json/json_io.h"
 #include "../src/engine/graphics/colors.h"
+#include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"
 
 #include <catch2/catch_test_macros.hpp>

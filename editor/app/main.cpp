@@ -17,11 +17,11 @@
 #include "../src/engine/graphics/buffer/buffer.h"
 #include "../src/engine/graphics/buffer/indexBuffer.h"
 #include "../src/engine/graphics/buffer/vertexArray.h"
-#include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/engine/graphics/renderable/rect2d.h"
 #include "../src/engine/graphics/renderable/renderable2d.h"
 #include "../src/engine/graphics/renderer/renderer2d.h"
 #include "../src/engine/graphics/shader/shader.h"
+#include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/engine/system/utils/fileUtils.h"
 
 #include <time.h>

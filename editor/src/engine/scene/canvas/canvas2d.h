@@ -1,7 +1,7 @@
 #pragma once
 
-#include "canvas.h"
 #include "../../graphics/camera/camera.h"
+#include "canvas.h"
 
 namespace spright
 {
@@ -12,13 +12,13 @@ namespace engine
     public:
         Canvas2d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer);
 
-        Canvas2d(const Canvas2d& canvas);
+        Canvas2d(const Canvas2d &canvas);
 
         Canvas2d &operator=(const Canvas2d &other);
 
         Canvas2d *clone() const override;
 
-        void setCamera(const Camera& camera);
+        void setCamera(const Camera &camera);
 
         Camera *getCamera() override;
 

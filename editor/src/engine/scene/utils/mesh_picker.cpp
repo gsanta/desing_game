@@ -11,7 +11,6 @@ namespace engine
 
         // Vec3 pos = camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, 0);
         // Vec3 pos2 = camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, -100);
-
     }
 } // namespace engine
 } // namespace spright

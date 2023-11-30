@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../../maths/vec3.h"
 #include "../../../../maths/data/bounds.h"
+#include "../../../../maths/vec3.h"
 #include "../../colors.h"
 #include "../../renderer/renderer2d.h"
 

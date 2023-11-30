@@ -9,13 +9,17 @@ namespace engine
     {
     }
 
-    Canvas3d::Canvas3d(const Canvas3d &drawing): Canvas(drawing), m_Group(drawing.m_Group), m_GizmoGroup(drawing.m_GizmoGroup) {
-        if (drawing.m_Camera) {
+    Canvas3d::Canvas3d(const Canvas3d &drawing)
+        : Canvas(drawing), m_Group(drawing.m_Group), m_GizmoGroup(drawing.m_GizmoGroup)
+    {
+        if (drawing.m_Camera)
+        {
             m_Camera.reset(drawing.m_Camera->clone());
         }
     }
 
-    Canvas3d &Canvas3d::operator=(const Canvas3d &other) {
+    Canvas3d &Canvas3d::operator=(const Canvas3d &other)
+    {
         Canvas::operator=(other);
 
         if (other.m_Camera)
@@ -68,11 +72,13 @@ namespace engine
         }
     }
 
-    void Canvas3d::setCamera(const ArcRotateCamera &camera) {
+    void Canvas3d::setCamera(const ArcRotateCamera &camera)
+    {
         m_Camera.reset(camera.clone());
     }
 
-    ArcRotateCamera *Canvas3d::getCamera() {
+    ArcRotateCamera *Canvas3d::getCamera()
+    {
         return m_Camera.get();
     }
 } // namespace engine

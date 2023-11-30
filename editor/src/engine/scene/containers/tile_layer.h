@@ -1,15 +1,15 @@
 #pragma once
 
+#include "../../../maths/data/bounds.h"
+#include "../../../maths/data/bounds_int.h"
 #include "../../../maths/mat4.h"
 #include "../../../maths/vec2.h"
 #include "../../../maths/vec2_int.h"
-#include "../../../maths/data/bounds_int.h"
-#include "../../../maths/data/bounds.h"
-#include "../canvas/canvas.h"
 #include "../../graphics/camera/camera.h"
 #include "../../graphics/renderable/rect2d.h"
-#include "tile_view.h"
+#include "../canvas/canvas.h"
 #include "group.h"
+#include "tile_view.h"
 
 #include <string>
 

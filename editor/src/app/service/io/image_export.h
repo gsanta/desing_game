@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../../engine/graphics/camera/camera2d.h"
+#include "../../../engine/system/window/window.h"
 #include "../../../maths/data/bounds.h"
 #include "../../../maths/data/bounds_int.h"
-#include "../../../engine/system/window/window.h"
 #include "../../../maths/vec2_int.h"
 #include "../../../stb_image_write.h"
 #include "../../document/document.h"

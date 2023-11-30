@@ -155,8 +155,8 @@ namespace editor
         Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
 #endif
         Canvas2d documentCanvas(UuidGenerator::getInstance().generate(),
-                              drawingBounds,
-                              *m_RendererProvider->createRenderer2D());
+                                drawingBounds,
+                                *m_RendererProvider->createRenderer2D());
 
         documentCanvas.setCamera(camera);
 

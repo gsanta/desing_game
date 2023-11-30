@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../graphics/camera/arc_rotate_camera.h"
-#include "../graphics/layer/group.h"
-#include "../graphics/mesh/meshes/mesh.h"
+#include "../../graphics/camera/arc_rotate_camera.h"
+#include "../containers/group.h"
+#include "../../graphics/mesh/meshes/mesh.h"
 #include "canvas.h"
 
 namespace spright

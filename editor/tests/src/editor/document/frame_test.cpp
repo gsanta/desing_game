@@ -1,4 +1,4 @@
-#include "../src/app/document/frame.h"
+#include "../src/engine/scene/containers/frame.h"
 #include "../test_helpers/test_document_factory.h"
 
 #include <catch2/catch_test_macros.hpp>

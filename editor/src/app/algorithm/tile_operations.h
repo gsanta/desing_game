@@ -1,7 +1,7 @@
 
 #pragma once
-#include "../../engine/graphics/layer/tile_view.h"
-#include "../../engine/graphics/renderable/bounds_int.h"
+#include "../../engine/scene/containers/tile_view.h"
+#include "../../maths/data/bounds_int.h"
 
 
 namespace spright

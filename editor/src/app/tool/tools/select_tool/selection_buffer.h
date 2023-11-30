@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../../engine/graphics/layer/tile_layer.h"
-#include "../../../../engine/graphics/renderable/bounds_int.h"
+#include "../../../../engine/scene/containers/tile_layer.h"
+#include "../../../../maths/data/bounds_int.h"
 
 #include <algorithm>
 #include <vector>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "canvas.h"
-#include "../graphics/camera/camera.h"
+#include "../../graphics/camera/camera.h"
 
 namespace spright
 {

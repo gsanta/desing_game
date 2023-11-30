@@ -1,4 +1,4 @@
-#include "../src/engine/structure/tile_canvas.h"
+#include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../src/app/document/factory/document_factory.h"
 #include "../src/app/document/resize_drawing.h"
 #include "../src/engine/graphics/colors.h"

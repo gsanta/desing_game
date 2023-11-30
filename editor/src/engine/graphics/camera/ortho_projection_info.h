@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../renderable/bounds.h"
+#include "../../../maths/data/bounds.h"
 
 namespace spright { namespace engine {
 

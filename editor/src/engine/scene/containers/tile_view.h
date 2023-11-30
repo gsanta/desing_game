@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "../renderable/bounds.h"
-#include "../renderable/bounds_int.h"
-#include "../renderable/rect2d.h"
+#include "../../../maths/data/bounds.h"
+#include "../../../maths/data/bounds_int.h"
+#include "../../graphics/renderable/rect2d.h"
 #include "group.h"
 
 #include <math.h>

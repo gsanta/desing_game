@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../maths/vec2.h"
+#include "../vec2.h"
 
 #include <sstream>
 #include <vector>

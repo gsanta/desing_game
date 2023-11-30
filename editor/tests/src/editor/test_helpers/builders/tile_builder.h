@@ -2,7 +2,7 @@
 
 #include "../src/app/tool/tools/brush_tool/brush.h"
 #include "../src/engine/graphics/colors.h"
-#include "../src/engine/graphics/layer/tile_layer.h"
+#include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/engine/graphics/renderable/rect2d.h"
 
 using namespace ::spright::engine;

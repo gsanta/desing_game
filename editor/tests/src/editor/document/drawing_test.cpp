@@ -1,4 +1,4 @@
-#include "../src/engine/structure/tile_canvas.h"
+#include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../src/app/document/factory/document_factory.h"
 #include "../test_helpers/builders/drawing_builder.h"
 

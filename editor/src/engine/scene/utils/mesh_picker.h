@@ -1,7 +1,7 @@
 #pragma once
 
 #include "picked_mesh_info.h"
-#include "../canvas3d.h"
+#include "../canvas/canvas3d.h"
 #include "../../../maths/data/ray3.h"
 #include "../../../maths/vec3.h"
 #include "../../../maths/vec2.h"

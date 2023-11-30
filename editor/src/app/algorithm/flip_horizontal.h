@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../engine/graphics/layer/tile_layer.h"
-#include "../../engine/structure/tile_canvas.h"
+#include "../../engine/scene/containers/tile_layer.h"
+#include "../../engine/scene/canvas/tile_canvas.h"
 #include "../tool/tools/select_tool/rect_selector.h"
 
 namespace spright

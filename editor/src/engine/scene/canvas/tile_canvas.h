@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../graphics/camera/camera.h"
-#include "../graphics/layer/layer.h"
-#include "../../app/document/frame.h"
+#include "../../graphics/camera/camera.h"
+#include "../containers/layer.h"
+#include "../containers/frame.h"
+#include "canvas.h"
 
 #include <memory>
 

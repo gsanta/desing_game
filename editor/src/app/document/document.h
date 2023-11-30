@@ -2,16 +2,16 @@
 
 #include "../../engine/graphics/camera/camera.h"
 #include "../../engine/graphics/camera/ortho_projection_info.h"
-#include "../../engine/graphics/layer/group.h"
-#include "../../engine/graphics/layer/tile_layer.h"
-#include "../../engine/graphics/renderable/bounds.h"
-#include "../../engine/structure/canvas.h"
-#include "../../engine/structure/canvas2d.h"
-#include "../../engine/structure/canvas3d.h"
+#include "../../engine/scene/containers/group.h"
+#include "../../engine/scene/containers/frame.h"
+#include "../../engine/scene/containers/tile_layer.h"
+#include "../../maths/data/bounds.h"
+#include "../../engine/scene/canvas/canvas.h"
+#include "../../engine/scene/canvas/canvas2d.h"
+#include "../../engine/scene/canvas/canvas3d.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
-#include "../../engine/structure/tile_canvas.h"
-#include "frame.h"
+#include "../../engine/scene/canvas/tile_canvas.h"
 
 #include <algorithm>
 #include <memory>

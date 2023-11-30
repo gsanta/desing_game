@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../maths/vec2_int.h"
+#include "../vec2_int.h"
 
 #include <sstream>
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "../../document/document_store.h"
-#include "../../../engine/structure/tile_canvas.h"
+#include "../../../engine/scene/canvas/tile_canvas.h"
 
 namespace spright
 {

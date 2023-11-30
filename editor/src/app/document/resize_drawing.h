@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../engine/graphics/layer/tile_layer.h"
-#include "../../engine/graphics/renderable/bounds.h"
+#include "../../engine/scene/containers/tile_layer.h"
+#include "../../maths/data/bounds.h"
 #include "./factory/document_factory.h"
-#include "../../engine/structure/tile_canvas.h"
+#include "../../engine/scene/canvas/tile_canvas.h"
 
 namespace spright
 {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
-#include "../src/engine/graphics/renderable/bounds.h"
-#include "../src/engine/structure/canvas3d.h"
+#include "../src/maths/data/bounds.h"
+#include "../src/engine/scene/canvas/canvas3d.h"
 #include "../src/engine/system/utils/uuid_generator.h"
 
 using namespace ::spright::engine;

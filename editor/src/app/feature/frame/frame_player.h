@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../core/run_loop/timed.h"
-#include "../../../engine/structure/tile_canvas.h"
+#include "../../../engine/scene/canvas/tile_canvas.h"
 #include "../../editor_callbacks.h"
 #include "../../event/event_emitter.h"
 

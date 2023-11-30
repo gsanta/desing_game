@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../../engine/graphics/renderable/rect2d.h"
-#include "../../../../engine/structure/tile_canvas.h"
+#include "../../../../engine/scene/canvas/tile_canvas.h"
 #include "../../../document/document_store.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"

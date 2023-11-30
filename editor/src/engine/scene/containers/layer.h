@@ -1,7 +1,7 @@
 #pragma once
-#include "../camera/camera.h"
-#include "../renderer/renderer2d.h"
-#include "group.h"
+#include "../../graphics/camera/camera.h"
+#include "../../graphics/renderer/renderer2d.h"
+#include "../../scene/containers/group.h"
 
 #include <memory>
 

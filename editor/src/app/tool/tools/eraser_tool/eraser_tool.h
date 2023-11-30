@@ -2,7 +2,7 @@
 
 #include "../../../../engine/graphics/renderable/rect2d.h"
 #include "../../../../engine/graphics/renderable/renderable2d.h"
-#include "../../../../engine/structure/tile_canvas.h"
+#include "../../../../engine/scene/canvas/tile_canvas.h"
 #include "../../../core/history/document_history.h"
 #include "../../../document/document_store.h"
 #include "../../context/tool_context.h"

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../engine/graphics/layer/tile_layer.h"
-#include "../engine/structure/tile_canvas.h"
+#include "../engine/scene/containers/tile_layer.h"
+#include "../engine/scene/containers/frame.h"
+#include "../engine/scene/canvas/tile_canvas.h"
 #include "algorithm/flip_horizontal.h"
 #include "algorithm/rotate.h"
 #include "algorithm/shear_horizontal.h"
 #include "algorithm/shear_vertical.h"
-#include "document/frame.h"
 #include "editor.h"
 #include "tool/tools/circle_tool/circle_tool.h"
 

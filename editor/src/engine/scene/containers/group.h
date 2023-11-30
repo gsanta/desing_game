@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../camera/camera.h"
-#include "../renderable/renderable2d.h"
-#include "../renderer/renderer2d.h"
+#include "../../graphics/camera/camera.h"
+#include "../../graphics/renderable/renderable2d.h"
+#include "../../graphics/renderer/renderer2d.h"
 
 #include <algorithm>
 #include <nlohmann/json.hpp>

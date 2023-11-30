@@ -3,8 +3,8 @@
 //
 
 #pragma once
-#include "../../../../engine/graphics/layer/tile_layer.h"
-#include "../../../../engine/graphics/renderable/bounds.h"
+#include "../../../../engine/scene/containers/tile_layer.h"
+#include "../../../../maths/data/bounds.h"
 #include "../../../../engine/graphics/renderable/rect2d.h"
 
 #include <vector>

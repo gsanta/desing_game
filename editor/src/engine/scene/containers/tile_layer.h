@@ -3,12 +3,12 @@
 #include "../../../maths/mat4.h"
 #include "../../../maths/vec2.h"
 #include "../../../maths/vec2_int.h"
-#include "../../structure/canvas.h"
-#include "../camera/camera.h"
-#include "../renderable/bounds.h"
-#include "../renderable/bounds_int.h"
-#include "../renderable/rect2d.h"
-#include "./tile_view.h"
+#include "../../../maths/data/bounds_int.h"
+#include "../../../maths/data/bounds.h"
+#include "../canvas/canvas.h"
+#include "../../graphics/camera/camera.h"
+#include "../../graphics/renderable/rect2d.h"
+#include "tile_view.h"
 #include "group.h"
 
 #include <string>

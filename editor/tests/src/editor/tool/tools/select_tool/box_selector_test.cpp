@@ -4,7 +4,7 @@
 #include "../../../test_helpers/test_document_factory.h"
 #include "../src/app/tool/tools/color_picker_tool/color_picker_tool.h"
 #include "../src/app/tool/tools/select_tool/box_selector.h"
-#include "../src/engine/graphics/layer/tile_layer.h"
+#include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/maths/vec2.h"
 
 #include <catch2/catch_test_macros.hpp>

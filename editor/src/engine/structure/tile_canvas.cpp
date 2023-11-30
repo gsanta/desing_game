@@ -1,4 +1,4 @@
-#include "drawing.h"
+#include "tile_canvas.h"
 
 namespace spright
 {
@@ -50,7 +50,7 @@ namespace editor
           m_ToolLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_ToolLayer))),
           m_CursorLayer(std::shared_ptr<TileLayer>(new TileLayer(*other.m_CursorLayer))),
           m_TempLayers(other.m_TempLayers), m_Frames(other.m_Frames), m_ActiveFrameIndex(other.m_ActiveFrameIndex),
-          m_ActiveLayerIndex(other.m_ActiveLayerIndex), m_DrawingState(other.m_DrawingState)
+          m_ActiveLayerIndex(other.m_ActiveLayerIndex)
     {
     }
 
@@ -66,7 +66,6 @@ namespace editor
         m_Frames = other.m_Frames;
         m_ActiveFrameIndex = other.m_ActiveFrameIndex;
         m_ActiveLayerIndex = other.m_ActiveLayerIndex;
-        m_DrawingState = other.m_DrawingState;
 
         return *this;
     }
@@ -288,11 +287,6 @@ namespace editor
         nlohmann::json json = getActiveFrame().getLayer(m_ActiveLayerIndex).getJson();
 
         return json.dump();
-    }
-
-    DrawingState &Drawing::getState()
-    {
-        return m_DrawingState;
     }
 
     void Drawing::setCamera(const Camera &camera)

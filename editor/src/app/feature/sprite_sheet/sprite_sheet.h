@@ -1,7 +1,7 @@
 #pragma once
 #include "../../algorithm/tile_operations.h"
 #include "../../document/document.h"
-#include "../../document/drawing.h"
+#include "../../../engine/structure/tile_canvas.h"
 #include "../../document/factory/document_factory.h"
 
 #include <memory.h>

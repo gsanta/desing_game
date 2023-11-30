@@ -3,7 +3,7 @@
 #include "../../engine/graphics/layer/tile_layer.h"
 #include "../../engine/graphics/renderable/bounds.h"
 #include "./factory/document_factory.h"
-#include "drawing.h"
+#include "../../engine/structure/tile_canvas.h"
 
 namespace spright
 {

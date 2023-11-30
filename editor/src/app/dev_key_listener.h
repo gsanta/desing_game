@@ -83,13 +83,13 @@ namespace editor
             else if (key == GLFW_KEY_F)
             {
                 Drawing &drawing = *m_Editor->getDocumentStore()->getActiveDocument().getActiveDrawing();
-                if (drawing.getState().getBounds().isNull())
+                if (drawing.getBounds().isNull())
                 {
                     flip_horizontal(drawing.getActiveFrame().getLayers());
                 }
                 else
                 {
-                    flip_horizontal(drawing.getActiveFrame().getLayers(), drawing.getState().getBounds());
+                    flip_horizontal(drawing.getActiveFrame().getLayers(), drawing.getBounds());
                 }
             }
             // else if (key == GLFW_KEY_R)

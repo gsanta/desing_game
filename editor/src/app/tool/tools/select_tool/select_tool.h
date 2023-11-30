@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../../../../engine/graphics/renderable/rect2d.h"
+#include "../../../../engine/structure/tile_canvas.h"
 #include "../../../document/document_store.h"
-#include "../../../document/drawing.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"

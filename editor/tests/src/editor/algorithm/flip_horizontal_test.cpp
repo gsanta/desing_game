@@ -92,8 +92,6 @@ TEST_CASE("flip_horizontal", "[flip-horizontal]")
         const Vec2 topRight = activeLayer.getCenterPos(Vec2Int(3, 2));
         const Bounds bounds(bottomLeft, topRight);
 
-        drawing.getState().setBounds(bounds);
-
         Frame &frame = drawing.getActiveFrame();
 
         flip_horizontal(frame.getLayers(), bounds);
@@ -125,8 +123,6 @@ TEST_CASE("flip_horizontal", "[flip-horizontal]")
         const Vec2 topRight = bottomLeft + Vec2(4, 2);
         const Bounds bounds(bottomLeft, topRight);
 
-        drawing.getState().setBounds(bounds);
-
         Frame &frame = drawing.getActiveFrame();
 
         flip_horizontal(frame.getLayers(), bounds);
@@ -156,8 +152,6 @@ TEST_CASE("flip_horizontal", "[flip-horizontal]")
         const Vec2 bottomLeft = activeLayer.getCenterPos(Vec2Int(1, 0));
         const Vec2 topRight = activeLayer.getCenterPos(Vec2Int(4, 2));
         const Bounds bounds(bottomLeft, topRight);
-
-        drawing.getState().setBounds(bounds);
 
         Frame &frame = drawing.getActiveFrame();
 

@@ -1,5 +1,5 @@
 #include "../../editor/test_helpers/builders/drawing3d_builder.h"
-#include "../src/engine/graphics/camera/camera2d.h"
+#include "../src/engine/graphics/camera/arc_rotate_camera.h"
 #include "../src/engine/graphics/mesh/meshes/box.h"
 
 #include <catch2/catch_test_macros.hpp>
@@ -18,7 +18,7 @@ SCENARIO("Canvas3d")
         Box box2(Vec3(2, 2, 1), 1, 2, 3, COLOR_RED);
         drawing.getGizmoGroup().add(box2);
 
-        Camera2d camera(BoundsInt(0, 0, 10, 8), -1.0f, 1.0f, 1);
+        ArcRotateCamera camera(BoundsInt(0, 0, 10, 8), -1.0f, 1.0f, 1);
         drawing.setCamera(camera);
 
         drawing.getRenderer().push(Mat4(3));

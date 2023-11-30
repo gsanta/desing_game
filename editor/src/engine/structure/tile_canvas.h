@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../../engine/graphics/camera/camera.h"
-#include "../../engine/graphics/layer/layer.h"
-#include "drawing_state.h"
-#include "frame.h"
+#include "../graphics/camera/camera.h"
+#include "../graphics/layer/layer.h"
+#include "../../app/document/frame.h"
 
 #include <memory>
 
@@ -88,8 +87,6 @@ namespace editor
 
         std::string getJson();
 
-        DrawingState &getState();
-
         void setCamera(const Camera &camera);
 
         Camera *getCamera() override;
@@ -112,8 +109,6 @@ namespace editor
         size_t m_ActiveFrameIndex = 0;
 
         size_t m_ActiveLayerIndex = 0;
-
-        DrawingState m_DrawingState;
     };
 } // namespace editor
 } // namespace spright

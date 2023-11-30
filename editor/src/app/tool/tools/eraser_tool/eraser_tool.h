@@ -2,9 +2,9 @@
 
 #include "../../../../engine/graphics/renderable/rect2d.h"
 #include "../../../../engine/graphics/renderable/renderable2d.h"
+#include "../../../../engine/structure/tile_canvas.h"
 #include "../../../core/history/document_history.h"
 #include "../../../document/document_store.h"
-#include "../../../document/drawing.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"

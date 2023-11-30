@@ -10,7 +10,7 @@
 #include "../../engine/structure/canvas3d.h"
 #include "../event/event_emitter.h"
 #include "../feature/frame/frame_player.h"
-#include "drawing.h"
+#include "../../engine/structure/tile_canvas.h"
 #include "frame.h"
 
 #include <algorithm>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../engine/graphics/renderable/rect2d.h"
+#include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/scene/canvas/tile_canvas.h"
 #include "../../../document/document_store.h"
 #include "../../context/tool_context.h"

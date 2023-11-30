@@ -1,18 +1,17 @@
 #pragma once
 
-#include "../../../engine/graphics/colors.h"
-#include "../../../engine/graphics/shader/shader.h"
-#include "../../../maths/data/bounds.h"
-#include "../../../maths/vec2.h"
-#include "../../../maths/vec3.h"
-#include "../../../maths/vec4.h"
-#include "../buffer/buffer.h"
-#include "../buffer/indexBuffer.h"
-#include "../buffer/vertexArray.h"
-#include "../colors.h"
-#include "../mesh/meshes/mesh.h"
-#include "../renderer/renderer2d.h"
-#include "../renderer/vertex_data.h"
+#include "../../colors.h"
+#include "../../shader/shader.h"
+#include "../../../../maths/data/bounds.h"
+#include "../../../../maths/vec2.h"
+#include "../../../../maths/vec3.h"
+#include "../../../../maths/vec4.h"
+#include "../../buffer/buffer.h"
+#include "../../buffer/indexBuffer.h"
+#include "../../buffer/vertexArray.h"
+#include "mesh.h"
+#include "../../renderer/renderer2d.h"
+#include "../../renderer/vertex_data.h"
 
 #include <nlohmann/json.hpp>
 #include <string.h>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../maths/vec2.h"
-#include "../renderer/vertex_data.h"
-#include "renderable2d.h"
+#include "../../../../maths/vec2.h"
+#include "../../renderer/vertex_data.h"
+#include "../../mesh/meshes/renderable2d.h"
 
 #include <nlohmann/json.hpp>
 #include <string.h>

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../engine/graphics/impl/headless/headless_renderer2d.h"
+#include "../../../engine/graphics/renderer/headless/headless_renderer2d.h"
 #include "renderer_provider.h"
 
 namespace spright

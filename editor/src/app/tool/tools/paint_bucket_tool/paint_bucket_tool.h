@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../engine/graphics/camera/camera.h"
+#include "../../../../engine/scene/cameras/camera.h"
 #include "../../../core/history/document_history.h"
 #include "../../../core/history/tile_undo.h"
 #include "../../../document/document_store.h"

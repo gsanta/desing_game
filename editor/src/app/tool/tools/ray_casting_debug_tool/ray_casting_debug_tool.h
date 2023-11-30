@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../../engine/graphics/camera/arc_rotate_camera.h"
-#include "../../../../engine/graphics/camera/ortho_projection_info.h"
-#include "../../../../engine/graphics/renderable/line3d.h"
+#include "../../../../engine/scene/cameras/arc_rotate_camera.h"
+#include "../../../../engine/scene/cameras/ortho_projection_info.h"
+#include "../../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"
 

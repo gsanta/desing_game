@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../maths/vec3.h"
-#include "../mesh/meshes/mesh.h"
-#include "../renderer/renderer2d.h"
+#include "../../../../maths/vec3.h"
+#include "mesh.h"
+#include "../../renderer/renderer2d.h"
 
 #include <cmath>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../graphics/camera/arc_rotate_camera.h"
+#include "../../scene/cameras/arc_rotate_camera.h"
 #include "../../graphics/mesh/meshes/mesh.h"
 #include "../containers/group.h"
 #include "canvas.h"

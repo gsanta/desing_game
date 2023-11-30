@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../engine/graphics/renderable/rect2d.h"
+#include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/scene/containers/tile_layer.h"
 #include "../../../../maths/vec2.h"
 

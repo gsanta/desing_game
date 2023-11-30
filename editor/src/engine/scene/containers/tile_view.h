@@ -7,7 +7,7 @@
 
 #include "../../../maths/data/bounds.h"
 #include "../../../maths/data/bounds_int.h"
-#include "../../graphics/renderable/rect2d.h"
+#include "../../graphics/mesh/meshes/rect2d.h"
 #include "group.h"
 
 #include <math.h>

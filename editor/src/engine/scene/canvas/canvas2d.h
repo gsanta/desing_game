@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../graphics/camera/camera.h"
+#include "../../scene/cameras/camera.h"
 #include "canvas.h"
 
 namespace spright

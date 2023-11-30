@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../graphics/camera/camera.h"
-#include "../../graphics/renderable/renderable2d.h"
+#include "../../scene/cameras/camera.h"
+#include "../../graphics/mesh/meshes/renderable2d.h"
 #include "../../graphics/renderer/renderer2d.h"
 
 #include <algorithm>

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../graphics/camera/camera.h"
+#include "../../scene/cameras/camera.h"
 #include "../../graphics/renderer/renderer2d.h"
 #include "../../scene/containers/group.h"
 

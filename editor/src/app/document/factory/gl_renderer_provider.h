@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../engine/graphics/impl/gl/gl_renderer2d.h"
-#include "../../../engine/graphics/impl/gl/gl_shader.h"
+#include "../../../engine/graphics/renderer/gl/gl_renderer2d.h"
+#include "../../../engine/graphics/shader/gl/gl_shader.h"
 #include "renderer_provider.h"
 
 namespace spright

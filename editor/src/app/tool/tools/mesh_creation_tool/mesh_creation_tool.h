@@ -1,4 +1,4 @@
-#include "../../../../engine/graphics/camera/arc_rotate_camera.h"
+#include "../../../../engine/scene/cameras/arc_rotate_camera.h"
 #include "../../../../engine/graphics/mesh/builders/box_builder.h"
 #include "../../../../engine/graphics/mesh/builders/mesh_builder.h"
 #include "../../tool.h"

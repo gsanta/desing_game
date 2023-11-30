@@ -8,7 +8,7 @@
 #include "../../../maths/vec2_int.h"
 #include "../../../maths/vec3.h"
 #include "../../system/window/window.h"
-#include "./ortho_projection_info.h"
+#include "ortho_projection_info.h"
 
 namespace spright
 {

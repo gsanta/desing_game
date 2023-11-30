@@ -4,7 +4,7 @@
 #include "../../../test_helpers/builders/tool_context_builder.h"
 #include "../../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../src/app/tool/cursor/rectangle_cursor/rectangle_cursor.h"
-#include "../src/engine/graphics/impl/headless/headless_renderer2d.h"
+#include "../src/engine/graphics/renderer/headless/headless_renderer2d.h"
 #include "../src/maths/vec2.h"
 
 #include <catch2/catch_approx.hpp>

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../../engine/graphics/camera/camera2d.h"
-#include "../../../../engine/graphics/camera/ortho_projection_info.h"
+#include "../../../../engine/scene/cameras/camera2d.h"
+#include "../../../../engine/scene/cameras/ortho_projection_info.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"
 

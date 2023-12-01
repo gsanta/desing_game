@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     PointerInfo::PointerInfo() : buttons{false, false, false}
@@ -28,5 +28,5 @@ namespace editor
     {
         return curr - down;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     TestTimer *TestTimer::m_InstancePtr = nullptr;
 
@@ -35,5 +35,5 @@ namespace editor
             return m_InstancePtr;
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     TileLayerExport::TileLayerExport(std::shared_ptr<DocumentFactory> documentFactory)
         : m_DocumentFactory(documentFactory)
@@ -69,5 +69,5 @@ namespace editor
 
         return layer;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

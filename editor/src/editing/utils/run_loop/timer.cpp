@@ -14,7 +14,7 @@ extern bool SPRIGHT_IS_TEST;
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Timer *Timer::getTimer()
     {
@@ -28,5 +28,5 @@ namespace editor
         return new UnixTimer();
 #endif
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

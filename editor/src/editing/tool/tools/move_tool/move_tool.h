@@ -9,7 +9,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class MoveTool : public Tool
     {
@@ -20,12 +20,12 @@ namespace editor
 
         void pointerMove(const ToolContext &toolContext) override;
 
-        void pointerUp( ToolContext &toolContext) override;
+        void pointerUp(ToolContext &toolContext) override;
 
     private:
         SelectionMover m_SelectionMover;
 
         std::unique_ptr<TileUndo> m_Undo;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

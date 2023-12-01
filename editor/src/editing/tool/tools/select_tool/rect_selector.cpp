@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     RectSelector::RectSelector(TileLayer *tileLayer) : m_Layer(tileLayer)
     {
@@ -81,5 +81,5 @@ namespace editor
             m_OrigPositions.push_back(Vec2(sprite->getPosition().x, sprite->getPosition().y));
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

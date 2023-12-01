@@ -3,11 +3,11 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     FloodFillRange::FloodFillRange(int startX, int endX, int y) : startX(startX), endX(endX), y(y)
     {
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

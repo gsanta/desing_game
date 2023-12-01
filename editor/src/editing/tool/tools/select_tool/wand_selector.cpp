@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     WandSelector::WandSelector(SelectionBuffer &selectionBuffer) : m_SelectionBuffer(selectionBuffer)
     {
@@ -83,5 +83,5 @@ namespace editor
             toolLayer.add(rect);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

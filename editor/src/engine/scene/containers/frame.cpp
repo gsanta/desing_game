@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Frame::Frame() : m_Index(0)
     {
@@ -102,5 +102,5 @@ namespace editor
 
         return json;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

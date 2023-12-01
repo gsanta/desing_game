@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -27,5 +27,5 @@ namespace editor
     private:
         SelectionBuffer &m_SelectionBuffer;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

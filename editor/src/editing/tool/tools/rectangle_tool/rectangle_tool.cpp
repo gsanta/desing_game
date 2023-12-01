@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     RectangleTool::RectangleTool() : Tool("rectangle", std::make_shared<RectangleCursor>(1))
@@ -92,5 +92,5 @@ namespace editor
     {
         return m_IsFilled;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

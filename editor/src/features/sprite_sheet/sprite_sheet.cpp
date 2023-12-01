@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace features
 {
 
     SpriteSheet::SpriteSheet(std::shared_ptr<DocumentFactory> documentFactory, Document *document)
@@ -43,5 +43,5 @@ namespace editor
 
         return m_Document->addDrawing(spriteSheet);
     }
-} // namespace editor
+} // namespace features
 } // namespace spright

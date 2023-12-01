@@ -11,7 +11,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <vector>
 
-using namespace spright::editor;
+using namespace spright::editing;
 using namespace spright::maths;
 
 SCENARIO("Rectangle cursor")

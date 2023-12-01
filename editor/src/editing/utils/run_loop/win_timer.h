@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     class WinTimer : public Timer
@@ -21,5 +21,5 @@ namespace editor
 
         long m_Frequency;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

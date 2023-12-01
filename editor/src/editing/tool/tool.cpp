@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     Tool::Tool(const string name, std::shared_ptr<Cursor> cursor) : m_Cursor(cursor)
@@ -60,5 +60,5 @@ namespace editor
         m_Cursor = cursor;
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

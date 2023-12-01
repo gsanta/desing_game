@@ -2,18 +2,16 @@
 
 #include "../../engine/system/window/impl/glfw/gl_window.h"
 #include "../../engine/system/window/window.h"
-#include "rendering.h"
-#include "../io/image/image_export.h"
-#include "../io/json/json_io.h"
-#include "../event/emscripten_event_emitter.h"
-#include "../utils/run_loop/run_loop.h"
+#include "../../features/frame/frame_player.h"
+#include "../../features/sprite_sheet/sprite_sheet.h"
 #include "../document/document_store.h"
 #include "../document/factory/document_factory.h"
 #include "../document/factory/gl_renderer_provider.h"
 #include "../document/update_screen_bounds.h"
+#include "../event/emscripten_event_emitter.h"
 #include "../event/event_emitter.h"
-#include "../../features/frame/frame_player.h"
-#include "../../features/sprite_sheet/sprite_sheet.h"
+#include "../io/image/image_export.h"
+#include "../io/json/json_io.h"
 #include "../tool/tool_handler.h"
 #include "../tool/tools/camera_rotation_tool/camera_rotation_tool.h"
 #include "../tool/tools/canvas_selection_tool/canvas_selection_tool.h"
@@ -30,14 +28,17 @@
 #include "../tool/tools/select_tool/select_tool.h"
 #include "../tool/tools/shear_tool/shear_tool.h"
 #include "../tool/tools/zoom_tool/zoom_tool.h"
+#include "../utils/run_loop/run_loop.h"
+#include "rendering.h"
 
 #include <vector>
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
-    using namespace ::spright::engine;
+    using namespace features;
+    using namespace engine;
 
     class Editor
     {
@@ -96,5 +97,5 @@ namespace editor
         UpdateScreenBounds m_UpdateScreenBounds;
     };
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

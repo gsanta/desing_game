@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     RectangleCursor::RectangleCursor(int size, bool shouldDisableOnDrag) : m_Size(size), Cursor(shouldDisableOnDrag)
     {
@@ -59,5 +59,5 @@ namespace editor
         m_Size = size;
         m_Rect = nullptr;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

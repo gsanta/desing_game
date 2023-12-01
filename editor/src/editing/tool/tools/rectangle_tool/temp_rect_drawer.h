@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
     using namespace maths;
@@ -35,5 +35,5 @@ namespace editor
 
         Bounds m_Bounds;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

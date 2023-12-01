@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     std::vector<int> rotate(TileLayer &source, const BoundsInt &bounds, float angle)
     {
@@ -61,5 +61,5 @@ namespace editor
 
         return newIndexes;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -1,16 +1,16 @@
 #pragma once
 
 #include "../../../../engine/scene/cameras/camera.h"
+#include "../../../document/document_store.h"
 #include "../../../history/document_history.h"
 #include "../../../history/tile_undo.h"
-#include "../../../document/document_store.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"
 #include "queue_linear_flood_fill.h"
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
     using namespace ::spright::maths;
@@ -25,5 +25,5 @@ namespace editor
     private:
         QueueLinearFloodFill m_FloodFill;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

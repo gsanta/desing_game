@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     class UnixTimer : public Timer
@@ -25,5 +25,5 @@ namespace editor
 
         std::chrono::milliseconds m_Previous;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

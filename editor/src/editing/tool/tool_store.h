@@ -5,7 +5,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class Tool;
     class SelectTool;
@@ -37,5 +37,5 @@ namespace editor
     private:
         std::vector<Tool *> m_Tools;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

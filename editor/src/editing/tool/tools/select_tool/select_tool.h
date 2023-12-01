@@ -17,7 +17,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::maths;
     using namespace ::spright::engine;
@@ -90,5 +90,5 @@ namespace editor
 
         SelectionPhase m_Phase = selection;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

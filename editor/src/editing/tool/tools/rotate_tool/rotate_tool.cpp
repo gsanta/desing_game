@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     RotateTool::RotateTool() : Tool("rotate")
     {
@@ -44,7 +44,7 @@ namespace editor
         }
     }
 
-    void RotateTool::pointerUp( ToolContext &context)
+    void RotateTool::pointerUp(ToolContext &context)
     {
         TileLayer &tempLayer = context.doc.activeDrawing->getTempLayerOfActiveLayer();
         TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
@@ -146,5 +146,5 @@ namespace editor
 
         return normalizedAngle;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -23,5 +23,5 @@ namespace editor
 
     void tile_operation_remove_area(TileView &tileView, const BoundsInt &area);
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

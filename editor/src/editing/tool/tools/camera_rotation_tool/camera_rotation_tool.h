@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -28,5 +28,5 @@ namespace editor
 
         float m_StartPitch;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

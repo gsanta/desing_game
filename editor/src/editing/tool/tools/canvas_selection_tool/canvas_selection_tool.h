@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class CanvasSelectionTool : public Tool
     {
@@ -16,5 +16,5 @@ namespace editor
 
         void pointerDown(const ToolContext &) override;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,11 +2,11 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     ImageData::ImageData(size_t size) : data(new unsigned char[size]), size(size)
     {
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

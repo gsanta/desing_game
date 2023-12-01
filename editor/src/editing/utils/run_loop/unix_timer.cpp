@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     void UnixTimer::reset()
@@ -24,5 +24,5 @@ namespace editor
     {
         return time(NULL);
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

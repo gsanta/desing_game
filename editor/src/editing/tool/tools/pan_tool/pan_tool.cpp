@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     PanTool::PanTool() : Tool("pan")
     {
@@ -18,5 +18,5 @@ namespace editor
             camera2d->translate2D(context.pointer.prev - context.pointer.curr);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

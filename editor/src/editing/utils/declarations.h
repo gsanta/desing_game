@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
     using onRect2DCreate = std::function<void(std::shared_ptr<Rect2D>, std::shared_ptr<Rect2D>)>;
@@ -12,5 +12,5 @@ namespace editor
     inline void defaultRect2DCreate(std::shared_ptr<Rect2D> prev, std::shared_ptr<Rect2D> next)
     {
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

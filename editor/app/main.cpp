@@ -37,7 +37,7 @@
 
 using namespace ::spright::engine;
 using namespace ::spright::maths;
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 Window *window = nullptr;
 Editor *editor = nullptr;

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     MoveTool::MoveTool() : Tool("move")
     {
@@ -60,5 +60,5 @@ namespace editor
 
         context.doc.document->getHistory()->add(std::make_shared<TileUndo>(*m_Undo.get()));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

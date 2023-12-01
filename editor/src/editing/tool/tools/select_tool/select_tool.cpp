@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     SelectTool::SelectTool()
         : Tool("select", std::make_shared<RectangleCursor>(1)), m_BoxSelector(m_SelectionBuffer),
@@ -222,5 +222,5 @@ namespace editor
     {
         return m_SelectionBuffer;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

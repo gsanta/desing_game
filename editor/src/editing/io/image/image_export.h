@@ -14,7 +14,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class ImageExport
     {
@@ -37,5 +37,5 @@ namespace editor
 
         size_t m_Size;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

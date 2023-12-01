@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void TempRectDrawer::reset()
     {
@@ -71,5 +71,5 @@ namespace editor
 
         m_Bounds = bounds;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

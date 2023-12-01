@@ -7,12 +7,12 @@
 #include "../algorithm/rotate.h"
 #include "../algorithm/shear_horizontal.h"
 #include "../algorithm/shear_vertical.h"
-#include "editor.h"
 #include "../tool/tools/circle_tool/circle_tool.h"
+#include "editor.h"
 
 #include <string>
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 #ifdef SPARKY_EMSCRIPTEN
 #include <emscripten/bind.h>

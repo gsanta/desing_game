@@ -6,7 +6,7 @@
 #include "../test_helpers/builders/drawing_builder.h"
 
 #include <catch2/catch_test_macros.hpp>
-using namespace spright::editor;
+using namespace spright::editing;
 
 SCENARIO("Resize drawing")
 {

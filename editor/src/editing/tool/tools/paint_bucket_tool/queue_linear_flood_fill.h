@@ -13,7 +13,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::maths;
     using namespace ::spright::engine;
@@ -46,5 +46,5 @@ namespace editor
         bool isPixelWithinColorTolerance(TileLayer &layer, int tileIndex);
         void setColor(TileLayer &layer, int x, int y, int color, const onRect2DCreate &operation);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     LineTool::LineTool() : Tool("line", std::make_shared<RectangleCursor>(1, true))
     {
@@ -29,7 +29,7 @@ namespace editor
                  foregroundLayer);
     }
 
-    void LineTool::pointerUp( ToolContext &context)
+    void LineTool::pointerUp(ToolContext &context)
     {
         TileLayer &foregroundLayer = context.doc.activeDrawing->getToolLayer();
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
@@ -102,5 +102,5 @@ namespace editor
         }
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

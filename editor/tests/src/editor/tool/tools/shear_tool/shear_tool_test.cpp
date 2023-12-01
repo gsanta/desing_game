@@ -91,7 +91,7 @@ void execute_shear(ToolContext &toolContext, CommonToolFuncs &commonToolFuncs, c
 
 SCENARIO("Shear tool")
 {
-    using namespace spright::editor;
+    using namespace spright::editing;
 
     GIVEN("A drawing with a 4x4 rectangle")
     {

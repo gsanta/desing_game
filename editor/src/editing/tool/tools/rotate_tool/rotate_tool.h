@@ -12,7 +12,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class RotateTool : public Tool
     {
@@ -25,7 +25,7 @@ namespace editor
 
         void pointerMove(const ToolContext &toolContext) override;
 
-        void pointerUp( ToolContext &toolContext) override;
+        void pointerUp(ToolContext &toolContext) override;
 
         void execute(const ToolContext &toolContext) override;
 
@@ -60,5 +60,5 @@ namespace editor
                                                 M_PI + 2.0 * M_PI_4,
                                                 M_PI + 3.0 * M_PI_4};
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

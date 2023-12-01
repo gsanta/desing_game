@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     DocumentFactory::DocumentFactory(Window *window, RendererProvider *rendererProvider)
@@ -188,5 +188,5 @@ namespace editor
 
         return document;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

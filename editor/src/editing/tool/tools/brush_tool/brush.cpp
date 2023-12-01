@@ -2,14 +2,15 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     void Brush::paint(TileLayer &tileLayer, const Vec2Int &tilePos, unsigned int color, const onRect2DCreate &operation)
     {
         int tileIndex = tileLayer.getTileIndex(tilePos.x, tilePos.y);
 
-        if (tileIndex == -1) {
+        if (tileIndex == -1)
+        {
             return;
         }
 
@@ -30,5 +31,5 @@ namespace editor
 
         operation(prev, next);
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

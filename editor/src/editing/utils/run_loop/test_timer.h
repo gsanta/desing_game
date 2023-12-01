@@ -3,11 +3,11 @@
 
 #include "timer.h"
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class TestTimer : public Timer
     {
@@ -29,5 +29,5 @@ namespace editor
 
         long m_Elapsed = 0;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

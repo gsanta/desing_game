@@ -4,7 +4,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 TEST_CASE("Eraser erase", "[eraser]")
 {

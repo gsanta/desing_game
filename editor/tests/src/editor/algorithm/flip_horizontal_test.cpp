@@ -5,7 +5,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-using namespace spright::editor;
+using namespace spright::editing;
 using namespace spright::engine;
 
 TEST_CASE("flip_horizontal", "[flip-horizontal]")

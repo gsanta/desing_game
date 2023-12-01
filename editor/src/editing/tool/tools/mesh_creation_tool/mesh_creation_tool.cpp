@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     MeshCreationTool::MeshCreationTool() : Tool("mesh_creation")
@@ -21,5 +21,5 @@ namespace editor
 
         drawing->getGroup().add(m_BoxBuilder.build(pos));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Cursor::Cursor(bool shouldDisableOnDrag) : m_DisableOnDrag(shouldDisableOnDrag)
     {
@@ -25,7 +25,8 @@ namespace editor
         }
     }
 
-    void Cursor::setEnabled(ToolContext &toolContext) {
+    void Cursor::setEnabled(ToolContext &toolContext)
+    {
         m_IsEnabled = true;
     }
 
@@ -38,5 +39,5 @@ namespace editor
     {
         return m_DisableOnDrag;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     BoxSelector::BoxSelector(SelectionBuffer &selectionBuffer) : m_SelectionBuffer(selectionBuffer)
     {
@@ -78,5 +78,5 @@ namespace editor
 
         return BoundsInt(layer.getTilePos(vec1), layer.getTilePos(vec2));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

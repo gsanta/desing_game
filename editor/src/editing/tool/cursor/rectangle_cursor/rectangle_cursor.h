@@ -5,7 +5,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class RectangleCursor : public Cursor
     {
@@ -26,5 +26,5 @@ namespace editor
 
         Rect2D *m_Rect = nullptr;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

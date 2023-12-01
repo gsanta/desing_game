@@ -6,7 +6,7 @@
 
 #include <vector>
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 class FrameBuilder
 {

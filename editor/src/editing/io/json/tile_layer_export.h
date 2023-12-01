@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -24,5 +24,5 @@ namespace editor
     private:
         std::shared_ptr<DocumentFactory> m_DocumentFactory;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

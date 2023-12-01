@@ -11,7 +11,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace maths;
     using namespace engine;
@@ -45,5 +45,5 @@ namespace editor
 
         float m_PointSelectionTolerance = 0.1f;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

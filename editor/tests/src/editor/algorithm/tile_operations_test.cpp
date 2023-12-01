@@ -4,7 +4,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers.hpp>
 
-using namespace spright::editor;
+using namespace spright::editing;
 using namespace spright::engine;
 
 SCENARIO("Tile operations")

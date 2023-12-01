@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     DocumentStore::DocumentStore() : m_ActiveDocument(0)
@@ -29,5 +29,5 @@ namespace editor
     {
         return m_Documents.size() > m_ActiveDocument;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

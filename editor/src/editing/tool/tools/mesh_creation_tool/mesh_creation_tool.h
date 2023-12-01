@@ -1,13 +1,13 @@
-#include "../../../../engine/scene/cameras/arc_rotate_camera.h"
 #include "../../../../engine/graphics/mesh/builders/box_builder.h"
 #include "../../../../engine/graphics/mesh/builders/mesh_builder.h"
+#include "../../../../engine/scene/cameras/arc_rotate_camera.h"
 #include "../../tool.h"
 
 #include <vector>
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -21,5 +21,5 @@ namespace editor
     private:
         BoxBuilder m_BoxBuilder;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

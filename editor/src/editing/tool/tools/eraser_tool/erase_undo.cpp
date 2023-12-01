@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     EraseUndo::EraseUndo(Document &document)
     {
@@ -39,5 +39,5 @@ namespace editor
         }
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

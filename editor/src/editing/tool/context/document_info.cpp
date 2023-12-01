@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     bool DocumentInfo::hasActiveDrawing() const
     {
@@ -31,5 +31,5 @@ namespace editor
         m_IsActiveDrawingChanging = true;
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     ZoomTool::ZoomTool(DocumentStore *documentStore) : m_DocumentStore(documentStore), Tool("zoom")
     {
@@ -19,5 +19,5 @@ namespace editor
             m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->zoomOut();
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

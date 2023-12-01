@@ -3,12 +3,12 @@
 
 #include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/scene/containers/tile_layer.h"
-#include "../../../history/undoable.h"
 #include "../../../document/document.h"
+#include "../../../history/undoable.h"
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class EraseUndo : public Undoable
     {
@@ -31,5 +31,5 @@ namespace editor
         std::string m_DrawingId;
     };
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

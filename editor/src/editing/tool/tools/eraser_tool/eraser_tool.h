@@ -3,8 +3,8 @@
 #include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/graphics/mesh/meshes/renderable2d.h"
 #include "../../../../engine/scene/canvas/tile_canvas.h"
-#include "../../../history/document_history.h"
 #include "../../../document/document_store.h"
+#include "../../../history/document_history.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"
@@ -16,7 +16,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace spright::maths;
     using namespace spright::engine;
@@ -50,5 +50,5 @@ namespace editor
 
         float m_NoMovementTolerance = 0.1f;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

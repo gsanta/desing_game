@@ -5,7 +5,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -16,5 +16,5 @@ namespace editor
 
         GLRendererProvider *clone() const override;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

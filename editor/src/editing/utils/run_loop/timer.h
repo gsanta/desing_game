@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class Timer
     {
@@ -15,5 +15,5 @@ namespace editor
 
         static Timer *getTimer();
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

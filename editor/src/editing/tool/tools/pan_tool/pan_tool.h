@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -19,5 +19,5 @@ namespace editor
     private:
         void pointerMove(const ToolContext &) override;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

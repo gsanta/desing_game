@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     CircleTool::CircleTool() : Tool("circle", std::make_shared<RectangleCursor>(1, true))
     {
@@ -33,7 +33,7 @@ namespace editor
         drawCircle(bounds, foregroundLayer, context);
     }
 
-    void CircleTool::pointerUp( ToolContext &context)
+    void CircleTool::pointerUp(ToolContext &context)
     {
         TileLayer &activeLayer = context.doc.activeDrawing->getActiveLayer();
         BoundsInt bounds = getCircleBounds(context, activeLayer);
@@ -130,5 +130,5 @@ namespace editor
     }
 
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

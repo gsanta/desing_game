@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Editor::Editor(RunLoop runLoop)
         : m_RunLoop(runLoop), m_DocumentStore(std::make_shared<DocumentStore>()), m_UpdateScreenBounds(m_DocumentStore)
@@ -118,5 +118,5 @@ namespace editor
     {
         return m_FramePlayer;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -1,14 +1,14 @@
 #pragma once
 
+#include "../../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../../../engine/scene/cameras/arc_rotate_camera.h"
 #include "../../../../engine/scene/cameras/ortho_projection_info.h"
-#include "../../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -27,5 +27,5 @@ namespace editor
 
         std::vector<Mesh *> m_Lines;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

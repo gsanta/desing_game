@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void draw_filled_rect(TileLayer &tileLayer, const BoundsInt &bounds, int color, const onRect2DCreate &operation)
     {
@@ -80,5 +80,5 @@ namespace editor
         }
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

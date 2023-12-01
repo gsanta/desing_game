@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Document::Document(const Bounds &bounds, const Canvas2d &canvas, std::shared_ptr<DocumentHistory> history)
         : m_Canvas(canvas), m_History(history)
@@ -160,5 +160,5 @@ namespace editor
     {
         return m_Canvas;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

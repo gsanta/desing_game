@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     TileUndo::TileUndo(Document &document, std::shared_ptr<ToolStore> tools) : m_Tools(tools)
     {
@@ -146,5 +146,5 @@ namespace editor
         }
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     struct DocumentInfo
     {
@@ -27,5 +27,5 @@ namespace editor
     private:
         bool m_IsActiveDrawingChanging;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

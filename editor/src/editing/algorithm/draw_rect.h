@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
     using namespace maths;
@@ -22,5 +22,5 @@ namespace editor
                             int color,
                             const onRect2DCreate &operation = defaultRect2DCreate);
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

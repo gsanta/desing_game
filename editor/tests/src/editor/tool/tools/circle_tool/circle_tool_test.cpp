@@ -7,7 +7,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 using namespace ::spright::engine;
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 void REQUIRE_ELLIPSE(TileLayer &layer)
 {

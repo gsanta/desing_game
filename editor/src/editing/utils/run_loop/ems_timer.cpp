@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void EmsTimer::reset()
     {
@@ -23,5 +23,5 @@ namespace editor
         return 0;
 #endif
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

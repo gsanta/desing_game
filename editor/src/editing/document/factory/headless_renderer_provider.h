@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -15,5 +15,5 @@ namespace editor
 
         HeadlessRendererProvider *clone() const override;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

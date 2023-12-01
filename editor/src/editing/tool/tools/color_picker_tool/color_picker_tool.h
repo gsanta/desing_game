@@ -11,7 +11,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
     using namespace ::spright::maths;
@@ -42,5 +42,5 @@ namespace editor
 
         unsigned int m_Color = COLOR_BLACK;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

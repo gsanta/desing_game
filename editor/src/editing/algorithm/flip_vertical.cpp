@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void flip_vertical(TileLayer &layer)
     {
@@ -13,5 +13,5 @@ namespace editor
             layer.setTilePos(tile, Vec2Int(tilePos.x, layerHeight - 1 - tilePos.y));
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

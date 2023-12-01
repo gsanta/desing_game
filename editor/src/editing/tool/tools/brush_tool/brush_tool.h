@@ -1,11 +1,11 @@
 #pragma once
-#include "../../../../engine/scene/cameras/camera2d.h"
 #include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/graphics/mesh/meshes/renderable2d.h"
+#include "../../../../engine/scene/cameras/camera2d.h"
 #include "../../../../engine/scene/canvas/tile_canvas.h"
+#include "../../../document/document_store.h"
 #include "../../../history/document_history.h"
 #include "../../../history/tile_undo.h"
-#include "../../../document/document_store.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"
@@ -15,7 +15,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
     using namespace spright::maths;
@@ -41,5 +41,5 @@ namespace editor
     private:
         void paint(const ToolContext &context, bool isPointerMove);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

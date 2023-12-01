@@ -1,15 +1,15 @@
 #pragma once
-#include "../../../engine/scene/cameras/arc_rotate_camera.h"
-#include "../../../engine/scene/cameras/camera.h"
-#include "../../../engine/scene/cameras/camera2d.h"
-#include "../../../engine/graphics/renderer/gl/gl_renderer2d.h"
-#include "../../../engine/graphics/shader/gl/gl_shader.h"
 #include "../../../engine/graphics/mesh/builders/box_builder.h"
 #include "../../../engine/graphics/mesh/builders/cylinder_builder.h"
 #include "../../../engine/graphics/mesh/meshes/box.h"
 #include "../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../../engine/graphics/mesh/meshes/rect2d.h"
+#include "../../../engine/graphics/renderer/gl/gl_renderer2d.h"
+#include "../../../engine/graphics/shader/gl/gl_shader.h"
 #include "../../../engine/graphics/shader/shader.h"
+#include "../../../engine/scene/cameras/arc_rotate_camera.h"
+#include "../../../engine/scene/cameras/camera.h"
+#include "../../../engine/scene/cameras/camera2d.h"
 #include "../../../engine/scene/canvas/canvas.h"
 #include "../../../engine/scene/canvas/canvas2d.h"
 #include "../../../engine/scene/canvas/tile_canvas.h"
@@ -31,7 +31,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace std;
     using namespace ::spright::engine;
@@ -82,5 +82,5 @@ namespace editor
 
         float m_ToolLayerZPos = 0.05f;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     void DocumentHistory::add(std::shared_ptr<Undoable> undoable)
@@ -50,5 +50,5 @@ namespace editor
     {
         return m_RedoList.size();
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace features
 {
     FramePlayer::FramePlayer(float duration) : m_IsActive(false), m_Duration(duration), m_Elapsed(0)
     {
@@ -63,5 +63,5 @@ namespace editor
     {
         m_Drawing = nullptr;
     }
-} // namespace editor
+} // namespace features
 } // namespace spright

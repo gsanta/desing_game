@@ -5,7 +5,7 @@ int y_tmp;
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     ToolHandler::ToolHandler(DocumentStore *documentStore) : m_DocumentStore(documentStore)
     {
@@ -154,5 +154,5 @@ namespace editor
 
         return it != (*m_ActiveTools).end();
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

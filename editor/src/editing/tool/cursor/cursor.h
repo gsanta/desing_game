@@ -5,7 +5,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class Cursor
     {
@@ -29,5 +29,5 @@ namespace editor
 
         bool m_DisableOnDrag = false;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

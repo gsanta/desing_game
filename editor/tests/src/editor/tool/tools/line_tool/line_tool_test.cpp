@@ -6,7 +6,7 @@
 #include "src/editor/test_helpers/builders/document_store_builder.h"
 #include "src/editor/test_helpers/builders/tool_context_builder.h"
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 SCENARIO("Line tool")
 {

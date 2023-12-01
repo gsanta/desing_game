@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class Undoable
     {
@@ -15,5 +15,5 @@ namespace editor
 
         virtual void redo(Document &document) const = 0;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

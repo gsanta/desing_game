@@ -10,10 +10,10 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
     std::vector<int> rotate(TileLayer &source, const BoundsInt &bounds, float angle);
-} // namespace editor
+} // namespace editing
 } // namespace spright

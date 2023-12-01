@@ -5,7 +5,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <set>
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 class TestUndoable : public Undoable
 {

@@ -5,7 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 class TestEventEmitter : public EventEmitter
 {

@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class EmsTimer : public Timer
     {
@@ -20,5 +20,5 @@ namespace editor
     private:
         double m_Previous;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

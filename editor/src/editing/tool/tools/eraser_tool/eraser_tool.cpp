@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     EraserTool::EraserTool(int eraserSize)
         : m_Size(eraserSize), Tool("erase", std::make_shared<RectangleCursor>(eraserSize))
@@ -69,5 +69,5 @@ namespace editor
         m_Size = size;
         setCursor(std::make_shared<RectangleCursor>(m_Size));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

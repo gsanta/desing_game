@@ -5,7 +5,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     /*
     // This class listens for key events and can be used for development purposes to be able to
@@ -181,5 +181,5 @@ namespace editor
     private:
         Editor *m_Editor;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

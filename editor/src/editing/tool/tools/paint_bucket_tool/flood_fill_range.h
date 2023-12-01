@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     struct FloodFillRange
@@ -13,5 +13,5 @@ namespace editor
 
         FloodFillRange(int startX, int endX, int y);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

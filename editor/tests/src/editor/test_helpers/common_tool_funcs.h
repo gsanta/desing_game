@@ -7,7 +7,7 @@
 #include "../src/editing/tool/tools/select_tool/select_tool.h"
 #include "../src/maths/data/bounds_int.h"
 
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 class CommonToolFuncs
 {

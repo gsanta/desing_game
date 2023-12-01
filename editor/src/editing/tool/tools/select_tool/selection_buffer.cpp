@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     SelectionBuffer::SelectionBuffer()
     {
@@ -86,5 +86,5 @@ namespace editor
             m_TileBounds.expand(vec2);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -11,7 +11,7 @@
 // TODO: move file into tool folder
 namespace spright
 {
-namespace editor
+namespace editing
 {
     struct SharedPtrCompare
     {
@@ -83,5 +83,5 @@ namespace editor
         std::shared_ptr<ToolStore> m_Tools;
     };
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

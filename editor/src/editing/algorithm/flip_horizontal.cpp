@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void flip_horizontal(TileLayer &layer)
     {
@@ -48,5 +48,5 @@ namespace editor
             flip_horizontal(layer, bounds);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

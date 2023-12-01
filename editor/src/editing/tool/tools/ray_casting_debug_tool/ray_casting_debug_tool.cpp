@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     RayCastingDebugTool::RayCastingDebugTool() : Tool("ray_casting_debug")
     {
@@ -34,5 +34,5 @@ namespace editor
             drawing->getGroup().remove(*line);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

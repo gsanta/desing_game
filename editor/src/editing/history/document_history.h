@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class DocumentHistory
     {
@@ -33,5 +33,5 @@ namespace editor
 
         std::vector<std::shared_ptr<Undoable>> m_RedoList;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

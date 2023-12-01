@@ -9,7 +9,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     struct ToolContext
     {
@@ -19,5 +19,5 @@ namespace editor
 
         std::shared_ptr<ToolStore> tools;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

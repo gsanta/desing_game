@@ -9,7 +9,7 @@
 
 SCENARIO("Rectangle tool")
 {
-    using namespace ::spright::editor;
+    using namespace spright::editing;
 
     GIVEN("an empty document and rectangle tool")
     {

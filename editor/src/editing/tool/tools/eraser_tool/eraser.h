@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace spright::maths;
     using namespace spright::engine;
@@ -23,5 +23,5 @@ namespace editor
                    int eraserSize,
                    onRect2DErase callback = defaultOnRect2DErase);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

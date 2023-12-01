@@ -9,7 +9,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class CircleTool : public Tool
     {
@@ -18,7 +18,7 @@ namespace editor
 
         void pointerMove(const ToolContext &) override;
 
-        void pointerUp( ToolContext &) override;
+        void pointerUp(ToolContext &) override;
 
         void setFilled(bool isFilled);
 
@@ -39,5 +39,5 @@ namespace editor
 
         bool m_IsFilled = false;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

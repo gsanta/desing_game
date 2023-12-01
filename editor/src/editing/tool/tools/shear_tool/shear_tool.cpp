@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     ShearTool::ShearTool() : Tool("shear")
     {
@@ -46,7 +46,7 @@ namespace editor
         }
     }
 
-    void ShearTool::pointerUp( ToolContext &context)
+    void ShearTool::pointerUp(ToolContext &context)
     {
         TileLayer &tempLayer = context.doc.activeDrawing->getTempLayerOfActiveLayer();
         TileLayer &toolLayer = context.doc.activeDrawing->getToolLayer();
@@ -190,5 +190,5 @@ namespace editor
     {
         return m_TileLenghtFor10DegShear;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

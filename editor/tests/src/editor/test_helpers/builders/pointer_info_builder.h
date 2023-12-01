@@ -3,7 +3,7 @@
 #include "../src/maths/vec2.h"
 
 using namespace spright::maths;
-using namespace spright::editor;
+using namespace spright::editing;
 
 class PointerInfoBuilder
 {

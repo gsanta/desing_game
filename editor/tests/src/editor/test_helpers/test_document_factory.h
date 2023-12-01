@@ -11,7 +11,7 @@
 #include <vector>
 
 using namespace ::spright::engine;
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 class TestDocumentFactory
 {

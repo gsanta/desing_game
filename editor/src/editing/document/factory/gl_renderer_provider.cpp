@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     std::unique_ptr<Renderer2D> GLRendererProvider::createRenderer2D() const
     {
@@ -19,5 +19,5 @@ namespace editor
     {
         return new GLRendererProvider();
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

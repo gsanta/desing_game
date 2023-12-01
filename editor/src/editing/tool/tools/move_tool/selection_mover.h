@@ -9,7 +9,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -25,5 +25,5 @@ namespace editor
 
         void translate(Rect2D &tile, Vec2 &deltaToStart, const Vec2 &deltaToCurr);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

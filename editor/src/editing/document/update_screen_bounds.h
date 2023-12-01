@@ -7,7 +7,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -21,5 +21,5 @@ namespace editor
     private:
         std::shared_ptr<DocumentStore> m_DocumentStore;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

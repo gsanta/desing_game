@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace maths;
 
@@ -33,5 +33,5 @@ namespace editor
 
         Vec2 downDelta() const;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

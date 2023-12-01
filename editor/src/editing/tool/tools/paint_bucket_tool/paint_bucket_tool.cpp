@@ -4,14 +4,14 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     PaintBucketTool::PaintBucketTool() : Tool("paint_bucket")
     {
     }
 
-    void PaintBucketTool::pointerUp( ToolContext &context)
+    void PaintBucketTool::pointerUp(ToolContext &context)
     {
         if (!context.doc.hasActiveDrawing())
         {
@@ -32,5 +32,5 @@ namespace editor
 
         context.doc.document->getHistory()->add(std::make_shared<TileUndo>(tileUndo));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

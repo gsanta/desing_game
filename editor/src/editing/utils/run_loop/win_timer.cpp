@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void WinTimer::reset()
     {
@@ -24,5 +24,5 @@ namespace editor
         m_Previous = current.QuadPart;
         return millisecs;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

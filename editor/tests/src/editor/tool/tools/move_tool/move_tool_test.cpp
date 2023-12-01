@@ -7,7 +7,7 @@
 
 SCENARIO("Move tool")
 {
-    using namespace spright::editor;
+    using namespace spright::editing;
 
     GIVEN("tile on the active layer, 3 tiles are selected")
     {

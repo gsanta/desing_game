@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     BrushTool::BrushTool() : Tool("brush", std::make_shared<RectangleCursor>(1))
@@ -72,5 +72,5 @@ namespace editor
             context.doc.document->getHistory()->pop();
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

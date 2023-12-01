@@ -10,7 +10,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class LineTool : public Tool
     {
@@ -19,7 +19,7 @@ namespace editor
 
         void pointerMove(const ToolContext &toolContext) override;
 
-        void pointerUp( ToolContext &toolContext) override;
+        void pointerUp(ToolContext &toolContext) override;
 
     private:
         void drawLine(Vec2 start,
@@ -34,5 +34,5 @@ namespace editor
 
         Brush m_Brush;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

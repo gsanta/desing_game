@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     TileLayer resize_tile_layer(const TileLayer &orig, const Bounds &bounds, const DocumentFactory &documentFactory)
     {
@@ -44,5 +44,5 @@ namespace editor
 
         return newDrawing;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

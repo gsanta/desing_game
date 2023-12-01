@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 #ifdef SPARKY_EMSCRIPTEN
     EM_JS(void, on_active_frame_changed_callback, (int index), { editorCallbacks.onActiveFrameChanged(index); });
@@ -15,5 +15,5 @@ namespace editor
     {
     }
 #endif
-} // namespace editor
+} // namespace editing
 } // namespace spright

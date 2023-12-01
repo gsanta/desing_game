@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -41,5 +41,5 @@ namespace editor
 
         bool m_IsBoundsDirty = false;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

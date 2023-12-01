@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     CameraRotationTool::CameraRotationTool() : Tool("camera_rotation")
     {
@@ -37,5 +37,5 @@ namespace editor
             camera3d->screenToWorldPos3d(context.pointer.curr.x, context.pointer.curr.y, 0);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

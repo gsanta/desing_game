@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     static const float MinDiffFromHalfPi = 0.04f;
 
@@ -37,5 +37,5 @@ namespace editor
 
         return radang;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

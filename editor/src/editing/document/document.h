@@ -18,7 +18,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     class DocumentHistory;
 
@@ -76,5 +76,5 @@ namespace editor
 
         std::shared_ptr<DocumentHistory> m_History;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

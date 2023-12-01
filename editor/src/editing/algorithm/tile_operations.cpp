@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void tile_operation_copy_area(const TileView &source, TileView &dest, const BoundsInt &area, const Vec2Int &destPos)
     {
@@ -72,5 +72,5 @@ namespace editor
             }
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

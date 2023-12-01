@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     void QueueLinearFloodFill::floodFill(TileLayer &layer, int x, int y, int color, const onRect2DCreate &operation)
     {
@@ -124,5 +124,5 @@ namespace editor
         std::shared_ptr<Rect2D> newRect = std::make_shared<Rect2D>(rect);
         operation(prev, newRect);
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

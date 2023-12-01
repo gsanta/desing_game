@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     CanvasSelectionTool::CanvasSelectionTool() : Tool("canvas_selection")
     {
@@ -49,5 +49,5 @@ namespace editor
             activeCanvas->getDecorationLayer().add(left);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

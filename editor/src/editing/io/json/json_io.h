@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     class JsonIO
@@ -30,5 +30,5 @@ namespace editor
 
         int m_i;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

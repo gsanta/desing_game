@@ -2,7 +2,7 @@
 
 #include "../src/editing/utils/run_loop/timed.h"
 
-using namespace spright::editor;
+using namespace spright::editing;
 
 class TimedMock : public Timed
 {

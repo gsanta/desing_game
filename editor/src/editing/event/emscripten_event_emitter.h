@@ -6,10 +6,15 @@
 #include <emscripten/val.h>
 #endif
 
-namespace spright { namespace editor {
+namespace spright
+{
+namespace editing
+{
 
-	class EmscriptenEventEmitter : public EventEmitter {
-	public:
-		void emitChange(std::string eventType, nlohmann::json data) override;
-	};
-}}
+    class EmscriptenEventEmitter : public EventEmitter
+    {
+    public:
+        void emitChange(std::string eventType, nlohmann::json data) override;
+    };
+} // namespace editing
+} // namespace spright

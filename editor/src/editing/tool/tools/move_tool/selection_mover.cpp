@@ -3,7 +3,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     std::vector<int> SelectionMover::move(TileLayer &layer, const Vec2 &curr, const Vec2 &prev, const Vec2 &start)
     {
@@ -54,5 +54,5 @@ namespace editor
         tile.translate(-deltaToStart);
         tile.translate(deltaToCurr);
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

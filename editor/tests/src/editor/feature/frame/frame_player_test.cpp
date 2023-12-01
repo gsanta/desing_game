@@ -5,7 +5,8 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-using namespace spright::editor;
+using namespace spright::editing;
+using namespace spright::features;
 
 SCENARIO("Frame player")
 {

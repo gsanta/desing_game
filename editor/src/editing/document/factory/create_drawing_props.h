@@ -4,7 +4,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -26,5 +26,5 @@ namespace editor
 
         size_t layerCount = 1;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

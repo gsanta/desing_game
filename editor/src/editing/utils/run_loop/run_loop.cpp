@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     RunLoop::RunLoop(Timer *timer) : m_Timer(timer)
@@ -47,5 +47,5 @@ namespace editor
     {
         m_Timer->reset();
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

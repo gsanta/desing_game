@@ -1,16 +1,16 @@
 #include "./tool_store.h"
 
 #include "tool.h"
+#include "tools/brush_tool/brush_tool.h"
 #include "tools/color_picker_tool/color_picker_tool.h"
 #include "tools/move_tool/move_tool.h"
 #include "tools/rotate_tool/rotate_tool.h"
 #include "tools/select_tool/select_tool.h"
 #include "tools/shear_tool/shear_tool.h"
-#include "tools/brush_tool/brush_tool.h"
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     Tool *ToolStore::getTool(std::string name) const
     {
@@ -55,5 +55,5 @@ namespace editor
     {
         return *dynamic_cast<BrushTool *>(getTool("brush"));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     size_t FloodFillRangeQueue::getCount()
     {
@@ -26,5 +26,5 @@ namespace editor
 
         return first;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

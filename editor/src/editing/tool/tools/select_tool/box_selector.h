@@ -10,7 +10,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -37,5 +37,5 @@ namespace editor
 
         SelectionBuffer &m_SelectionBuffer;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

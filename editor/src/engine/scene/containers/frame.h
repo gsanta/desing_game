@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -50,5 +50,5 @@ namespace editor
     };
 
     TileLayer &find_layer(std::string id, std::vector<TileLayer> &layers);
-} // namespace editor
+} // namespace editing
 } // namespace spright

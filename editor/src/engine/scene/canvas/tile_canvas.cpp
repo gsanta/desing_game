@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     Drawing resize_drawing(Drawing &orig, Bounds bounds);
@@ -299,5 +299,5 @@ namespace editor
         return m_Camera.get();
     }
 
-} // namespace editor
+} // namespace editing
 } // namespace spright

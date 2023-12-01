@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     class Timed
@@ -11,5 +11,5 @@ namespace editor
     public:
         virtual void update(int elapsed) = 0;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

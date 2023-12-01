@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     UpdateScreenBounds::UpdateScreenBounds(std::shared_ptr<DocumentStore> documentStore)
         : m_DocumentStore(documentStore)
@@ -14,5 +14,5 @@ namespace editor
         m_DocumentStore->getActiveDocument().getBackgroundCanvas().getCamera()->setScreenBounds(
             BoundsInt(0, 0, newWidth, newHeight));
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

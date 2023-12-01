@@ -13,7 +13,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -41,5 +41,5 @@ namespace editor
 
         TempRectDrawer m_TempRectDrawer;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

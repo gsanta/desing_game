@@ -2,9 +2,9 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
-    void editor::Eraser::erase(TileLayer &layer, const Vec2Int &vec2, int eraserSize, onRect2DErase callback)
+    void Eraser::erase(TileLayer &layer, const Vec2Int &vec2, int eraserSize, onRect2DErase callback)
     {
         int tileIndex = layer.getTileIndex(vec2.x, vec2.y);
 
@@ -44,5 +44,5 @@ namespace editor
             }
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

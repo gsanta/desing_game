@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     ImageExport::ImageExport(Window *window, Rendering *rendering) : m_Window(window), m_Rendering(rendering)
     {
@@ -77,5 +77,5 @@ namespace editor
     {
         return m_Size;
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

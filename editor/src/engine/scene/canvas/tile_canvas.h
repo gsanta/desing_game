@@ -9,7 +9,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -111,5 +111,5 @@ namespace editor
 
         size_t m_ActiveLayerIndex = 0;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

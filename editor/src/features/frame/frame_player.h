@@ -1,16 +1,18 @@
 #pragma once
 
-#include "../../engine/scene/canvas/tile_canvas.h"
-#include "../../editing/utils/run_loop/timed.h"
 #include "../../editing/editor/editor_callbacks.h"
 #include "../../editing/event/event_emitter.h"
+#include "../../editing/utils/run_loop/timed.h"
+#include "../../engine/scene/canvas/tile_canvas.h"
 
 #include <iostream>
 
 namespace spright
 {
-namespace editor
+namespace features
 {
+    using namespace editing;
+
     class FramePlayer : public Timed
     {
     public:
@@ -38,5 +40,5 @@ namespace editor
 
         Drawing *m_Drawing;
     };
-} // namespace editor
+} // namespace features
 } // namespace spright

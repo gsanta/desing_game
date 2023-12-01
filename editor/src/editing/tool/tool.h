@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace std;
 
@@ -82,5 +82,5 @@ namespace editor
 
         std::shared_ptr<Cursor> m_Cursor;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
 
     ColorPickerTool::ColorPickerTool(EventEmitter *eventEmitter) : m_EventEmitter(eventEmitter), Tool("color_picker")
@@ -71,5 +71,5 @@ namespace editor
             m_EventEmitter->emitChange("tool_data_changed", json);
         }
     }
-} // namespace editor
+} // namespace editing
 } // namespace spright

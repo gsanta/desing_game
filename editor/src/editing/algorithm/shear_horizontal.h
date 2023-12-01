@@ -9,10 +9,10 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
     std::vector<int> shear_horizontal(TileLayer &source, const BoundsInt &bounds, float angle);
-} // namespace editor
+} // namespace editing
 } // namespace spright

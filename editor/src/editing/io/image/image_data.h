@@ -3,7 +3,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     struct ImageData
     {
@@ -11,5 +11,5 @@ namespace editor
         size_t size = 0;
         explicit ImageData(size_t size);
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

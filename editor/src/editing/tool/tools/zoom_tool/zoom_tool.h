@@ -8,7 +8,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace ::spright::engine;
 
@@ -24,5 +24,5 @@ namespace editor
     private:
         void scroll(const ToolContext &toolContext) override;
     };
-} // namespace editor
+} // namespace editing
 } // namespace spright

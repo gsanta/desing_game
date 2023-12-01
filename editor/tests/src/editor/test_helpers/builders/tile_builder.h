@@ -6,7 +6,7 @@
 #include "../src/engine/scene/containers/tile_layer.h"
 
 using namespace ::spright::engine;
-using namespace ::spright::editor;
+using namespace spright::editing;
 
 class TileBuilder
 {

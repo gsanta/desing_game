@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace editor
+namespace editing
 {
     using namespace engine;
 
@@ -17,5 +17,5 @@ namespace editor
     void flip_horizontal(std::vector<TileLayer> &layers);
 
     void flip_horizontal(std::vector<TileLayer> &layers, const Bounds &bounds);
-} // namespace editor
+} // namespace editing
 } // namespace spright

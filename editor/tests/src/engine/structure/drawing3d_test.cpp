@@ -1,6 +1,6 @@
 #include "../../editor/test_helpers/builders/drawing3d_builder.h"
-#include "../src/engine/scene/cameras/arc_rotate_camera.h"
 #include "../src/engine/graphics/mesh/meshes/box.h"
+#include "../src/engine/scene/cameras/arc_rotate_camera.h"
 
 #include <catch2/catch_test_macros.hpp>
 

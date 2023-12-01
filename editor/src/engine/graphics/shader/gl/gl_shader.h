@@ -2,37 +2,43 @@
 
 #include "../../shader/shader.h"
 
-namespace spright { namespace engine {
+namespace spright
+{
+namespace engine
+{
 
-	using namespace ::spright::maths;
+    using namespace ::spright::maths;
 
-	class GLShader : public Shader {
-	public:
-		GLuint m_ShaderID;
-		char* m_VertPath = nullptr;
-		char* m_FragPath = nullptr;
-	public:
-		GLShader(const char* const vertPath, const char* const fragPath);
-		GLShader(const GLShader& shader);
-		~GLShader();
+    class GLShader : public Shader
+    {
+    public:
+        GLuint m_ShaderID;
+        char *m_VertPath = nullptr;
+        char *m_FragPath = nullptr;
 
-		GLShader& operator=(const GLShader&);
+    public:
+        GLShader(const char *const vertPath, const char *const fragPath);
+        GLShader(const GLShader &shader);
+        ~GLShader();
 
-		void setUniform1f(const GLchar* name, float value);
-		void setUniform1i(const GLchar* name, int value);
-		void setUniform1iv(const GLchar* name, int* value, int count);
-		void setUniform1fv(const GLchar* name, float* value, int count);
-		void setUniform2f(const GLchar* name, const Vec2& vector);
-		void setUniform3f(const GLchar* name, const Vec3& vector);
-		void setUniform4f(const GLchar* name, const Vec4& vector);
-		void setUniformMat4(const GLchar* name, const Mat4& matrix);
+        GLShader &operator=(const GLShader &);
 
-		void enable() const;
-		void disable() const;
+        void setUniform1f(const GLchar *name, float value);
+        void setUniform1i(const GLchar *name, int value);
+        void setUniform1iv(const GLchar *name, int *value, int count);
+        void setUniform1fv(const GLchar *name, float *value, int count);
+        void setUniform2f(const GLchar *name, const Vec2 &vector);
+        void setUniform3f(const GLchar *name, const Vec3 &vector);
+        void setUniform4f(const GLchar *name, const Vec4 &vector);
+        void setUniformMat4(const GLchar *name, const Mat4 &matrix);
 
-	private:
-		GLuint load();
-		GLint getUniformLocation(const GLchar* name);
-	};
+        void enable() const;
+        void disable() const;
 
-} }
+    private:
+        GLuint load();
+        GLint getUniformLocation(const GLchar *name);
+    };
+
+} // namespace engine
+} // namespace spright

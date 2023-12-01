@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../colors.h"
-#include "../../shader/shader.h"
 #include "../../../../maths/data/bounds.h"
 #include "../../../../maths/vec2.h"
 #include "../../../../maths/vec3.h"
@@ -9,9 +7,11 @@
 #include "../../buffer/buffer.h"
 #include "../../buffer/indexBuffer.h"
 #include "../../buffer/vertexArray.h"
-#include "mesh.h"
+#include "../../colors.h"
 #include "../../renderer/renderer2d.h"
 #include "../../renderer/vertex_data.h"
+#include "../../shader/shader.h"
+#include "mesh.h"
 
 #include <nlohmann/json.hpp>
 #include <string.h>

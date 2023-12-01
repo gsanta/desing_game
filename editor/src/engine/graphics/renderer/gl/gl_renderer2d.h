@@ -5,8 +5,8 @@
 #include "../../mesh/meshes/renderable2d.h"
 #include "../../renderer/renderer2d.h"
 #include "../../renderer/vertex_data.h"
-#include "../../shader/shader.h"
 #include "../../shader/gl/gl_shader.h"
+#include "../../shader/shader.h"
 
 #include <algorithm>
 #include <cstddef>

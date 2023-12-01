@@ -1,8 +1,8 @@
 #include "../../../test_helpers/builders/document_store_builder.h"
 #include "../../../test_helpers/builders/drawing_builder.h"
 #include "../../../test_helpers/builders/tile_layer_builder.h"
-#include "../src/app/document/document_store.h"
-#include "../src/app/tool/tools/select_tool/rect_selector.h"
+#include "../src/editing/document/document_store.h"
+#include "../src/editing/tool/tools/select_tool/rect_selector.h"
 #include "../src/engine/scene/containers/tile_layer.h"
 
 #include <catch2/catch_approx.hpp>

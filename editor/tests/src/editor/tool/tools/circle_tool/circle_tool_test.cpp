@@ -1,5 +1,5 @@
 
-#include "../src/app/tool/tools/circle_tool/circle_tool.h"
+#include "../src/editing/tool/tools/circle_tool/circle_tool.h"
 #include "src/editor/test_helpers/builders/document_builder.h"
 #include "src/editor/test_helpers/builders/document_store_builder.h"
 #include "src/editor/test_helpers/builders/tool_context_builder.h"

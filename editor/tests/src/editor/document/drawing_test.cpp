@@ -1,4 +1,4 @@
-#include "../src/app/document/factory/document_factory.h"
+#include "../src/editing/document/factory/document_factory.h"
 #include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../test_helpers/builders/drawing_builder.h"
 

@@ -1,5 +1,5 @@
-#include "../src/app/document/factory/document_factory.h"
-#include "../src/app/document/resize_drawing.h"
+#include "../src/editing/document/factory/document_factory.h"
+#include "../src/editing/document/resize_drawing.h"
 #include "../src/engine/graphics/colors.h"
 #include "../src/engine/scene/canvas/tile_canvas.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"

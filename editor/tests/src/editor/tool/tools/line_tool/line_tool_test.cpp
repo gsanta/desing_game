@@ -1,5 +1,5 @@
 
-#include "../src/app/tool/tools/line_tool/line_tool.h"
+#include "../src/editing/tool/tools/line_tool/line_tool.h"
 #include "../src/engine/graphics/colors.h"
 #include "catch2/catch_test_macros.hpp"
 #include "src/editor/test_helpers/builders/document_builder.h"

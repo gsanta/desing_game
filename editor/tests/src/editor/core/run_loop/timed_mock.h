@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/app/core/run_loop/timed.h"
+#include "../src/editing/utils/run_loop/timed.h"
 
 using namespace spright::editor;
 

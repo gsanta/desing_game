@@ -1,8 +1,8 @@
 #pragma once
-#include "../src/app/document/document.h"
-#include "../src/app/document/document_store.h"
-#include "../src/app/document/factory/document_factory.h"
-#include "../src/app/document/factory/headless_renderer_provider.h"
+#include "../src/editing/document/document.h"
+#include "../src/editing/document/document_store.h"
+#include "../src/editing/document/factory/document_factory.h"
+#include "../src/editing/document/factory/headless_renderer_provider.h"
 #include "../src/engine/graphics/renderer/headless/headless_renderer2d.h"
 #include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/maths/data/bounds.h"

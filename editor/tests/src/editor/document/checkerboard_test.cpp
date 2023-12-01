@@ -1,4 +1,4 @@
-#include "../src/app/document/checkerboard.h"
+#include "../src/editing/document/checkerboard.h"
 #include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/maths/data/bounds.h"
 #include "../test_helpers/test_document_factory.h"

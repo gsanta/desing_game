@@ -6,7 +6,7 @@
 #include "../../test_helpers/common_tool_funcs.h"
 #include "../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../../test_helpers/test_document_factory.h"
-#include "../src/app/feature/sprite_sheet/sprite_sheet.h"
+#include "../src/features/sprite_sheet/sprite_sheet.h"
 
 #include <catch2/catch_test_macros.hpp>
 

@@ -8,12 +8,12 @@
 #include <cstdint>
 #include <stddef.h>
 // #include "utils/timer.h"
-#include "../src/app/core/run_loop/run_loop.h"
-#include "../src/app/core/run_loop/timer.h"
-#include "../src/app/dev_key_listener.h"
-#include "../src/app/editor.h"
-#include "../src/app/editor_api.h"
-#include "../src/app/tool/tools/brush_tool/brush_tool.h"
+#include "../src/editing/editor/dev_key_listener.h"
+#include "../src/editing/editor/editor.h"
+#include "../src/editing/editor/editor_api.h"
+#include "../src/editing/tool/tools/brush_tool/brush_tool.h"
+#include "../src/editing/utils/run_loop/run_loop.h"
+#include "../src/editing/utils/run_loop/timer.h"
 #include "../src/engine/graphics/buffer/buffer.h"
 #include "../src/engine/graphics/buffer/indexBuffer.h"
 #include "../src/engine/graphics/buffer/vertexArray.h"
@@ -27,13 +27,13 @@
 #include <time.h>
 #include <vector>
 #ifdef SPARKY_EMSCRIPTEN
-#include "../src/app/core/run_loop/ems_timer.h"
+#include "../src/editing/utils/run_loop/ems_timer.h"
 #elif _WIN32
-#include "../src/app/core/run_loop/win_timer.h"
+#include "../src/editing/utils/run_loop/win_timer.h"
 #else
-#include "../src/app/core/run_loop/unix_timer.h"
+#include "../src/editing/utils/run_loop/unix_timer.h"
 #endif
-#include "../src/app/feature/frame/frame_player.h"
+#include "../src/features/frame/frame_player.h"
 
 using namespace ::spright::engine;
 using namespace ::spright::maths;

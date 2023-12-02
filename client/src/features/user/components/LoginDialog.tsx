@@ -1,4 +1,4 @@
-import Dialog, { DialogBody, DialogButtons, DialogFooter } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogBody, DialogButtons, DialogFooter } from '@/common/components/Dialog';
 import { FormControl, FormLabel, Input, FormErrorMessage, Button, Box } from '@chakra-ui/react';
 import React from 'react';
 import { emailRegex } from '../utils/userUtils';

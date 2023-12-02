@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/Dialog';
 import { Button, FormControl, FormLabel, Input, InputGroup, InputRightAddon } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks';
 import { setCanvasSize } from '../state/settingsSlice';

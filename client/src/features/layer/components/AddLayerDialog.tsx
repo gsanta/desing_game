@@ -1,4 +1,4 @@
-import Dialog, { DialogFooter, DialogBody } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogFooter, DialogBody } from '@/common/components/Dialog';
 import React, { useState } from 'react';
 import { Button, Input } from '@chakra-ui/react';
 import { useAppDispatch } from '@/common/hooks/hooks';

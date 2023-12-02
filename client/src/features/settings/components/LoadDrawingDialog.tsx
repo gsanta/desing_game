@@ -1,5 +1,5 @@
 import React from 'react';
-import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/Dialog';
 import { Alert, AlertIcon, Button } from '@chakra-ui/react';
 import api from '@/common/utils/api';
 import { useAppSelector } from '@/common/hooks/hooks';

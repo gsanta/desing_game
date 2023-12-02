@@ -12,7 +12,7 @@ import Header from '../common/components/Header';
 import ToolEventListener from '@/features/tool/utils/ToolEventListener';
 import Toolbar from '@/features/tool/components/Toolbar';
 import ToolOptionsPanel from '../features/tool/components/ToolOptionsPanel';
-import ColorPicker from '@/common/components/color_picker/ColorPicker';
+import ColorPicker from '@/common/components/ColorPicker';
 
 const App = () => {
   const [canvasNode, setCanvasNode] = useState<HTMLCanvasElement>();
@@ -71,7 +71,6 @@ const App = () => {
             <TabList>
               <Tab>Tool</Tab>
               <Tab>Color</Tab>
-              <Tab>3D Viewer</Tab>
             </TabList>
             <TabPanels alignItems="stretch" display="flex" flex="1" overflow="auto">
               <TabPanel flex="1" paddingInline={0}>

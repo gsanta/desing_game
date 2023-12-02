@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks';
-import ToggleButton from '@/common/components/button/ToggleButton';
+import ToggleButton from '@/common/components/ToggleButton';
 import Icon from '@/common/components/icon/Icon';
 import { Button, ListItem, Tooltip } from '@chakra-ui/react';
 import React from 'react';

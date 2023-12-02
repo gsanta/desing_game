@@ -1,7 +1,7 @@
 import ToolName from '@/features/tool/state/ToolName';
 import React from 'react';
 import { Box, Tooltip } from '@chakra-ui/react';
-import ToggleButton from '@/common/components/button/ToggleButton';
+import ToggleButton from '@/common/components/ToggleButton';
 import Icon from '@/common/components/icon/Icon';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks';
 import { setSelectedTool } from '@/features/tool/state/toolSlice';

@@ -1,4 +1,4 @@
-import Dialog, { DialogBody } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogBody } from '@/common/components/Dialog';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks';
 import api from '@/common/utils/api';
 import { usersPath } from '@/common/utils/routes';

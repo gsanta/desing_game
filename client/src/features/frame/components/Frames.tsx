@@ -1,4 +1,4 @@
-import FrameButton from '@/common/components/button/FrameButton';
+import FrameButton from '@/common/components/FrameButton';
 import { Box, Divider } from '@chakra-ui/react';
 import Icon from '@/common/components/icon/Icon';
 import React from 'react';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/dialog/Dialog';
+import Dialog, { DialogProps, DialogBody, DialogFooter } from '@/common/components/Dialog';
 import { Button } from '@chakra-ui/react';
 import DropZone from './DropZone';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/hooks';

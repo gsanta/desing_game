@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../algorithm/rotate.h"
+#include "../../../algorithms/rotate.h"
 #include "../../../history/tile_undo.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"

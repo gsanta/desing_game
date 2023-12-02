@@ -1,4 +1,4 @@
-#include "../src/editing/algorithm/tile_operations.h"
+#include "../src/editing/algorithms/tile_operations.h"
 #include "../test_helpers/builders/tile_layer_builder.h"
 
 #include <catch2/catch_test_macros.hpp>

@@ -1,5 +1,5 @@
-#include "../src/editing/algorithm/draw_rect.h"
-#include "../src/editing/algorithm/shear_horizontal.h"
+#include "../src/editing/algorithms/draw_rect.h"
+#include "../src/editing/algorithms/shear_horizontal.h"
 #include "../src/engine/graphics/colors.h"
 #include "../test_helpers/builders/tile_layer_builder.h"
 

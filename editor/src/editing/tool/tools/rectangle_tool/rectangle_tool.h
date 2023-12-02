@@ -3,7 +3,7 @@
 #include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../maths/vec2.h"
 #include "../../../../maths/vec3.h"
-#include "../../../algorithm/draw_rect.h"
+#include "../../../algorithms/draw_rect.h"
 #include "../../../history/document_history.h"
 #include "../../../history/tile_undo.h"
 #include "../../context/tool_context.h"

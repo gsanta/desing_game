@@ -7,7 +7,6 @@
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../tool.h"
 #include "./box_selector.h"
-#include "./rect_selector.h"
 #include "./selection_buffer.h"
 #include "./wand_selector.h"
 

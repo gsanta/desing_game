@@ -3,7 +3,6 @@
 #include "../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../engine/scene/containers/tile_layer.h"
 #include "../document/factory/document_factory.h"
-#include "../tool/tools/select_tool/rect_selector.h"
 #include "./tile_operations.h"
 #include "shear_horizontal.h"
 #include "shear_vertical.h"

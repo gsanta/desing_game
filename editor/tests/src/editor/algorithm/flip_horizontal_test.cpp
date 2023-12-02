@@ -1,4 +1,4 @@
-#include "../src/editing/algorithm/flip_horizontal.h"
+#include "../src/editing/algorithms/flip_horizontal.h"
 #include "../src/editing/tool/tools/select_tool/selection_buffer.h"
 #include "../src/engine/graphics/colors.h"
 #include "../test_helpers/builders/document_builder.h"

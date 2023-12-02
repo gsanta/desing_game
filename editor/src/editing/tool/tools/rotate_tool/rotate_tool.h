@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../algorithm/rotate.h"
-#include "../../../algorithm/tile_operations.h"
+#include "../../../algorithms/rotate.h"
+#include "../../../algorithms/tile_operations.h"
 #include "../../../utils/run_loop/timer.h"
 #include "../../context/tool_context.h"
 #include "../../tool.h"

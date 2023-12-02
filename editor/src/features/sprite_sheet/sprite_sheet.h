@@ -1,5 +1,5 @@
 #pragma once
-#include "../../editing/algorithm/tile_operations.h"
+#include "../../editing/algorithms/tile_operations.h"
 #include "../../editing/document/document.h"
 #include "../../editing/document/factory/document_factory.h"
 #include "../../engine/scene/canvas/tile_canvas.h"

@@ -138,13 +138,13 @@ void api_flip_horizontal()
         return;
     }
 
-    if (drawing->getState().getBounds().isNull())
+    if (drawing->getBounds().isNull())
     {
         flip_horizontal(drawing->getActiveFrame().getLayers());
     }
     else
     {
-        flip_horizontal(drawing->getActiveFrame().getLayers(), drawing->getState().getBounds());
+        flip_horizontal(drawing->getActiveFrame().getLayers(), drawing->getBounds());
     }
 }
 
@@ -264,11 +264,11 @@ void shear_vertical_api(float angle)
         return;
     }
 
-    Bounds bounds = drawing->getState().getBounds();
+    Bounds bounds = drawing->getBounds();
     TileLayer &currentLayer = drawing->getActiveLayer();
 
-    Vec2 bottomLeft = drawing->getState().getBounds().getBottomLeft();
-    Vec2 topRight = drawing->getState().getBounds().getTopRight();
+    Vec2 bottomLeft = drawing->getBounds().getBottomLeft();
+    Vec2 topRight = drawing->getBounds().getTopRight();
     Vec2Int bottomLeftTile = drawing->getActiveLayer().getTilePos(bottomLeft);
     Vec2Int topRightTile = drawing->getActiveLayer().getTilePos(topRight);
 

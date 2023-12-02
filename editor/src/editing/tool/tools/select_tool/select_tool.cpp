@@ -190,7 +190,7 @@ namespace editing
 
         const BoundsInt &bounds = m_SelectionBuffer.getTileBounds();
 
-        if (!bounds.isDefault())
+        if (!bounds.isNull())
         {
             m_BoxSelector.select(tempLayer,
                                  toolLayer,

@@ -132,19 +132,20 @@ void deActivateFramePlayer()
 void api_flip_horizontal()
 {
     Drawing *drawing = editor->getActiveDocument().getActiveDrawing();
+    SelectTool &selectTool = editor->getToolHandler()->getToolStore().getSelectTool();
 
     if (!drawing)
     {
         return;
     }
 
-    if (drawing->getBounds().isNull())
+    if (selectTool.getSelectionBuffer().getTileBounds().isNull())
     {
         flip_horizontal(drawing->getActiveFrame().getLayers());
     }
     else
     {
-        flip_horizontal(drawing->getActiveFrame().getLayers(), drawing->getBounds());
+        flip_horizontal(drawing->getActiveFrame().getLayers(), selectTool.getSelectionBuffer());
     }
 }
 

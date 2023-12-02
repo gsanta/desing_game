@@ -14,15 +14,23 @@ namespace editing
         }
     }
 
-    void flip_horizontal(TileLayer &layer, const Bounds &bounds)
+    void flip_horizontal(TileLayer &layer, const SelectionBuffer &selectionBuffer)
     {
-        RectSelector rectSelector(&layer);
-        rectSelector.setSelection(bounds.getBottomLeft(), bounds.getTopRight());
+        const std::vector<int> tileIndexes = selectionBuffer.getTileIndexes();
 
-        const std::vector<Rect2D *> tiles = rectSelector.getSelection();
+        int boundsTileX = selectionBuffer.getTileBounds().minX;
+        int boundsTileWidth = selectionBuffer.getTileBounds().getWidth();
 
-        int boundsTileX = std::round(layer.getTilePos(bounds.getBottomLeft()).x);
-        int boundsTileWidth = std::round(bounds.getWidth() / layer.getTileSize());
+        std::vector<Rect2D *> tiles;
+
+        for (int index : tileIndexes)
+        {
+            Rect2D *tile = layer.getAtTileIndex(index);
+            if (tile != nullptr)
+            {
+                tiles.push_back(tile);
+            }
+        }
 
         for (Rect2D *tile : tiles)
         {
@@ -41,11 +49,11 @@ namespace editing
         }
     }
 
-    void flip_horizontal(std::vector<TileLayer> &layers, const Bounds &bounds)
+    void flip_horizontal(std::vector<TileLayer> &layers, const SelectionBuffer &selectionBuffer)
     {
         for (TileLayer &layer : layers)
         {
-            flip_horizontal(layer, bounds);
+            flip_horizontal(layer, selectionBuffer);
         }
     }
 } // namespace editing

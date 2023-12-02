@@ -84,13 +84,14 @@ namespace editing
             else if (key == GLFW_KEY_F)
             {
                 Drawing &drawing = *m_Editor->getDocumentStore()->getActiveDocument().getActiveDrawing();
-                if (drawing.getBounds().isNull())
+                SelectTool &selectTool = m_Editor->getToolHandler()->getToolStore().getSelectTool();
+                if (selectTool.getSelectionBuffer().getTileBounds().isNull())
                 {
                     flip_horizontal(drawing.getActiveFrame().getLayers());
                 }
                 else
                 {
-                    flip_horizontal(drawing.getActiveFrame().getLayers(), drawing.getBounds());
+                    flip_horizontal(drawing.getTempLayerOfActiveLayer(), selectTool.getSelectionBuffer());
                 }
             }
             // else if (key == GLFW_KEY_R)

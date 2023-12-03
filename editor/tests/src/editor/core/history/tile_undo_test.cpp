@@ -13,10 +13,10 @@ SCENARIO("TileUndo")
     Document document = DocumentBuilder().build();
 
     TileCanvas drawing = DrawingBuilder()
-                          .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder().withTileSize(1).withBounds(
-                                         Bounds::createWithPositions(-3.0f, -3.0f, 4.0f, 4.0f))),
-                                     2)
-                          .build();
+                             .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder().withTileSize(1).withBounds(
+                                            Bounds::createWithPositions(-3.0f, -3.0f, 4.0f, 4.0f))),
+                                        2)
+                             .build();
 
     ToolContext context = ToolContextBuilder().build(document);
 

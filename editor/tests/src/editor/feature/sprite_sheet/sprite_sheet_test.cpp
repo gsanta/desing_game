@@ -1,10 +1,10 @@
 
+#include "../../../test_helpers/common_tool_funcs.h"
+#include "../../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../../test_helpers/builders/document_builder.h"
 #include "../../test_helpers/builders/drawing_builder.h"
 #include "../../test_helpers/builders/frame_builder.h"
 #include "../../test_helpers/builders/tool_context_builder.h"
-#include "../../../test_helpers/common_tool_funcs.h"
-#include "../../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../../test_helpers/test_document_factory.h"
 #include "../src/features/sprite_sheet/sprite_sheet.h"
 

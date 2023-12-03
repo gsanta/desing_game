@@ -115,12 +115,12 @@ namespace editing
         bool hasCheckerBoard = props.hasCheckerBoard;
 
         TileCanvas drawing(UuidGenerator::getInstance().generate(),
-                        bounds,
-                        *m_RendererProvider->createRenderer2D(),
-                        createBackgroundLayer(bounds, backgroundLayerTileSize),
-                        createTempLayer(bounds, tileSize),
-                        createToolLayer(bounds, tileSize),
-                        createCursorLayer(bounds, tileSize));
+                           bounds,
+                           *m_RendererProvider->createRenderer2D(),
+                           createBackgroundLayer(bounds, backgroundLayerTileSize),
+                           createTempLayer(bounds, tileSize),
+                           createToolLayer(bounds, tileSize),
+                           createCursorLayer(bounds, tileSize));
 
         if (layerCount > 0)
         {

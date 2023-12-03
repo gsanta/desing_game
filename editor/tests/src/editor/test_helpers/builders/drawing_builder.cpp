@@ -91,12 +91,12 @@ TileCanvas DrawingBuilder::buildFromLayers()
     const TileLayer cursorLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
 
     TileCanvas drawing(UuidGenerator::getInstance().generate(),
-                    *std::make_unique<HeadlessRenderer2D>(),
-                    initialLayer,
-                    backgroundLayer,
-                    tempLayer,
-                    toolLayer,
-                    cursorLayer);
+                       *std::make_unique<HeadlessRenderer2D>(),
+                       initialLayer,
+                       backgroundLayer,
+                       tempLayer,
+                       toolLayer,
+                       cursorLayer);
 
     for (size_t i = 1; i < m_TileLayers.size(); i++)
     {
@@ -125,12 +125,12 @@ TileCanvas DrawingBuilder::buildFromFrames()
     }
 
     TileCanvas drawing(UuidGenerator::getInstance().generate(),
-                    frames[0].getLayers()[0].getBounds(),
-                    *std::make_unique<HeadlessRenderer2D>(),
-                    backgroundLayer,
-                    tempLayer,
-                    toolLayer,
-                    cursorLayer);
+                       frames[0].getLayers()[0].getBounds(),
+                       *std::make_unique<HeadlessRenderer2D>(),
+                       backgroundLayer,
+                       tempLayer,
+                       toolLayer,
+                       cursorLayer);
 
     for (Frame &frame : frames)
     {

@@ -12,9 +12,9 @@ SCENARIO("TileCanvas")
     GIVEN("a drawing with frames")
     {
         TileCanvas drawing = DrawingBuilder()
-                              .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder()))
-                              .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder()))
-                              .build();
+                                 .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder()))
+                                 .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder()))
+                                 .build();
 
         WHEN("getting a frame by index")
         {

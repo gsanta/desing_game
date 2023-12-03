@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../tool.h"
 #include "../../../../engine/algorithms/intersect_ray_box.h"
+#include "../../tool.h"
 
 namespace spright
 {
@@ -18,5 +18,5 @@ namespace editing
 
         void pointerMove(const ToolContext &) override;
     };
-}
-}
+} // namespace editing
+} // namespace spright

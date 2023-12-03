@@ -17,20 +17,20 @@ namespace editing
     {
     public:
         TileCanvas(const std::string &uuid,
-                const Bounds &bounds,
-                const Renderer2D &renderer,
-                const TileLayer &backgroundLayer,
-                const TileLayer &tempLayer,
-                const TileLayer &toolLayer,
-                const TileLayer &cursorLayer);
+                   const Bounds &bounds,
+                   const Renderer2D &renderer,
+                   const TileLayer &backgroundLayer,
+                   const TileLayer &tempLayer,
+                   const TileLayer &toolLayer,
+                   const TileLayer &cursorLayer);
 
         TileCanvas(const std::string &uuid,
-                const Renderer2D &renderer,
-                const TileLayer &initialLayer,
-                const TileLayer &backgroundLayer,
-                const TileLayer &tempLayer,
-                const TileLayer &toolLayer,
-                const TileLayer &cursorLayer);
+                   const Renderer2D &renderer,
+                   const TileLayer &initialLayer,
+                   const TileLayer &backgroundLayer,
+                   const TileLayer &tempLayer,
+                   const TileLayer &toolLayer,
+                   const TileLayer &cursorLayer);
 
         TileCanvas(const TileCanvas &other);
 

@@ -21,12 +21,13 @@ namespace editing
 
 
     template <typename C>
-    DocInfo::DocInfo(C *canvas): m_Canvas(canvas)
+    DocInfo::DocInfo(C *canvas) : m_Canvas(canvas)
     {
     }
 
     template <typename C>
-    C &DocInfo::getCanvas() {
+    C &DocInfo::getCanvas()
+    {
         return *m_Canvas;
     }
 

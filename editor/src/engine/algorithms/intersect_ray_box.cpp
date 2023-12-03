@@ -59,23 +59,31 @@ namespace engine
 
         int maxDistancePlane = 0;
 
-        for (int i = 1; i < NUM_DIM; i++) {
-            if (distances[maxDistancePlane] < distances[i]) {
+        for (int i = 1; i < NUM_DIM; i++)
+        {
+            if (distances[maxDistancePlane] < distances[i])
+            {
                 maxDistancePlane = i;
             }
         }
 
-        if (distances[maxDistancePlane] < 0) {
+        if (distances[maxDistancePlane] < 0)
+        {
             return false;
         }
 
-        for (int i = 0; i < NUM_DIM; i++) {
-            if (maxDistancePlane != i) {
+        for (int i = 0; i < NUM_DIM; i++)
+        {
+            if (maxDistancePlane != i)
+            {
                 hitPoint[i] = origin[i] + distances[maxDistancePlane] * direction[i];
-                if (hitPoint[i] < min[i] || hitPoint[i] > max[i]) {
+                if (hitPoint[i] < min[i] || hitPoint[i] > max[i])
+                {
                     return false;
                 }
-            } else {
+            }
+            else
+            {
                 hitPoint[i] = planes[i];
             }
         }

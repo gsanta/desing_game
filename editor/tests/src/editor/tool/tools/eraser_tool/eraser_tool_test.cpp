@@ -4,7 +4,7 @@
 #include "../../../test_helpers/builders/pointer_info_builder.h"
 #include "../../../test_helpers/builders/tile_layer_builder.h"
 #include "../../../test_helpers/builders/tool_context_builder.h"
-#include "../../../test_helpers/matchers/equals_bounds_matcher.h"
+#include "../../../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../../../test_helpers/test_document_factory.h"
 #include "../src/editing/document/document_store.h"
 #include "../src/editing/document/factory/document_factory.h"

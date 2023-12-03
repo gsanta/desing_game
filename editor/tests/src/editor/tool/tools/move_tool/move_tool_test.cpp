@@ -1,6 +1,6 @@
 #include "../../../test_helpers/builders/document_builder.h"
 #include "../../../test_helpers/builders/tool_context_builder.h"
-#include "../../../test_helpers/common_tool_funcs.h"
+#include "../../../../test_helpers/common_tool_funcs.h"
 #include "../src/editing/tool/tools/move_tool/move_tool.h"
 
 #include <catch2/catch_test_macros.hpp>

@@ -4,7 +4,7 @@ namespace spright
 {
 namespace editing
 {
-    CanvasSelectionTool::CanvasSelectionTool() : Tool("canvas_selection")
+    CanvasSelectionTool::CanvasSelectionTool() : PixelTool("canvas_selection")
     {
     }
 

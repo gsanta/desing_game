@@ -7,7 +7,7 @@ namespace spright
 namespace editing
 {
 
-    BrushTool::BrushTool() : Tool("brush", std::make_shared<RectangleCursor>(1))
+    BrushTool::BrushTool() : PixelTool("brush", std::make_shared<RectangleCursor>(1))
     {
     }
 

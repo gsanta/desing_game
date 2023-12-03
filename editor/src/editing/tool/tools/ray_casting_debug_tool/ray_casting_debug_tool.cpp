@@ -4,7 +4,7 @@ namespace spright
 {
 namespace editing
 {
-    RayCastingDebugTool::RayCastingDebugTool() : Tool("ray_casting_debug")
+    RayCastingDebugTool::RayCastingDebugTool() : PixelTool("ray_casting_debug")
     {
     }
 

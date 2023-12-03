@@ -5,7 +5,7 @@ namespace spright
 namespace editing
 {
 
-    MeshCreationTool::MeshCreationTool() : Tool("mesh_creation")
+    MeshCreationTool::MeshCreationTool() : PixelTool("mesh_creation")
     {
         // m_MeshBuilders.push_back(&m_BoxBuilder);
     }

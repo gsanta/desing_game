@@ -4,14 +4,14 @@ namespace spright
 {
 namespace engine
 {
-    bool intersect_ray_box(const Box &box, const Ray3 &ray, Vec3 &hitPoint)
+    bool intersect_ray_box(const Bounds3 &bounds, const Ray3 &ray, Vec3 &hitPoint)
     {
         const int NUM_DIM = 3;
 
         bool inside = true;
 
-        Vec3 min = box.getBounds().min();
-        Vec3 max = box.getBounds().max();
+        Vec3 min = bounds.min();
+        Vec3 max = bounds.max();
         Vec3 origin = ray.origin;
         Vec3 direction = ray.direction;
 

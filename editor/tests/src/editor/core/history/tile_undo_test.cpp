@@ -12,7 +12,7 @@ SCENARIO("TileUndo")
 {
     Document document = DocumentBuilder().build();
 
-    Drawing drawing = DrawingBuilder()
+    TileCanvas drawing = DrawingBuilder()
                           .withFrame(FrameBuilder().withTileLayer(TileLayerBuilder().withTileSize(1).withBounds(
                                          Bounds::createWithPositions(-3.0f, -3.0f, 4.0f, 4.0f))),
                                      2)

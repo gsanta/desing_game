@@ -13,10 +13,10 @@ namespace editing
 {
     using namespace ::spright::engine;
 
-    class Drawing : public Canvas
+    class TileCanvas : public Canvas
     {
     public:
-        Drawing(const std::string &uuid,
+        TileCanvas(const std::string &uuid,
                 const Bounds &bounds,
                 const Renderer2D &renderer,
                 const TileLayer &backgroundLayer,
@@ -24,7 +24,7 @@ namespace editing
                 const TileLayer &toolLayer,
                 const TileLayer &cursorLayer);
 
-        Drawing(const std::string &uuid,
+        TileCanvas(const std::string &uuid,
                 const Renderer2D &renderer,
                 const TileLayer &initialLayer,
                 const TileLayer &backgroundLayer,
@@ -32,9 +32,9 @@ namespace editing
                 const TileLayer &toolLayer,
                 const TileLayer &cursorLayer);
 
-        Drawing(const Drawing &other);
+        TileCanvas(const TileCanvas &other);
 
-        Drawing &operator=(const Drawing &other);
+        TileCanvas &operator=(const TileCanvas &other);
 
         std::vector<Frame> &getFrames();
 
@@ -82,7 +82,7 @@ namespace editing
 
         void addBackgroundLayer(const TileLayer &tileLayer);
 
-        Drawing *clone() const override;
+        TileCanvas *clone() const override;
 
         void render(const Camera &camera, Canvas::RenderTarget target) override;
 

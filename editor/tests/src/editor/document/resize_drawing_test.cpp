@@ -17,7 +17,7 @@ SCENARIO("Resize drawing")
 
         WHEN("new size is smaller than the previous")
         {
-            Drawing drawing = DrawingBuilder()
+            TileCanvas drawing = DrawingBuilder()
                                   .withFrame(FrameBuilder().withTileLayer(
                                                  TileLayerBuilder()
                                                      .withTileSize(1)
@@ -59,7 +59,7 @@ SCENARIO("Resize drawing")
         {
             THEN("checkerboard fills the new canvas size")
             {
-                Drawing drawing = DrawingBuilder()
+                TileCanvas drawing = DrawingBuilder()
                                       .withBounds(Bounds::createWithPositions(-1.0f, -1.0f, 1.0f, 1.0f))
                                       .withBackgroundLayerTileSize(1.0f)
                                       .build();

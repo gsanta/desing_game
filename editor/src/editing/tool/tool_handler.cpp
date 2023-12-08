@@ -71,7 +71,8 @@ namespace editing
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
 
         Canvas *activeCanvas = m_DocumentStore->getActiveDocument().getActiveCanvas();
-        if (!activeCanvas) {
+        if (!activeCanvas)
+        {
             return;
         }
 

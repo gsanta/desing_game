@@ -18,7 +18,8 @@ namespace editing
             m_AllCanvases.push_back(std::unique_ptr<Canvas>(canvas->clone()));
         }
 
-        if (other.m_ActiveCanvas) {
+        if (other.m_ActiveCanvas)
+        {
             int activeCanvasIndex = other.getCanvasIndex(*other.m_ActiveCanvas);
             m_ActiveCanvas = m_AllCanvases[activeCanvasIndex].get();
         }
@@ -33,7 +34,8 @@ namespace editing
     {
         m_AllCanvases.push_back(std::unique_ptr<Canvas>(canvas.clone()));
 
-        if (!m_ActiveCanvas) {
+        if (!m_ActiveCanvas)
+        {
             m_ActiveCanvas = m_AllCanvases.back().get();
         }
 
@@ -83,8 +85,10 @@ namespace editing
         return -1;
     }
 
-    Canvas *Document::getCanvas(int index) {
-        if (index < 0 || m_AllCanvases.size() <= index) {
+    Canvas *Document::getCanvas(int index)
+    {
+        if (index < 0 || m_AllCanvases.size() <= index)
+        {
             std::invalid_argument("Canvas not found at index: " + index);
         }
 
@@ -96,7 +100,8 @@ namespace editing
         return m_History;
     }
 
-    int Document::getCanvasCount() const {
+    int Document::getCanvasCount() const
+    {
         return m_AllCanvases.size();
     }
 

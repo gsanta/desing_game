@@ -8,8 +8,8 @@
 #include "../../../stb_image_write.h"
 #include "../../document/document.h"
 #include "../../editor/rendering.h"
-#include "./image_data.h"
 #include "../../utils/conversions.h"
+#include "./image_data.h"
 
 #include <cstring>
 

@@ -38,7 +38,7 @@ SCENARIO("Erase tool")
                                                                                 .withTile(Vec2Int(1, 2))
                                                                                 .withTile(Vec2Int(2, 2))))
                                 .build();
-        TileLayer &activeLayer =  get_active_tile_canvas(document).getActiveLayer();
+        TileLayer &activeLayer = get_active_tile_canvas(document).getActiveLayer();
 
         ToolContext toolContext =
             ToolContextBuilder()

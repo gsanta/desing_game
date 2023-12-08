@@ -6,8 +6,8 @@
 #include "../../test_helpers/builders/frame_builder.h"
 #include "../../test_helpers/builders/tool_context_builder.h"
 #include "../../test_helpers/test_document_factory.h"
-#include "../src/features/sprite_sheet/sprite_sheet.h"
 #include "../src/editing/utils/conversions.h"
+#include "../src/features/sprite_sheet/sprite_sheet.h"
 
 #include <catch2/catch_test_macros.hpp>
 

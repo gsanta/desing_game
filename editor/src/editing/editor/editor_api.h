@@ -8,8 +8,8 @@
 #include "../algorithms/shear_horizontal.h"
 #include "../algorithms/shear_vertical.h"
 #include "../tool/tools/circle_tool/circle_tool.h"
-#include "editor.h"
 #include "../utils/conversions.h"
+#include "editor.h"
 
 #include <string>
 

@@ -9,6 +9,7 @@
 #include "../document/factory/document_factory.h"
 #include "../document/resize_drawing.h"
 #include "../io/image/image_export.h"
+#include "../utils/conversions.h"
 #include "context/document_info.h"
 #include "context/pointer_info.h"
 #include "context/tool_context.h"
@@ -18,7 +19,6 @@
 #include "tools/eraser_tool/eraser_tool.h"
 #include "tools/rectangle_tool/rectangle_tool.h"
 #include "tools/select_tool/select_tool.h"
-#include "../utils/conversions.h"
 
 #include <algorithm>
 #include <iostream>

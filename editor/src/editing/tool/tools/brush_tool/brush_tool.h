@@ -6,11 +6,11 @@
 #include "../../../document/document_store.h"
 #include "../../../history/document_history.h"
 #include "../../../history/tile_undo.h"
+#include "../../../utils/conversions.h"
 #include "../../context/tool_context.h"
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../pixel_tool.h"
 #include "brush.h"
-#include "../../../utils/conversions.h"
 
 #include <vector>
 

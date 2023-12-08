@@ -1,7 +1,7 @@
 
 #include "../src/editing/tool/tools/rectangle_tool/rectangle_tool.h"
-#include "../src/engine/graphics/colors.h"
 #include "../src/editing/utils/conversions.h"
+#include "../src/engine/graphics/colors.h"
 #include "src/editor/test_helpers/builders/document_store_builder.h"
 #include "src/editor/test_helpers/builders/tool_context_builder.h"
 

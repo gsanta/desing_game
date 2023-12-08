@@ -12,6 +12,7 @@
 #include "../src/editing/editor/editor.h"
 #include "../src/editing/editor/editor_api.h"
 #include "../src/editing/tool/tools/brush_tool/brush_tool.h"
+#include "../src/editing/utils/conversions.h"
 #include "../src/editing/utils/run_loop/run_loop.h"
 #include "../src/editing/utils/run_loop/timer.h"
 #include "../src/engine/graphics/buffer/buffer.h"
@@ -23,7 +24,6 @@
 #include "../src/engine/graphics/shader/shader.h"
 #include "../src/engine/scene/containers/tile_layer.h"
 #include "../src/engine/system/utils/fileUtils.h"
-#include "../src/editing/utils/conversions.h"
 
 #include <time.h>
 #include <vector>
@@ -73,7 +73,8 @@ void removeActiveTool(std::string toolName)
 
 std::vector<std::string> getLayers()
 {
-    const std::vector<TileLayer> &layers = get_active_tile_canvas(editor->getActiveDocument()).getActiveFrame().getLayers();
+    const std::vector<TileLayer> &layers =
+        get_active_tile_canvas(editor->getActiveDocument()).getActiveFrame().getLayers();
 
     std::vector<std::string> target;
 

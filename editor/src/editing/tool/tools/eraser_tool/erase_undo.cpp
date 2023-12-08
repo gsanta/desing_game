@@ -7,7 +7,8 @@ namespace editing
     EraseUndo::EraseUndo(Document &document)
     {
         TileCanvas &canvas = get_active_tile_canvas(document);
-        m_CanvasIndex = document.getCanvasIndex(canvas);;
+        m_CanvasIndex = document.getCanvasIndex(canvas);
+        ;
         m_FramePos = canvas.getActiveFrameIndex();
         m_TileLayerPos = canvas.getActiveLayerIndex();
     }

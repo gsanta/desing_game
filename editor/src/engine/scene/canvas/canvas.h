@@ -20,7 +20,8 @@ namespace engine
             Image
         };
 
-        enum Type {
+        enum Type
+        {
             CANVAS_2D,
             CANVAS_3D,
             TILE_CANVAS

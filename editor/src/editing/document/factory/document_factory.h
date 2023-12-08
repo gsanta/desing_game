@@ -21,12 +21,12 @@
 #include "../../../engine/system/window/window.h"
 #include "../../../maths/data/bounds.h"
 #include "../../history/document_history.h"
+#include "../../utils/conversions.h"
 #include "../checkerboard.h"
 #include "./../document.h"
 #include "create_drawing_props.h"
 #include "renderer_provider.h"
 #include "uuid.h"
-#include "../../utils/conversions.h"
 
 #include <vector>
 

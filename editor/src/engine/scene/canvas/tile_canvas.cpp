@@ -299,7 +299,8 @@ namespace editing
         return m_Camera.get();
     }
 
-    const std::string &TileCanvas::getType() const {
+    const std::string &TileCanvas::getType() const
+    {
         return CANVAS_TYPE_TILE;
     }
 

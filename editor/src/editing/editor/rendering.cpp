@@ -17,7 +17,8 @@ void Rendering::render()
 
     if (m_RenderingTarget == Rendering::Target::SCREEN)
     {
-        for (int i = 0; i < document.getCanvasCount(); i++) {
+        for (int i = 0; i < document.getCanvasCount(); i++)
+        {
             document.getCanvas(i)->render(*document.getBackgroundCanvas().getCamera(), Canvas::Screen);
         }
     }

@@ -62,7 +62,7 @@ namespace editing
     {
         Frame frame(0);
 
-        Frame &activeFrame =  get_active_tile_canvas(document).getFrame(0);
+        Frame &activeFrame = get_active_tile_canvas(document).getFrame(0);
 
         std::vector<TileLayer> layers;
 

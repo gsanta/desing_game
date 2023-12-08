@@ -4,8 +4,8 @@
 #include "../../engine/scene/containers/tile_layer.h"
 #include "../document/document.h"
 #include "../tool/tool_handler.h"
-#include "./undoable.h"
 #include "../utils/conversions.h"
+#include "./undoable.h"
 
 #include <set>
 

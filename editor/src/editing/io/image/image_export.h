@@ -9,6 +9,7 @@
 #include "../../document/document.h"
 #include "../../editor/rendering.h"
 #include "./image_data.h"
+#include "../../utils/conversions.h"
 
 #include <cstring>
 

@@ -1,6 +1,7 @@
 #include "../../../../engine/graphics/mesh/builders/box_builder.h"
 #include "../../../../engine/graphics/mesh/builders/mesh_builder.h"
 #include "../../../../engine/scene/cameras/arc_rotate_camera.h"
+#include "../../../utils/conversions.h"
 #include "../../pixel_tool.h"
 
 #include <vector>

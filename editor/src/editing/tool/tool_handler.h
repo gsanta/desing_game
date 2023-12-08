@@ -18,6 +18,7 @@
 #include "tools/eraser_tool/eraser_tool.h"
 #include "tools/rectangle_tool/rectangle_tool.h"
 #include "tools/select_tool/select_tool.h"
+#include "../utils/conversions.h"
 
 #include <algorithm>
 #include <iostream>

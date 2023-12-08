@@ -3,6 +3,7 @@
 #include "../../document/document.h"
 #include "../../document/factory/document_factory.h"
 #include "tile_layer_export.h"
+#include "../../utils/conversions.h"
 
 #include <nlohmann/json.hpp>
 

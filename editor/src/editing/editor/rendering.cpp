@@ -17,18 +17,14 @@ void Rendering::render()
 
     if (m_RenderingTarget == Rendering::Target::SCREEN)
     {
-        for (std::unique_ptr<Canvas> &canvas : document.getCanvases())
-        {
-            canvas->render(*document.getBackgroundCanvas().getCamera(), Canvas::Screen);
+        for (int i = 0; i < document.getCanvasCount(); i++) {
+            document.getCanvas(i)->render(*document.getBackgroundCanvas().getCamera(), Canvas::Screen);
         }
     }
     else
     {
-        TileCanvas *activeDrawing = document.getActiveDrawing();
-        if (activeDrawing != nullptr)
-        {
-            activeDrawing->render(*document.getBackgroundCanvas().getCamera(), Canvas::Image);
-        }
+        TileCanvas &activeDrawing = get_active_tile_canvas(document);
+        activeDrawing.render(*document.getBackgroundCanvas().getCamera(), Canvas::Image);
     }
 
     m_Window->afterRender();

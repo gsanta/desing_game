@@ -10,6 +10,7 @@
 #include "../../cursor/rectangle_cursor/rectangle_cursor.h"
 #include "../../pixel_tool.h"
 #include "brush.h"
+#include "../../../utils/conversions.h"
 
 #include <vector>
 

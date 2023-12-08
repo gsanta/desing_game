@@ -40,7 +40,7 @@ namespace editing
 
         float zoom = camera->getZoom();
 
-        TileLayer &layer = context.doc.document->getActiveDrawing()->getActiveLayer();
+        TileLayer &layer = get_active_tile_canvas(*context.doc.document).getActiveLayer();
 
         if (!isPointerMove)
         {

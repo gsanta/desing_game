@@ -26,6 +26,7 @@
 #include "create_drawing_props.h"
 #include "renderer_provider.h"
 #include "uuid.h"
+#include "../../utils/conversions.h"
 
 #include <vector>
 

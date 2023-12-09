@@ -13,6 +13,16 @@ compile-emscripten: ## builds the cmake emscripten target
 	cd build/emscripten && \
 	cmake --build .
 
+configure-desktop:
+	mkdir -p build/desktop && \
+	cd build/desktop && \
+	cmake ../../
+
+compile-desktop:
+	mkdir -p build/desktop && \
+	cd build/desktop && \
+	cmake --build . --target spright
+
 tests-docker: ## runs unit tests in a docker container (mainly used by ci)
 	docker-compose run --rm tests
 

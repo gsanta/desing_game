@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   editor_web_build:
     working_directory: ~/editor
@@ -34,11 +35,13 @@ jobs:
             make tests-with-coverage-docker
           environment:
             UNIT_TEST: 'true'
-      - store_artifacts:
-          path: editor/build/tests-coverage/results/coverage
-          destination: artifact-file
+      # - store_artifacts:
+      #     path: editor/build/tests-coverage/results/coverage
+      #     destination: artifact-file
       - store_test_results:
           path: editor/build/tests-coverage/results/test/unit_test_result.xml
+      - codecov/upload:
+          file: {{ editor/build/tests-coverage/coverage.xml }}
   editor_lint:
     machine:
       image: ubuntu-2004:current

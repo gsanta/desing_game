@@ -87,6 +87,26 @@ SCENARIO("Document")
                         }
                     }
                 }
+
+                WHEN("getting the index of the second canvas")
+                {
+                    int index = document.getCanvasIndex(canvas2);
+
+                    THEN("it returns with the canvas's index")
+                    {
+                        REQUIRE(index == 1);
+                    }
+                }
+
+                WHEN("getting the index of a canvas not in the document")
+                {
+                    int index = document.getCanvasIndex(DrawingBuilder().build());
+
+                    THEN("it returns -1")
+                    {
+                        REQUIRE(index == -1);
+                    }
+                }
             }
         }
     }

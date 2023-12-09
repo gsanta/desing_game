@@ -41,7 +41,7 @@ jobs:
       - store_test_results:
           path: editor/build/tests-coverage/results/test/unit_test_result.xml
       - codecov/upload:
-          file: {{ editor/build/tests-coverage/coverage.xml }}
+          file: editor/build/tests-coverage/coverage.xml
   editor_lint:
     machine:
       image: ubuntu-2004:current

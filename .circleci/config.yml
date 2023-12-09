@@ -35,7 +35,7 @@ jobs:
           environment:
             UNIT_TEST: 'true'
       - store_artifacts:
-          path: editor/build/unit-test-ci/coverage_result
+          path: editor/build/tests-coverage/coverage_result
           destination: artifact-file
       - store_test_results:
           path: editor/build/unit-test-ci/tests/unit_test_result.xml

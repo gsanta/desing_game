@@ -24,7 +24,7 @@ services:
             cd build/tests-coverage &&
             cmake ../.. -DCOMPILE_APP=OFF -DCODE_COVERAGE=ON -DINCLUDE_TESTS=ON &&
             make coverage &&
-            genhtml coverage.info --output-directory out"
+            genhtml coverage.info --output-directory coverage_result"
   compile-emscripten:
     build:
       context: .

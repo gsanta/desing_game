@@ -14,7 +14,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
 if(CODE_COVERAGE)
   include(CodeCoverage)
   append_coverage_compiler_flags()
-  setup_target_for_coverage_lcov(NAME coverage EXECUTABLE unit_tests BASE_DIRECTORY ../coverage)
+  setup_target_for_coverage_lcov(NAME coverage EXECUTABLE unit_tests EXCLUDE "/src/CMakeCCompilerId.c" BASE_DIRECTORY ../coverage)
 endif()
 
 set(CMAKE_VERBOSE_MAKEFILE on)

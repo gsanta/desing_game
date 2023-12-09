@@ -30,8 +30,7 @@ services:
             cmake ../.. -DCOMPILE_APP=OFF -DCODE_COVERAGE=ON -DINCLUDE_TESTS=ON &&
             cmake --build . &&
             ./tests/unit_tests --success --reporter JUnit::out=results/test/unit_test_result.xml &&
-            cmake --build . --target coverage &&
-            genhtml coverage.info --output-directory results/coverage"
+            cmake --build . --target coverage
   compile-emscripten:
     build:
       context: .

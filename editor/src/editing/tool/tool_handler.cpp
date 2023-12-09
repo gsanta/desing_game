@@ -77,7 +77,8 @@ namespace editing
         }
 
 
-        if (activeCanvas->getType() == CANVAS_TYPE_TILE) {
+        if (activeCanvas->getType() == CANVAS_TYPE_TILE)
+        {
             TileCanvas &tileCanvas = get_active_tile_canvas(m_DocumentStore->getActiveDocument());
             m_ToolContext.doc.prevDrawing = &tileCanvas;
             m_ToolContext.doc.activeDrawing = &tileCanvas;

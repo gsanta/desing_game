@@ -51,7 +51,8 @@ namespace editing
 
         check_canvas_present(it);
 
-        if (m_ActiveCanvas == &canvas) {
+        if (m_ActiveCanvas == &canvas)
+        {
             m_ActiveCanvas = nullptr;
         }
 
@@ -89,7 +90,7 @@ namespace editing
     {
         if (index < 0 || m_AllCanvases.size() <= index)
         {
-            throw std::invalid_argument("Canvas not found at index: " +  std::to_string(index));
+            throw std::invalid_argument("Canvas not found at index: " + std::to_string(index));
         }
 
         return m_AllCanvases[index].get();
@@ -115,7 +116,8 @@ namespace editing
         return m_Canvas;
     }
 
-    void Document::check_canvas_present(std::vector<std::unique_ptr<Canvas>>::const_iterator &it) const {
+    void Document::check_canvas_present(std::vector<std::unique_ptr<Canvas>>::const_iterator &it) const
+    {
         if (it == m_AllCanvases.end())
         {
             throw std::invalid_argument("Canvas was not found in the document.");

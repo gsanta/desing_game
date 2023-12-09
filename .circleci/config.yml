@@ -35,10 +35,10 @@ jobs:
           environment:
             UNIT_TEST: 'true'
       - store_artifacts:
-          path: editor/build/tests-coverage/coverage_result
+          path: editor/build/tests-coverage/results/coverage
           destination: artifact-file
       - store_test_results:
-          path: editor/build/unit-test-ci/tests/unit_test_result.xml
+          path: editor/build/tests-coverage/results/test/unit_test_result.xml
   editor_lint:
     machine:
       image: ubuntu-2004:current

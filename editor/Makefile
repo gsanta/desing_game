@@ -16,7 +16,7 @@ compile-emscripten: ## builds the cmake emscripten target
 tests-docker: ## runs unit tests in a docker container (mainly used by ci)
 	docker-compose run --rm tests
 
-tests-coverage-docker: ## runs unit tests with coverage in a docker container (mainly used by ci)
+tests-with-coverage-docker: ## runs unit tests with coverage in a docker container (mainly used by ci)
 	docker-compose run --rm --build tests-coverage
 
 compile-emscripten-docker: ## compiles the editor for the web with emscripten in a docker container (mainly used by ci)

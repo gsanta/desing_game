@@ -1,6 +1,6 @@
 #pragma once
-#include "../src/engine/system/utils/uuid_generator.h"
 #include "../src/engine/scene/canvas/tile_canvas.h"
+#include "../src/engine/system/utils/uuid_generator.h"
 #include "../src/maths/data/bounds.h"
 #include "frame_builder.h"
 #include "tile_layer_builder.h"

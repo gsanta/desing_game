@@ -70,11 +70,9 @@ TEST_CASE("Frame", "[frame]")
 
     SECTION("can add a layer")
     {
-        std::vector<TileLayer> layers = {
-            TileLayerBuilder().withBounds(bounds).build(),
-            TileLayerBuilder().withBounds(bounds).build(),
-            TileLayerBuilder().withBounds(bounds).build()
-        };
+        std::vector<TileLayer> layers = {TileLayerBuilder().withBounds(bounds).build(),
+                                         TileLayerBuilder().withBounds(bounds).build(),
+                                         TileLayerBuilder().withBounds(bounds).build()};
         Frame frame;
 
         frame.addLayer(layers[0]);
@@ -86,11 +84,9 @@ TEST_CASE("Frame", "[frame]")
 
     SECTION("can remove a layer")
     {
-        std::vector<TileLayer> layers = {
-            TileLayerBuilder().withBounds(bounds).build(),
-            TileLayerBuilder().withBounds(bounds).build(),
-            TileLayerBuilder().withBounds(bounds).build()
-        };
+        std::vector<TileLayer> layers = {TileLayerBuilder().withBounds(bounds).build(),
+                                         TileLayerBuilder().withBounds(bounds).build(),
+                                         TileLayerBuilder().withBounds(bounds).build()};
         Frame frame;
 
         frame.addLayer(layers[0]);
@@ -103,11 +99,9 @@ TEST_CASE("Frame", "[frame]")
 
     SECTION("can insert layer")
     {
-        std::vector<TileLayer> layers = {
-            TileLayerBuilder().withBounds(bounds).withIndex(0).build(),
-            TileLayerBuilder().withBounds(bounds).withIndex(1).build(),
-            TileLayerBuilder().withBounds(bounds).withIndex(2).build()
-        };
+        std::vector<TileLayer> layers = {TileLayerBuilder().withBounds(bounds).withIndex(0).build(),
+                                         TileLayerBuilder().withBounds(bounds).withIndex(1).build(),
+                                         TileLayerBuilder().withBounds(bounds).withIndex(2).build()};
         Frame frame;
 
         frame.addLayer(layers[0]);

@@ -1,4 +1,5 @@
 #include "drawing_builder.h"
+
 #include "../src/editing/document/checkerboard.h"
 
 DrawingBuilder &DrawingBuilder::withBounds(Bounds bounds)

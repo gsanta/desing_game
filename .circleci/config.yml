@@ -34,7 +34,7 @@ jobs:
             cd editor
             make test-with-coverage-xml
       - store_test_results:
-          path: editor/build/tests-coverage/results/test/unit_test_result.xml
+          path: editor/build/tests-coverage/test_result.xml
       - codecov/upload:
           file: editor/build/tests-coverage/coverage.xml
   editor_lint:

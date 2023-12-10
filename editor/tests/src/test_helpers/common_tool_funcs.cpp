@@ -1,5 +1,7 @@
 #include "./common_tool_funcs.h"
 
+#include "../src/editing/utils/conversions.h"
+
 
 CommonToolFuncs::CommonToolFuncs(Document &document, ToolContext &context) : m_Document(document), m_Context(context)
 {
@@ -26,7 +28,7 @@ void CommonToolFuncs::buildRect(const BoundsInt &bounds)
 
 void CommonToolFuncs::createTile(const Vec2Int &pos, size_t layerIndex, size_t frameIndex)
 {
-    TileCanvas &drawing = *m_Document.getActiveDrawing();
+    TileCanvas &drawing = get_active_tile_canvas(m_Document);
 
     drawing.setActiveFrame(frameIndex);
     drawing.setActiveLayer(layerIndex);
@@ -59,6 +61,11 @@ void CommonToolFuncs::setPrevCurrDown(const Vec2 &pos)
 void CommonToolFuncs::setCurr(const Vec2Int &pos)
 {
     m_Context.pointer.curr = m_Context.doc.activeDrawing->getActiveLayer().getCenterPos(pos);
+}
+
+void CommonToolFuncs::setScroll(const Vec2 &scroll)
+{
+    m_Context.pointer.scroll = scroll;
 }
 
 void CommonToolFuncs::selectTiles(const std::vector<Rect2D *> &tiles)

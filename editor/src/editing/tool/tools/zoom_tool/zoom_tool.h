@@ -4,7 +4,7 @@
 #include "../../../../engine/scene/cameras/ortho_projection_info.h"
 #include "../../../document/document_store.h"
 #include "../../context/tool_context.h"
-#include "../../tool.h"
+#include "../../pixel_tool.h"
 
 namespace spright
 {
@@ -12,17 +12,15 @@ namespace editing
 {
     using namespace ::spright::engine;
 
-    class ZoomTool : public Tool
+    class ZoomTool : public PixelTool
     {
-    private:
-        DocumentStore *m_DocumentStore;
-        float m_ZoomFactor = 0.01f;
-
     public:
-        ZoomTool(DocumentStore *documentStore);
+        ZoomTool();
+
+        void scroll(const ToolContext &toolContext) override;
 
     private:
-        void scroll(const ToolContext &toolContext) override;
+        float m_ZoomFactor = 0.01f;
     };
 } // namespace editing
 } // namespace spright

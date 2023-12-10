@@ -13,11 +13,27 @@ compile-emscripten: ## builds the cmake emscripten target
 	cd build/emscripten && \
 	cmake --build .
 
-unit-test-docker: ## runs unit tests in a docker container (mainly used by ci)
-	docker-compose run --rm unit-test
+configure-desktop:
+	mkdir -p build/desktop && \
+	cd build/desktop && \
+	cmake ../../
 
-compile-emscripten-docker: ## compiles the editor for the web with emscripten in a docker container (mainly used by ci)
+compile-desktop:
+	mkdir -p build/desktop && \
+	cd build/desktop && \
+	cmake --build . --target spright
+
+test: ## runs unit tests in a docker container
+	docker-compose run --rm tests
+
+test-with-coverage-html: ## runs tests with coverage in a docker container using html reporter
+	COVERAGE_REPORTER=HTML docker-compose run --rm --build tests-coverage
+
+test-with-coverage-xml: ## runs tests with coverage in a docker container using xml reporter
+	COVERAGE_REPORTER=XML docker-compose run --rm --build tests-coverage
+
+compile-emscripten-docker: ## compiles the editor for the web with emscripten in a docker container
 	docker-compose run --rm compile-emscripten
 
-lint-docker: ## lints the  cpp files of the editor in a docker container that are changed compared to the master branch (mainly used by ci)
+lint: ## lints the  cpp files of the editor in a docker container that are changed compared to the master branch
 	docker-compose run --rm clang-format

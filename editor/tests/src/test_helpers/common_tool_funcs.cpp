@@ -63,7 +63,8 @@ void CommonToolFuncs::setCurr(const Vec2Int &pos)
     m_Context.pointer.curr = m_Context.doc.activeDrawing->getActiveLayer().getCenterPos(pos);
 }
 
-void CommonToolFuncs::setScroll(const Vec2 &scroll) {
+void CommonToolFuncs::setScroll(const Vec2 &scroll)
+{
     m_Context.pointer.scroll = scroll;
 }
 

@@ -1,7 +1,7 @@
+#include "../../../../test_helpers/common_tool_funcs.h"
 #include "../../../test_helpers/builders/document_builder.h"
 #include "../../../test_helpers/builders/drawing_builder.h"
 #include "../../../test_helpers/builders/tool_context_builder.h"
-#include "../../../../test_helpers/common_tool_funcs.h"
 #include "../src/editing/tool/tools/color_picker_tool/color_picker_tool.h"
 
 #include <catch2/catch_test_macros.hpp>
@@ -25,15 +25,18 @@ SCENARIO("Color picker tool")
 
         ColorPickerTool colorPickerTool(&eventEmitter);
 
-        THEN("initial color is black") {
+        THEN("initial color is black")
+        {
             REQUIRE(colorPickerTool.getColor() == COLOR_BLACK);
         }
 
-        WHEN("picking a color at a given position") {
+        WHEN("picking a color at a given position")
+        {
             commonToolFuncs.setCurr(Vec2Int(1, 0));
             colorPickerTool.pointerDown(toolContext);
 
-            THEN("it picks the color") {
+            THEN("it picks the color")
+            {
                 REQUIRE(colorPickerTool.getColor() == COLOR_RED);
             }
 
@@ -44,7 +47,8 @@ SCENARIO("Color picker tool")
                 REQUIRE(eventEmitter.getEmitCount() == 1);
             }
 
-            WHEN("picking a color at an other position") {
+            WHEN("picking a color at an other position")
+            {
                 commonToolFuncs.setCurr(Vec2Int(0, 0));
                 colorPickerTool.pointerDown(toolContext);
                 THEN("it picks the other color")

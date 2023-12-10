@@ -32,7 +32,8 @@ SCENARIO("Zoom tool")
                 REQUIRE(camera->getZoom() == Catch::Approx(1 * 1.05));
             }
 
-            WHEN("scrolling again") {
+            WHEN("scrolling again")
+            {
                 zoomTool.scroll(toolContext);
 
                 THEN("the canvas is zoomed in even more")

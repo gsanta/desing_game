@@ -7,13 +7,13 @@ namespace editing
     void QueueLinearFloodFill::floodFill(TileLayer &layer, int x, int y, int color, const onRect2DCreate &operation)
     {
         int tileIndex = layer.getTileIndex(x, y);
-        Renderable2D *renderable = layer.getAtTileIndex(tileIndex);
+        Rect2D *pixel = layer.getAtTileIndex(tileIndex);
 
-        m_IsEmptyTile = renderable == nullptr;
+        m_IsEmptyTile = pixel == nullptr;
 
-        if (renderable)
+        if (pixel)
         {
-            m_SourceColor = renderable->getColor();
+            m_SourceColor = pixel->getColor();
         }
 
         linearFill(layer, x, y, color, operation);
@@ -94,14 +94,14 @@ namespace editing
 
     bool QueueLinearFloodFill::isPixelWithinColorTolerance(TileLayer &layer, int tileIndex)
     {
-        Renderable2D *renderable = layer.getAtTileIndex(tileIndex);
+        Rect2D *pixel = layer.getAtTileIndex(tileIndex);
 
-        if (renderable == nullptr)
+        if (pixel == nullptr)
         {
             return m_IsEmptyTile;
         }
 
-        return renderable->getColor() == m_SourceColor;
+        return pixel->getColor() == m_SourceColor;
     }
 
     void QueueLinearFloodFill::setColor(TileLayer &layer, int x, int y, int color, const onRect2DCreate &operation)

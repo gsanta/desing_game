@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../vec3.h"
+#include "bounds.h"
 
 namespace spright
 {
@@ -26,6 +27,8 @@ namespace maths
         Bounds3(const Vec3 &coord1, const Vec3 &coord2);
 
         Bounds3() = default;
+
+        operator Bounds() const;
 
         Vec3 min() const;
 

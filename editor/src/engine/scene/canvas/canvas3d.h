@@ -34,14 +34,14 @@ namespace engine
 
         ArcRotateCamera *getCamera() override;
 
-        const std::string &getType() const override;
-
     private:
         std::unique_ptr<ArcRotateCamera> m_Camera;
 
         Group<Mesh> m_Group;
 
         Group<Mesh> m_GizmoGroup;
+
+        std::string m_Type = CANVAS_TYPE_3D;
     };
 } // namespace engine
 } // namespace spright

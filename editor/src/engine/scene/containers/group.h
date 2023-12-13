@@ -45,6 +45,8 @@ namespace engine
             return m_Renderables;
         }
 
+        T *getByName(const std::string &name);
+
     protected:
         std::vector<T *> m_Renderables;
     };
@@ -167,6 +169,19 @@ namespace engine
         renderer.pop();
 
         renderer.flush();
+    }
+
+    template <typename T>
+    T *Group<T>::getByName(const std::string &name) {
+        auto it = std::find_if(m_Renderables.begin(), m_Renderables.end(), [&name] (T *mesh) {
+            return mesh->getName() == name;
+        });
+
+        if (it != m_Renderables.end()) {
+            return *it;
+        }
+
+        return nullptr;
     }
 } // namespace engine
 } // namespace spright

@@ -18,6 +18,8 @@ namespace engine
     class Rect2D : public Renderable2D
     {
     public:
+        static const int NUM_VERTICES = 6;
+
         Rect2D(float x, float y, float width, float height, unsigned int color);
 
         ~Rect2D() override = default;
@@ -44,6 +46,10 @@ namespace engine
 
         Vec2 getCenterPosition2d() const;
 
+        const unsigned int getColor() const;
+
+        void setColor(unsigned int color);
+
         bool contains(Vec2 point);
 
         void translate(Vec2 vec);
@@ -52,12 +58,12 @@ namespace engine
 
         nlohmann::json getJson() override;
 
-        virtual void submit(Renderer2D &renderer) const override;
-
         virtual Rect2D *clone() const override;
 
     private:
-        void updateBounds();
+        void calcPositions();
+
+        void calcColors(unsigned int color);
 
     private:
         Vec3 m_Position;
@@ -65,6 +71,8 @@ namespace engine
         Vec2 m_Size;
 
         int m_TileIndex = -1;
+
+        unsigned int m_Color;
     };
 } // namespace engine
 } // namespace spright

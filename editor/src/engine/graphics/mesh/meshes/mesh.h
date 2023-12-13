@@ -16,6 +16,8 @@ namespace engine
     class Mesh
     {
     public:
+        Mesh() = default;
+
         Mesh(const Vec3 &pos, unsigned int color);
 
         Mesh(int vertexCount, unsigned int color);
@@ -51,12 +53,20 @@ namespace engine
 
         virtual Mesh *clone() const;
 
+        /**
+         * Name can be set and get by the user and be used as a reference to the mesh
+        */
+        void setName(const std::string &name);
+
+        const std::string &getName() const;
+
     private:
         void calcNormals();
 
-        void calcBounds();
-
         void createArrays(int positionCount);
+
+    protected:
+        void calcBounds();
 
     protected:
         Vec3 m_Position;
@@ -69,9 +79,9 @@ namespace engine
 
         int m_VertexCount = 0;
 
-        unsigned int m_Color;
-
         Bounds3 m_Bounds;
+
+        std::string m_Name;
     };
 } // namespace engine
 } // namespace spright

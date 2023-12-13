@@ -3,7 +3,6 @@
 #include "../../engine/scene/containers/tile_view.h"
 #include "../../maths/data/bounds_int.h"
 
-
 namespace spright
 {
 namespace editing

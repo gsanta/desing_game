@@ -6,6 +6,7 @@ namespace spright
 {
 namespace engine
 {
+    using namespace maths;
 
     class OrthoProjectionInfo
     {

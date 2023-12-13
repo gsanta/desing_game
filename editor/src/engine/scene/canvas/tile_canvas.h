@@ -2,7 +2,6 @@
 
 #include "../../scene/cameras/camera.h"
 #include "../containers/frame.h"
-#include "../containers/layer.h"
 #include "canvas.h"
 
 #include <memory>
@@ -91,8 +90,6 @@ namespace editing
         void setCamera(const Camera &camera);
 
         Camera *getCamera() override;
-
-        const std::string &getType() const override;
 
     private:
         std::unique_ptr<Camera> m_Camera;

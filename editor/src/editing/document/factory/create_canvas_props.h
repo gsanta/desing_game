@@ -8,9 +8,9 @@ namespace editing
 {
     using namespace engine;
 
-    struct CreateDrawingProps
+    struct CreateCanvasProps
     {
-        inline CreateDrawingProps(const Bounds &bounds)
+        inline CreateCanvasProps(const Bounds &bounds)
         {
             this->bounds = bounds;
         }

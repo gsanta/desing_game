@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace engine
+namespace maths
 {
 
     BoundsInt::BoundsInt() : minX(0), minY(0), maxX(0), maxY(0)

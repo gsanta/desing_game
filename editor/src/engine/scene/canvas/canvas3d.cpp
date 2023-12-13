@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
     Canvas3d::Canvas3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
-        : Canvas(uuid, bounds, renderer)
+        : Canvas(uuid, CANVAS_TYPE_3D, bounds, renderer)
     {
     }
 
@@ -68,7 +68,7 @@ namespace engine
 
         if (target == Screen)
         {
-            getDecorationLayer().render(proj, view, getRenderer());
+            getGizmoLayer().render(proj, view, getRenderer());
         }
     }
 
@@ -82,9 +82,5 @@ namespace engine
         return m_Camera.get();
     }
 
-    const std::string &Canvas3d::getType() const
-    {
-        return CANVAS_TYPE_3D;
-    }
 } // namespace engine
 } // namespace spright

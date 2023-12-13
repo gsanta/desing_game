@@ -4,6 +4,7 @@
 #include "../../../../engine/scene/canvas/tile_canvas.h"
 #include "../../context/tool_context.h"
 #include "../../pixel_tool.h"
+#include "canvas_border_component.h"
 
 namespace spright
 {

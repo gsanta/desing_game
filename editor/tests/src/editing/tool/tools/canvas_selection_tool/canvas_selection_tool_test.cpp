@@ -5,6 +5,7 @@
 #include "../../../../test_helpers/common_tool_funcs.h"
 #include "../../../../test_helpers/matchers/equals_bounds_matcher.h"
 #include "../src/editing/tool/tools/canvas_selection_tool/canvas_selection_tool.h"
+#include "../src/editing/tool/tools/canvas_selection_tool/canvas_border_component.h"
 #include "../src/editing/utils/conversions.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"
 
@@ -25,6 +26,11 @@ SCENARIO("Tool handler")
 
         Document &document = documentStore.getActiveDocument();
 
+        Canvas* canvas1 = document.getCanvas(0);
+        canvas1->addComponent<CanvasBorderComponent>();
+        Canvas* canvas2 = document.getCanvas(1);
+        canvas2->addComponent<CanvasBorderComponent>();
+
         ToolContext toolContext = ToolContextBuilder().build(document);
 
         CommonToolFuncs commonToolFuncs(document, toolContext);
@@ -41,7 +47,7 @@ SCENARIO("Tool handler")
             THEN("it sets it as the active drawing")
             {
                 REQUIRE(document.getActiveCanvas() != nullptr);
-                REQUIRE(document.getActiveCanvas() == document.getCanvas(0));
+                REQUIRE(document.getActiveCanvas() == canvas1);
             }
 
             WHEN("pointer down on the second drawing")
@@ -52,28 +58,27 @@ SCENARIO("Tool handler")
                 THEN("it sets it as the active drawing")
                 {
                     REQUIRE(document.getActiveCanvas() != nullptr);
-                    REQUIRE(document.getActiveCanvas() == document.getCanvas(1));
+                    REQUIRE(document.getActiveCanvas() == canvas2);
                 }
 
                 THEN("highlights the active drawing")
                 {
-                    Layer &decorationLayer = document.getCanvas(1)->getDecorationLayer();
+                    Layer &decorationLayer = canvas2->getGizmoLayer();
 
                     REQUIRE(decorationLayer.getRenderables().size() == 4);
-                    REQUIRE_THAT(decorationLayer.getRenderables()[0]->getBounds(),
-                                 EqualsBounds(Bounds(5.0, 4.0, 7.0, 4.2))); // top
-                    REQUIRE_THAT(decorationLayer.getRenderables()[1]->getBounds(),
-                                 EqualsBounds(Bounds(7.0, -2.0, 7.2, 4.0))); // right
-                    REQUIRE_THAT(decorationLayer.getRenderables()[2]->getBounds(),
-                                 EqualsBounds(Bounds(5.0, -2.2, 7.0, -2.0))); // bottom
-                    REQUIRE_THAT(decorationLayer.getRenderables()[3]->getBounds(),
-                                 EqualsBounds(Bounds(4.8, -2.0, 5.0, 4.0))); // left
+
+                    for (Renderable2D *rect : decorationLayer.getRenderables()) {
+                        REQUIRE(rect->getColor() == COLOR_BLUE);
+                    }
                 }
 
                 THEN("removes the highlight from the prev active layer")
                 {
-                    Layer &decorationLayer = document.getCanvas(0)->getDecorationLayer();
-                    REQUIRE(decorationLayer.getRenderables().size() == 0);
+                    Layer &decorationLayer = canvas1->getGizmoLayer();
+
+                    for (Renderable2D *rect : decorationLayer.getRenderables()) {
+                        REQUIRE(rect->getColor() == COLOR_WHITE);
+                    }
                 }
             }
         }

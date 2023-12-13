@@ -79,34 +79,36 @@ namespace editing
         Canvas3d drawing =
             Canvas3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
 
-        drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
-                                      bounds.getBottomLeft().y,
-                                      bounds.getWidth(),
-                                      bounds.getHeight(),
-                                      COLOR_RED));
+        // drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
+        //                               bounds.getBottomLeft().y,
+        //                               bounds.getWidth(),
+        //                               bounds.getHeight(),
+        //                               COLOR_RED));
 
-        drawing.getGroup().add(CylinderBuilder()
-                                   .setHeight(10)
-                                   .setDiameterTop(4)
-                                   .setDiameterBottom(8)
-                                   .setTessellation(9)
-                                   .setColor(COLOR_RED)
-                                   .build());
+        // drawing.getGroup().add(CylinderBuilder()
+        //                            .setHeight(10)
+        //                            .setDiameterTop(4)
+        //                            .setDiameterBottom(8)
+        //                            .setTessellation(9)
+        //                            .setColor(COLOR_RED)
+        //                            .build());
 
-        drawing.getGroup().add(BoxBuilder()
-                                   .setWidth(10)
-                                   .setHeight(5)
-                                   .setDepth(5)
-                                   .setColor(COLOR_BLUE)
-                                   .setFaceColor(Box::Face::top, COLOR_GREEN)
-                                   .setFaceColor(Box::Face::left, COLOR_RED)
-                                   .build());
+        // drawing.getGroup().add(BoxBuilder()
+        //                            .setWidth(10)
+        //                            .setHeight(5)
+        //                            .setDepth(5)
+        //                            .setColor(COLOR_BLUE)
+        //                            .setFaceColor(Box::Face::top, COLOR_GREEN)
+        //                            .setFaceColor(Box::Face::left, COLOR_RED)
+        //                            .build());
+
+        drawing.addComponent<CanvasBorderComponent>();
 
         return drawing;
     }
 
 
-    TileCanvas DocumentFactory::createDrawing(const CreateDrawingProps &props) const
+    TileCanvas DocumentFactory::createCanvas(const CreateCanvasProps &props) const
     {
         const Bounds &bounds = props.bounds;
         float backgroundLayerTileSize = props.backgroundLayerTileSize;
@@ -141,6 +143,8 @@ namespace editing
             m_Checkerboard.create(drawing.getBackgroundLayer());
         }
 
+        drawing.addComponent<CanvasBorderComponent>();
+
         return drawing;
     }
 
@@ -171,20 +175,17 @@ namespace editing
 
         Document document = createEmptyDocument();
 
-        TileCanvas canvas = createDrawing(
-            CreateDrawingProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
+        TileCanvas canvas = createCanvas(
+            CreateCanvasProps(Bounds::createWithPositions(-16.0f, -pixelCount / 2.0f, 16.0f, pixelCount / 2.0f)));
 
         Vec2Int minWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(canvas.getBounds().minX,
                                                                                          canvas.getBounds().minY);
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(canvas.getBounds().maxX,
                                                                                          canvas.getBounds().maxY);
-#ifdef INIT_WITH_3D_CANVAS
-        Canvas3d canvas3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
-        document.addCanvas(canvas3d);
-#else
         document.addCanvas(canvas);
-#endif
 
+        Canvas3d canvas3d = createDrawing3d(Bounds(18, -10.0, 40, 10.0));
+        document.addCanvas(canvas3d);
 
         return document;
     }

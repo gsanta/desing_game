@@ -14,7 +14,7 @@ namespace editing
                            const TileLayer &tempLayer,
                            const TileLayer &toolLayer,
                            const TileLayer &cursorLayer)
-        : Canvas(uuid, bounds, renderer)
+        : Canvas(uuid, CANVAS_TYPE_TILE, bounds, renderer)
     {
         m_BackgroundLayer = std::make_shared<TileLayer>(backgroundLayer);
         m_TempLayer = std::make_shared<TileLayer>(tempLayer);
@@ -29,7 +29,7 @@ namespace editing
                            const TileLayer &tempLayer,
                            const TileLayer &toolLayer,
                            const TileLayer &cursorLayer)
-        : Canvas(uuid, initialLayer.getBounds(), renderer)
+        : Canvas(uuid, CANVAS_TYPE_TILE, initialLayer.getBounds(), renderer)
     {
         Frame frame(0);
         frame.addLayer(initialLayer);
@@ -274,7 +274,7 @@ namespace editing
 
             getBackgroundLayer().render(proj, view, getRenderer());
 
-            getDecorationLayer().render(proj, view, getRenderer());
+            getGizmoLayer().render(proj, view, getRenderer());
 
             getToolLayer().render(proj, view, getRenderer());
 
@@ -297,11 +297,6 @@ namespace editing
     Camera *TileCanvas::getCamera()
     {
         return m_Camera.get();
-    }
-
-    const std::string &TileCanvas::getType() const
-    {
-        return CANVAS_TYPE_TILE;
     }
 
 } // namespace editing

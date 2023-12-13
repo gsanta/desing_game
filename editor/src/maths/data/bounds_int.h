@@ -6,7 +6,7 @@
 
 namespace spright
 {
-namespace engine
+namespace maths
 {
 
     using namespace maths;

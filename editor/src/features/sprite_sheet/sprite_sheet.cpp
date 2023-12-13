@@ -21,12 +21,12 @@ namespace features
 
         size_t layerCount = drawing.getFrame(0).getLayers().size();
 
-        CreateDrawingProps spriteSheetProps(Bounds(startX, startY, endX, endY));
+        CreateCanvasProps spriteSheetProps(Bounds(startX, startY, endX, endY));
         spriteSheetProps.layerCount = layerCount;
         spriteSheetProps.tileSize = drawing.getActiveLayer().getTileSize() / 2.0f;
         spriteSheetProps.backgroundLayerTileSize = drawing.getBackgroundLayer().getTileSize() / 2.0f;
 
-        TileCanvas spriteSheet = m_DocumentFactory->createDrawing(spriteSheetProps);
+        TileCanvas spriteSheet = m_DocumentFactory->createCanvas(spriteSheetProps);
 
         float layerWidth = drawing.getActiveLayer().getTileBounds().getWidth();
 

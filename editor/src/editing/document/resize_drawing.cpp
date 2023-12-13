@@ -21,10 +21,10 @@ namespace editing
 
     TileCanvas resize_drawing(const TileCanvas &orig, const Bounds &bounds, const DocumentFactory &documentFactory)
     {
-        CreateDrawingProps createDrawingProps(bounds);
+        CreateCanvasProps createDrawingProps(bounds);
         createDrawingProps.layerCount = 0;
         createDrawingProps.backgroundLayerTileSize = orig.getBackgroundLayer().getTileSize();
-        TileCanvas newDrawing = documentFactory.createDrawing(createDrawingProps);
+        TileCanvas newDrawing = documentFactory.createCanvas(createDrawingProps);
 
         std::vector<TileLayer> layers;
 

@@ -2,7 +2,7 @@
 
 namespace spright
 {
-namespace engine
+namespace maths
 {
     Bounds::Bounds(float x1, float y1, float x2, float y2)
     {

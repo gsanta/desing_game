@@ -4,7 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    Mesh::Mesh(const Vec3 &pos, unsigned int color) : m_Color(color)
+    Mesh::Mesh(const Vec3 &pos, unsigned int color)
     {
         m_Position = pos;
     }
@@ -34,7 +34,7 @@ namespace engine
     }
 
     Mesh::Mesh(const Mesh &other)
-        : m_Color(other.m_Color), m_Position(other.m_Position), m_VertexCount(other.m_VertexCount)
+        : m_Position(other.m_Position), m_VertexCount(other.m_VertexCount), m_Name(other.m_Name)
     {
         createArrays(other.m_VertexCount);
         std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
@@ -54,7 +54,8 @@ namespace engine
         delete[] m_Colors;
 
         createArrays(other.m_VertexCount);
-        m_Color = other.m_Color;
+        m_VertexCount = other.m_VertexCount;
+        m_Name = other.m_Name;
 
         std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
         std::copy_n(other.m_Normals, m_VertexCount, m_Normals);
@@ -109,7 +110,7 @@ namespace engine
 
     bool Mesh::operator==(const Mesh &rhs)
     {
-        return rhs.m_Color == m_Color && rhs.m_Position == m_Position;
+        return rhs.m_Position == m_Position;
     }
 
     bool Mesh::operator!=(const Mesh &rhs)
@@ -120,6 +121,14 @@ namespace engine
     Mesh *Mesh::clone() const
     {
         return new Mesh(*this);
+    }
+
+    void Mesh::setName(const std::string &name) {
+        m_Name = name;
+    }
+
+    const std::string &Mesh::getName() const {
+        return m_Name;
     }
 
     void Mesh::calcNormals()

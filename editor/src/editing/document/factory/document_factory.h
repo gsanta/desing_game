@@ -15,16 +15,16 @@
 #include "../../../engine/scene/canvas/tile_canvas.h"
 #include "../../../engine/scene/containers/frame.h"
 #include "../../../engine/scene/containers/group.h"
-#include "../../../engine/scene/containers/layer.h"
 #include "../../../engine/scene/containers/tile_layer.h"
 #include "../../../engine/system/utils/uuid_generator.h"
 #include "../../../engine/system/window/window.h"
 #include "../../../maths/data/bounds.h"
 #include "../../history/document_history.h"
 #include "../../utils/conversions.h"
+#include "../../tool/tools/canvas_selection_tool/canvas_border_component.h"
 #include "../checkerboard.h"
 #include "./../document.h"
-#include "create_drawing_props.h"
+#include "create_canvas_props.h"
 #include "renderer_provider.h"
 #include "uuid.h"
 
@@ -52,7 +52,7 @@ namespace editing
 
         Canvas3d createDrawing3d(const Bounds &bounds) const;
 
-        TileCanvas createDrawing(const CreateDrawingProps &props) const;
+        TileCanvas createCanvas(const CreateCanvasProps &props) const;
 
         TileLayer createTileLayer(std::string name, const Bounds &bounds, float tileSize) const;
 

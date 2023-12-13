@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
     Canvas2d::Canvas2d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
-        : Canvas(uuid, bounds, renderer)
+        : Canvas(uuid, CANVAS_TYPE_2D, bounds, renderer)
     {
     }
 
@@ -44,9 +44,5 @@ namespace engine
         return m_Camera.get();
     }
 
-    const std::string &Canvas2d::getType() const
-    {
-        return CANVAS_TYPE_2D;
-    }
 } // namespace engine
 } // namespace spright

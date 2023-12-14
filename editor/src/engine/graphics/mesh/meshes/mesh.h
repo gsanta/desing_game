@@ -16,11 +16,7 @@ namespace engine
     class Mesh
     {
     public:
-        Mesh() = default;
-
-        Mesh(const Vec3 &pos, unsigned int color);
-
-        Mesh(int vertexCount, unsigned int color);
+        Mesh(int vertexCount);
 
         Mesh(int vertexCount, const Vec3 *positions);
 
@@ -34,11 +30,7 @@ namespace engine
 
         const Vec3 *getPositions() const;
 
-        const Vec3 &getPosition() const;
-
-        virtual void setPosition(const Vec3 &pos);
-
-        const Bounds3 &getBounds() const;
+        const Bounds3 &getBounds3() const;
 
         virtual void submit(Renderer2D &renderer) const;
 

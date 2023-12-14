@@ -14,7 +14,8 @@ namespace editing
 
         Canvas *canvas = document->getActiveCanvas();
 
-        if (canvas) {
+        if (canvas)
+        {
             canvas->getComponent<CanvasBorderComponent>()->setSelected(false);
         }
 

@@ -5,18 +5,17 @@ namespace spright
 namespace engine
 {
     Rect2D::Rect2D(float x, float y, float width, float height, unsigned int color)
-        : m_Color(color), m_Position(Vec3(x, y, 0)), m_Size(Vec2(width, height))
+        : Renderable2D(NUM_VERTICES), m_Color(color), m_Position(Vec3(x, y, 0)), m_Size(Vec2(width, height))
     {
-        m_Positions = new Vec3[NUM_VERTICES];
-
         calcPositions();
 
-        m_Colors = new int[NUM_VERTICES];
-
         calcColors(color);
+
+        calcBounds();
     }
 
-    Rect2D::Rect2D(const Rect2D &rect2d) : Renderable2D(rect2d), m_Position(rect2d.m_Position), m_Size(rect2d.m_Size), m_Color(rect2d.m_Color)
+    Rect2D::Rect2D(const Rect2D &rect2d)
+        : Renderable2D(rect2d), m_Position(rect2d.m_Position), m_Size(rect2d.m_Size), m_Color(rect2d.m_Color)
     {
     }
 
@@ -51,6 +50,7 @@ namespace engine
     void Rect2D::setSize(Vec2 size)
     {
         this->m_Size = size;
+        calcPositions();
         calcBounds();
     }
 
@@ -62,12 +62,14 @@ namespace engine
     void Rect2D::setPosition(Vec2 position)
     {
         this->m_Position = Vec3(position.x, position.y, m_Position.z);
+        calcPositions();
         calcBounds();
     }
 
     void Rect2D::setCenterPosition(Vec2 position)
     {
         this->m_Position = Vec3(position.x - m_Size.x / 2.0f, position.y - m_Size.y / 2.0f, m_Position.z);
+        calcPositions();
         calcBounds();
     }
 
@@ -78,10 +80,11 @@ namespace engine
 
     const unsigned int Rect2D::getColor() const
     {
-        return m_Colors[0];
+        return m_Color;
     }
 
-    void Rect2D::setColor(unsigned int color) {
+    void Rect2D::setColor(unsigned int color)
+    {
         m_Color = color;
     }
 
@@ -130,10 +133,10 @@ namespace engine
         float height = m_Size.y;
 
         Vec3 corners[8];
-        corners[0] = Vec3(x, y, z); // bottom left
-        corners[1] = Vec3(x, y + height, z); // top left
+        corners[0] = Vec3(x, y, z);                  // bottom left
+        corners[1] = Vec3(x, y + height, z);         // top left
         corners[2] = Vec3(x + width, y + height, z); // top right
-        corners[3] = Vec3(x + width, y, z); // bottom right
+        corners[3] = Vec3(x + width, y, z);          // bottom right
 
         m_Positions[0] = corners[0];
         m_Positions[1] = corners[1];

@@ -4,14 +4,8 @@ namespace spright
 {
 namespace engine
 {
-    Mesh::Mesh(const Vec3 &pos, unsigned int color)
+    Mesh::Mesh(int vertexCount)
     {
-        m_Position = pos;
-    }
-
-    Mesh::Mesh(int vertexCount, unsigned int color)
-    {
-        m_VertexCount = vertexCount;
         createArrays(vertexCount);
     }
 
@@ -34,7 +28,8 @@ namespace engine
     }
 
     Mesh::Mesh(const Mesh &other)
-        : m_Position(other.m_Position), m_VertexCount(other.m_VertexCount), m_Name(other.m_Name)
+        : m_Position(other.m_Position), m_VertexCount(other.m_VertexCount), m_Name(other.m_Name),
+          m_Bounds(other.m_Bounds)
     {
         createArrays(other.m_VertexCount);
         std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
@@ -75,17 +70,7 @@ namespace engine
         return m_Positions;
     }
 
-    const Vec3 &Mesh::getPosition() const
-    {
-        return m_Position;
-    }
-
-    void Mesh::setPosition(const Vec3 &pos)
-    {
-        m_Position = pos;
-    }
-
-    const Bounds3 &Mesh::getBounds() const
+    const Bounds3 &Mesh::getBounds3() const
     {
         return m_Bounds;
     }
@@ -123,11 +108,13 @@ namespace engine
         return new Mesh(*this);
     }
 
-    void Mesh::setName(const std::string &name) {
+    void Mesh::setName(const std::string &name)
+    {
         m_Name = name;
     }
 
-    const std::string &Mesh::getName() const {
+    const std::string &Mesh::getName() const
+    {
         return m_Name;
     }
 

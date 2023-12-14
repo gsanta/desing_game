@@ -95,6 +95,10 @@ namespace editing
                     flip_horizontal(drawing.getTempLayerOfActiveLayer(), selectTool.getSelectionBuffer());
                 }
             }
+            else if (key == GLFW_KEY_R)
+            {
+                m_Editor->getToolHandler()->setSelectedTool("rectangle");
+            }
             // else if (key == GLFW_KEY_R)
             // {
             //     // float pixelCount = 16.0f;

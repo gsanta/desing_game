@@ -102,7 +102,7 @@ namespace editing
         //                            .setFaceColor(Box::Face::left, COLOR_RED)
         //                            .build());
 
-        drawing.addComponent<CanvasBorderComponent>();
+        // drawing.addComponent<CanvasBorderComponent>();
 
         return drawing;
     }

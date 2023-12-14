@@ -2,7 +2,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-using namespace spright::engine;
+using namespace spright::maths;
 
 TEST_CASE("Bounds", "[bounds]")
 {

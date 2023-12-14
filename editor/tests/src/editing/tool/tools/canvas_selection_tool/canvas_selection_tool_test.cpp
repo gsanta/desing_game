@@ -4,8 +4,8 @@
 #include "../../../../test_helpers/builders/tool_context_builder.h"
 #include "../../../../test_helpers/common_tool_funcs.h"
 #include "../../../../test_helpers/matchers/equals_bounds_matcher.h"
-#include "../src/editing/tool/tools/canvas_selection_tool/canvas_selection_tool.h"
 #include "../src/editing/tool/tools/canvas_selection_tool/canvas_border_component.h"
+#include "../src/editing/tool/tools/canvas_selection_tool/canvas_selection_tool.h"
 #include "../src/editing/utils/conversions.h"
 #include "../src/engine/system/window/impl/headless/headless_window.h"
 
@@ -26,9 +26,9 @@ SCENARIO("Tool handler")
 
         Document &document = documentStore.getActiveDocument();
 
-        Canvas* canvas1 = document.getCanvas(0);
+        Canvas *canvas1 = document.getCanvas(0);
         canvas1->addComponent<CanvasBorderComponent>();
-        Canvas* canvas2 = document.getCanvas(1);
+        Canvas *canvas2 = document.getCanvas(1);
         canvas2->addComponent<CanvasBorderComponent>();
 
         ToolContext toolContext = ToolContextBuilder().build(document);
@@ -63,21 +63,23 @@ SCENARIO("Tool handler")
 
                 THEN("highlights the active drawing")
                 {
-                    Layer &decorationLayer = canvas2->getGizmoLayer();
+                    Group<Renderable2D> &gizmoLayer = canvas2->getGizmoLayer();
 
-                    REQUIRE(decorationLayer.getRenderables().size() == 4);
+                    REQUIRE(gizmoLayer.getRenderables().size() == 4);
 
-                    for (Renderable2D *rect : decorationLayer.getRenderables()) {
-                        REQUIRE(rect->getColor() == COLOR_BLUE);
+                    for (Renderable2D *rect : gizmoLayer.getRenderables())
+                    {
+                        REQUIRE(dynamic_cast<Rect2D *>(rect)->getColor() == COLOR_BLUE);
                     }
                 }
 
                 THEN("removes the highlight from the prev active layer")
                 {
-                    Layer &decorationLayer = canvas1->getGizmoLayer();
+                    Group<Renderable2D> &gizmoLayer = canvas1->getGizmoLayer();
 
-                    for (Renderable2D *rect : decorationLayer.getRenderables()) {
-                        REQUIRE(rect->getColor() == COLOR_WHITE);
+                    for (Renderable2D *rect : gizmoLayer.getRenderables())
+                    {
+                        REQUIRE(dynamic_cast<Rect2D *>(rect)->getColor() == COLOR_WHITE);
                     }
                 }
             }

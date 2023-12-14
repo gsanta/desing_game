@@ -25,7 +25,8 @@ namespace maths
         maxZ = coord1.z < coord2.z ? coord2.z : coord1.z;
     }
 
-    Bounds3::operator Bounds() const {
+    Bounds3::operator Bounds() const
+    {
         return Bounds(minX, minY, maxX, maxY);
     }
 

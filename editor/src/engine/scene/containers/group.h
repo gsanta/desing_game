@@ -172,12 +172,14 @@ namespace engine
     }
 
     template <typename T>
-    T *Group<T>::getByName(const std::string &name) {
-        auto it = std::find_if(m_Renderables.begin(), m_Renderables.end(), [&name] (T *mesh) {
+    T *Group<T>::getByName(const std::string &name)
+    {
+        auto it = std::find_if(m_Renderables.begin(), m_Renderables.end(), [&name](T *mesh) {
             return mesh->getName() == name;
         });
 
-        if (it != m_Renderables.end()) {
+        if (it != m_Renderables.end())
+        {
             return *it;
         }
 

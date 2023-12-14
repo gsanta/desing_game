@@ -64,5 +64,5 @@ namespace maths
 
         std::string toString() const;
     };
-} // namespace engine
+} // namespace maths
 } // namespace spright

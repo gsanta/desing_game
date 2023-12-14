@@ -21,7 +21,7 @@ SCENARIO("Ray and box intersection")
             THEN("hitpoint is inside of the box")
             {
                 Vec3 hitPoint;
-                bool intersect = intersect_ray_box(box.getBounds(), ray, hitPoint);
+                bool intersect = intersect_ray_box(box.getBounds3(), ray, hitPoint);
 
                 REQUIRE(intersect == true);
                 REQUIRE_THAT(hitPoint, EqualsVec3Approx(origin));
@@ -37,7 +37,7 @@ SCENARIO("Ray and box intersection")
             THEN("hitpoint is on the right plane of the box")
             {
                 Vec3 hitPoint;
-                bool intersect = intersect_ray_box(box.getBounds(), ray, hitPoint);
+                bool intersect = intersect_ray_box(box.getBounds3(), ray, hitPoint);
 
                 REQUIRE(intersect == true);
                 REQUIRE_THAT(hitPoint, EqualsVec3Approx(Vec3(1.5, 0, 0)));
@@ -61,7 +61,7 @@ SCENARIO("Ray and box intersection")
                 THEN("intersection is at the bottom")
                 {
                     Vec3 hitPoint;
-                    bool intersect = intersect_ray_box(box.getBounds(), ray, hitPoint);
+                    bool intersect = intersect_ray_box(box.getBounds3(), ray, hitPoint);
 
                     REQUIRE(intersect == true);
                     REQUIRE_THAT(hitPoint, EqualsVec3Approx(Vec3(5, 2.5, 3)));
@@ -76,7 +76,7 @@ SCENARIO("Ray and box intersection")
                 THEN("intersection is at the bottom")
                 {
                     Vec3 hitPoint;
-                    bool intersect = intersect_ray_box(box.getBounds(), ray, hitPoint);
+                    bool intersect = intersect_ray_box(box.getBounds3(), ray, hitPoint);
 
                     REQUIRE(intersect == true);
                     REQUIRE_THAT(hitPoint, EqualsVec3Approx(Vec3(5, 3.03571, 4.5)));

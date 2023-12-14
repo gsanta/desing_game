@@ -40,7 +40,9 @@ namespace editing
     {
         for (int i = 0; i < 4; i++)
         {
-            Renderable2D *rect = m_Canvas->getGizmoLayer().getByName(m_MeshNames[i]);
+            Renderable2D *mesh = m_Canvas->getGizmoLayer().getByName(m_MeshNames[i]);
+
+            Rect2D *rect = dynamic_cast<Rect2D *>(mesh);
 
             rect->setColor(isSelected ? COLOR_SELECTED : COLOR_UNSELECTED);
         }

@@ -99,5 +99,5 @@ namespace maths
     {
         return !(lhs == rhs);
     }
-} // namespace engine
+} // namespace maths
 } // namespace spright

@@ -11,7 +11,7 @@ namespace engine
     public:
         virtual ~CanvasComponent() = default;
 
-        virtual void onAddedToCanvas(Canvas &canvas) {};
+        virtual void onAddedToCanvas(Canvas &canvas){};
 
         virtual CanvasComponent *clone(Canvas &canvas) = 0;
     };

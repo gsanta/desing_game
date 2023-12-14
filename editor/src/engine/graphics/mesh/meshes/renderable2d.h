@@ -22,15 +22,11 @@ namespace engine
     class Renderable2D : public Mesh
     {
     public:
-        Renderable2D() = default;
-
-        Renderable2D(const Bounds &bounds, unsigned int color);
+        Renderable2D(int vertexCount);
 
         Renderable2D(int vertexCount, const Vec3 *positions, const unsigned int *colors);
 
         Renderable2D(const Renderable2D &other);
-
-        virtual ~Renderable2D() = default;
 
         friend bool operator==(const Renderable2D &, const Renderable2D &);
 
@@ -38,7 +34,7 @@ namespace engine
 
         virtual bool isEqual(const Renderable2D &obj) const;
 
-        const Bounds &getBounds() const;
+        const Bounds getBounds() const;
 
         virtual nlohmann::json getJson() = 0;
 
@@ -47,7 +43,6 @@ namespace engine
         virtual Renderable2D *clone() const = 0;
 
     protected:
-        Bounds m_bounds2d;
     };
 } // namespace engine
 } // namespace spright

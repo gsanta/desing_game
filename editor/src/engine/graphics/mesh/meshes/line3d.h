@@ -35,6 +35,8 @@ namespace engine
         Vec3 m_Normal;
 
         Vec3 m_Coords[4];
+
+        unsigned int m_Color;
     };
 
 } // namespace engine

@@ -153,5 +153,5 @@ namespace maths
 
         return Bounds::createWithPositions(getBottomLeft(), getTopRight());
     }
-} // namespace engine
+} // namespace maths
 } // namespace spright

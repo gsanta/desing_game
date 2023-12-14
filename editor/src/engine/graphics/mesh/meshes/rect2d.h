@@ -22,8 +22,6 @@ namespace engine
 
         Rect2D(float x, float y, float width, float height, unsigned int color);
 
-        ~Rect2D() override = default;
-
         Rect2D(const Rect2D &);
 
         bool isEqual(const Renderable2D &obj) const override;

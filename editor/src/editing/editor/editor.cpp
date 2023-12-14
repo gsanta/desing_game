@@ -58,7 +58,7 @@ namespace editing
         m_toolHandler->getToolStore().addTool(new RayCastingDebugTool());
         m_toolHandler->getToolStore().addTool(new MeshCreationTool());
         m_toolHandler->addActiveTool("zoom");
-        m_toolHandler->setSelectedTool("canvas_selection");
+        m_toolHandler->setSelectedTool("brush");
         // m_toolHandler->setSelectedTool("camera_rotation");
 
         m_RunLoop.add(m_FramePlayer);

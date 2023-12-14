@@ -12,7 +12,7 @@ namespace engine
     {
     }
 
-    Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color) : Mesh(36, color)
+    Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color) : Mesh(36)
     {
         calcPositions(pos, width, height, depth);
     }

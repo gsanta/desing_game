@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../../../engine/scene/canvas/canvas_component.h"
-#include "../../../../engine/scene/canvas/canvas.h"
 #include "../../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../../engine/graphics/mesh/meshes/renderable2d.h"
+#include "../../../../engine/scene/canvas/canvas.h"
+#include "../../../../engine/scene/canvas/canvas_component.h"
 
 namespace spright
 {
@@ -33,9 +33,7 @@ namespace editing
     private:
         Canvas *m_Canvas;
 
-        std::string m_MeshNames[4] = {
-            "top-border", "right-border", "bottom-border", "left-border"
-        };
+        std::string m_MeshNames[4] = {"top-border", "right-border", "bottom-border", "left-border"};
     };
 
 } // namespace editing

@@ -61,7 +61,7 @@ namespace engine
     private:
         void calcPositions();
 
-        void calcColors(unsigned int color);
+        void calcColors();
 
     private:
         Vec3 m_Position;

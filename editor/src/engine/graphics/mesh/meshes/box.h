@@ -26,11 +26,15 @@ namespace engine
 
         static const int NUM_INDEXES_PER_FACE = 6;
 
-        Box(int vertexCount, const Vec3 *positions);
+        static const float DEFAULT_SIZE;
 
-        Box(int vertexCount, const Vec3 *positions, const unsigned int *colors);
+        static const int DEFAULT_COLOR = COLOR_WHITE;
 
-        Box(const Vec3 &pos, float width, float height, float depth, unsigned int color);
+        Box(const Vec3 &pos = Vec3(0, 0, 0),
+            float width = DEFAULT_SIZE,
+            float height = DEFAULT_SIZE,
+            float depth = DEFAULT_SIZE,
+            unsigned int color = DEFAULT_COLOR);
 
         Box(const Box &other) = default;
 

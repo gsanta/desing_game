@@ -1,18 +1,17 @@
 #include "../../../../test_helpers/matchers/equals_vec3_approx_matcher.h"
 #include "../src/engine/graphics/colors.h"
-#include "../src/engine/graphics/mesh/builders/cylinder_builder.h"
+#include "../src/engine/graphics/mesh/meshes/cylinder.h"
 
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
 using namespace spright::engine;
 
-TEST_CASE("CylinderBuilder", "[cylinder_builder]")
+TEST_CASE("Cylinder", "[cylinder]")
 {
     SECTION("a cylinder can be constructed")
     {
-        Mesh cylinder =
-            CylinderBuilder().setHeight(10).setDiameterTop(4).setDiameterBottom(8).setTessellation(3).build();
+        Cylinder cylinder(Vec3(0, 0, 0), 10, 4, 8, 3);
 
         REQUIRE_THAT(cylinder.getPositions()[0], EqualsVec3Approx(Vec3(4, -5, 0)));
         REQUIRE_THAT(cylinder.getPositions()[1], EqualsVec3Approx(Vec3(2, 5, 0)));

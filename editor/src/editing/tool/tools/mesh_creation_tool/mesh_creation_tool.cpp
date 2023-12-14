@@ -19,7 +19,7 @@ namespace editing
 
         Canvas3d &drawing = get_active_3d_canvas(*context.doc.document);
 
-        drawing.getGroup().add(m_BoxBuilder.build(pos));
+        drawing.getGroup().add(Box(pos));
     }
 } // namespace editing
 } // namespace spright

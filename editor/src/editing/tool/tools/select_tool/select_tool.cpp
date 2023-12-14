@@ -165,6 +165,7 @@ namespace editing
             m_WandSelector.select(activeLayer, toolLayer, context.pointer.curr, context.pointer.down);
         }
 
+        // TODO: do we need this?
         m_SelectionBuffer.recalcTileIndexesAndBounds(activeLayer, toolLayer);
 
         tile_operation_copy_indexes(activeLayer, tempLayer, m_SelectionBuffer.getTileIndexes());

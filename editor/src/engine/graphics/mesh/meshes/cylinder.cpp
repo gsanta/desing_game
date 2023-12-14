@@ -1,15 +1,22 @@
-#include "cylinder_builder.h"
+#include "cylinder.h"
 
 namespace spright
 {
 namespace engine
 {
-    Mesh CylinderBuilder::build() const
+    Cylinder::Cylinder(const Vec3 &pos,
+                       float height,
+                       float diameterTop,
+                       float diameterBottom,
+                       int tessellation,
+                       unsigned int color)
+        : Mesh(tessellation * 6), m_Pos(pos), m_Height(height), m_DiameterTop(diameterTop),
+          m_DiameterBottom(diameterBottom), m_Tessellation(tessellation), m_Color(color)
     {
-        return build(Vec3(0, 0, 0));
+        build();
     }
 
-    Mesh CylinderBuilder::build(const Vec3 &pos) const
+    void Cylinder::build()
     {
         int tessellation = m_Tessellation;
         float diameterTop = m_DiameterTop;
@@ -47,54 +54,18 @@ namespace engine
             }
         }
 
-        int vertexCount = tessellation * 6;
-        Vec3 positions[vertexCount];
-
         int counter = 0;
         for (int i = 0; i < tessellation; i++)
         {
             int iPlus1 = i == tessellation - 1 ? 0 : i + 1;
 
-            positions[counter++] = bottomPositions[i];
-            positions[counter++] = topPositions[i];
-            positions[counter++] = topPositions[iPlus1];
-            positions[counter++] = bottomPositions[i];
-            positions[counter++] = topPositions[iPlus1];
-            positions[counter++] = bottomPositions[iPlus1];
+            m_Positions[counter++] = bottomPositions[i];
+            m_Positions[counter++] = topPositions[i];
+            m_Positions[counter++] = topPositions[iPlus1];
+            m_Positions[counter++] = bottomPositions[i];
+            m_Positions[counter++] = topPositions[iPlus1];
+            m_Positions[counter++] = bottomPositions[iPlus1];
         }
-
-        return Mesh(vertexCount, positions);
-    }
-
-    CylinderBuilder &CylinderBuilder::setHeight(float height)
-    {
-        m_Height = height;
-        return *this;
-    }
-
-    CylinderBuilder &CylinderBuilder::setDiameterTop(float diameterTop)
-    {
-        m_DiameterTop = diameterTop;
-        return *this;
-    }
-
-    CylinderBuilder &CylinderBuilder::setDiameterBottom(float diameterBottom)
-    {
-        m_DiameterBottom = diameterBottom;
-        return *this;
-    }
-
-    CylinderBuilder &CylinderBuilder::setTessellation(int tessellation)
-    {
-        m_Tessellation = tessellation;
-        return *this;
-    }
-
-    CylinderBuilder &CylinderBuilder::setColor(unsigned int color)
-    {
-        m_Color = color;
-
-        return *this;
     }
 } // namespace engine
 } // namespace spright

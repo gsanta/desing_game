@@ -1,6 +1,6 @@
 #include "../../test_helpers/matchers/equals_vec3_approx_matcher.h"
 #include "../src/engine/algorithms/intersect_ray_box.h"
-#include "../src/engine/graphics/mesh/builders/box_builder.h"
+#include "../src/engine/graphics/mesh/meshes/box.h"
 
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
@@ -11,7 +11,7 @@ SCENARIO("Ray and box intersection")
 {
     GIVEN("a box at the origin")
     {
-        Box box = BoxBuilder().setWidth(3).setHeight(2).setDepth(4).build();
+        Box box(Vec3(0, 0, 0), 3, 2, 4);
 
         WHEN("ray origin is inside the box")
         {
@@ -47,7 +47,7 @@ SCENARIO("Ray and box intersection")
 
     GIVEN("a box not at the origin")
     {
-        Box box = BoxBuilder().setWidth(5).setHeight(5).setDepth(5).setPos(Vec3(5, 5, 2)).build();
+        Box box(Vec3(5, 5, 2), 5, 5, 5);
 
         WHEN("ray goes through (5, 3, 2.5)")
         {

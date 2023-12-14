@@ -4,13 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    Box::Box(int vertexCount, const Vec3 *positions) : Mesh(vertexCount, positions)
-    {
-    }
-
-    Box::Box(int vertexCount, const Vec3 *positions, const unsigned int *colors) : Mesh(vertexCount, positions, colors)
-    {
-    }
+    const float Box::DEFAULT_SIZE = 1.0f;
 
     Box::Box(const Vec3 &pos, float width, float height, float depth, unsigned int color) : Mesh(36)
     {

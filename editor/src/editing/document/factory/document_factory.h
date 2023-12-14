@@ -1,6 +1,4 @@
 #pragma once
-#include "../../../engine/graphics/mesh/builders/box_builder.h"
-#include "../../../engine/graphics/mesh/builders/cylinder_builder.h"
 #include "../../../engine/graphics/mesh/meshes/box.h"
 #include "../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../../engine/graphics/mesh/meshes/rect2d.h"

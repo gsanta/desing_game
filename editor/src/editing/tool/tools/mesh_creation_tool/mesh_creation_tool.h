@@ -1,5 +1,4 @@
-#include "../../../../engine/graphics/mesh/builders/box_builder.h"
-#include "../../../../engine/graphics/mesh/builders/mesh_builder.h"
+#include "../../../../engine/graphics/mesh/meshes/box.h"
 #include "../../../../engine/scene/cameras/arc_rotate_camera.h"
 #include "../../../utils/conversions.h"
 #include "../../pixel_tool.h"
@@ -18,9 +17,6 @@ namespace editing
         MeshCreationTool();
 
         void pointerUp(ToolContext &context) override;
-
-    private:
-        BoxBuilder m_BoxBuilder;
     };
 } // namespace editing
 } // namespace spright

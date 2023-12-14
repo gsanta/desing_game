@@ -8,9 +8,7 @@ namespace engine
         : Renderable2D(NUM_VERTICES), m_Color(color), m_Position(Vec3(x, y, 0)), m_Size(Vec2(width, height))
     {
         calcPositions();
-
-        calcColors(color);
-
+        calcColors();
         calcBounds();
     }
 
@@ -86,6 +84,7 @@ namespace engine
     void Rect2D::setColor(unsigned int color)
     {
         m_Color = color;
+        calcColors();
     }
 
     bool Rect2D::contains(Vec2 point)
@@ -98,12 +97,15 @@ namespace engine
     {
         this->m_Position.x += vec.x;
         this->m_Position.y += vec.y;
+        calcPositions();
         calcBounds();
     }
 
     void Rect2D::setZ(float z)
     {
         m_Position.z = z;
+        calcPositions();
+        calcBounds();
     }
 
     nlohmann::json Rect2D::getJson()
@@ -146,7 +148,7 @@ namespace engine
         m_Positions[5] = corners[3];
     }
 
-    void Rect2D::calcColors(unsigned int color)
+    void Rect2D::calcColors()
     {
         for (int i = 0; i < NUM_VERTICES; i++)
         {

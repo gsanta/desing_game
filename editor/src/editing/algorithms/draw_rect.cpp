@@ -24,7 +24,7 @@ namespace editing
                     prev.reset(new Rect2D(*tile));
                 }
 
-                Vec2 pos = tileLayer.getBottomLeftPos(Vec2Int(i, j));
+                Vec2 pos = tileLayer.getCenterPos(Vec2Int(i, j));
                 Rect2D &rect = tileLayer.add(Rect2D(pos.x, pos.y, tileSize, tileSize, color));
 
                 std::shared_ptr<Rect2D> newRect = std::make_shared<Rect2D>(rect);
@@ -71,7 +71,7 @@ namespace editing
                 prev.reset(new Rect2D(*tile));
             }
 
-            Vec2 worldPos = tileLayer.getBottomLeftPos(tilePos);
+            Vec2 worldPos = tileLayer.getCenterPos(tilePos);
             Rect2D &rect = tileLayer.add(Rect2D(worldPos.x, worldPos.y, tileSize, tileSize, color));
 
             std::shared_ptr<Rect2D> newRect = std::make_shared<Rect2D>(rect);

@@ -24,7 +24,7 @@ namespace editing
                 if (dest.getTileBounds().contains(newDestPos.x, newDestPos.y))
                 {
                     Rect2D newTile(0, 0, dest.getTileSize(), dest.getTileSize(), tile->getColor());
-                    newTile.setCenterPosition(dest.getCenterPos(newDestPos));
+                    newTile.setPosition2d(dest.getCenterPos(newDestPos));
                     dest.add(newTile, newDestPos);
                 }
             }

@@ -15,7 +15,7 @@ namespace editing
         }
 
         Renderable2D *renderable = tileLayer.getAtTileIndex(tileIndex);
-        Vec2 worldPos = tileLayer.getBottomLeftPos(tileIndex);
+        Vec2 worldPos = tileLayer.getCenterPos(tileIndex);
 
         std::shared_ptr<Rect2D> prev;
 

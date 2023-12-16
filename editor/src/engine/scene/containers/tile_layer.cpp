@@ -103,7 +103,7 @@ namespace engine
     Rect2D &TileLayer::add(const Rect2D &rect, const Vec2Int &tilePos)
     {
         Rect2D newRect(rect);
-        newRect.setCenterPosition(getCenterPos(tilePos));
+        newRect.setPosition2d(getCenterPos(tilePos));
         return add(newRect);
     }
 
@@ -143,7 +143,7 @@ namespace engine
 
     void TileLayer::setTilePos(Rect2D *tile, const Vec2Int &newPos)
     {
-        tile->setPosition(getBottomLeftPos(newPos));
+        tile->setPosition2d(getCenterPos(newPos));
 
         updateTileIndex(tile);
     }

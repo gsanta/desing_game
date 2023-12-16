@@ -17,7 +17,7 @@ TEST_CASE("Rect2D contains", "[rect2d]")
 {
     SECTION("check a point with positive coordinates inside of the rect")
     {
-        Rect2D rect(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
+        Rect2D rect(0, -0.5, 3.0f, 5.0f, 0xFF0000FF);
 
         REQUIRE(rect.contains(Vec2(0.7f, 1.0f)) == true);
     }

@@ -87,7 +87,7 @@ namespace maths
         return minX == 0 && maxX == 0 && minY == 0 && maxY == 0;
     }
 
-    void Bounds::expand(const Vec2 &vec)
+    void Bounds::expandTo(const Vec2 &vec)
     {
         if (vec.x < minX)
         {
@@ -106,6 +106,14 @@ namespace maths
         {
             maxY = vec.y;
         }
+    }
+
+    void Bounds::expandWith(const Vec2 &vec)
+    {
+        minX -= vec.x;
+        maxX += vec.x;
+        minY -= vec.y;
+        maxY += vec.y;
     }
 
     std::vector<float> Bounds::toArray() const

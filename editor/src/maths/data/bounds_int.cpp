@@ -62,7 +62,7 @@ namespace maths
         return minX == 0 && maxX == 0 && minY == 0 && maxY == 0;
     }
 
-    void BoundsInt::expand(const Vec2Int &vec)
+    void BoundsInt::expandTo(const Vec2Int &vec)
     {
         if (vec.x < minX)
         {

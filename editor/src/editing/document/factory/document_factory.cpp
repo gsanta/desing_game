@@ -167,10 +167,10 @@ namespace editing
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(canvas.getBounds().maxX,
                                                                                          canvas.getBounds().maxY);
 
-#ifdef INIT_WITH_3D_CANVAS
-        Canvas3d canvas3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
-        document.addCanvas(canvas3d);
         document.addCanvas(canvas);
+#ifdef INIT_WITH_3D_CANVAS
+        // Canvas3d canvas3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
+        // document.addCanvas(canvas3d);
 #else
 #endif
 

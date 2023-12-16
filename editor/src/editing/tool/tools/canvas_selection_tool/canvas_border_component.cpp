@@ -17,25 +17,20 @@ namespace editing
         m_Canvas = &canvas;
         Bounds bounds = canvas.getBounds();
 
-        float halfWidth = bounds.getWidth();
-        float halfHeight = bounds.getHeight();
+        float halfWidth = bounds.getWidth() / 2.0;
+        float halfHeight = bounds.getHeight() / 2.0;
         float minX = bounds.minX;
         float minY = bounds.minY;
         float maxX = bounds.maxX;
         float maxY = bounds.maxY;
 
-        // Rect2D rects[] = {
-        //     Rect2D(-halfWidth, halfHeight, bounds.getWidth(), 0.2, COLOR_WHITE),            // top
-        //     Rect2D(halfWidth, -halfHeight, 0.2, bounds.getHeight(), COLOR_WHITE),           // right
-        //     Rect2D(-halfWidth, -halfHeight - 0.2, bounds.getWidth(), 0.2, COLOR_WHITE),     // bottom
-        //     Rect2D(-halfWidth - 0.2, -halfHeight, 0.2, bounds.getHeight(), COLOR_WHITE)     // left
-        // };
+        float borderWidth = 0.2;
 
         Rect2D rects[] = {
-            Rect2D(minX, maxY, maxX - minX, 0.2, COLOR_WHITE),       // top
-            Rect2D(maxX, minY, 0.2, maxY - minY, COLOR_WHITE),       // right
-            Rect2D(minX, minY - 0.2, maxX - minX, 0.2, COLOR_WHITE), // bottom
-            Rect2D(minX - 0.2, minY, 0.2, maxY - minY, COLOR_WHITE)  // left
+            Rect2D(0, halfHeight + borderWidth / 2.0, bounds.getWidth(), borderWidth, COLOR_WHITE),                     // top
+            Rect2D(halfWidth + borderWidth / 2.0, 0, borderWidth, bounds.getHeight(), COLOR_WHITE), // right
+            Rect2D(0, -halfHeight - borderWidth / 2.0, bounds.getWidth(), borderWidth, COLOR_WHITE),      // bottom
+            Rect2D(-halfWidth - borderWidth / 2.0, 0, borderWidth, bounds.getHeight(), COLOR_WHITE) // left
         };
 
         for (int i = 0; i < 4; i++)

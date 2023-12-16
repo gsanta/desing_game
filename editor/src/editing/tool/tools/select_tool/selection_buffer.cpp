@@ -83,7 +83,7 @@ namespace editing
         }
         else
         {
-            m_TileBounds.expand(vec2);
+            m_TileBounds.expandTo(vec2);
         }
     }
 } // namespace editing

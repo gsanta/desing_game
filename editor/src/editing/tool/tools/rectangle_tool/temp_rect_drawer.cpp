@@ -25,17 +25,15 @@ namespace editing
             m_Filled = &tileLayer.add(Rect2D(0, 0, 0.1f, 0.1f, color));
         }
 
-        Bounds initialBounds = Bounds::createWithPositions(tileLayer.getCenterPos(from), tileLayer.getCenterPos(to));
-
         float tileSize = tileLayer.getTileSize();
 
-        Vec2 bottomLeft = initialBounds.getBottomLeft() - tileSize / 2;
-        Vec2 topRight = initialBounds.getTopRight() + tileSize / 2;
+        Bounds bounds = Bounds::createWithPositions(tileLayer.getCenterPos(from), tileLayer.getCenterPos(to));
+        bounds.expandWith(tileSize / 2.0);
 
-        m_Filled->setPosition(bottomLeft);
-        m_Filled->setSize(topRight - bottomLeft);
+        m_Filled->setPosition2d(bounds.getCenter());
+        m_Filled->setSize(Vec2(bounds.getWidth(), bounds.getHeight()));
 
-        m_Bounds = m_Filled->getBounds();
+        m_Bounds = bounds;
     }
 
     void TempRectDrawer::drawOutlined(TileLayer &tileLayer, Vec2 from, Vec2 to, int color)
@@ -58,16 +56,16 @@ namespace editing
         }
 
         m_OutlinedTop->setSize(Vec2(bounds.getWidth(), tileSize));
-        m_OutlinedTop->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getTopRight().y - tileSize));
+        m_OutlinedTop->setPosition2d(Vec2(bounds.getCenter().x, bounds.getTopRight().y - tileSize / 2.0));
 
         m_OutlinedRight->setSize(Vec2(tileSize, bounds.getHeight() - 2 * tileSize));
-        m_OutlinedRight->setPosition(Vec2(bounds.getTopRight().x - tileSize, bounds.getBottomLeft().y + tileSize));
+        m_OutlinedRight->setPosition2d(Vec2(bounds.getTopRight().x - tileSize / 2.0, bounds.getCenter().y));
 
         m_OutlinedBottom->setSize(Vec2(bounds.getWidth(), tileSize));
-        m_OutlinedBottom->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getBottomLeft().y));
+        m_OutlinedBottom->setPosition2d(Vec2(bounds.getCenter().x, bounds.getBottomLeft().y + tileSize / 2.0));
 
         m_OutlinedLeft->setSize(Vec2(tileSize, bounds.getHeight() - 2 * tileSize));
-        m_OutlinedLeft->setPosition(Vec2(bounds.getBottomLeft().x, bounds.getBottomLeft().y + tileSize));
+        m_OutlinedLeft->setPosition2d(Vec2(bounds.getBottomLeft().x + tileSize / 2.0, bounds.getCenter().y));
 
         m_Bounds = bounds;
     }

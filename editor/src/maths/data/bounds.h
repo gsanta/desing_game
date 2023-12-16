@@ -52,7 +52,9 @@ namespace maths
 
         bool isNull() const;
 
-        void expand(const Vec2 &vec);
+        void expandTo(const Vec2 &vec);
+
+        void expandWith(const Vec2 &vec);
 
         std::vector<float> toArray() const;
 

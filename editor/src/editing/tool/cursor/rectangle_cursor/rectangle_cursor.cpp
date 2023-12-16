@@ -51,7 +51,7 @@ namespace editing
             destroy(context);
             m_Rect = &cursorLayer.add(Rect2D(Rect2D(0, 0, rectSize, rectSize, color)));
         }
-        m_Rect->setCenterPosition(centerPos);
+        m_Rect->setPosition2d(centerPos);
     }
 
     void RectangleCursor::setSize(int size)

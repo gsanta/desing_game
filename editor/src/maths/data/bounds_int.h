@@ -48,7 +48,7 @@ namespace maths
 
         bool isNull() const;
 
-        void expand(const Vec2Int &vec);
+        void expandTo(const Vec2Int &vec);
 
         std::string toString() const;
     };

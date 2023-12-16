@@ -37,12 +37,12 @@ namespace engine
 
     Vec3 Rect2D::getPosition()
     {
-        return getBounds3().center() - m_Size / 2.0;
+        return getBounds3().center();
     }
 
     Vec2 Rect2D::getPosition2d() const
     {
-        return getBounds().getCenter() - m_Size / 2.0;
+        return getBounds().getCenter();
     }
 
     void Rect2D::setSize(Vec2 size)
@@ -57,17 +57,10 @@ namespace engine
         return m_Size;
     }
 
-    void Rect2D::setPosition(Vec2 position)
+    void Rect2D::setPosition2d(Vec2 position)
     {
-        Vec3 currPos = getBounds3().center() + m_Size / 2.0;
+        Vec3 currPos = getBounds3().center();
         calcPositions(Vec3(position.x, position.y, currPos.z));
-        calcBounds();
-    }
-
-    void Rect2D::setCenterPosition(Vec2 position)
-    {
-        Vec3 currPos = getBounds3().center() + m_Size / 2.0;
-        calcPositions(Vec3(position.x - m_Size.x / 2.0f, position.y - m_Size.y / 2.0f, currPos.z));
         calcBounds();
     }
 
@@ -117,8 +110,8 @@ namespace engine
 
     void Rect2D::calcPositions(const Vec3& pos)
     {
-        float x = pos.x; //- m_Size.x / 2.0;
-        float y = pos.y; //- m_Size.y / 2.0;
+        float x = pos.x - m_Size.x / 2.0;
+        float y = pos.y - m_Size.y / 2.0;
         float z = pos.z;
         float width = m_Size.x;
         float height = m_Size.y;

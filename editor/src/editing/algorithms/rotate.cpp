@@ -43,7 +43,7 @@ namespace editing
                 {
                     Vec2Int newDestPos = Vec2Int(x, y);
                     Rect2D newTile(*tile);
-                    newTile.setCenterPosition(source.getCenterPos(newDestPos));
+                    newTile.setPosition2d(source.getCenterPos(newDestPos));
                     dest.add(newTile, newDestPos);
                 }
             }

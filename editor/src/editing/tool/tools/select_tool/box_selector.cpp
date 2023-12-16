@@ -61,7 +61,7 @@ namespace editing
         {
             for (int j = bottomLeft.y; j <= topRight.y; j++)
             {
-                Vec2 bottomLeft = toolLayer.getBottomLeftPos(Vec2Int(i, j));
+                Vec2 bottomLeft = toolLayer.getCenterPos(Vec2Int(i, j));
                 Rect2D rect(bottomLeft.x, bottomLeft.y, tileSize, tileSize, color);
 
                 toolLayer.add(rect);

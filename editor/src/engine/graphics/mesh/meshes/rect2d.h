@@ -38,9 +38,7 @@ namespace engine
 
         Vec2 getSize();
 
-        void setPosition(Vec2 position);
-
-        void setCenterPosition(Vec2 position);
+        void setPosition2d(Vec2 position);
 
         const unsigned int getColor() const;
 

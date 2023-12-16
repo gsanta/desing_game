@@ -13,6 +13,7 @@ namespace editing
         float top = layer.getBounds().maxY;
 
         float tileSize = layer.getTileSize();
+        float halfTileSize = tileSize / 2.0;
 
         int counter = 1;
         bool even = false;
@@ -27,7 +28,7 @@ namespace editing
                 float width = i + tileSize > right ? right - i : tileSize;
                 float height = j + tileSize > top ? top - j : tileSize;
 
-                layer.add(Rect2D(i, j, width, height, color));
+                layer.add(Rect2D(i + halfTileSize, j + halfTileSize, width, height, color));
             }
 
             counter = 1;

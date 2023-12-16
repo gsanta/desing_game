@@ -17,7 +17,7 @@ namespace engine
     class Group
     {
     public:
-        Group();
+        Group(const Vec3 &origin);
 
         Group(const Group &);
 
@@ -47,8 +47,10 @@ namespace engine
 
         T *getByName(const std::string &name);
 
-    protected:
+    private:
         std::vector<T *> m_Renderables;
+
+        Vec3 m_Origin;
     };
 
     template <typename T>
@@ -79,7 +81,7 @@ namespace engine
     }
 
     template <typename T>
-    Group<T>::Group()
+    Group<T>::Group(const Vec3 &origin) : m_Origin(origin)
     {
     }
 
@@ -90,6 +92,8 @@ namespace engine
         {
             m_Renderables.push_back(item->clone());
         }
+
+        m_Origin = group.m_Origin;
     }
 
     template <typename T>
@@ -125,6 +129,7 @@ namespace engine
     T &Group<T>::add(const T &renderable)
     {
         m_Renderables.push_back(renderable.clone());
+        // m_Renderables.back()->translate(m_Origin);
         return *m_Renderables.back();
     }
 

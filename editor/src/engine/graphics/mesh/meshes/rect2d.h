@@ -28,7 +28,7 @@ namespace engine
 
         Vec3 getPosition();
 
-        Vec2 getPosition2d();
+        Vec2 getPosition2d() const;
 
         int getTileIndex();
 
@@ -42,15 +42,11 @@ namespace engine
 
         void setCenterPosition(Vec2 position);
 
-        Vec2 getCenterPosition2d() const;
-
         const unsigned int getColor() const;
 
         void setColor(unsigned int color);
 
         bool contains(Vec2 point);
-
-        void translate(Vec2 vec);
 
         void setZ(float z);
 
@@ -59,13 +55,11 @@ namespace engine
         virtual Rect2D *clone() const override;
 
     private:
-        void calcPositions();
+        void calcPositions(const Vec3 &pos);
 
         void calcColors();
 
     private:
-        Vec3 m_Position;
-
         Vec2 m_Size;
 
         int m_TileIndex = -1;

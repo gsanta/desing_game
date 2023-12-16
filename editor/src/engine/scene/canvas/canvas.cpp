@@ -5,7 +5,8 @@ namespace spright
 namespace engine
 {
     Canvas::Canvas(const std::string &uuid, std::string type, const Bounds &bounds, const Renderer2D &renderer)
-        : m_Uuid(uuid), m_Type(type), m_Bounds(bounds), m_Renderer(std::unique_ptr<Renderer2D>(renderer.clone()))
+        : m_Uuid(uuid), m_Type(type), m_Bounds(bounds), m_Renderer(std::unique_ptr<Renderer2D>(renderer.clone())),
+          m_GizmoLayer(bounds.getCenter())
     {
     }
 

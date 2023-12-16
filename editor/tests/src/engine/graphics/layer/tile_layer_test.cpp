@@ -22,11 +22,12 @@ SCENARIO("TileLayer")
             {
                 Rect2D rect(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
                 Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
-                TileLayer layer1("layer", Group<Rect2D>(), bounds);
+                Bounds bounds2 = Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f);
+                TileLayer layer1("layer", Group<Rect2D>(bounds.getCenter()), bounds);
 
                 layer1.add(rect);
 
-                TileLayer layer2("layer2", Group<Rect2D>(), Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
+                TileLayer layer2("layer2", Group<Rect2D>(bounds2.getCenter()), bounds2);
 
                 layer2 = layer1;
 
@@ -39,8 +40,9 @@ SCENARIO("TileLayer")
         {
             THEN("the two equals")
             {
-                TileLayer layer1("layer", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
-                TileLayer layer2("layer", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
+                Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
+                TileLayer layer1("layer", Group<Rect2D>(bounds.getCenter()), bounds);
+                TileLayer layer2("layer", Group<Rect2D>(bounds.getCenter()), bounds);
 
                 Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
                 Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
@@ -58,11 +60,13 @@ SCENARIO("TileLayer")
         {
             THEN("the two do not equal")
             {
-                TileLayer layer1("layer", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
-                TileLayer layer2("layer_2", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
-                TileLayer layer3("layer_3", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
-                TileLayer layer4("layer_4", Group<Rect2D>(), Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f));
-                TileLayer layer5("layer_5", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
+                Bounds bounds1 = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
+                Bounds bounds2 = Bounds::createWithPositions(-5.0f, -5.0f, 5.0f, 5.0f);
+                TileLayer layer1("layer", Group<Rect2D>(bounds1.getCenter()), bounds1);
+                TileLayer layer2("layer_2", Group<Rect2D>(bounds1.getCenter()), bounds1);
+                TileLayer layer3("layer_3", Group<Rect2D>(bounds1.getCenter()), bounds1);
+                TileLayer layer4("layer_4", Group<Rect2D>(bounds2.getCenter()), bounds2);
+                TileLayer layer5("layer_5", Group<Rect2D>(bounds1.getCenter()), bounds1);
                 layer5.add(Rect2D(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF));
 
                 REQUIRE(layer1 != layer2);
@@ -76,7 +80,8 @@ SCENARIO("TileLayer")
         {
             THEN("it will contain the new tile")
             {
-                TileLayer layer("layer", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
+                Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
+                TileLayer layer("layer", Group<Rect2D>(bounds.getCenter()), bounds);
 
                 REQUIRE(layer.getTiles().size() == 0);
 
@@ -96,8 +101,8 @@ SCENARIO("TileLayer")
         {
             THEN("it indexes the tiles from the bottom left to top right direction")
             {
-
-                TileLayer layer("layer", Group<Rect2D>(), Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f));
+                Bounds bounds = Bounds::createWithPositions(-16.0f, -16.0f, 16.0f, 16.0f);
+                TileLayer layer("layer", Group<Rect2D>(bounds.getCenter()), bounds);
 
                 float tileSize = layer.getTileSize();
 

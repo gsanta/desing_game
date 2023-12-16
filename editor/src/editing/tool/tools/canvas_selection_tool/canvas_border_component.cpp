@@ -17,10 +17,19 @@ namespace editing
         m_Canvas = &canvas;
         Bounds bounds = canvas.getBounds();
 
+        float halfWidth = bounds.getWidth();
+        float halfHeight = bounds.getHeight();
         float minX = bounds.minX;
         float minY = bounds.minY;
         float maxX = bounds.maxX;
         float maxY = bounds.maxY;
+
+        // Rect2D rects[] = {
+        //     Rect2D(-halfWidth, halfHeight, bounds.getWidth(), 0.2, COLOR_WHITE),            // top
+        //     Rect2D(halfWidth, -halfHeight, 0.2, bounds.getHeight(), COLOR_WHITE),           // right
+        //     Rect2D(-halfWidth, -halfHeight - 0.2, bounds.getWidth(), 0.2, COLOR_WHITE),     // bottom
+        //     Rect2D(-halfWidth - 0.2, -halfHeight, 0.2, bounds.getHeight(), COLOR_WHITE)     // left
+        // };
 
         Rect2D rects[] = {
             Rect2D(minX, maxY, maxX - minX, 0.2, COLOR_WHITE),       // top

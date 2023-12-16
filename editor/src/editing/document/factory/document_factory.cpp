@@ -4,7 +4,6 @@ namespace spright
 {
 namespace editing
 {
-
     DocumentFactory::DocumentFactory(Window *window, RendererProvider *rendererProvider)
         : m_Window(window), m_RendererProvider(rendererProvider)
     {
@@ -22,12 +21,12 @@ namespace editing
 
     TileLayer DocumentFactory::createUserLayer(const Bounds &bounds, std::string name, float tileSize) const
     {
-        return TileLayer(name, Group<Rect2D>(), bounds, tileSize);
+        return TileLayer(name, Group<Rect2D>(bounds.getCenter()), bounds, tileSize);
     }
 
     TileLayer DocumentFactory::createTileLayer(std::string name, const Bounds &bounds, float tileSize) const
     {
-        TileLayer tileLayer("", Group<Rect2D>(), bounds, tileSize, m_TileLayerZPos);
+        TileLayer tileLayer("", Group<Rect2D>(bounds.getCenter()), bounds, tileSize, m_TileLayerZPos);
 
         return tileLayer;
     }
@@ -35,7 +34,7 @@ namespace editing
 
     TileLayer DocumentFactory::createBackgroundLayer(const Bounds &bounds, float tileSize) const
     {
-        TileLayer backgroundLayer("", Group<Rect2D>(), bounds, tileSize, m_BackgroundZPos);
+        TileLayer backgroundLayer("", Group<Rect2D>(bounds.getCenter()), bounds, tileSize, m_BackgroundZPos);
 
         Checkerboard checkerboard;
         checkerboard.create(backgroundLayer);
@@ -45,17 +44,17 @@ namespace editing
 
     TileLayer DocumentFactory::createTempLayer(const Bounds &bounds, float tileSize) const
     {
-        return TileLayer("", Group<Rect2D>(), bounds, tileSize, m_TileLayerZPos, true);
+        return TileLayer("", Group<Rect2D>(bounds.getCenter()), bounds, tileSize, m_TileLayerZPos, true);
     }
 
     TileLayer DocumentFactory::createToolLayer(const Bounds &bounds, float tileSize) const
     {
-        return TileLayer("", Group<Rect2D>(), bounds, tileSize, m_ToolLayerZPos, true);
+        return TileLayer("", Group<Rect2D>(bounds.getCenter()), bounds, tileSize, m_ToolLayerZPos, true);
     }
 
     TileLayer DocumentFactory::createCursorLayer(const Bounds &bounds, float tileSize) const
     {
-        return TileLayer("", Group<Rect2D>(), bounds, tileSize, m_CursorLayerZPos, true);
+        return TileLayer("", Group<Rect2D>(bounds.getCenter()), bounds, tileSize, m_CursorLayerZPos, true);
     }
 
     void DocumentFactory::createFrame(Document &document)
@@ -79,30 +78,11 @@ namespace editing
         Canvas3d drawing =
             Canvas3d(UuidGenerator::getInstance().generate(), bounds, *m_RendererProvider->createRenderer2D());
 
-        // drawing.getGroup().add(Rect2D(bounds.getBottomLeft().x,
-        //                               bounds.getBottomLeft().y,
-        //                               bounds.getWidth(),
-        //                               bounds.getHeight(),
-        //                               COLOR_RED));
+        drawing.getGroup().add(Cylinder(Vec3(12, 2, 0), 10, 4, 8, 9, COLOR_RED));
 
-        // drawing.getGroup().add(CylinderBuilder()
-        //                            .setHeight(10)
-        //                            .setDiameterTop(4)
-        //                            .setDiameterBottom(8)
-        //                            .setTessellation(9)
-        //                            .setColor(COLOR_RED)
-        //                            .build());
+        drawing.getGroup().add(Box(Vec3(0, 0, 0), 10, 5, 5, COLOR_BLUE));
 
-        // drawing.getGroup().add(BoxBuilder()
-        //                            .setWidth(10)
-        //                            .setHeight(5)
-        //                            .setDepth(5)
-        //                            .setColor(COLOR_BLUE)
-        //                            .setFaceColor(Box::Face::top, COLOR_GREEN)
-        //                            .setFaceColor(Box::Face::left, COLOR_RED)
-        //                            .build());
-
-        // drawing.addComponent<CanvasBorderComponent>();
+        drawing.addComponent<CanvasBorderComponent>();
 
         return drawing;
     }
@@ -130,7 +110,11 @@ namespace editing
 
             for (size_t i = 0; i < layerCount; i++)
             {
-                TileLayer layer("layer" + std::to_string(i + 1), Group<Rect2D>(), bounds, tileSize, m_TileLayerZPos);
+                TileLayer layer("layer" + std::to_string(i + 1),
+                                Group<Rect2D>(bounds.getCenter()),
+                                bounds,
+                                tileSize,
+                                m_TileLayerZPos);
 
                 layers.push_back(layer);
             }
@@ -153,11 +137,11 @@ namespace editing
         float pixelCount = 32.0f;
         Bounds drawingBounds(-pixelCount / 2.0f, -pixelCount / 2.0f, pixelCount / 2.0f, pixelCount / 2.0f);
 
-#ifdef INIT_WITH_3D_CANVAS
-        ArcRotateCamera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
-#else
+// #ifdef INIT_WITH_3D_CANVAS
+//         ArcRotateCamera camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
+// #else
+// #endif
         Camera2d camera(BoundsInt(0, 0, m_Window->getWidth(), m_Window->getHeight()));
-#endif
         Canvas2d documentCanvas(UuidGenerator::getInstance().generate(),
                                 drawingBounds,
                                 *m_RendererProvider->createRenderer2D());
@@ -182,10 +166,13 @@ namespace editing
                                                                                          canvas.getBounds().minY);
         Vec2Int maxWindow = document.getBackgroundCanvas().getCamera()->worldToScreenPos(canvas.getBounds().maxX,
                                                                                          canvas.getBounds().maxY);
-        document.addCanvas(canvas);
 
-        Canvas3d canvas3d = createDrawing3d(Bounds(18, -10.0, 40, 10.0));
+#ifdef INIT_WITH_3D_CANVAS
+        Canvas3d canvas3d = createDrawing3d(Bounds(18.0, -5.0, 28.0, 5.0));
         document.addCanvas(canvas3d);
+        document.addCanvas(canvas);
+#else
+#endif
 
         return document;
     }

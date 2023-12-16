@@ -56,7 +56,7 @@ namespace editing
 
         for (const Rect2D *tile : dest.getTiles())
         {
-            newIndexes.push_back(dest.getTileIndex(tile->getCenterPosition2d()));
+            newIndexes.push_back(dest.getTileIndex(tile->getPosition2d()));
         }
 
         return newIndexes;

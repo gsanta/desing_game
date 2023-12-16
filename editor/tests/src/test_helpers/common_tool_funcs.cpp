@@ -75,7 +75,7 @@ void CommonToolFuncs::selectTiles(const std::vector<Rect2D *> &tiles)
     vector<int> tileIndexes;
     for (Rect2D *rect : tiles)
     {
-        tileIndexes.push_back(activeLayer.getTileIndex(rect->getCenterPosition2d()));
+        tileIndexes.push_back(activeLayer.getTileIndex(rect->getPosition2d()));
     }
 
     m_Context.tools->getSelectTool().setSelection(tileIndexes,

@@ -33,6 +33,14 @@ namespace maths
         Vec3 min() const;
 
         Vec3 max() const;
+
+        float width() const;
+
+        float height() const;
+
+        float depth() const;
+
+        Vec3 center() const;
     };
 } // namespace maths
 } // namespace spright

@@ -25,6 +25,8 @@ SCENARIO("Canvas border component")
         {
             canvas.addComponent<CanvasBorderComponent>();
 
+            std::shared_ptr<CanvasBorderComponent> c = canvas.getComponent<CanvasBorderComponent>();
+
             THEN("the component draws a white border around the canvas")
             {
                 Group<Renderable2D> &gizmoLayer = canvas.getGizmoLayer();

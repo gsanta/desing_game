@@ -5,7 +5,7 @@ namespace spright
 namespace engine
 {
     Canvas3d::Canvas3d(const std::string &uuid, const Bounds &bounds, const Renderer2D &renderer)
-        : Canvas(uuid, CANVAS_TYPE_3D, bounds, renderer)
+        : Canvas(uuid, CANVAS_TYPE_3D, bounds, renderer), m_GizmoGroup(bounds.getCenter()), m_Group(bounds.getCenter())
     {
     }
 

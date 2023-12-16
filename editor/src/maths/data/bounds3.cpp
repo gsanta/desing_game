@@ -40,5 +40,21 @@ namespace maths
         return Vec3(maxX, maxY, maxZ);
     }
 
+    float Bounds3::width() const {
+        return maxX - minX;
+    }
+
+    float Bounds3::height() const {
+        return maxY - minY;
+    }
+
+    float Bounds3::depth() const {
+        return maxZ - minZ;
+    }
+
+    Vec3 Bounds3::center() const {
+        return Vec3(minX + width() / 2.0, minY + height() / 2.0, minZ + depth() / 2.0);
+    }
+
 } // namespace maths
 } // namespace spright

@@ -13,10 +13,11 @@ namespace engine
         : Mesh(tessellation * 6), m_Pos(pos), m_Height(height), m_DiameterTop(diameterTop),
           m_DiameterBottom(diameterBottom), m_Tessellation(tessellation), m_Color(color)
     {
-        build();
+        calcPositions();
+        calcColors();
     }
 
-    void Cylinder::build()
+    void Cylinder::calcPositions()
     {
         int tessellation = m_Tessellation;
         float diameterTop = m_DiameterTop;
@@ -45,11 +46,11 @@ namespace engine
 
                 if (i == 0)
                 {
-                    bottomPositions[j] = Vec3(x, y, z);
+                    bottomPositions[j] = Vec3(x, y, z) + m_Pos;
                 }
                 else
                 {
-                    topPositions[j] = Vec3(x, y, z);
+                    topPositions[j] = Vec3(x, y, z) + m_Pos;
                 }
             }
         }
@@ -65,6 +66,13 @@ namespace engine
             m_Positions[counter++] = bottomPositions[i];
             m_Positions[counter++] = topPositions[iPlus1];
             m_Positions[counter++] = bottomPositions[iPlus1];
+        }
+    }
+
+    void Cylinder::calcColors() {
+        for (int i = 0; i < m_VertexCount; i++)
+        {
+            m_Colors[i] = m_Color;
         }
     }
 } // namespace engine

@@ -27,9 +27,7 @@ namespace engine
         calcBounds();
     }
 
-    Mesh::Mesh(const Mesh &other)
-        : m_Position(other.m_Position), m_VertexCount(other.m_VertexCount), m_Name(other.m_Name),
-          m_Bounds(other.m_Bounds)
+    Mesh::Mesh(const Mesh &other) : m_VertexCount(other.m_VertexCount), m_Name(other.m_Name), m_Bounds(other.m_Bounds)
     {
         createArrays(other.m_VertexCount);
         std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
@@ -51,6 +49,7 @@ namespace engine
         createArrays(other.m_VertexCount);
         m_VertexCount = other.m_VertexCount;
         m_Name = other.m_Name;
+        m_Bounds = other.m_Bounds;
 
         std::copy_n(other.m_Positions, m_VertexCount, m_Positions);
         std::copy_n(other.m_Normals, m_VertexCount, m_Normals);
@@ -93,9 +92,18 @@ namespace engine
         renderer.setIndexCount(renderer.getIndexCount() + m_VertexCount);
     }
 
+    void Mesh::translate(const Vec3 &amount)
+    {
+        for (int i = 0; i < m_VertexCount; i++)
+        {
+            m_Positions[i].add(amount);
+        }
+        calcBounds();
+    }
+
     bool Mesh::operator==(const Mesh &rhs)
     {
-        return rhs.m_Position == m_Position;
+        return m_Positions[0] == rhs.m_Positions[0];
     }
 
     bool Mesh::operator!=(const Mesh &rhs)

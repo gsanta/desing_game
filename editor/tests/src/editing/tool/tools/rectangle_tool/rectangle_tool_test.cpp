@@ -60,7 +60,7 @@ SCENARIO("Rectangle tool")
         {
             rectTool.setFilled(false);
 
-            THEN("it draws a filled rect")
+            THEN("it draws an outlined rect")
             {
 
                 TileLayer &layer = get_active_tile_canvas(documentStore.getActiveDocument()).getActiveLayer();

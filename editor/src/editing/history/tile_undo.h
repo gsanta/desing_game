@@ -18,16 +18,16 @@ namespace editing
     {
         inline bool operator()(const std::shared_ptr<Rect2D> &ptr1, const std::shared_ptr<Rect2D> &ptr2) const
         {
-            if (ptr1->getCenterPosition2d().y < ptr2->getCenterPosition2d().y)
+            if (ptr1->getPosition2d().y < ptr2->getPosition2d().y)
             {
                 return true;
             }
-            else if (ptr1->getCenterPosition2d().y > ptr2->getCenterPosition2d().y)
+            else if (ptr1->getPosition2d().y > ptr2->getPosition2d().y)
             {
                 return false;
             }
 
-            return ptr1->getCenterPosition2d().x < ptr2->getCenterPosition2d().x;
+            return ptr1->getPosition2d().x < ptr2->getPosition2d().x;
         }
     };
 

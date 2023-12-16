@@ -4,7 +4,7 @@ namespace spright
 {
 namespace engine
 {
-    TileView::TileView(const Bounds &bounds, float tileSize) : m_Bounds(bounds), m_TileSize(tileSize)
+    TileView::TileView(const Bounds &bounds, float tileSize) : m_Bounds(bounds), m_TileSize(tileSize), m_Group(bounds.getCenter())
     {
         m_TileBounds =
             BoundsInt(0, 0, ceil((bounds.maxX - bounds.minX) / tileSize), ceil((bounds.maxY - bounds.minY) / tileSize));
@@ -14,7 +14,7 @@ namespace engine
 
     TileView::TileView(const TileView &tileView)
         : m_Bounds(tileView.m_Bounds), m_TileSize(tileView.m_TileSize), m_TileBounds(tileView.m_TileBounds),
-          m_IndexSize(tileView.m_IndexSize)
+          m_IndexSize(tileView.m_IndexSize), m_Group(tileView.m_Bounds.getCenter())
     {
         m_TileIndexes = new Renderable2D *[m_IndexSize]();
     }
@@ -140,7 +140,7 @@ namespace engine
 
     int TileView::getTileIndex(const Rect2D &tile) const
     {
-        return getTileIndex(tile.getCenterPosition2d());
+        return getTileIndex(tile.getPosition2d());
     }
 
 

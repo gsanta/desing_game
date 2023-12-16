@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../engine/graphics/mesh/meshes/box.h"
+#include "../../../engine/graphics/mesh/meshes/cylinder.h"
 #include "../../../engine/graphics/mesh/meshes/line3d.h"
 #include "../../../engine/graphics/mesh/meshes/rect2d.h"
 #include "../../../engine/graphics/renderer/gl/gl_renderer2d.h"

@@ -88,9 +88,9 @@ TileCanvas DrawingBuilder::buildFromLayers()
                                  : m_TileLayers[0].withBounds(m_Bounds).withTileSize(m_TileSize).build();
 
     TileLayer backgroundLayer = TileLayerBuilder().withTileSize(m_BackgroundLayerTileSize).withBounds(m_Bounds).build();
-    const TileLayer tempLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, initialLayer.getZPos());
-    const TileLayer toolLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
-    const TileLayer cursorLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
+    const TileLayer tempLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, initialLayer.getZPos());
+    const TileLayer toolLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, 0, true);
+    const TileLayer cursorLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, 0, true);
 
     TileCanvas drawing(UuidGenerator::getInstance().generate(),
                        *std::make_unique<HeadlessRenderer2D>(),
@@ -115,9 +115,9 @@ TileCanvas DrawingBuilder::buildFromFrames()
 
     std::shared_ptr<Renderer2D> renderer = std::make_shared<HeadlessRenderer2D>();
 
-    const TileLayer tempLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0);
-    const TileLayer toolLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
-    const TileLayer cursorLayer("", Group<Rect2D>(), m_Bounds, m_TileSize, 0, true);
+    const TileLayer tempLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, 0);
+    const TileLayer toolLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, 0, true);
+    const TileLayer cursorLayer("", Group<Rect2D>(m_Bounds.getCenter()), m_Bounds, m_TileSize, 0, true);
 
     std::vector<Frame> frames;
 

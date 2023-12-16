@@ -28,8 +28,6 @@ namespace editing
 
     void ToolHandler::onMouseUp(bool buttons[3])
     {
-        TileCanvas &activeDrawing = get_active_tile_canvas(m_DocumentStore->getActiveDocument());
-
         m_ToolContext.doc.document = &m_DocumentStore->getActiveDocument();
 
         for (Tool *tool : *m_ActiveTools)
@@ -56,7 +54,6 @@ namespace editing
         m_ToolContext.pointer.buttons[1] = buttons[1];
         m_ToolContext.pointer.buttons[2] = buttons[2];
 
-        TileCanvas &activeDrawing = get_active_tile_canvas(m_DocumentStore->getActiveDocument());
         for (Tool *tool : *m_ActiveTools)
         {
             tool->execPointerDown(m_ToolContext);

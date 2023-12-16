@@ -9,7 +9,7 @@ namespace editing
         TileLayer newTileLayer = documentFactory.createTileLayer(orig.getName(), bounds, orig.getTileSize());
         for (Rect2D *rect : orig.getTiles())
         {
-            Vec2 rectCenter = rect->getCenterPosition2d();
+            Vec2 rectCenter = rect->getPosition2d();
             if (newTileLayer.getBounds().contains(rectCenter.x, rectCenter.y))
             {
                 newTileLayer.add(*rect);

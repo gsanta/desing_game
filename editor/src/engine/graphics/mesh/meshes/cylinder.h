@@ -18,8 +18,11 @@ namespace engine
                  unsigned int color = DEFAULT_COLOR);
 
     private:
-        void build();
+        void calcPositions();
 
+        void calcColors();
+
+    private:
         Vec3 m_Pos;
 
         float m_Height;

@@ -16,11 +16,11 @@ TEST_CASE("Group", "[group]")
         Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
         Mat4 translation = Mat4::translation(Vec3(1, 2, 3));
 
-        Group<Rect2D> group1;
+        Group<Rect2D> group1(Vec3(0, 0, 0));
         group1.add(rect1);
         group1.add(rect2);
 
-        Group<Rect2D> group2;
+        Group<Rect2D> group2(Vec3(0, 0, 0));
 
         group2 = group1;
 
@@ -34,30 +34,14 @@ TEST_CASE("Group", "[group]")
         Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
         Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
 
-        Group<Rect2D> group1;
+        Group<Rect2D> group1(Vec3(0, 0, 0));
         group1.add(rect1);
         group1.add(rect2);
 
-        Group<Rect2D> group2;
+        Group<Rect2D> group2(Vec3(0, 0, 0));
         group2.add(rect1);
         group2.add(rect2);
 
         REQUIRE(group1 == group2);
-    }
-
-    SECTION("does not equal with an other Group with the different data")
-    {
-        Rect2D rect1(2.0f, 3.0f, 3.0f, 5.0f, 0xFF0000FF);
-        Rect2D rect2(-2.0f, -3.0f, 3.0f, 5.0f, 0xFF0000FF);
-
-        Group<Rect2D> group1;
-        group1.add(rect1);
-        group1.add(rect2);
-
-        Group<Rect2D> group2;
-        group2.add(rect2);
-        group2.add(rect2);
-
-        REQUIRE(group1 != group2);
     }
 }

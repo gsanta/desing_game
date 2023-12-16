@@ -2,6 +2,7 @@
 
 #include "../../colors.h"
 #include "./mesh.h"
+#include <map>
 
 namespace spright
 {
@@ -41,7 +42,24 @@ namespace engine
         Box *clone() const override;
 
     private:
-        void calcPositions(const Vec3 &pos, float width, float height, float depth);
+        void calcPositions();
+
+        void calcColors();
+
+    private:
+        Vec3 m_Position;
+
+        float m_Width;
+
+        float m_Height;
+
+        float m_Depth;
+
+        int m_TileIndex = -1;
+
+        unsigned int m_Color;
+
+        std::map<Box::Face, unsigned int> m_FaceColors;
     };
 } // namespace engine
 } // namespace spright

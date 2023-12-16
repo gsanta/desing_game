@@ -34,6 +34,8 @@ namespace engine
 
         virtual void submit(Renderer2D &renderer) const;
 
+        void translate(const Vec3 &amount);
+
         virtual inline bool isEqual(const Mesh &obj) const
         {
             return false;
@@ -61,8 +63,6 @@ namespace engine
         void calcBounds();
 
     protected:
-        Vec3 m_Position;
-
         Vec3 *m_Positions = nullptr;
 
         Vec3 *m_Normals = nullptr;
